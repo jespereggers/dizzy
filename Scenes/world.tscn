@@ -25,7 +25,6 @@ script = ExtResource( 5 )
 [node name="player" parent="." instance=ExtResource( 1 )]
 pause_mode = 1
 position = Vector2( 120, 81 )
-scale = Vector2( 0.75, 0.75 )
 
 [node name="display" parent="." instance=ExtResource( 2 )]
 layer = 4
