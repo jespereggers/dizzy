@@ -19,4 +19,6 @@ func _on_animation_finished():
 		player.animation.play("salto")
 	else:
 		times_played = 0
+		player.action = ["idle"]
+		player.update_motion(["idle"])
 		player.locked = false

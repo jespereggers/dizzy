@@ -2,137 +2,17 @@
 
 [ext_resource path="res://Assets/tiles/dizzy/dizzy_idle.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/state_machine/state_machine.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/player.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/state_machine/idle_state.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/state_machine/walk_state.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/state_machine/jump_state.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/state_machine/salto_state.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/state_machine/climb_state.gd" type="Script" id=8]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends KinematicBody2D
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6.98927, 7.63155 )
 
-onready var animation: AnimationPlayer = $animation
-onready var texture: Sprite = $texture
-onready var state_machine: Node = $state_machine
-
-var motion: Vector2 = Vector2()
-var unlocked: bool = false
-var action: Array = [\"idle\"]
-var locked: bool = false
-
-const UP: Vector2 = Vector2(0, -1)
-const GRAVITY: int  = 3
-const MAXFALLSPEED: int = 40
-const MAXSPEED: int = 30
-const JUMPFORCE: int = 90
-const ACCEL: int = 8
-
-
-func _physics_process(delta):
-	motion.y += GRAVITY
-	
-	if motion.y > MAXFALLSPEED:
-		motion.y = MAXFALLSPEED
-	
-	motion.x = clamp(motion.x, -MAXSPEED, MAXSPEED)
-	
-	if not locked or unlocked:
-		if can_autojump():
-			motion.y = -JUMPFORCE / 2
-			unlocked = true
-			$unlocked_cooldown.start(1.0)
-
-		if is_on_floor() or unlocked:
-			action = []
-				
-			if Input.is_action_pressed(\"left\"):
-				action = [\"walk\", \"left\"]
-			elif Input.is_action_pressed(\"right\"):
-				action = [\"walk\", \"right\"]
-				
-			if Input.is_action_pressed(\"jump\"):
-				if Input.is_action_pressed(\"left\"):
-					action = [\"jump\", \"left\"]
-				elif Input.is_action_pressed(\"right\"):
-					action = [\"jump\", \"right\"]
-				elif action != [\"salto\"]:
-					Input.action_press(\"salto\")
-					action = [\"salto\"]
-						
-			elif Input.is_action_pressed(\"salto\"):
-				action = [\"salto\"]
-				
-			if action == []:
-				action = [\"idle\"]
-			
-			elif not is_on_wall() and not unlocked:
-				texture.flip_h = motion.x < 0
-				
-	state_machine.update_state(action[0])
-	update_motion(action)
-
-	motion = move_and_slide(motion, UP)
-
-
-func update_motion(action: Array):
-	# action[0] -> action_name
-	# action[1] -> action_direction
-	
-	match action[0]:
-		\"idle\":
-			motion.x = lerp(motion.x, 0, 0.2)
-			
-		\"walk\":
-			if action[1] == \"left\":
-				motion.x -= ACCEL
-			else:
-				motion.x += ACCEL
-				
-		\"jump\":
-			if is_on_floor() and Input.is_action_pressed(\"jump\"):
-				motion.y = -JUMPFORCE
-			if action[1] == \"right\":
-				motion.x += ACCEL
-			else:
-				motion.x -= ACCEL
-				
-		\"salto\":
-			if is_on_floor() and Input.is_action_pressed(\"salto\"):
-				motion.y = -JUMPFORCE
-				Input.action_release(\"salto\")
-			motion.x = 0
-			
-		\"climb\":
-			pass
-
-
-func get_height() -> float:
-	if $raycast.is_colliding():
-		return self.position.distance_to($raycast.get_collision_point())
-	return 99.99
-
-
-func can_autojump() -> bool:
-	if is_on_wall() and is_on_floor():
-		if texture.flip_h:
-			# Check autojump on left side
-			if not $raycast_left_middle.is_colliding():
-				return true
-		else:
-			# Check autojump on right side
-			if not $raycast_right_middle.is_colliding():
-				return true
-	return false
-
-
-func _on_unlocked_cooldown_timeout():
-	unlocked = false
-"
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 8.5345, 7.42567 )
-
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -148,7 +28,7 @@ tracks/0/keys = {
 "values": [ 32, 36 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 length = 0.2
 loop = true
 tracks/0/type = "value"
@@ -164,7 +44,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath("texture:frame")
@@ -179,7 +59,7 @@ tracks/0/keys = {
 "values": [ 25, 32 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath("texture:frame")
@@ -194,7 +74,7 @@ tracks/0/keys = {
 "values": [ 8, 15 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 length = 0.7
 loop = true
 tracks/0/type = "value"
@@ -211,23 +91,24 @@ tracks/0/keys = {
 }
 
 [node name="player" type="KinematicBody2D"]
-script = SubResource( 1 )
+script = ExtResource( 3 )
 
 [node name="texture" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 vframes = 5
 hframes = 8
+frame = 32
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2( -0.000327982, 5.27229 )
-shape = SubResource( 2 )
+position = Vector2( -1.04145, 4.66482 )
+shape = SubResource( 1 )
 
 [node name="animation" type="AnimationPlayer" parent="."]
-anims/climb = SubResource( 3 )
-anims/idle = SubResource( 4 )
-anims/jump = SubResource( 5 )
-anims/salto = SubResource( 6 )
-anims/walk = SubResource( 7 )
+anims/climb = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/jump = SubResource( 4 )
+anims/salto = SubResource( 5 )
+anims/walk = SubResource( 6 )
 
 [node name="state_machine" type="Node" parent="."]
 script = ExtResource( 2 )
