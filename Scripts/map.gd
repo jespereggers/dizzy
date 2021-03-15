@@ -23,5 +23,6 @@ func clean_maps():
 
 
 func respawn_player():
-	root.player.animation.play("idle")
+	root.player.locked = false
+	root.player.action = ["idle"]
 	root.player.position = get_viewport_rect().size / 2

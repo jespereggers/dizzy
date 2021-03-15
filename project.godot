@@ -17,6 +17,8 @@ _global_script_class_icons={
 
 config/name="Dizzy"
 run/main_scene="res://Scenes/world.tscn"
+config/icon="res://Ressources/icon.png"
+config/windows_native_icon="res://Ressources/icon.ico"
 
 [autoload]
 
