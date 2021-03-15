@@ -7,6 +7,7 @@ onready var map: Node2D = $map
 func _ready():
 	stats.player = $player
 	stats.map = $map
+	stats.display = $display
 	
 	stats.load_backend()
 	signals.emit_signal("backend_is_ready")

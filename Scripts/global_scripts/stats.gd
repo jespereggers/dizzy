@@ -2,6 +2,7 @@ extends Node
 
 var player: KinematicBody2D
 var map: Node2D
+var display: CanvasLayer
 
 var coins: int
 var eggs: int
@@ -35,6 +36,7 @@ func change_eggs_by(amount: int):
 		current_room = Vector2(0,0)
 		map.update_map()
 	map.respawn_player()
+	display.update_display()
 	player.set_physics_process(true)
 
 	signals.emit_signal("eggs_changed")
