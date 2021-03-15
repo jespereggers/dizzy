@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/tiles/dizzy/dizzy_idle.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/state_machine/state_machine.gd" type="Script" id=2]
@@ -8,9 +8,6 @@
 [ext_resource path="res://Scripts/state_machine/jump_state.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/state_machine/salto_state.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/state_machine/climb_state.gd" type="Script" id=8]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6.98927, 7.63155 )
 
 [sub_resource type="Animation" id=2]
 length = 0.4
@@ -26,6 +23,30 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 32, 36 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "death"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0.75, -0.25, 0, 0.25, 0, 1e-05, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.5 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0.75, -0.25, 0, 0.25, 0, 1e-05, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.5 )
 }
 
 [sub_resource type="Animation" id=3]
@@ -90,8 +111,20 @@ tracks/0/keys = {
 "values": [ 16, 16, 24 ]
 }
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6.98927, 7.63155 )
+
 [node name="player" type="KinematicBody2D"]
+scale = Vector2( 0.75, 0.75 )
 script = ExtResource( 3 )
+
+[node name="animations" type="AnimationPlayer" parent="."]
+anims/climb = SubResource( 2 )
+anims/death = SubResource( 7 )
+anims/idle = SubResource( 3 )
+anims/jump = SubResource( 4 )
+anims/salto = SubResource( 5 )
+anims/walk = SubResource( 6 )
 
 [node name="texture" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -102,13 +135,6 @@ frame = 32
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2( -1.04145, 4.66482 )
 shape = SubResource( 1 )
-
-[node name="animation" type="AnimationPlayer" parent="."]
-anims/climb = SubResource( 2 )
-anims/idle = SubResource( 3 )
-anims/jump = SubResource( 4 )
-anims/salto = SubResource( 5 )
-anims/walk = SubResource( 6 )
 
 [node name="state_machine" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -169,5 +195,5 @@ enabled = true
 cast_to = Vector2( 0, 10 )
 
 [node name="unlocked_cooldown" type="Timer" parent="."]
-[connection signal="animation_finished" from="animation" to="state_machine" method="_on_animation_animation_finished"]
+[connection signal="animation_finished" from="animations" to="state_machine" method="_on_animation_animation_finished"]
 [connection signal="timeout" from="unlocked_cooldown" to="." method="_on_unlocked_cooldown_timeout"]

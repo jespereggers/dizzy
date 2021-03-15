@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=86 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/tiles/build/3.png" type="Texture" id=9]
 [ext_resource path="res://Assets/tiles/build/7.png" type="Texture" id=10]
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/tiles/water_area.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -2828,6 +2829,9 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 155/shapes = [  ]
 155/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=72]
+extents = Vector2( 57.4878, 6.89375 )
+
 [node name="room_10" type="Node2D"]
 
 [node name="background" type="TileMap" parent="."]
@@ -2844,3 +2848,12 @@ tile_set = SubResource( 71 )
 cell_size = Vector2( 1, 1 )
 format = 1
 tile_data = PoolIntArray( 128, 5, 0, 144, 3, 0, 524400, 3, 0, 1048704, 3, 0, 1572952, 2, 0, 2097264, 5, 0, 2621488, 5, 0, 2621504, 0, 0, 3145792, 5, 0, 3145808, 0, 0, 3670016, 0, 0, 3670040, 1, 0, 3670056, 0, 0, 6291680, 49, 0, 6815784, 2, 0, 6815808, 4, 0, 6815936, 50, 0, 7340056, 5, 0, 7340248, 39, 0, 7864320, 4, 0, 7864384, 66, 0, 7864512, 69, 0, 8388632, 0, 0, 8388656, 67, 0 )
+
+[node name="water_area" parent="." instance=ExtResource( 12 )]
+position = Vector2( 135.927, 137.129 )
+
+[node name="collision" parent="water_area" index="0"]
+position = Vector2( -0.104813, 0.288193 )
+shape = SubResource( 72 )
+
+[editable path="water_area"]

@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var animation: AnimationPlayer = $animation
+onready var animations: AnimationPlayer = $animations
 onready var texture: Sprite = $texture
 onready var state_machine: Node = $state_machine
 

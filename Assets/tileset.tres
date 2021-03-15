@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=85 format=2]
+[gd_resource type="TileSet" load_steps=86 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/build/1.png" type="Texture" id=2]
@@ -51,6 +51,9 @@ points = PoolVector2Array( 0, 0, 8, 0, 8, 16, 0, 16 )
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=13]
+points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
+
+[sub_resource type="ConvexPolygonShape2D" id=72]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=14]
@@ -2574,9 +2577,16 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 142/navigation_offset = Vector2( 0, 0 )
 142/shape_offset = Vector2( 0, 0 )
 142/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+142/shape = SubResource( 72 )
 142/shape_one_way = false
-142/shape_one_way_margin = 0.0
-142/shapes = [  ]
+142/shape_one_way_margin = 1.0
+142/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 72 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 142/z_index = 0
 143/name = "1.png 143"
 143/texture = ExtResource( 2 )

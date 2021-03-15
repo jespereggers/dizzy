@@ -9,6 +9,7 @@ onready var states: Dictionary = {
 	"climb": get_node("climb_state")
 }
 
+
 func update_state(new_state: String):
 	if player.locked:
 		return
@@ -17,4 +18,5 @@ func update_state(new_state: String):
 
 
 func _on_animation_animation_finished(anim_name):
-	states[anim_name]._on_animation_finished()
+	if anim_name in states.keys():
+		states[anim_name]._on_animation_finished()

@@ -1,10 +1,8 @@
 extends Node
 
-onready var player: KinematicBody2D = get_parent().get_parent()
-
 
 func enter():
-	player.animation.play("walk")
+	stats.player.animations.play("walk")
 	
 	
 func _on_animation_finished():

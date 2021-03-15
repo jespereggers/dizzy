@@ -5,6 +5,9 @@ onready var map: Node2D = $map
 
 
 func _ready():
+	stats.player = $player
+	stats.map = $map
+	
 	stats.load_backend()
 	signals.emit_signal("backend_is_ready")
 
@@ -19,7 +22,7 @@ func _on_screen_area_body_exited(body):
 				$map.update_map()
 				$player.position.x = $screen_area.position.x + $screen_area/collision.shape.extents.x - 5
 			else:
-				kill_player()
+				stats.change_eggs_by(-1)
 				
 		if body.position.x > $screen_area.position.x + $screen_area/collision.shape.extents.x:
 			# Right
@@ -28,7 +31,7 @@ func _on_screen_area_body_exited(body):
 				$map.update_map()
 				$player.position.x = $screen_area.position.x - $screen_area/collision.shape.extents.x + 5
 			else:
-				kill_player()
+				stats.change_eggs_by(-1)
 				
 		# Check if the player left on Y-Axis
 		if body.position.y < $screen_area.position.y - $screen_area/collision.shape.extents.y:
@@ -38,7 +41,7 @@ func _on_screen_area_body_exited(body):
 				$map.update_map()
 				$player.position.y = $screen_area.position.y + $screen_area/collision.shape.extents.y - 15
 			else:
-				kill_player()
+				stats.change_eggs_by(-1)
 				
 		if body.position.y > $screen_area.position.y + $screen_area/collision.shape.extents.y:
 			# DOWN
@@ -47,12 +50,6 @@ func _on_screen_area_body_exited(body):
 				$map.update_map()
 				$player.position.y = $screen_area.position.y - $screen_area/collision.shape.extents.y + 15
 			else:
-				kill_player()
+				stats.change_eggs_by(-1)
 				
 		$display.update_display()
-
-func kill_player():
-	if stats.eggs > 0:
-		stats.eggs -= 1
-	signals.emit_signal("eggs_changed")
-	map.respawn_player()

@@ -6,7 +6,7 @@
 [ext_resource path="res://Scripts/map.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 82.6893, 44.9524 )
+extents = Vector2( 82.5051, 44.2945 )
 
 [node name="world" type="Node2D"]
 script = ExtResource( 3 )
@@ -31,9 +31,9 @@ scale = Vector2( 0.75, 0.75 )
 layer = 4
 
 [node name="overlay" parent="display" index="2"]
-margin_left = -0.238541
+margin_left = -0.448761
 margin_top = 0.0371628
-margin_right = -0.238541
+margin_right = -0.448761
 margin_bottom = 0.0371704
 
 [node name="room_label" parent="display" index="4"]

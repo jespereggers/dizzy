@@ -3,7 +3,7 @@ extends CanvasLayer
 onready var coins_label: Label = $coins_label
 onready var egg_list: HBoxContainer = $egg_list
 onready var room_label: Label = $room_label
-
+onready var root: Node2D = get_parent()
 
 func _ready():
 	signals.connect("coins_changed", self, "update_coins")
@@ -32,6 +32,8 @@ func set_coins_to(amount: int):
 
 
 func update_eggs():
+	if stats.eggs == 0:
+		root.player.animations.play("death")
 	set_eggs_to(stats.eggs)
 
 func set_eggs_to(amount: int):
