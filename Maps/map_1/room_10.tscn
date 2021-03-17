@@ -2834,6 +2834,9 @@ extents = Vector2( 57.4878, 6.89375 )
 
 [node name="room_10" type="Node2D"]
 
+[node name="respawn_point" type="Position2D" parent="."]
+position = Vector2( 71, 84 )
+
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 13 )
 cell_size = Vector2( 1, 1 )

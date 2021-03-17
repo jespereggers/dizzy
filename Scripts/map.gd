@@ -25,4 +25,8 @@ func clean_maps():
 func respawn_player():
 	root.player.locked = false
 	root.player.action = ["idle"]
-	root.player.position = get_viewport_rect().size / 2
+	
+	if self.get_children()[0].has_node("respawn_point"):
+		root.player.position = self.get_children()[0].get_node("respawn_point").position 
+	else:
+		root.player.position = get_viewport_rect().size / 2
