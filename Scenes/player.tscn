@@ -9,7 +9,7 @@
 [ext_resource path="res://Scripts/state_machine/salto_state.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/state_machine/climb_state.gd" type="Script" id=8]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -25,7 +25,7 @@ tracks/0/keys = {
 "values": [ 32, 36 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 resource_name = "death"
 length = 1.5
 tracks/0/type = "bezier"
@@ -111,7 +111,7 @@ tracks/0/keys = {
 "values": [ 16, 16, 24 ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 6.98927, 7.63155 )
 
 [node name="player" type="KinematicBody2D"]
@@ -119,8 +119,8 @@ scale = Vector2( 0.75, 0.75 )
 script = ExtResource( 3 )
 
 [node name="animations" type="AnimationPlayer" parent="."]
-anims/climb = SubResource( 2 )
-anims/death = SubResource( 7 )
+anims/climb = SubResource( 1 )
+anims/death = SubResource( 2 )
 anims/idle = SubResource( 3 )
 anims/jump = SubResource( 4 )
 anims/salto = SubResource( 5 )
@@ -130,11 +130,11 @@ anims/walk = SubResource( 6 )
 texture = ExtResource( 1 )
 vframes = 5
 hframes = 8
-frame = 32
+frame = 25
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2( -1.04145, 4.66482 )
-shape = SubResource( 1 )
+position = Vector2( 0, 4 )
+shape = SubResource( 7 )
 
 [node name="state_machine" type="Node" parent="."]
 script = ExtResource( 2 )

@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/tiles/water_area.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 47.7732, 6.89375 )
+extents = Vector2( 47.9449, 6.89375 )
 
 [node name="water_area" type="Area2D"]
 script = ExtResource( 1 )

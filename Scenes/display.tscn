@@ -44,8 +44,6 @@ __meta__ = {
 [node name="overlay" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -0.0270233
-margin_right = -0.0270233
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 6

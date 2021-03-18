@@ -26,17 +26,19 @@ script = ExtResource( 5 )
 pause_mode = 1
 position = Vector2( 120, 81 )
 
+[node name="texture" parent="player" index="1"]
+frame = 0
+
+[node name="collision" parent="player" index="2"]
+position = Vector2( 0, 4.36459 )
+
 [node name="display" parent="." instance=ExtResource( 2 )]
 layer = 4
 
-[node name="overlay" parent="display" index="2"]
-margin_left = -0.448761
-margin_top = 0.0371628
-margin_right = -0.448761
-margin_bottom = 0.0371704
-
 [node name="room_label" parent="display" index="4"]
-text = "Toller raumname"
+margin_left = 63.0
+margin_right = 13.0
+text = "toller raumname"
 [connection signal="body_exited" from="screen_area" to="." method="_on_screen_area_body_exited"]
 
 [editable path="player"]
