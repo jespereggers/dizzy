@@ -18,7 +18,7 @@ func update_map():
 
 func clean_maps():
 	for room in get_children():
-		if str(room.filename) != databank.maps[stats.current_map][stats.current_room].path:
+		if str(room.filename) != databank.maps[stats.current_map][stats.current_room].path and room.name != "user_interface":
 			room.queue_free()
 
 

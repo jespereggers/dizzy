@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/display.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/world.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/inventory.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/map.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/user_interface.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 82.5051, 44.2945 )
@@ -22,6 +24,19 @@ position = Vector2( 34.5005, 34.2276 )
 scale = Vector2( 0.71, 0.71 )
 script = ExtResource( 5 )
 
+[node name="user_interface" type="CanvasLayer" parent="map"]
+layer = 9
+script = ExtResource( 6 )
+
+[node name="inventory" parent="map/user_interface" instance=ExtResource( 4 )]
+visible = false
+margin_left = 38.0
+margin_top = 37.0
+margin_right = 30.0
+margin_bottom = 32.0
+rect_scale = Vector2( 0.71, 0.71 )
+popup_exclusive = false
+
 [node name="player" parent="." instance=ExtResource( 1 )]
 pause_mode = 1
 position = Vector2( 120, 81 )
@@ -34,6 +49,10 @@ position = Vector2( 0, 4.36459 )
 
 [node name="display" parent="." instance=ExtResource( 2 )]
 layer = 4
+
+[node name="coins_label" parent="display" index="3"]
+margin_left = 153.969
+margin_right = -58.0313
 
 [node name="room_label" parent="display" index="4"]
 margin_left = 63.0

@@ -1,5 +1,15 @@
 extends Node
 
+var colors: Dictionary = {
+	"black": Color("#000000"),
+	"white": Color("#FFFFFF"),
+	"red": Color("#68372B"),
+	"cyan": Color("#70A4B2"),
+	"purple": Color("#6F3D86"),
+	"green": Color("#588D43"),
+	"yellow": Color("#B8C76F")
+}
+
 var maps: Dictionary = {
 	1: {
 		

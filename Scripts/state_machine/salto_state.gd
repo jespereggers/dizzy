@@ -9,14 +9,14 @@ var times_played_goal: int = 2
 
 func enter():
 	player.locked = true
-	stats.player.animations.play("salto")
+	paths.player.animations.play("salto")
 	
 	
 func _on_animation_finished():
 	times_played += 1
 	
 	if times_played < times_played_goal:
-		stats.player.animations.play("salto")
+		paths.player.animations.play("salto")
 	else:
 		times_played = 0
 		player.action = ["idle"]
