@@ -23,6 +23,7 @@ config/windows_native_icon="res://Ressources/icon.ico"
 [autoload]
 
 signals="*res://Scripts/global_scripts/signals.gd"
+paths="*res://Scripts/global_scripts/paths.gd"
 stats="*res://Scripts/global_scripts/stats.gd"
 databank="*res://Scripts/global_scripts/databank.gd"
 tools="*res://Scripts/global_scripts/tools.gd"
@@ -33,8 +34,8 @@ settings/fps/force_fps=18
 
 [display]
 
-window/size/width=240
-window/size/height=136
+window/size/width=256
+window/size/height=192
 window/size/test_width=1024
 window/size/test_height=768
 window/handheld/orientation="portrait"
@@ -64,6 +65,11 @@ right={
  ]
 }
 select={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"unicode":0,"echo":false,"script":null)
+ ]
+}
+enter={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"unicode":0,"echo":false,"script":null)
  ]

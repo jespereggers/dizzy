@@ -16,9 +16,24 @@ func update_map():
 	call_deferred("add_child", map)
 
 
+func add_tile(tile_name: String):
+	tile_name = tile_name.split("#")[0]
+	var tile_instance = load("res://Scenes/tiles/" + tile_name + ".tscn").instance()
+	tile_instance.name = tile_name + "#" + str(randi())
+	tile_instance.position = paths.player.position
+	tile_instance.position -= Vector2(8, 49)
+	tile_instance.position.y += paths.player.get_height()
+	tile_instance.position.y -= tile_instance.get_node(tile_name + "/collision").shape.extents.y - 1
+	
+	for node in get_children():
+		if "room" in node.name:
+			node.add_child(tile_instance, false)
+			return
+
+
 func clean_maps():
 	for room in get_children():
-		if str(room.filename) != databank.maps[stats.current_map][stats.current_room].path:
+		if str(room.filename) != databank.maps[stats.current_map][stats.current_room].path and room.name != "user_interface":
 			room.queue_free()
 
 

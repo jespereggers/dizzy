@@ -12,8 +12,9 @@
 [ext_resource path="res://Assets/tiles/build/7.png" type="Texture" id=10]
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=12]
-[ext_resource path="res://Scenes/tiles/water_area.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/templates/water_area.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/tiles/objects/water.tres" type="Texture" id=14]
+
 
 [sub_resource type="TileSet" id=1]
 0/name = "2.png 0"
@@ -2845,20 +2846,20 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 155/shape_one_way_margin = 0.0
 155/shapes = [  ]
 155/z_index = 0
-156/name = "Water"
-156/texture = ExtResource( 14 )
-156/tex_offset = Vector2( 0, 0 )
-156/modulate = Color( 1, 1, 1, 1 )
-156/region = Rect2( 0, 0, 32, 7 )
-156/tile_mode = 0
-156/occluder_offset = Vector2( 0, 0 )
-156/navigation_offset = Vector2( 0, 0 )
-156/shape_offset = Vector2( 0, 0 )
-156/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-156/shape_one_way = false
-156/shape_one_way_margin = 0.0
-156/shapes = [  ]
-156/z_index = 0
+158/name = "water.tres 158"
+158/texture = ExtResource( 14 )
+158/tex_offset = Vector2( 0, 0 )
+158/modulate = Color( 1, 1, 1, 1 )
+158/region = Rect2( 0, 0, 32, 6 )
+158/tile_mode = 0
+158/occluder_offset = Vector2( 0, 0 )
+158/navigation_offset = Vector2( 0, 0 )
+158/shape_offset = Vector2( 0, 0 )
+158/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+158/shape_one_way = false
+158/shape_one_way_margin = 0.0
+158/shapes = [  ]
+158/z_index = 0
 
 [node name="room_14" type="Node2D"]
 
@@ -2866,7 +2867,7 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 tile_set = ExtResource( 12 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 1769575, 157, 0, 2687080, 17, 0, 5832928, 155, 0 )
+tile_data = PoolIntArray( 1572964, 157, 0, 2621544, 17, 0, 5767392, 155, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -2875,13 +2876,13 @@ __meta__ = {
 tile_set = SubResource( 1 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 5308530, 0, 0 )
+tile_data = PoolIntArray( 5242994, 0, 0 )
 
 [node name="main" type="TileMap" parent="."]
 tile_set = SubResource( 72 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 65536, 3, 0, 65552, 5, 0, 65568, 13, 0, 65584, 4, 0, 65608, 2, 0, 65632, 4, 0, 65656, 5, 0, 65672, 3, 0, 65688, 0, 0, 65712, 1, 0, 65728, 0, 0, 65752, 0, 0, 1114128, 2, 0, 1114152, 3, 0, 1114168, 1, 0, 1114208, 1, 0, 1114224, 0, 0, 1638400, 3, 0, 1638456, 4, 0, 1638480, 3, 0, 2162912, 1, 0, 2686992, 3, 0, 2687008, 5, 0, 2687024, 2, 0, 2687048, 16, 0, 2687200, 3, 0, 3211264, 5, 0, 3211336, 4, 0, 3735584, 1, 0, 4260056, 4, 0, 4784288, 4, 0, 5308568, 15, 0, 5308640, 67, 0, 5832848, 12, 0, 5832856, 2, 0, 5832880, 5, 0, 5832936, 154, 0, 6357128, 3, 0, 6881376, 0, 0, 6881400, 5, 0, 6881456, 4, 0, 7340032, 156, 0, 7340064, 156, 0, 7340096, 156, 0, 7405664, 3, 0, 7405680, 15, 0, 7405720, 5, 0, 7405736, 14, 0, 7405768, 3, 0, 7929968, 5, 0, 7929984, 4, 0, 7930032, 8, 0, 7930072, 7, 0, 7930080, 7, 0, 7930088, 7, 0, 8454296, 9, 0, 8454360, 0, 0 )
+tile_data = PoolIntArray( 0, 3, 0, 16, 5, 0, 32, 13, 0, 48, 4, 0, 72, 2, 0, 96, 4, 0, 120, 5, 0, 136, 3, 0, 152, 0, 0, 176, 1, 0, 192, 0, 0, 216, 0, 0, 1048592, 2, 0, 1048616, 3, 0, 1048632, 1, 0, 1048672, 1, 0, 1048688, 0, 0, 1572864, 3, 0, 1572920, 4, 0, 1572944, 3, 0, 2097376, 1, 0, 2621456, 3, 0, 2621472, 5, 0, 2621488, 2, 0, 2621512, 16, 0, 2621664, 3, 0, 3145728, 5, 0, 3145800, 4, 0, 3670048, 1, 0, 4194520, 4, 0, 4718752, 4, 0, 5243032, 15, 0, 5243104, 67, 0, 5767312, 12, 0, 5767320, 2, 0, 5767344, 5, 0, 5767400, 154, 0, 6291592, 3, 0, 6815840, 0, 0, 6815864, 5, 0, 6815920, 4, 0, 7340032, 158, 0, 7340064, 158, 0, 7340096, 158, 0, 7340128, 3, 0, 7340144, 15, 0, 7340184, 5, 0, 7340200, 14, 0, 7340232, 3, 0, 7864432, 5, 0, 7864448, 4, 0, 7864496, 8, 0, 7864536, 7, 0, 7864544, 7, 0, 7864552, 7, 0, 8388760, 9, 0, 8388824, 0, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -2889,6 +2890,6 @@ __meta__ = {
 [node name="water_area" parent="." instance=ExtResource( 13 )]
 
 [node name="collision" parent="water_area" index="0"]
-position = Vector2( 47.654, 127.551 )
+position = Vector2( 48, 127 )
 
 [editable path="water_area"]

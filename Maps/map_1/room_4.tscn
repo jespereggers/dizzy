@@ -2834,7 +2834,7 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 tile_set = ExtResource( 12 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 524432, 82, 0, 3145776, 79, 0, 3276867, 157, 0, 4194372, 17, 0, 6815790, 81, 0 )
+tile_data = PoolIntArray( 524432, 82, 0, 3145776, 79, 0, 3145792, 157, 0, 4194372, 17, 0, 6815790, 81, 0 )
 __meta__ = {
 "_editor_description_": ""
 }

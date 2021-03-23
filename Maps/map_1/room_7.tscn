@@ -2849,7 +2849,7 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 tile_set = SubResource( 71 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 3080321, 79, 0, 4587645, 78, 0, 6750347, 77, 0 )
+tile_data = PoolIntArray( 3145856, 79, 0, 4653180, 78, 0, 6815882, 77, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -2858,7 +2858,7 @@ __meta__ = {
 tile_set = SubResource( 72 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 4128776, 0, 0, 4128784, 0, 0, 4128792, 0, 0, 4128800, 0, 0, 4128808, 0, 0 )
+tile_data = PoolIntArray( 4194312, 0, 0, 4194320, 0, 0, 4194328, 0, 0, 4194336, 0, 0, 4194344, 0, 0 )
 
 [node name="main" type="TileMap" parent="."]
 tile_set = SubResource( 71 )

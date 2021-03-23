@@ -11,10 +11,11 @@
 [ext_resource path="res://Assets/tiles/build/3.png" type="Texture" id=9]
 [ext_resource path="res://Assets/tiles/build/7.png" type="Texture" id=10]
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
-[ext_resource path="res://Scenes/tiles/water_area.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/templates/water_area.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Assets/tiles/objects/63.png" type="Texture" id=13]
 [ext_resource path="res://Assets/tiles/objects/62.png" type="Texture" id=14]
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=16]
+
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2837,13 +2838,12 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 tile_set = ExtResource( 16 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 0, 132, 0, 192, 68, 0, 2097152, 135, 0, 2097168, 134, 0, 2621440, 133, 0, 2621632, 53, 0, 2621648, 53, 0, 2621664, 53, 0, 3145736, 139, 0, 4325591, 157, 0, 5242896, 136, 0, 5243096, 17, 0, 5767168, 138, 0, 5767184, 137, 0, 5767208, 142, 0, 5767216, 142, 0, 5767224, 142, 0, 5767232, 142, 0, 5767240, 142, 0, 5767248, 142, 0, 5767256, 142, 0, 5767264, 142, 0, 5767272, 142, 0, 5767280, 142, 0, 5767288, 142, 0, 5767296, 142, 0, 5767304, 142, 0, 5767312, 142, 0, 5767320, 142, 0, 5767328, 142, 0, 6225928, 147, 0, 6291456, 145, 0, 6291472, 148, 0, 6291488, 144, 0, 6291536, 35, 0, 6291576, 35, 0, 6815744, 50, 0, 6815824, 141, 0, 6815864, 24, 0, 7340113, 89, 0, 7340114, 89, 0, 7340115, 89, 0, 7340116, 89, 0, 7340117, 89, 0, 7340118, 89, 0, 7405648, 35, 0, 7536665, 143, 0, 7602224, 156, 0, 7602264, 156, 0, 7602304, 156, 0, 7733248, 150, 0, 7864440, 36, 0, 7929856, 146, 0, 7929936, 24, 0, 8388656, 149, 0, 8388728, 140, 0, 8388752, 151, 0 )
+tile_data = PoolIntArray( 0, 132, 0, 192, 68, 0, 2097152, 135, 0, 2097168, 134, 0, 2621440, 133, 0, 2621632, 53, 0, 2621648, 53, 0, 2621664, 53, 0, 3145736, 139, 0, 4194516, 157, 0, 5242896, 136, 0, 5243096, 17, 0, 5767168, 138, 0, 5767184, 137, 0, 5767208, 142, 0, 5767216, 142, 0, 5767224, 142, 0, 5767232, 142, 0, 5767240, 142, 0, 5767248, 142, 0, 5767256, 142, 0, 5767264, 142, 0, 5767272, 142, 0, 5767280, 142, 0, 5767288, 142, 0, 5767296, 142, 0, 5767304, 142, 0, 5767312, 142, 0, 5767320, 142, 0, 5767328, 142, 0, 6225928, 147, 0, 6291456, 145, 0, 6291472, 148, 0, 6291488, 144, 0, 6291536, 35, 0, 6291576, 35, 0, 6815744, 50, 0, 6815824, 141, 0, 6815864, 24, 0, 7340113, 89, 0, 7340114, 89, 0, 7340115, 89, 0, 7340116, 89, 0, 7340117, 89, 0, 7340118, 89, 0, 7405648, 159, 0, 7536665, 143, 0, 7733248, 150, 0, 7864368, 160, 0, 7864408, 160, 0, 7864440, 36, 0, 7864448, 160, 0, 7929856, 146, 0, 8388656, 149, 0, 8388728, 140, 0, 8388752, 151, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="main" type="TileMap" parent="."]
-position = Vector2( 1, 0 )
 tile_set = SubResource( 71 )
 cell_size = Vector2( 1, 1 )
 format = 1
@@ -2851,19 +2851,19 @@ tile_data = PoolIntArray( 72, 3, 0, 524376, 4, 0, 1572952, 5, 0, 1572968, 2, 0, 
 
 [node name="lever_on" type="Sprite" parent="main"]
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-position = Vector2( 137.188, 31.0938 )
+position = Vector2( 136, 32 )
 texture = ExtResource( 14 )
 
 [node name="lever_broken" type="Sprite" parent="main"]
 visible = false
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-position = Vector2( 137.09, 31.1016 )
+position = Vector2( 136, 32 )
 texture = ExtResource( 13 )
 
 [node name="water_area" parent="." instance=ExtResource( 12 )]
 position = Vector2( 104.363, 129.108 )
 
 [node name="collision" parent="water_area" index="0"]
-position = Vector2( -0.229248, -0.203079 )
+position = Vector2( 0, 6 )
 
 [editable path="water_area"]

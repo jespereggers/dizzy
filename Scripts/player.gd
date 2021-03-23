@@ -3,6 +3,7 @@ extends KinematicBody2D
 onready var animations: AnimationPlayer = $animations
 onready var texture: Sprite = $texture
 onready var state_machine: Node = $state_machine
+onready var area: Area2D = $area
 
 var motion: Vector2 = Vector2()
 var unlocked: bool = false
@@ -11,9 +12,9 @@ var locked: bool = false
 
 const UP: Vector2 = Vector2(0, -1)
 const GRAVITY: int  = 3
-const MAXFALLSPEED: int = 30
-const MAXSPEED: int = 25
-const JUMPFORCE: int = 90
+const MAXFALLSPEED: int = 35
+const MAXSPEED: int = 40
+const JUMPFORCE: int = 110
 const ACCEL: int = 8
 
 

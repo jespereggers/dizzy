@@ -11,9 +11,9 @@
 [ext_resource path="res://Assets/tiles/build/3.png" type="Texture" id=9]
 [ext_resource path="res://Assets/tiles/build/7.png" type="Texture" id=10]
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
-[ext_resource path="res://Assets/tiles/items/82.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/tiles/parchment.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Assets/tiles/items/81.png" type="Texture" id=13]
-[ext_resource path="res://Scenes/tiles/coin.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/templates/coin.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=15]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -2831,10 +2831,7 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 155/shapes = [  ]
 155/z_index = 0
 
-[sub_resource type="Animation" id=72]
-length = 0.4
-loop = true
-step = 0.2
+[sub_resource type="ImageTexture" id=72]
 
 [node name="room_15" type="Node2D"]
 
@@ -2842,7 +2839,7 @@ step = 0.2
 tile_set = ExtResource( 15 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 3670149, 19, 0, 3801122, 157, 0, 3801283, 157, 0, 4718628, 17, 0, 4718788, 18, 0, 5242936, 27, 0, 5243088, 20, 0, 5767224, 24, 0, 5767280, 26, 0, 6815800, 28, 0, 7340088, 25, 0, 7340144, 25, 0 )
+tile_data = PoolIntArray( 3670048, 157, 0, 3670149, 19, 0, 3670208, 157, 0, 4718628, 17, 0, 4718788, 18, 0, 5242936, 27, 0, 5243088, 20, 0, 5767224, 24, 0, 5767280, 26, 0, 6815800, 28, 0, 7340088, 25, 0, 7340144, 25, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -2860,10 +2857,7 @@ modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 position = Vector2( 94, 120 )
 texture = ExtResource( 13 )
 
-[node name="torchfire_1_animation" type="AnimationPlayer" parent="main"]
-anims/torchfire = SubResource( 72 )
+[node name="item_message" parent="main" instance=ExtResource( 12 )]
 
-[node name="item_message" type="Sprite" parent="main"]
-modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
-position = Vector2( 159, 104 )
-texture = ExtResource( 12 )
+[node name="Sprite" type="Sprite" parent="."]
+texture = SubResource( 72 )
