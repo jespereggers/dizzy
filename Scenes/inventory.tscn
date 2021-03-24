@@ -32,7 +32,6 @@ region_rect = Rect2( 0, 0, 160, 48 )
 
 [node name="inventory" type="Popup"]
 pause_mode = 2
-visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 popup_exclusive = true
@@ -86,11 +85,12 @@ margin_right = 184.0
 margin_bottom = 13.0
 custom_constants/separation = 1
 
-[node name="action" type="Label" parent="item_list/content/item_list"]
+[node name="action" type="Label" parent="item_list/content"]
 visible = false
 self_modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 19.0
 margin_right = 184.0
-margin_bottom = 7.0
+margin_bottom = 26.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 2 )
 text = "Exit and don't drop"

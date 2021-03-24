@@ -1,7 +1,6 @@
 extends Popup
 
 onready var item_list_panel: Panel = $item_list
-onready var item_list_instance: VBoxContainer = $item_list/content/item_list
 onready var choose_item_dialogue: Panel = $choose_item_dialogue
 onready var full_inventory_dialogue: Panel = $full_inventory_dialogue
 
@@ -26,16 +25,17 @@ func _input(_event):
 					if stats.inventory[i] == selected_item_instance.name:
 						stats.inventory.remove(i)
 						break
-						
 			close()
 		else:
 			if paths.player.area.colliding_area == null:
 				open()
 			else:
-				stats.inventory.append(paths.player.area.colliding_area.name)
+				if stats.inventory.size() < 3:
+					stats.inventory.append(paths.player.area.colliding_area.name)
 				open()
-				paths.player.area.colliding_area.get_parent().queue_free()
-				paths.player.area.colliding_area = null
+				if stats.inventory.size() < 3:
+					paths.player.area.colliding_area.get_parent().queue_free()
+					paths.player.area.colliding_area = null
 
 
 func open():
