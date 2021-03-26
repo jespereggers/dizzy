@@ -18,11 +18,11 @@ func _input(_event):
 			return
 			
 		if is_visible_in_tree():
-			if selected_item_instance != null:
-				paths.map.add_tile(selected_item_instance.name)
+			if selected_item_instance != null and selected_item_instance.text.to_lower() in databank.available_items:
+				paths.map.add_tile(selected_item_instance.text.to_lower())
 				
 				for i in stats.inventory.size():
-					if stats.inventory[i] == selected_item_instance.name:
+					if stats.inventory[i] == selected_item_instance.text.to_lower():
 						stats.inventory.remove(i)
 						break
 			close()

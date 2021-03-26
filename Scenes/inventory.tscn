@@ -85,22 +85,7 @@ margin_right = 184.0
 margin_bottom = 13.0
 custom_constants/separation = 1
 
-[node name="action" type="Label" parent="item_list/content"]
-visible = false
-self_modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-margin_top = 19.0
-margin_right = 184.0
-margin_bottom = 26.0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 2 )
-text = "Exit and don't drop"
-align = 1
-valign = 1
-autowrap = true
-uppercase = true
-
 [node name="hint" type="Label" parent="item_list/content"]
-visible = false
 margin_top = 19.0
 margin_right = 184.0
 margin_bottom = 47.0
@@ -112,14 +97,15 @@ autowrap = true
 uppercase = true
 
 [node name="choose_item_dialogue" type="Panel" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -83.0
-margin_top = 20.5
-margin_right = 83.0
-margin_bottom = 73.5
+margin_left = -73.0
+margin_top = 21.0
+margin_right = 74.0
+margin_bottom = 74.0
 custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -152,10 +138,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -90.0
-margin_top = 20.5
-margin_right = 90.0
-margin_bottom = 73.5
+margin_left = -81.0
+margin_top = 21.0
+margin_right = 81.0
+margin_bottom = 74.0
 custom_styles/panel = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
