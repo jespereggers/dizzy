@@ -92,15 +92,9 @@ margin_bottom = 13.0
 custom_constants/separation = 1
 
 [node name="hint" type="Label" parent="item_list/content"]
-<<<<<<< HEAD
 margin_top = 20.0
 margin_right = 178.0
 margin_bottom = 45.0
-=======
-margin_top = 19.0
-margin_right = 184.0
-margin_bottom = 47.0
->>>>>>> 6a9b5a3daea45de9fd370da78ce6becafb63518f
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
 text = "Nothing"
@@ -109,22 +103,14 @@ autowrap = true
 uppercase = true
 
 [node name="choose_item_dialogue" type="Panel" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-<<<<<<< HEAD
 margin_left = -72.0
 margin_top = 20.0
 margin_right = 72.0
 margin_bottom = 68.0
-=======
-margin_left = -73.0
-margin_top = 21.0
-margin_right = 74.0
-margin_bottom = 74.0
->>>>>>> 6a9b5a3daea45de9fd370da78ce6becafb63518f
 custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_lock_": true,
@@ -178,15 +164,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -81.0
-<<<<<<< HEAD
 margin_top = 20.0
 margin_right = 79.0
 margin_bottom = 68.0
-=======
-margin_top = 21.0
-margin_right = 81.0
-margin_bottom = 74.0
->>>>>>> 6a9b5a3daea45de9fd370da78ce6becafb63518f
 custom_styles/panel = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true,
