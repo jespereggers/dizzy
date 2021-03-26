@@ -16,7 +16,6 @@
 [ext_resource path="res://Assets/tiles/objects/62.png" type="Texture" id=14]
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=16]
 
-
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
 
