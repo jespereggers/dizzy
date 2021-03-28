@@ -1,7 +1,14 @@
 extends Node
 
+# warning-ignore:unused_signal
 signal backend_is_ready()
+
+# warning-ignore:unused_signal
+signal coin_collected()
+# warning-ignore:unused_signal
 signal coins_changed()
+# warning-ignore:unused_signal
 signal eggs_changed()
-signal show_default_popup(content)
-signal player_died()
+
+# warning-ignore:unused_signal
+signal player_died(colliding_object)

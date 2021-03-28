@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/tiles/menu/menue.png" type="Texture" id=1]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/icons/egg.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/display.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/everplant_touch_assistent.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 7
@@ -110,3 +111,7 @@ stretch_mode = 3
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="everplant_touch_integration" parent="." instance=ExtResource( 5 )]
+
+[editable path="everplant_touch_integration"]

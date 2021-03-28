@@ -7,6 +7,11 @@ var current_map: int
 var current_room: Vector2
 
 
+func _ready():
+	signals.connect("player_died", self, "_on_player_died")
+	signals.connect("coin_collected", self, "_on_coin_collected")
+
+
 func load_backend():
 	coins = 0
 	eggs = databank.max_eggs
@@ -14,25 +19,19 @@ func load_backend():
 	current_room = Vector2(0,0)
 
 
+func _on_coin_collected():
+	coins += 1
+	signals.emit_signal("coins_changed")
+
+
+func _on_player_died(_colliding_object: String):
+	change_eggs_by(-1)
+
+
 func change_eggs_by(amount: int):
 	if amount == 0:
 		return
 		
 	eggs = clamp(eggs + amount, 0, databank.max_eggs)
-
-	# Play Death-animation
-	paths.player.set_physics_process(false)
-	paths.player.animations.play("death")
-	yield(paths.player.animations, "animation_finished")
-	paths.player.scale = Vector2(1,1)
-		
-	# Respawn Player
-	if eggs == 0:
-		eggs = databank.max_eggs
-		current_room = Vector2(0,0)
-		paths.map.update_map()
-	paths.map.respawn_player()
-	paths.display.update_display()
-	paths.player.set_physics_process(true)
 
 	signals.emit_signal("eggs_changed")

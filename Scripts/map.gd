@@ -12,8 +12,15 @@ func update_map():
 	clean_maps()
 	
 	var map: Node2D = load(databank.maps[stats.current_map][stats.current_room].path).instance()
-	map.connect("tree_entered", self, "clean_maps")
+	map.connect("tree_entered", self, "_on_map_enters_tree", [map])
 	call_deferred("add_child", map)
+
+
+func _on_map_enters_tree(map_instance: Node2D):
+	yield(get_tree().create_timer(0.2), "timeout")
+	for node in map_instance.get_children():
+		if node.get_class() == "Area2D":
+			node.monitoring = true
 
 
 func add_tile(tile_name: String):
@@ -45,3 +52,7 @@ func respawn_player():
 		root.player.position = self.get_children()[0].get_node("respawn_point").position 
 	else:
 		root.player.position = get_viewport_rect().size / 2
+	
+	paths.player.scale = Vector2(1,1)
+	paths.player.set_physics_process(true)
+	paths.player.show()

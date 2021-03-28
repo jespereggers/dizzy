@@ -18,7 +18,22 @@ const JUMPFORCE: int = 110
 const ACCEL: int = 8
 
 
-func _physics_process(delta):
+func _ready():
+	signals.connect("player_died", self, "_on_player_died")
+
+
+func _on_player_died(collision_object):
+	# Play Death-animation
+	set_physics_process(false)
+	self.animations.play("death")
+	yield(animations, "animation_finished")
+	
+	# Launch Death-Screen
+	self.hide()
+	paths.ui.death.start(collision_object)
+
+
+func _physics_process(_delta):
 	motion.y += GRAVITY
 	
 	if motion.y > MAXFALLSPEED:
@@ -35,15 +50,15 @@ func _physics_process(delta):
 		if is_on_floor() or is_on_wall() or unlocked:
 			action = []
 				
-			if Input.is_action_pressed("left"):
+			if Input.is_action_pressed("walk_left"):
 				action = ["walk", "left"]
-			elif Input.is_action_pressed("right"):
+			elif Input.is_action_pressed("walk_right"):
 				action = ["walk", "right"]
 				
 			if Input.is_action_pressed("jump"):
-				if Input.is_action_pressed("left"):
+				if Input.is_action_pressed("walk_left"):
 					action = ["jump", "left"]
-				elif Input.is_action_pressed("right"):
+				elif Input.is_action_pressed("walk_right"):
 					action = ["jump", "right"]
 				elif action != ["salto"]:
 					Input.action_press("salto")

@@ -12,33 +12,39 @@ func _ready():
 	full_inventory_dialogue.self_modulate = Color(databank.colors.white)
 
 
-func _input(_event):
-	if Input.is_action_just_pressed("enter"):
-		if paths.player.area.colliding_area != null and not paths.player.area.colliding_area.name in databank.available_items:
-			return
+func _unhandled_input(event):
+	if event is InputEventScreenTouch:
+		if $item_list/content/hint.is_visible_in_tree():
+			close()
 			
-		if is_visible_in_tree():
-			if selected_item_instance != null and selected_item_instance.text.to_lower() in databank.available_items:
-				paths.map.add_tile(selected_item_instance.text.to_lower())
-				
-				for i in stats.inventory.size():
-					if stats.inventory[i] == selected_item_instance.text.to_lower():
-						stats.inventory.remove(i)
-						break
+	if Input.is_action_just_pressed("enter"):
+		if self.is_visible_in_tree():
 			close()
 		else:
-			if paths.player.area.colliding_area == null:
+			if not get_parent().death.visible and not get_parent().locked and paths.player.is_on_floor():
+				if paths.player.area.colliding_area != null:
+					if paths.player.area.colliding_area.name in databank.available_items:
+						if stats.inventory.size() < 3:
+							stats.inventory.append(paths.player.area.colliding_area.name)
+							paths.player.area.colliding_area.get_parent().queue_free()
+							paths.player.area.colliding_area = null
+					else:
+						return
 				open()
-			else:
-				if stats.inventory.size() < 3:
-					stats.inventory.append(paths.player.area.colliding_area.name)
-				open()
-				if stats.inventory.size() < 3:
-					paths.player.area.colliding_area.get_parent().queue_free()
-					paths.player.area.colliding_area = null
+
+
+func _on_item_pressed(item_name: String):
+	if is_visible_in_tree() and item_name.to_lower() in databank.available_items:
+		paths.map.add_tile(item_name.to_lower())
+		for item in stats.inventory.size():
+			if stats.inventory[item] == item_name.to_lower():
+				stats.inventory.remove(item)
+				break
+		close()
 
 
 func open():
+	item_list_panel.set_process_input(true)
 	get_tree().paused = true
 	paths.player.visible = false
 	self.visible = true
@@ -46,10 +52,15 @@ func open():
 
 
 func close():
+	item_list_panel.set_process_input(false)
 	selected_item_instance = null
 	get_tree().paused = false
 	paths.player.visible = true
 	self.visible = false
+
+
+func _on_close_pressed():
+	close()
 
 
 func _on_inventory_popup_hide():

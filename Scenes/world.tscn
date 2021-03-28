@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/display.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/world.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/inventory.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/user_interface.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/map.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/user_interface.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 117.375, 66.75 )
@@ -23,18 +22,7 @@ shape = SubResource( 1 )
 position = Vector2( 8, 49 )
 script = ExtResource( 5 )
 
-[node name="user_interface" type="CanvasLayer" parent="map"]
-pause_mode = 2
-script = ExtResource( 6 )
-
-[node name="inventory" parent="map/user_interface" instance=ExtResource( 4 )]
-pause_mode = 0
-margin_left = -120.0
-margin_top = -47.0
-margin_right = 120.0
-margin_bottom = 89.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="user_interface" parent="map" instance=ExtResource( 4 )]
 
 [node name="player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 128, 118 )
@@ -45,6 +33,8 @@ layer = 4
 [node name="room_label" parent="display" index="2"]
 text = "toller raumname"
 [connection signal="body_exited" from="screen_area" to="." method="_on_screen_area_body_exited"]
+
+[editable path="map/user_interface"]
 
 [editable path="player"]
 

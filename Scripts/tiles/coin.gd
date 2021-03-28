@@ -3,12 +3,10 @@ extends Sprite
 var overlaping_with_player: bool = false
 
 
-func _input(event):
-	if Input.is_action_pressed("select"):
+func _input(_event):
+	if Input.is_action_pressed("enter"):
 		if overlaping_with_player:
-			stats.coins += 1
-			signals.emit_signal("coins_changed")
-			#signals.emit_signal("show_default_popup", {"Sehr Gut!": Color(1,1,1,1), "Du hast eine Münze gefunden": Color(1,1,1,1)})
+			signals.emit_signal("coin_collected")
 			self.queue_free()
 
 
