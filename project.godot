@@ -75,6 +75,10 @@ walk_right={
  ]
 }
 
+[locale]
+
+locale_filter=[ 1, [ "de", "en" ] ]
+
 [rendering]
 
 environment/default_clear_color=Color( 0, 0, 0, 1 )

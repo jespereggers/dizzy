@@ -4,6 +4,7 @@ onready var animations: AnimationPlayer = $animations
 onready var texture: Sprite = $texture
 onready var state_machine: Node = $state_machine
 onready var area: Area2D = $area
+onready var collision: CollisionShape2D = $collision
 
 var motion: Vector2 = Vector2()
 var unlocked: bool = false
@@ -19,7 +20,13 @@ const ACCEL: int = 8
 
 
 func _ready():
+	signals.connect("room_changed", self, "_on_room_changed")
 	signals.connect("player_died", self, "_on_player_died")
+
+
+func _on_room_changed():
+	if animations.current_animation in ["idle", "walk"] and not is_on_floor():
+		self.position.y -= get_height()
 
 
 func _on_player_died(collision_object):

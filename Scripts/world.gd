@@ -18,21 +18,28 @@ func _ready():
 func _on_screen_area_body_exited(body):
 	if body.name == "player":
 		# Check if the player left on X-Axis
+		var player_height: float = paths.player.position.y
+		
 		if body.position.x < $screen_area.position.x - $screen_area/collision.shape.extents.x:
 			# Left
 			if databank.maps[stats.current_map].keys().has(Vector2(stats.current_room.x - 1, stats.current_room.y)):
 				$player.position.x = $screen_area.position.x + $screen_area/collision.shape.extents.x - 5
 				stats.current_room = Vector2(stats.current_room.x - 1, stats.current_room.y)
 				$map.update_map()
+				yield($map, "room_entered_tree")
+				paths.player.position.y = player_height
 			else:
 				stats.change_eggs_by(-1)
 				
 		if body.position.x > $screen_area.position.x + $screen_area/collision.shape.extents.x:
 			# Right
 			if databank.maps[stats.current_map].keys().has(Vector2(stats.current_room.x + 1, stats.current_room.y)):
-				$player.position.x = $screen_area.position.x - $screen_area/collision.shape.extents.x + 5
 				stats.current_room = Vector2(stats.current_room.x + 1, stats.current_room.y)
 				$map.update_map()
+				paths.player.position.y = player_height
+				$player.position.x = $screen_area.position.x - $screen_area/collision.shape.extents.x + 5
+				yield($map, "room_entered_tree")
+				paths.player.position.y = player_height
 			else:
 				stats.change_eggs_by(-1)
 				

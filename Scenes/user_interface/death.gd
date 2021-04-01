@@ -7,10 +7,10 @@ func _ready():
 	set_process_unhandled_input(false)
 
 
-func start(colliding_object: String = ""):
+func start(colliding_object: String):
 	get_parent().locked = true
 	get_tree().paused = true
-	$label.text = LABEL_TEXT + colliding_object
+	$label.text = LABEL_TEXT + " " + colliding_object
 	self.popup()
 	set_process_unhandled_input(true)
 

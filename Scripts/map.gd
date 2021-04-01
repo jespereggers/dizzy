@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var root: Node2D = get_parent()
-
+signal room_entered_tree
 
 func _ready():
 	yield(signals, "backend_is_ready")
@@ -17,7 +17,10 @@ func update_map():
 
 
 func _on_map_enters_tree(map_instance: Node2D):
+	emit_signal("room_entered_tree")
 	yield(get_tree().create_timer(0.2), "timeout")
+	if map_instance == null:
+		return
 	for node in map_instance.get_children():
 		if node.get_class() == "Area2D":
 			node.monitoring = true

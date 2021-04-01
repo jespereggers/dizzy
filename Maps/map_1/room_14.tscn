@@ -2891,6 +2891,7 @@ __meta__ = {
 
 [node name="water_area" parent="." instance=ExtResource( 13 )]
 monitoring = false
+colliding_object = "water"
 
 [node name="shape_of_death" parent="water_area" index="0"]
 position = Vector2( 47.8874, 122.977 )
