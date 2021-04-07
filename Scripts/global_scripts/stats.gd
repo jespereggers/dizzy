@@ -19,7 +19,7 @@ func load_backend():
 	current_room = Vector2(0,0)
 
 
-func _on_coin_collected():
+func _on_coin_collected(_coin_instance):
 	coins += 1
 	signals.emit_signal("coins_changed")
 

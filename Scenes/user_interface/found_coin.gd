@@ -1,12 +1,15 @@
 extends Popup
 
+var coin_instance: Sprite
+
 
 func _ready():
 	set_process_unhandled_input(false)
 	signals.connect("coin_collected", self, "_on_coin_collected")
 
 
-func _on_coin_collected():
+func _on_coin_collected(new_coin_instance):
+	coin_instance = new_coin_instance
 	paths.player.hide()
 	get_parent().locked = true
 	get_tree().paused = true
@@ -24,3 +27,5 @@ func _unhandled_input(event):
 		
 		yield(get_tree().create_timer(0.2), "timeout")
 		get_parent().locked = false
+		coin_instance.queue_free()
+		audio.play("intro")

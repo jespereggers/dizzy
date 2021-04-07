@@ -1,21 +1,24 @@
 extends Popup
 
-const LABEL_TEXT = "Lorem ipsum dolor sit amet, consetetur"
+const LABEL_TEXT = "you lost a life!"
 
 
 func _ready():
 	set_process_unhandled_input(false)
 
 
-func start(colliding_object: String):
+func start(_colliding_object: String):
 	get_parent().locked = true
 	get_tree().paused = true
-	$label.text = LABEL_TEXT + " " + colliding_object
+	$label.text = LABEL_TEXT
 	self.popup()
 	set_process_unhandled_input(true)
 
 
 func _unhandled_input(event):
+	if audio.get_node("dead").playing:
+		return
+		
 	if Input.is_action_just_pressed("enter") or event is InputEventScreenTouch:
 		
 		if stats.eggs == 0:
@@ -32,3 +35,4 @@ func _unhandled_input(event):
 		
 		yield(get_tree().create_timer(0.2), "timeout")
 		get_parent().locked = false
+		audio.play("theme")
