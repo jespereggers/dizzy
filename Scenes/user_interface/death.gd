@@ -20,12 +20,13 @@ func _unhandled_input(event):
 		return
 		
 	if Input.is_action_just_pressed("enter") or event is InputEventScreenTouch:
-		
-		if stats.eggs == 0:
+		if stats.eggs <= 0:
 			stats.eggs = databank.max_eggs
 			stats.current_room = Vector2(0,0)
-			signals.emit_signal("eggs_changed")
 			paths.map.update_map()
+		else:
+			stats.change_eggs_by(-1)
+		signals.emit_signal("eggs_changed")
 			
 		paths.map.respawn_player()
 		

@@ -66,4 +66,5 @@ func load_items():
 	
 	if list_instance.get_child_count() > 0:
 		yield(get_tree().create_timer(0.2), "timeout")
-		list_instance.get_child(list_instance.get_child_count() - 1).connect("button_up", get_parent(), "close")
+		if not list_instance.get_child(list_instance.get_child_count() - 1).is_connected("button_up", get_parent(), "close"):
+			list_instance.get_child(list_instance.get_child_count() - 1).connect("button_up", get_parent(), "close")

@@ -41,6 +41,7 @@ __meta__ = {
 [node name="background" type="NinePatchRect" parent="death"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -3.0
 texture = ExtResource( 2 )
 patch_margin_left = 24
 patch_margin_top = 24

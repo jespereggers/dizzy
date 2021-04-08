@@ -28,4 +28,6 @@ func _unhandled_input(event):
 		yield(get_tree().create_timer(0.2), "timeout")
 		get_parent().locked = false
 		coin_instance.queue_free()
+		stats.coins += 1
+		signals.emit_signal("coins_changed")
 		audio.play("intro")
