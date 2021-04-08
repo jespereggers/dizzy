@@ -22,6 +22,7 @@ font_data = ExtResource( 4 )
 
 [node name="inventory" type="Popup"]
 pause_mode = 2
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -83,7 +84,7 @@ margin_right = 176.0
 margin_bottom = 7.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 2 )
-text = "You are carrying"
+text = "you are carrying"
 align = 1
 valign = 1
 autowrap = true
@@ -102,7 +103,7 @@ margin_right = 176.0
 margin_bottom = 44.0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-text = "Nothing"
+text = "nothing"
 align = 1
 autowrap = true
 uppercase = true

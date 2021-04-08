@@ -5,6 +5,7 @@ onready var map: Node2D = $map
 
 
 func _ready():
+	TranslationServer.set_locale("de")
 	paths.world_root = self
 	paths.player = $player
 	paths.map = $map
