@@ -19,6 +19,7 @@ func _unhandled_input(event):
 			
 	if Input.is_action_just_pressed("enter"):
 		if self.is_visible_in_tree():
+			yield(get_tree().create_timer(0.1), "timeout")
 			close()
 		else:
 			if not get_parent().death.visible and not get_parent().locked and paths.player.is_on_floor():
@@ -34,6 +35,7 @@ func _unhandled_input(event):
 
 
 func _on_item_pressed(item_name: String):
+	print(1)
 	if is_visible_in_tree() and item_name.to_lower() in databank.available_items:
 		paths.map.add_tile(item_name.to_lower())
 		for item in stats.inventory.size():

@@ -1,17 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/inventory.gd" type="Script" id=1]
-[ext_resource path="res://Assets/user_interface/backgrounds/large_inventory_background.png" type="Texture" id=2]
-[ext_resource path="res://Assets/user_interface/backgrounds/small_inventory_background.png" type="Texture" id=3]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Assets/user_interface/backgrounds/mid_inventory_background.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/inventory/item_list.gd" type="Script" id=6]
+[ext_resource path="res://Assets/tiles/menu/dialog.png" type="Texture" id=7]
 
-[sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 208, 80 )
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
+[sub_resource type="StyleBoxEmpty" id=6]
 
 [sub_resource type="DynamicFont" id=2]
 size = 7
@@ -22,13 +16,9 @@ size = 7
 extra_spacing_char = 4
 font_data = ExtResource( 4 )
 
-[sub_resource type="StyleBoxTexture" id=4]
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 144, 48 )
+[sub_resource type="StyleBoxEmpty" id=7]
 
-[sub_resource type="StyleBoxTexture" id=5]
-texture = ExtResource( 5 )
-region_rect = Rect2( 0, 0, 160, 48 )
+[sub_resource type="StyleBoxEmpty" id=8]
 
 [node name="inventory" type="Popup"]
 pause_mode = 2
@@ -37,9 +27,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -103.0
-margin_top = -63.5
+margin_top = -66.0
 margin_right = 103.0
-margin_bottom = 63.5
+margin_bottom = 63.0
 popup_exclusive = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -52,18 +42,32 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -103.0
-margin_top = -66.0
+margin_top = -65.5
 margin_right = 103.0
-margin_bottom = 14.0
-custom_styles/panel = SubResource( 1 )
+margin_bottom = 14.5
+custom_styles/panel = SubResource( 6 )
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="NinePatchRect" parent="item_list"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="content" type="VBoxContainer" parent="item_list"]
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.9875
 margin_left = 15.0
 margin_top = 20.0
 margin_right = -15.0
@@ -94,8 +98,8 @@ custom_constants/separation = 1
 [node name="hint" type="Label" parent="item_list/content"]
 visible = false
 margin_top = 19.0
-margin_right = 178.0
-margin_bottom = 45.0
+margin_right = 176.0
+margin_bottom = 44.0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
 text = "Nothing"
@@ -104,6 +108,7 @@ autowrap = true
 uppercase = true
 
 [node name="choose_item_dialogue" type="Panel" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -112,7 +117,21 @@ margin_left = -72.0
 margin_top = 13.0
 margin_right = 72.0
 margin_bottom = 61.0
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="NinePatchRect" parent="choose_item_dialogue"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -167,10 +186,21 @@ margin_left = -80.0
 margin_top = 18.0
 margin_right = 80.0
 margin_bottom = 66.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="background" type="NinePatchRect" parent="full_inventory_dialogue"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="label" type="Label" parent="full_inventory_dialogue"]
 self_modulate = Color( 0.439216, 0.643137, 0.698039, 1 )

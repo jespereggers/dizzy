@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/user_interface.gd" type="Script" id=1]
-[ext_resource path="res://Assets/user_interface/backgrounds/death_background_eng.png" type="Texture" id=2]
+[ext_resource path="res://Assets/tiles/menu/dialog.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/inventory.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Assets/user_interface/backgrounds/coin_found_background_eng.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/user_interface/death.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/user_interface/found_coin.gd" type="Script" id=7]
 
@@ -29,36 +28,35 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -100.0
-margin_top = -27.5
-margin_right = 100.0
-margin_bottom = 63.5
+margin_left = -87.5
+margin_top = -26.0
+margin_right = 87.5
+margin_bottom = 26.0
 popup_exclusive = true
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" type="TextureRect" parent="death"]
+[node name="background" type="NinePatchRect" parent="death"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 2 )
-expand = true
-stretch_mode = 6
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="label" type="Label" parent="death"]
-anchor_left = 0.085
-anchor_top = 0.301
-anchor_right = 0.91
-anchor_bottom = 0.699
-margin_top = -8.391
-margin_bottom = 8.391
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = SubResource( 1 )
-text = "you lose a life!
-"
+text = "you lose a life!"
 align = 1
 valign = 1
 autowrap = true
@@ -72,34 +70,33 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -100.0
-margin_top = -27.5
-margin_right = 100.0
-margin_bottom = 63.5
+margin_left = -78.5
+margin_top = -26.5
+margin_right = 78.5
+margin_bottom = 26.5
 popup_exclusive = true
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" type="TextureRect" parent="found_coin"]
+[node name="background" type="NinePatchRect" parent="found_coin"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 5 )
-expand = true
-stretch_mode = 6
+texture = ExtResource( 2 )
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="label" type="Label" parent="found_coin"]
-anchor_left = 0.2
-anchor_top = 0.231
-anchor_right = 0.805
-anchor_bottom = 0.78
-margin_top = -0.0209999
-margin_right = -1.52588e-05
-margin_bottom = 0.0199966
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = SubResource( 1 )
 text = "well done...!"
 align = 1
