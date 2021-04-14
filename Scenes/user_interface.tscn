@@ -67,6 +67,7 @@ text = "you're skewered by
 the sharp daggers"
 align = 1
 autowrap = true
+max_lines_visible = 2
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": true
@@ -83,13 +84,13 @@ custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
 text = "you lose a life!"
 align = 1
+max_lines_visible = 1
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="found_coin" type="Popup" parent="."]
-visible = true
 margin_left = 64.0
 margin_top = 64.0
 margin_right = 192.0
