@@ -23,11 +23,15 @@ __meta__ = {
 self_modulate = Color( 0.133333, 0.486275, 0.121569, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -208.0
+margin_bottom = -144.0
 texture = ExtResource( 2 )
 patch_margin_left = 24
 patch_margin_top = 24
 patch_margin_right = 24
 patch_margin_bottom = 24
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -35,10 +39,10 @@ __meta__ = {
 [node name="text" type="Label" parent="default_popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_left = 17.5227
+margin_top = 56.4141
+margin_right = -12.4773
+margin_bottom = 26.4142
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.67451, 0.945098, 1, 1 )
 text = "Dies ist ein Test"
