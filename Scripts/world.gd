@@ -6,8 +6,14 @@ onready var map: Node2D = $map
 enum LANGUAGES {english, german}
 export(LANGUAGES) var language = LANGUAGES.english
 
+
 func _ready():
-	TranslationServer.set_locale("de")
+	match language:
+		LANGUAGES.german:
+			TranslationServer.set_locale("de")
+		LANGUAGES.english:
+			TranslationServer.set_locale("en")
+			
 	paths.world_root = self
 	paths.player = $player
 	paths.map = $map
