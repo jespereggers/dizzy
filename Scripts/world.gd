@@ -3,8 +3,11 @@ extends Node2D
 onready var player: KinematicBody2D = $player
 onready var map: Node2D = $map
 
+enum LANGUAGES {english, german}
+export(LANGUAGES) var language = LANGUAGES.english
 
 func _ready():
+	TranslationServer.set_locale("de")
 	paths.world_root = self
 	paths.player = $player
 	paths.map = $map

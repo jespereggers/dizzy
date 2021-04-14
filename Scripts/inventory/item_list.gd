@@ -18,12 +18,12 @@ func load_items():
 		list_instance.remove_child(item)
 			
 	# Instance new items to the inventory
-	for item_name in stats.inventory:
+	for item_instance in stats.inventory:
 		if list_instance.get_child_count() < 2:
-			var item_instance: Button = load("res://Scenes/templates/item_template.tscn").instance()
-			item_instance.load_template(item_name)
-			list_instance.add_child(item_instance)
-			item_instance.connect("pressed", get_parent(), "_on_item_pressed", [item_instance.text])
+			var button_instance: Button = load("res://Scenes/templates/item_template.tscn").instance()
+			button_instance.load_template(item_instance.item_name)
+			list_instance.add_child(button_instance)
+			button_instance.connect("pressed", get_parent(), "_on_item_pressed", [item_instance])
 	
 	get_parent().get_node("choose_item_dialogue").hide()
 	get_parent().get_node("full_inventory_dialogue").hide()
@@ -66,4 +66,5 @@ func load_items():
 	
 	if list_instance.get_child_count() > 0:
 		yield(get_tree().create_timer(0.2), "timeout")
-		list_instance.get_child(list_instance.get_child_count() - 1).connect("button_up", get_parent(), "close")
+		if not list_instance.get_child(list_instance.get_child_count() - 1).is_connected("button_up", get_parent(), "close"):
+			list_instance.get_child(list_instance.get_child_count() - 1).connect("button_up", get_parent(), "close")

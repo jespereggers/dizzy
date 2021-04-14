@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=2]
+[gd_scene load_steps=92 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -11,10 +11,12 @@
 [ext_resource path="res://Assets/tiles/build/3.png" type="Texture" id=9]
 [ext_resource path="res://Assets/tiles/build/7.png" type="Texture" id=10]
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
-[ext_resource path="res://Scenes/tiles/parchment.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Assets/tiles/items/81.png" type="Texture" id=13]
-[ext_resource path="res://Scenes/templates/coin.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/tiles/items/parchment.png" type="Texture" id=12]
+[ext_resource path="res://Assets/tiles/items/star.png" type="Texture" id=13]
+[ext_resource path="res://templates/coin.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=15]
+[ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=16]
+[ext_resource path="res://templates/item.tscn" type="PackedScene" id=17]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2833,7 +2835,16 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 
 [sub_resource type="ImageTexture" id=72]
 
+[sub_resource type="RectangleShape2D" id=73]
+extents = Vector2( 6, 7 )
+
+[sub_resource type="RectangleShape2D" id=74]
+extents = Vector2( 6, 7 )
+
 [node name="room_15" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 15 )
@@ -2851,13 +2862,37 @@ format = 1
 tile_data = PoolIntArray( 0, 0, 0, 24, 1, 0, 40, 0, 0, 64, 0, 0, 88, 1, 0, 104, 0, 0, 128, 1, 0, 144, 0, 0, 168, 1, 0, 224, 3, 0, 2097152, 4, 0, 2097176, 2, 0, 2097200, 0, 0, 2097224, 5, 0, 2097240, 4, 0, 2097264, 2, 0, 2097288, 0, 0, 2097312, 1, 0, 2097328, 3, 0, 2097344, 14, 0, 2097352, 5, 0, 2097368, 2, 0, 2621488, 4, 0, 2621576, 5, 0, 2621592, 4, 0, 3145728, 14, 0, 3145736, 3, 0, 3145800, 0, 0, 3145824, 1, 0, 3145920, 0, 0, 4194304, 14, 0, 4718600, 3, 0, 7340168, 536870933, 0, 7340184, 21, 0, 7864320, 7, 0, 7864328, 7, 0, 7864336, 7, 0, 7864344, 7, 0, 8388608, 0, 0, 8388632, 1, 0, 8388648, 1, 0, 8388664, 0, 0, 8388688, 1, 0, 8388704, 0, 0, 8388728, 0, 0, 8388752, 1, 0, 8388768, 1, 0, 8388784, 0, 0, 8388808, 1, 0, 8388824, 0, 0 )
 
 [node name="coin" parent="main" instance=ExtResource( 14 )]
+position = Vector2( 41, 120 )
 
 [node name="shard" type="Sprite" parent="main"]
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-position = Vector2( 94, 120 )
+position = Vector2( 83, 112 )
 texture = ExtResource( 13 )
-
-[node name="item_message" parent="main" instance=ExtResource( 12 )]
+centered = false
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = SubResource( 72 )
+
+[node name="torchfire_death" parent="." instance=ExtResource( 16 )]
+position = Vector2( 40, 64 )
+colliding_object = "torchfire"
+
+[node name="shape_of_death" parent="torchfire_death" index="0"]
+shape = SubResource( 73 )
+
+[node name="torchfire_death2" parent="." instance=ExtResource( 16 )]
+position = Vector2( 200, 64 )
+colliding_object = "torchfire"
+
+[node name="shape_of_death" parent="torchfire_death2" index="0"]
+shape = SubResource( 74 )
+
+[node name="collectable_item2" parent="." instance=ExtResource( 17 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+position = Vector2( 151.645, 103.389 )
+item_name = "parchment"
+texture = ExtResource( 12 )
+
+[editable path="torchfire_death"]
+
+[editable path="torchfire_death2"]

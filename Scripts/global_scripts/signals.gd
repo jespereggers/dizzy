@@ -4,7 +4,9 @@ extends Node
 signal backend_is_ready()
 
 # warning-ignore:unused_signal
-signal coin_collected()
+signal coin_collected(coin_instance)
+# warning-ignore:unused_signal
+signal item_collected(item_instance)
 # warning-ignore:unused_signal
 signal coins_changed()
 # warning-ignore:unused_signal

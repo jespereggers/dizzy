@@ -1,12 +1,15 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/tiles/items/key.png" type="Texture" id=3]
 [ext_resource path="res://Assets/tiles/build/5.png" type="Texture" id=5]
 [ext_resource path="res://Assets/tiles/build/1.png" type="Texture" id=6]
 [ext_resource path="res://Assets/tiles/build/8.png" type="Texture" id=7]
 [ext_resource path="res://Assets/tiles/build/3.png" type="Texture" id=9]
 [ext_resource path="res://Assets/tiles/build/7.png" type="Texture" id=10]
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
+
 
 [sub_resource type="TileSet" id=1]
 0/name = "2.png 0"
@@ -1553,7 +1556,13 @@ points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
 } ]
 76/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=53]
+extents = Vector2( 6, 7 )
+
 [node name="room_16" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -1584,3 +1593,18 @@ tile_data = PoolIntArray( -65312, 44, 0, 0, 5, 0, 16, 14, 0, 24, 2, 0, 48, 30, 0
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="torchfire_death" parent="." instance=ExtResource( 2 )]
+position = Vector2( 24, 64 )
+colliding_object = "torchfire"
+
+[node name="shape_of_death" parent="torchfire_death" index="0"]
+shape = SubResource( 53 )
+
+[node name="item_rusty_key" type="Sprite" parent="."]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+position = Vector2( 174, 2 )
+texture = ExtResource( 3 )
+centered = false
+
+[editable path="torchfire_death"]

@@ -27,6 +27,7 @@ paths="*res://Scripts/global_scripts/paths.gd"
 stats="*res://Scripts/global_scripts/stats.gd"
 databank="*res://Scripts/global_scripts/databank.gd"
 tools="*res://Scripts/global_scripts/tools.gd"
+audio="*res://Scenes/audio.tscn"
 
 [debug]
 
@@ -78,6 +79,7 @@ walk_right={
 [locale]
 
 locale_filter=[ 1, [ "de", "en" ] ]
+translations=PoolStringArray( "res://Assets/translations/translations.de.translation", "res://Assets/translations/translations.en.translation" )
 
 [rendering]
 

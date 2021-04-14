@@ -6,5 +6,6 @@ extends Button
 
 
 func load_template(item_name: String):
-	self.name = item_name
-	self.text = item_name.capitalize()
+	if item_name != "":
+		self.name = item_name
+		self.text = item_name.capitalize()

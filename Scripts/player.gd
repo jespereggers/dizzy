@@ -3,7 +3,6 @@ extends KinematicBody2D
 onready var animations: AnimationPlayer = $animations
 onready var texture: Sprite = $texture
 onready var state_machine: Node = $state_machine
-onready var area: Area2D = $area
 onready var collision: CollisionShape2D = $collision
 
 var motion: Vector2 = Vector2()
@@ -36,6 +35,7 @@ func _on_player_died(collision_object):
 	yield(animations, "animation_finished")
 	
 	# Launch Death-Screen
+	$texture.scale = Vector2(1,1)
 	self.hide()
 	paths.ui.death.start(collision_object)
 

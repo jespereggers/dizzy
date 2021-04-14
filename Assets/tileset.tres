@@ -2921,3 +2921,17 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 161/z_index = 0
+162/name = "water.tres 162"
+162/texture = ExtResource( 12 )
+162/tex_offset = Vector2( 0, 0 )
+162/modulate = Color( 1, 1, 1, 1 )
+162/region = Rect2( 0, 0, 16, 6 )
+162/tile_mode = 0
+162/occluder_offset = Vector2( 0, 0 )
+162/navigation_offset = Vector2( 0, 0 )
+162/shape_offset = Vector2( 0, 0 )
+162/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+162/shape_one_way = false
+162/shape_one_way_margin = 0.0
+162/shapes = [  ]
+162/z_index = 0

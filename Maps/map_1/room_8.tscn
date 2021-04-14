@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=2]
+[gd_scene load_steps=89 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -2855,6 +2855,9 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 } ]
 156/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=73]
+extents = Vector2( 6, 7 )
+
 [node name="room_8" type="Node2D"]
 
 [node name="background" type="TileMap" parent="."]
@@ -2872,21 +2875,21 @@ cell_size = Vector2( 1, 1 )
 format = 1
 tile_data = PoolIntArray( 72, 3, 0, 524376, 4, 0, 1572952, 5, 0, 1572968, 2, 0, 2621568, 4, 0, 2621592, 5, 0, 2621608, 12, 0, 2621616, 3, 0, 3145896, 536871064, 0, 3408040, 536871064, 0, 3670184, 536871064, 0, 3670208, 1, 0, 3670224, 0, 0, 3670248, 12, 0, 3932328, 536871064, 0, 4194472, 536871064, 0, 4456616, 536871064, 0, 4718760, 153, 0, 6291616, 0, 0, 6815904, 2, 0, 6815928, 5, 0, 7340232, 3, 0, 7864504, 66, 0, 7864536, 4, 0, 7864557, 156, 0, 7864558, 156, 0, 7864559, 156, 0, 7864560, 156, 0, 7864561, 156, 0, 7864562, 156, 0, 7864563, 156, 0, 7864564, 156, 0, 7864565, 156, 0, 7864566, 156, 0, 7864567, 156, 0, 7864568, 156, 0, 7864569, 156, 0, 7864570, 156, 0, 7864571, 156, 0, 7864572, 156, 0, 7864573, 156, 0, 7864574, 156, 0, 7864575, 156, 0, 7930095, 156, 0, 7930111, 156, 0, 7995631, 156, 0, 7995647, 156, 0, 8061167, 156, 0, 8061183, 156, 0, 8126703, 156, 0, 8126719, 156, 0, 8192239, 156, 0, 8192255, 156, 0, 8257775, 156, 0, 8257791, 156, 0, 8323311, 156, 0, 8323327, 156, 0, 8388768, 0, 0, 8388847, 156, 0, 8388863, 156, 0, 8454383, 156, 0, 8454399, 156, 0, 8519919, 156, 0, 8519935, 156, 0, 8585455, 156, 0, 8585471, 156, 0, 8650991, 156, 0, 8651007, 156, 0, 8716527, 156, 0, 8716543, 156, 0, 8782063, 156, 0, 8782064, 156, 0, 8782065, 156, 0, 8782066, 156, 0, 8782067, 156, 0, 8782068, 156, 0, 8782069, 156, 0, 8782070, 156, 0, 8782071, 156, 0, 8782072, 156, 0, 8782073, 156, 0, 8782074, 156, 0, 8782075, 156, 0, 8782076, 156, 0, 8782077, 156, 0, 8782078, 156, 0, 8782079, 156, 0 )
 
-[node name="lever_on" type="Sprite" parent="main"]
+[node name="torchfire_death" parent="." instance=ExtResource( 12 )]
+position = Vector2( 220, 72 )
+colliding_object = "torchfire"
+
+[node name="shape_of_death" parent="torchfire_death" index="0"]
+shape = SubResource( 73 )
+
+[node name="lever_on" type="Sprite" parent="."]
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 position = Vector2( 136, 32 )
 texture = ExtResource( 14 )
 
-[node name="lever_broken" type="Sprite" parent="main"]
-visible = false
+[node name="lever_broken" type="Sprite" parent="."]
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 position = Vector2( 136, 32 )
 texture = ExtResource( 13 )
 
-[node name="death_area" parent="." instance=ExtResource( 12 )]
-position = Vector2( 104.363, 129.191 )
-
-[node name="shape_of_death" parent="death_area" index="0"]
-position = Vector2( -0.270714, -0.384807 )
-
-[editable path="death_area"]
+[editable path="torchfire_death"]

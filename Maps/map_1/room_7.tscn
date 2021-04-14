@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=86 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/tiles/build/3.png" type="Texture" id=9]
 [ext_resource path="res://Assets/tiles/build/7.png" type="Texture" id=10]
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2843,6 +2844,9 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 0/shapes = [  ]
 0/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=73]
+extents = Vector2( 19, 7 )
+
 [node name="room_7" type="Node2D"]
 
 [node name="background" type="TileMap" parent="."]
@@ -2865,3 +2869,13 @@ tile_set = SubResource( 71 )
 cell_size = Vector2( 1, 1 )
 format = 1
 tile_data = PoolIntArray( 0, 14, 0, 48, 1, 0, 64, 30, 0, 128, 74, 0, 136, 76, 0, 524336, 4, 0, 524408, 74, 0, 524416, 73, 0, 524424, 73, 0, 524432, 75, 0, 1048576, 14, 0, 1048688, 74, 0, 1048696, 73, 0, 1048704, 73, 0, 1048712, 73, 0, 1048720, 73, 0, 1048728, 76, 0, 1572912, 5, 0, 1572968, 74, 0, 1572976, 73, 0, 1572984, 73, 0, 1572992, 73, 0, 1573000, 73, 0, 1573008, 73, 0, 1573016, 73, 0, 1573024, 75, 0, 2097152, 14, 0, 2097248, 74, 0, 2097256, 73, 0, 2097264, 73, 0, 2097272, 73, 0, 2097280, 73, 0, 2097288, 73, 0, 2097296, 73, 0, 2097304, 73, 0, 2097312, 73, 0, 2097320, 76, 0, 2621488, 14, 0, 2621528, 74, 0, 2621536, 73, 0, 2621544, 73, 0, 2621552, 73, 0, 2621560, 73, 0, 2621568, 73, 0, 2621576, 73, 0, 2621584, 73, 0, 2621592, 73, 0, 2621600, 73, 0, 2621608, 73, 0, 2621616, 75, 0, 3145728, 14, 0, 3145824, 1, 0, 3145888, 5, 0, 3670064, 72, 0, 3670112, 3, 0, 4194304, 14, 0, 4194464, 5, 0, 5242880, 5, 0, 5242896, 5, 0, 5242912, 4, 0, 5242936, 4, 0, 5242960, 5, 0, 5242976, 4, 0, 5243040, 3, 0, 6815904, 3, 0, 7864320, 536871030, 0, 7864328, 536871030, 0, 7864336, 536870982, 0, 8388608, 0, 0, 8388632, 0, 0, 8388656, 0, 0, 8388712, 0, 0, 8388736, 0, 0, 8388760, 0, 0 )
+
+[node name="spike_death" parent="." instance=ExtResource( 12 )]
+position = Vector2( 13.773, 70.984 )
+colliding_object = "spike"
+
+[node name="shape_of_death" parent="spike_death" index="0"]
+position = Vector2( 14.227, 0.0159988 )
+shape = SubResource( 73 )
+
+[editable path="spike_death"]

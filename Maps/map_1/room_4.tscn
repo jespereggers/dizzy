@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=86 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Assets/tiles/build/7.png" type="Texture" id=10]
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=12]
+[ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2828,6 +2829,9 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 155/shapes = [  ]
 155/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=72]
+extents = Vector2( 6, 7 )
+
 [node name="room_4" type="Node2D"]
 
 [node name="background" type="TileMap" parent="."]
@@ -2844,3 +2848,12 @@ tile_set = SubResource( 71 )
 cell_size = Vector2( 1, 1 )
 format = 1
 tile_data = PoolIntArray( 48, 74, 0, 56, 76, 0, 524328, 74, 0, 524336, 73, 0, 524344, 73, 0, 524352, 75, 0, 1048608, 74, 0, 1048616, 73, 0, 1048624, 73, 0, 1048632, 73, 0, 1048640, 73, 0, 1048648, 76, 0, 1572888, 74, 0, 1572896, 73, 0, 1572904, 73, 0, 1572912, 73, 0, 1572920, 73, 0, 1572928, 73, 0, 1572936, 73, 0, 1572944, 75, 0, 2097168, 74, 0, 2097176, 73, 0, 2097184, 73, 0, 2097192, 73, 0, 2097200, 73, 0, 2097208, 73, 0, 2097216, 73, 0, 2097224, 73, 0, 2097232, 73, 0, 2097240, 76, 0, 2621448, 74, 0, 2621456, 73, 0, 2621464, 73, 0, 2621472, 73, 0, 2621480, 73, 0, 2621488, 73, 0, 2621496, 73, 0, 2621504, 73, 0, 2621512, 73, 0, 2621520, 73, 0, 2621528, 73, 0, 2621536, 75, 0, 3145744, 5, 0, 3145808, 1, 0, 3670096, 3, 0, 4194320, 5, 0, 5242880, 5, 0, 5242896, 60, 0, 5242960, 5, 0, 6291536, 5, 0, 7340104, 5, 0, 8388608, 80, 0, 8388656, 1, 0, 8388672, 67, 0 )
+
+[node name="torchfire_death" parent="." instance=ExtResource( 13 )]
+position = Vector2( 72, 56 )
+colliding_object = "torchfire"
+
+[node name="shape_of_death" parent="torchfire_death" index="0"]
+shape = SubResource( 72 )
+
+[editable path="torchfire_death"]

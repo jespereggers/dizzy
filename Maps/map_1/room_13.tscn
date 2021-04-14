@@ -14,7 +14,6 @@
 [ext_resource path="res://Assets/tiles/objects/water.tres" type="Texture" id=12]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=14]
 
-
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
 
@@ -2845,7 +2844,7 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 158/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=72]
-extents = Vector2( 24.5721, 5.02456 )
+extents = Vector2( 16, 5 )
 
 [node name="room_13" type="Node2D"]
 
@@ -2866,11 +2865,11 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="water_area" parent="." instance=ExtResource( 14 )]
-position = Vector2( 224.064, 122.251 )
+[node name="water_death" parent="." instance=ExtResource( 14 )]
+colliding_object = "water"
 
-[node name="shape_of_death" parent="water_area" index="0"]
-position = Vector2( 7.97696, -0.25223 )
+[node name="shape_of_death" parent="water_death" index="0"]
+position = Vector2( 224, 123 )
 shape = SubResource( 72 )
 
-[editable path="water_area"]
+[editable path="water_death"]
