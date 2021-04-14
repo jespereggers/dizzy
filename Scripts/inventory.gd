@@ -36,7 +36,6 @@ func _on_item_collected(item_instance):
 	open()
 
 
-
 func _on_item_pressed(item_instance: KinematicBody2D):
 	if is_visible_in_tree():
 		paths.map.add_tile(item_instance)
@@ -45,6 +44,7 @@ func _on_item_pressed(item_instance: KinematicBody2D):
 				stats.inventory.remove(item)
 				break
 		close()
+
 
 func open():
 	item_list_panel.set_process_input(true)

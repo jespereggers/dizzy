@@ -42,7 +42,6 @@ font_data = ExtResource( 4 )
 
 [node name="inventory" type="Popup"]
 pause_mode = 2
-visible = true
 margin_right = 256.0
 margin_bottom = 192.0
 grow_horizontal = 0
@@ -91,11 +90,10 @@ grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 2 )
-text = "You are carrying"
+text = "you are carrying"
 align = 1
 autowrap = true
 uppercase = true
-max_lines_visible = 1
 
 [node name="item_list" type="VBoxContainer" parent="item_list/content"]
 margin_top = 11.0
@@ -113,11 +111,10 @@ grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-text = "Nothing"
+text = "nothing"
 align = 1
 autowrap = true
 uppercase = true
-max_lines_visible = 1
 
 [node name="choose_item_dialogue" type="Panel" parent="."]
 margin_left = 56.0
@@ -143,7 +140,6 @@ text = "chose item too
 use or drop"
 align = 1
 uppercase = true
-max_lines_visible = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -173,7 +169,6 @@ custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 text = "you are carrying
 too much to hold"
 uppercase = true
-max_lines_visible = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

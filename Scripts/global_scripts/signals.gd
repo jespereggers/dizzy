@@ -7,7 +7,6 @@ signal backend_is_ready()
 signal coin_collected(coin_instance)
 # warning-ignore:unused_signal
 signal item_collected(item_instance)
-
 # warning-ignore:unused_signal
 signal coins_changed()
 # warning-ignore:unused_signal
