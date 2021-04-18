@@ -5,9 +5,14 @@ onready var map: Node2D = $map
 
 enum LANGUAGES {english, german}
 export(LANGUAGES) var language = LANGUAGES.english
-
+export var paused: bool = false
 
 func _ready():
+	var texture_test: AnimatedTexture = load("res://Assets/tiles/objects/torchfire.tres")
+	texture_test.pause = true
+	
+	
+	
 	match language:
 		LANGUAGES.german:
 			TranslationServer.set_locale("de")

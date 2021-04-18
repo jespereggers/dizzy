@@ -12,6 +12,7 @@ extents = Vector2( 120, 70 )
 [node name="world" type="Node2D"]
 script = ExtResource( 3 )
 language = 1
+paused = true
 
 [node name="screen_area" type="Area2D" parent="."]
 position = Vector2( 128, 118 )

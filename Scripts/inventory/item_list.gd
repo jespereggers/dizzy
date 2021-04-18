@@ -40,6 +40,7 @@ func load_items():
 		item_instance.load_template("exit and don't drop")
 		list_instance.add_child(item_instance)
 		item_instance.grab_focus()
+		list_instance.get_child(list_instance.get_child_count() - 1).connect("pressed", get_parent(), "close")
 
 		if stats.inventory.size() > 2:
 			self.set_process_input(false)
@@ -63,8 +64,3 @@ func load_items():
 		else:
 			button.focus_neighbour_right = list_instance.get_child(0).get_path()
 			button.focus_neighbour_bottom = list_instance.get_child(0).get_path()
-	
-	if list_instance.get_child_count() > 0:
-		yield(get_tree().create_timer(0.2), "timeout")
-		if not list_instance.get_child(list_instance.get_child_count() - 1).is_connected("button_up", get_parent(), "close"):
-			list_instance.get_child(list_instance.get_child_count() - 1).connect("button_up", get_parent(), "close")
