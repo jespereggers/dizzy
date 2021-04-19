@@ -9,12 +9,13 @@ var motion: Vector2 = Vector2()
 var unlocked: bool = false
 var action: Array = ["idle"]
 var locked: bool = false
+var is_on_leaderbox: bool = false
 
 const UP: Vector2 = Vector2(0, -1)
-const GRAVITY: int  = 3
+const GRAVITY: int  = 4
 const MAXFALLSPEED: int = 35
 const MAXSPEED: int = 40
-const JUMPFORCE: int = 110
+const JUMPFORCE: int = 120
 const ACCEL: int = 8
 
 
@@ -47,7 +48,10 @@ func _physics_process(_delta):
 		motion.y = MAXFALLSPEED
 	
 	motion.x = clamp(motion.x, -MAXSPEED, MAXSPEED)
-	
+
+	if is_on_leaderbox and "walk" in action and is_on_wall():
+		motion.y = -JUMPFORCE / 3
+		
 	if not locked or unlocked:
 		if can_autojump():
 			motion.y = -JUMPFORCE / 2

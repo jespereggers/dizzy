@@ -13,19 +13,19 @@ var size: Vector2 = Vector2(10,10)
 func _ready():
 	self.modulate = color
 	$texture.texture = texture
-	size = $texture.texture.get_size()
+	size = $texture.texture.get_size() * 0.8
 	$area/collision.shape.extents = size
 
 
 func reload_data():
 	$texture.texture = texture
-	size = $texture.texture.get_size()
+	size = $texture.texture.get_size() * 0.8
 	$area/collision.shape.extents = size
 
 
 func load_template(new_item_name: String, new_collectable: bool, new_texture: Texture):
 	$texture.texture = new_texture
-	size = $texture.texture.get_size()
+	size = $texture.texture.get_size() * 0.8
 	$area/collision.shape.extents = size
 	
 	item_name = new_item_name
