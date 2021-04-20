@@ -17,7 +17,7 @@ func _ready():
 
 func _unhandled_input(event):
 	if event is InputEventScreenTouch:
-		if $item_list/content/hint.is_visible_in_tree():
+		if $hint.is_visible_in_tree():
 			close()
 			
 			# Secure
@@ -27,7 +27,7 @@ func _unhandled_input(event):
 			
 	if Input.is_action_just_pressed("enter"):
 		if self.is_visible_in_tree():
-			if item_list_panel.get_node("content/hint").visible:
+			if get_node("hint").visible:
 				close()
 		elif not get_parent().death.visible and not get_parent().locked and paths.player.is_on_floor():
 				open()

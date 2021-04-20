@@ -2888,8 +2888,7 @@ colliding_object = "torchfire"
 shape = SubResource( 74 )
 
 [node name="collectable_item2" parent="." instance=ExtResource( 17 )]
-modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
-position = Vector2( 151.645, 103.389 )
+position = Vector2( 152, 104 )
 item_name = "parchment"
 texture = ExtResource( 12 )
 

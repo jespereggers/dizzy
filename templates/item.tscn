@@ -4,9 +4,10 @@
 [ext_resource path="res://Assets/tiles/items/key.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 16 )
+extents = Vector2( 8.62677, 8.37964 )
 
 [node name="collectable_item" type="KinematicBody2D"]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 script = ExtResource( 1 )
 item_name = "key"
 color = Color( 0.721569, 0.780392, 0.435294, 1 )
