@@ -8,6 +8,7 @@ func _ready():
 
 
 func start(_colliding_object: String):
+	get_parent().apply_viewport_to_background()
 	get_parent().locked = true
 	get_tree().paused = true
 	$label.text = LABEL_TEXT
@@ -33,6 +34,7 @@ func _unhandled_input(event):
 		set_process_unhandled_input(false)
 		get_tree().paused = false
 		hide()
+		get_parent().frozen_screen.hide()
 		
 		yield(get_tree().create_timer(0.2), "timeout")
 		get_parent().locked = false

@@ -27,11 +27,10 @@ func _on_map_enters_tree(map_instance: Node2D):
 
 
 func add_tile(item_instance: KinematicBody2D):
-	item_instance.reload_data()
 	item_instance.position = paths.player.position
 	item_instance.position -= Vector2(8, 49)
 	item_instance.position.y += paths.player.get_height()
-	item_instance.position.y -= (item_instance.size.y/2) 
+	item_instance.position.y -= (item_instance.height/2)
 	
 	for node in get_children():
 		if "room" in node.name:

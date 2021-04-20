@@ -2,7 +2,7 @@ extends Panel
 
 onready var root: Popup = get_parent()
 onready var list_instance: VBoxContainer = $content/item_list
-onready var hint_instance: Label = $content/hint
+onready var hint_instance: Label = get_parent().get_node("hint")
 
 
 func select_item(item_instance: Button):

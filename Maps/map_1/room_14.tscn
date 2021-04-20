@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=2]
+[gd_scene load_steps=93 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Assets/tiles/objects/water.tres" type="Texture" id=14]
 [ext_resource path="res://Assets/tiles/objects/barrel.png" type="Texture" id=15]
 [ext_resource path="res://templates/coin.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/templates/leader_box.tscn" type="PackedScene" id=17]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2852,6 +2853,12 @@ extents = Vector2( 6, 7 )
 [sub_resource type="RectangleShape2D" id=73]
 extents = Vector2( 47, 5 )
 
+[sub_resource type="RectangleShape2D" id=74]
+extents = Vector2( 5.25386, 7.92744 )
+
+[sub_resource type="RectangleShape2D" id=75]
+extents = Vector2( 4.54495, 7.92387 )
+
 [node name="room_14" type="Node2D"]
 __meta__ = {
 "_edit_lock_": true
@@ -2873,6 +2880,9 @@ position = Vector2( 36, 116 )
 rotation = 1.57079
 texture = ExtResource( 15 )
 flip_v = true
+
+[node name="leader_box" parent="barrel_water" instance=ExtResource( 17 )]
+position = Vector2( -36.4129, -141.635 )
 
 [node name="main" type="TileMap" parent="."]
 tile_set = SubResource( 71 )
@@ -2907,6 +2917,22 @@ position = Vector2( 114, 80 )
 texture = ExtResource( 15 )
 centered = false
 
+[node name="leaderbox" parent="." instance=ExtResource( 17 )]
+position = Vector2( 188.442, 95.8597 )
+
+[node name="collision" parent="leaderbox" index="0"]
+shape = SubResource( 74 )
+
+[node name="leaderbox2" parent="." instance=ExtResource( 17 )]
+position = Vector2( 180.442, 79.8597 )
+
+[node name="collision" parent="leaderbox2" index="0"]
+shape = SubResource( 75 )
+
 [editable path="torchfire_death"]
 
 [editable path="water_death"]
+
+[editable path="leaderbox"]
+
+[editable path="leaderbox2"]

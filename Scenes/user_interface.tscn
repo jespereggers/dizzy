@@ -38,7 +38,6 @@ __meta__ = {
 }
 
 [node name="inventory" parent="." instance=ExtResource( 3 )]
-visible = true
 
 [node name="death" type="Popup" parent="."]
 margin_left = 40.0

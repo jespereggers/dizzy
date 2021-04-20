@@ -20,25 +20,25 @@ font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 7
+extra_spacing_bottom = -2
 font_data = ExtResource( 4 )
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="DynamicFont" id=4]
+size = 7
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxTexture" id=5]
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 144, 48 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 size = 7
 extra_spacing_bottom = -2
 font_data = ExtResource( 4 )
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxTexture" id=7]
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 160, 48 )
-
-[sub_resource type="DynamicFont" id=7]
-size = 7
-extra_spacing_bottom = -2
-font_data = ExtResource( 4 )
 
 [node name="inventory" type="Popup"]
 pause_mode = 2
@@ -51,6 +51,7 @@ size_flags_vertical = 0
 popup_exclusive = true
 script = ExtResource( 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -67,54 +68,121 @@ size_flags_stretch_ratio = 0.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 6 )
 __meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="schablone1" type="Label" parent="item_list"]
+visible = false
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 176.0
+margin_bottom = 48.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.305882, 0.309804, 0.313726, 1 )
+text = "parchment
+exit and don't drop"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="schablone2" type="Label" parent="item_list"]
+visible = false
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 192.0
+margin_bottom = 28.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.305882, 0.309804, 0.313726, 1 )
+text = "you are carrying"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="schablone3" type="Label" parent="item_list"]
+visible = false
+margin_left = 16.0
+margin_top = 40.0
+margin_right = 192.0
+margin_bottom = 48.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.984314, 0.0352941, 0.0588235, 1 )
+text = "nothing"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="item_list"]
+self_modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 168.0
+margin_bottom = 27.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 3 )
+text = "you are carrying"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="content" type="VBoxContainer" parent="item_list"]
-margin_left = 16.0
-margin_top = 20.0
-margin_right = 192.0
+margin_left = 18.0
+margin_top = 31.0
+margin_right = 190.0
 margin_bottom = 64.0
 grow_horizontal = 0
 grow_vertical = 0
 custom_constants/separation = 6
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="label" type="Label" parent="item_list/content"]
-self_modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-margin_right = 176.0
-margin_bottom = 5.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 2 )
-text = "you are carrying"
-align = 1
-autowrap = true
-uppercase = true
-
 [node name="item_list" type="VBoxContainer" parent="item_list/content"]
-margin_top = 11.0
-margin_right = 176.0
-margin_bottom = 11.0
+margin_right = 172.0
 grow_horizontal = 0
 grow_vertical = 0
 custom_constants/separation = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="hint" type="Label" parent="item_list/content"]
-margin_top = 17.0
-margin_right = 176.0
-margin_bottom = 44.0
+[node name="hint" type="Label" parent="."]
+margin_left = 40.0
+margin_top = 96.0
+margin_right = 216.0
+margin_bottom = 103.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "nothing"
 align = 1
 autowrap = true
 uppercase = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
 
 [node name="choose_item_dialogue" type="Panel" parent="."]
 margin_left = 56.0
@@ -123,8 +191,9 @@ margin_right = 200.0
 margin_bottom = 184.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 5 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -134,25 +203,28 @@ margin_top = 16.0
 margin_right = 128.0
 margin_bottom = 32.0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
-text = "chose item too
+text = "chose item to
 use or drop"
 align = 1
 uppercase = true
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="full_inventory_dialogue" type="Panel" parent="."]
+visible = false
 margin_left = 48.0
 margin_top = 136.0
 margin_right = 208.0
 margin_bottom = 184.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_styles/panel = SubResource( 6 )
+custom_styles/panel = SubResource( 7 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -164,12 +236,13 @@ margin_bottom = 32.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 text = "you are carrying
 too much to hold"
 uppercase = true
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 [connection signal="popup_hide" from="." to="." method="_on_inventory_popup_hide"]
