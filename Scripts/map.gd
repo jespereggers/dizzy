@@ -53,6 +53,4 @@ func respawn_player():
 	else:
 		root.player.position = get_viewport_rect().size / 2
 	
-	paths.player.scale = Vector2(1,1)
-	paths.player.set_physics_process(true)
-	paths.player.show()
+	signals.emit_signal("player_respawned")

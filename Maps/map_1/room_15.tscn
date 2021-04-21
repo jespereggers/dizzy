@@ -2891,6 +2891,8 @@ shape = SubResource( 74 )
 position = Vector2( 152, 104 )
 item_name = "parchment"
 texture = ExtResource( 12 )
+shape_radius = 12
+height = 14.0
 
 [node name="texture" parent="collectable_item2" index="0"]
 texture = ExtResource( 12 )

@@ -22,6 +22,14 @@ const ACCEL: int = 8
 func _ready():
 	signals.connect("room_changed", self, "_on_room_changed")
 	signals.connect("player_died", self, "_on_player_died")
+	signals.connect("player_respawned", self, "_on_player_respawned")
+
+
+func _on_player_respawned():
+	set_physics_process(false)
+	animations.play_backwards("death")
+	yield(animations, "animation_finished")
+	set_physics_process(true)
 
 
 func _on_room_changed():
@@ -36,8 +44,8 @@ func _on_player_died(collision_object):
 	yield(animations, "animation_finished")
 	
 	# Launch Death-Screen
-	$texture.scale = Vector2(1,1)
-	self.hide()
+	#$texture.scale = Vector2(1,1)
+	#self.hide()
 	paths.ui.death.start(collision_object)
 
 

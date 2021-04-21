@@ -14,13 +14,12 @@ func start(_colliding_object: String):
 	$label.text = LABEL_TEXT
 	self.popup()
 	set_process_unhandled_input(true)
+	yield(audio.get_node("dead"), "finished")
+	close()
+	
 
 
-func _unhandled_input(event):
-	if audio.get_node("dead").playing:
-		return
-		
-	if Input.is_action_just_pressed("enter") or event is InputEventScreenTouch:
+func close():
 		if stats.eggs <= 0:
 			stats.eggs = databank.max_eggs
 			stats.current_room = Vector2(0,0)

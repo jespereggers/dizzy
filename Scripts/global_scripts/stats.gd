@@ -11,7 +11,7 @@ func load_backend():
 	coins = 0
 	eggs = databank.max_eggs
 	current_map = 1
-	current_room = Vector2(0,0)
+	current_room = Vector2(-1,0)
 
 
 func change_eggs_by(amount: int):

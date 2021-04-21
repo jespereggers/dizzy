@@ -21,7 +21,7 @@ position = Vector2( 128, 118 )
 shape = SubResource( 1 )
 
 [node name="map" type="Node2D" parent="."]
-position = Vector2( 8, 48 )
+position = Vector2( 8, 45 )
 script = ExtResource( 5 )
 
 [node name="user_interface" parent="map" instance=ExtResource( 4 )]
