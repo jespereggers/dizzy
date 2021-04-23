@@ -17,7 +17,7 @@ func _ready():
 
 func _unhandled_input(event):
 	if event is InputEventScreenTouch:
-		if $item_list/content/hint.is_visible_in_tree():
+		if $hint.is_visible_in_tree():
 			close()
 			
 			# Secure
