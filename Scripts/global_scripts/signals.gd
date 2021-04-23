@@ -13,6 +13,11 @@ signal coins_changed()
 signal eggs_changed()
 
 # warning-ignore:unused_signal
+signal pause_mode_changed_to(paused)
+
+# warning-ignore:unused_signal
 signal player_died(colliding_object)
+# warning-ignore:unused_signal
 signal player_respawned()
+# warning-ignore:unused_signal
 signal room_changed()

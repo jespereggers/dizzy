@@ -9,7 +9,7 @@ func _ready():
 
 
 func _on_coin_collected(new_coin_instance):
-	get_parent().apply_viewport_to_background()
+	signals.emit_signal("pause_mode_changed_to", true)
 	coin_instance = new_coin_instance
 	paths.player.hide()
 	get_parent().locked = true
@@ -25,7 +25,7 @@ func _unhandled_input(event):
 		get_tree().paused = false
 		paths.player.show()
 		hide()
-		get_parent().frozen_screen.hide()
+		signals.emit_signal("pause_mode_changed_to", false)
 		
 		yield(get_tree().create_timer(0.2), "timeout")
 		get_parent().locked = false

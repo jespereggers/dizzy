@@ -34,10 +34,11 @@ layer = 4
 
 [node name="room_label" parent="display" index="3"]
 text = "toller raumname"
+
 [connection signal="body_exited" from="screen_area" to="." method="_on_screen_area_body_exited"]
 
 [editable path="map/user_interface"]
-
+[editable path="map/user_interface/inventory"]
 [editable path="player"]
-
 [editable path="display"]
+[editable path="display/everplant_touch_integration"]

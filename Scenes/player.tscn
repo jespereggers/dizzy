@@ -151,8 +151,8 @@ anims/walk = SubResource( 6 )
 
 [node name="texture" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-vframes = 5
 hframes = 8
+vframes = 5
 
 [node name="dizzy_death" type="Sprite" parent="."]
 visible = false
@@ -228,6 +228,7 @@ shape = SubResource( 8 )
 [node name="shape" type="CollisionShape2D" parent="item_detector"]
 position = Vector2( 0, 3 )
 shape = SubResource( 8 )
+
 [connection signal="animation_finished" from="animations" to="state_machine" method="_on_animation_animation_finished"]
 [connection signal="timeout" from="unlocked_cooldown" to="." method="_on_unlocked_cooldown_timeout"]
 [connection signal="area_entered" from="leaderbox_detector" to="leaderbox_detector" method="_on_leaderbox_detector_area_entered"]

@@ -21,6 +21,7 @@ stream = ExtResource( 4 )
 
 [node name="intro" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+
 [connection signal="finished" from="theme" to="." method="_on_theme_finished"]
 [connection signal="finished" from="coin" to="." method="_on_coin_finished"]
 [connection signal="finished" from="dead" to="." method="_on_dead_finished"]

@@ -56,7 +56,7 @@ func _on_item_pressed(item_instance: KinematicBody2D):
 
 
 func open():
-	get_parent().apply_viewport_to_background()
+	signals.emit_signal("pause_mode_changed_to", true)
 	get_parent().locked = true
 	item_list_panel.set_process_input(true)
 	get_tree().paused = true
@@ -71,7 +71,7 @@ func open():
 
 
 func close():
-	paths.ui.frozen_screen.hide()
+	signals.emit_signal("pause_mode_changed_to", false)
 	get_parent().locked = false
 	item_list_panel.set_process_input(false)
 	selected_item_instance = null
