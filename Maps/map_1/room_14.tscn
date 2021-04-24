@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -2863,22 +2863,64 @@ extents = Vector2( 5.25386, 7.92744 )
 extents = Vector2( 4.54495, 7.92387 )
 
 [sub_resource type="Animation" id=76]
-resource_name = "idle"
 length = 0.75
 loop = true
 step = 0.25
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(":frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, 0, 0, 0, 0, 2, 0, 0, 0, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
 
 [sub_resource type="Animation" id=77]
-resource_name = "idle"
 length = 0.75
 loop = true
 step = 0.25
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(":frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, 0, 0, 0, 0, 2, 0, 0, 0, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
 
 [sub_resource type="Animation" id=78]
-resource_name = "idle"
 length = 0.75
 loop = true
 step = 0.25
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(":frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, 0, 0, 0, 0, 2, 0, 0, 0, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+
+[sub_resource type="Animation" id=79]
+length = 0.5
+loop = true
+step = 0.25
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(":frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 ),
+"times": PoolRealArray( 0, 0.25 )
+}
 
 [node name="room_14" type="Node2D"]
 __meta__ = {
@@ -2956,13 +2998,17 @@ texture = ExtResource( 18 )
 hframes = 3
 frame = 1
 
+[node name="animation_player" parent="animated_tile" index="0"]
+anims/idle = SubResource( 76 )
+
 [node name="animated_tile2" parent="." instance=ExtResource( 19 )]
 position = Vector2( 30.6103, 121.299 )
 texture = ExtResource( 18 )
 hframes = 3
+frame = 1
 
 [node name="animation_player" parent="animated_tile2" index="0"]
-anims/idle = SubResource( 76 )
+anims/idle = SubResource( 77 )
 
 [node name="animated_tile3" parent="." instance=ExtResource( 19 )]
 position = Vector2( -12.2139, 121.387 )
@@ -2970,7 +3016,7 @@ texture = ExtResource( 18 )
 hframes = 3
 
 [node name="animation_player" parent="animated_tile3" index="0"]
-anims/idle = SubResource( 77 )
+anims/idle = SubResource( 78 )
 
 [node name="animated_tile4" parent="." instance=ExtResource( 19 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
@@ -2979,7 +3025,7 @@ texture = ExtResource( 20 )
 hframes = 2
 
 [node name="animation_player" parent="animated_tile4" index="0"]
-anims/idle = SubResource( 78 )
+anims/idle = SubResource( 79 )
 
 [editable path="torchfire_death"]
 [editable path="water_death"]
