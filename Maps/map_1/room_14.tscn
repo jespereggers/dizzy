@@ -3005,7 +3005,6 @@ anims/idle = SubResource( 76 )
 position = Vector2( 30.6103, 121.299 )
 texture = ExtResource( 18 )
 hframes = 3
-frame = 1
 
 [node name="animation_player" parent="animated_tile2" index="0"]
 anims/idle = SubResource( 77 )
