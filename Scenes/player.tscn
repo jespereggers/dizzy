@@ -132,10 +132,7 @@ tracks/0/keys = {
 extents = Vector2( 7, 8 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 6.7975, 8.73117 )
-
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 8.0482, 10.6377 )
+extents = Vector2( 6, 8 )
 
 [node name="player" type="KinematicBody2D"]
 collision/safe_margin = 0.01
@@ -194,7 +191,7 @@ enabled = true
 cast_to = Vector2( 0, 100 )
 
 [node name="raycast_left_buttom" type="RayCast2D" parent="."]
-position = Vector2( -1, 13 )
+position = Vector2( 0, 13 )
 rotation = -1.5708
 enabled = true
 cast_to = Vector2( 0, -10 )

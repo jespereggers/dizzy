@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/82.png-f0fd4b021b8107d809fa71692393ddaa.stex"
+path="res://.import/rusty_key.png-6d887db085256f8c2278721b1c32d5be.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tiles/items/82.png"
-dest_files=[ "res://.import/82.png-f0fd4b021b8107d809fa71692393ddaa.stex" ]
+source_file="res://Assets/tiles/items/rusty_key.png"
+dest_files=[ "res://.import/rusty_key.png-6d887db085256f8c2278721b1c32d5be.stex" ]
 
 [params]
 

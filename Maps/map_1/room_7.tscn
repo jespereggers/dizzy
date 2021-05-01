@@ -2845,9 +2845,12 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 0/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=73]
-extents = Vector2( 19, 7 )
+extents = Vector2( 19, 5 )
 
 [node name="room_7" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="background" type="TileMap" parent="."]
 tile_set = SubResource( 71 )
@@ -2875,7 +2878,7 @@ position = Vector2( 13.773, 70.984 )
 colliding_object = "spike"
 
 [node name="shape_of_death" parent="spike_death" index="0"]
-position = Vector2( 14.227, 0.0159988 )
+position = Vector2( 14.227, 3.016 )
 shape = SubResource( 73 )
 
 [editable path="spike_death"]

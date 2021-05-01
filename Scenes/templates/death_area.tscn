@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/tiles/death_area.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6.13687, 5.02456 )
+extents = Vector2( 11, 2 )
 
 [node name="death_area" type="Area2D"]
 pause_mode = 1
@@ -13,4 +13,5 @@ script = ExtResource( 1 )
 pause_mode = 1
 shape = SubResource( 1 )
 one_way_collision = true
+
 [connection signal="body_entered" from="." to="." method="_on_death_area_body_entered"]

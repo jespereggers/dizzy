@@ -4,8 +4,8 @@
 [ext_resource path="res://Assets/tiles/menu/dialog.png" type="Texture" id=2]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=3]
 
-[sub_resource type="DynamicFont" id=1]
-size = 14
+[sub_resource type="DynamicFont" id=74]
+size = 7
 font_data = ExtResource( 3 )
 
 [node name="dialogues" type="CanvasLayer"]
@@ -43,7 +43,7 @@ margin_left = 17.5227
 margin_top = 56.4141
 margin_right = -12.4773
 margin_bottom = 26.4142
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.67451, 0.945098, 1, 1 )
 text = "Dies ist ein Test"
 align = 1

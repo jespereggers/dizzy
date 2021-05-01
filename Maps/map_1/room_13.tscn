@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -12,7 +12,9 @@
 [ext_resource path="res://Assets/tiles/build/7.png" type="Texture" id=10]
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
 [ext_resource path="res://Assets/tiles/objects/water.tres" type="Texture" id=12]
+[ext_resource path="res://Scenes/animated_tile.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/tiles/animations/water_full.png" type="Texture" id=15]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2860,7 +2862,7 @@ __meta__ = {
 tile_set = SubResource( 71 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 24, 0, 0, 48, 0, 0, 72, 0, 0, 96, 0, 0, 120, 0, 0, 144, 0, 0, 168, 0, 0, 192, 0, 0, 216, 0, 0, 524288, 5, 0, 1572864, 14, 0, 2621440, 14, 0, 6291592, 4, 0, 6291616, 14, 0, 6291624, 1, 0, 6291640, 0, 0, 6815744, 14, 0, 6815856, 0, 0, 6815912, 2, 0, 6815936, 3, 0, 7340128, 14, 0, 7340136, 8, 0, 7340160, 5, 0, 7340176, 4, 0, 7340240, 158, 0, 7864320, 4, 0, 7864344, 0, 0, 7864368, 0, 0, 7864392, 0, 0 )
+tile_data = PoolIntArray( 0, 0, 0, 24, 0, 0, 48, 0, 0, 72, 0, 0, 96, 0, 0, 120, 0, 0, 144, 0, 0, 168, 0, 0, 192, 0, 0, 216, 0, 0, 524288, 5, 0, 1572864, 14, 0, 2621440, 14, 0, 6291592, 4, 0, 6291616, 14, 0, 6291624, 1, 0, 6291640, 0, 0, 6815744, 14, 0, 6815856, 0, 0, 6815912, 2, 0, 6815936, 3, 0, 7340128, 14, 0, 7340136, 8, 0, 7340160, 5, 0, 7340176, 4, 0, 7864320, 4, 0, 7864344, 0, 0, 7864368, 0, 0, 7864392, 0, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -2871,5 +2873,11 @@ colliding_object = "water"
 [node name="shape_of_death" parent="water_death" index="0"]
 position = Vector2( 224, 123 )
 shape = SubResource( 72 )
+
+[node name="animated_tile" parent="." instance=ExtResource( 13 )]
+position = Vector2( 224, 115 )
+texture = ExtResource( 15 )
+hframes = 4
+fps = 6
 
 [editable path="water_death"]

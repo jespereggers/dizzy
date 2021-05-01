@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -13,8 +13,8 @@
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=12]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Assets/tiles/items/headset.png" type="Texture" id=14]
-
+[ext_resource path="res://Scenes/animated_tile.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=15]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2835,12 +2835,15 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 extents = Vector2( 6, 7 )
 
 [node name="room_2" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 2097176, 111, 0, 3145888, 157, 0, 3145904, 79, 0, 4194468, 17, 0, 7340216, 536871022, 0, 7340232, 110, 0 )
+tile_data = PoolIntArray( 2097176, 111, 0, 3145904, 79, 0, 4194468, 17, 0, 7340216, 536871022, 0, 7340232, 110, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -2861,9 +2864,11 @@ colliding_object = "torchfire"
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 72 )
 
-[node name="item_headphone" type="Sprite" parent="."]
-position = Vector2( 185, 95 )
-texture = ExtResource( 14 )
-centered = false
+[node name="torchfire_animated" parent="." instance=ExtResource( 14 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+position = Vector2( 168, 56 )
+texture = ExtResource( 15 )
+hframes = 2
+fps = 5
 
 [editable path="torchfire_death"]
