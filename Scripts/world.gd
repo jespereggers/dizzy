@@ -10,9 +10,7 @@ export var paused: bool = false
 func _ready():
 	var texture_test: AnimatedTexture = load("res://Assets/tiles/objects/torchfire.tres")
 	texture_test.pause = true
-	
-	
-	
+
 	match language:
 		LANGUAGES.german:
 			TranslationServer.set_locale("de")
@@ -25,7 +23,9 @@ func _ready():
 	paths.display = $display
 	paths.ui = $map/user_interface
 	
+	databank.load_game()
 	stats.load_backend()
+	
 	signals.emit_signal("backend_is_ready")
 
 

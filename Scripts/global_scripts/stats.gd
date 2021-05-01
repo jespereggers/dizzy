@@ -3,14 +3,14 @@ extends Node
 var inventory: Array = []
 var coins: int
 var eggs: int
-var current_map: int
+var current_map: String
 var current_room: Vector2
 
 
 func load_backend():
 	coins = 0
 	eggs = databank.max_eggs
-	current_map = 1
+	current_map = "map_1"
 	current_room = Vector2(-1,0)
 
 
