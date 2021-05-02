@@ -23,8 +23,8 @@ func _ready():
 	paths.display = $display
 	paths.ui = $map/user_interface
 	
-	databank.load_game()
 	stats.load_backend()
+	databank.load_game()
 	
 	signals.emit_signal("backend_is_ready")
 
@@ -33,7 +33,7 @@ func _on_screen_area_body_exited(body):
 	if body.name == "player":
 		# Check if the player left on X-Axis
 		var player_height: float = paths.player.position.y
-		
+
 		if body.position.x < $screen_area.position.x - $screen_area/collision.shape.extents.x:
 			# Left
 			if databank.maps[stats.current_map].keys().has(Vector2(stats.current_room.x - 1, stats.current_room.y)):

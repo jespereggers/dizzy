@@ -10,6 +10,7 @@
         "current_room": null
     },
     "enviroment": {
-        "map_1": {}
+        "map_1": {
+        }
     }
 }

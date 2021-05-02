@@ -11,7 +11,14 @@ func load_backend():
 	coins = 0
 	eggs = databank.max_eggs
 	current_map = "map_1"
-	current_room = Vector2(-1,0)
+	current_room = Vector2(0,0)
+	yield(signals, "backend_is_ready")
+	inventory = databank.game_save.player.inventory
+	coins = databank.game_save.player.coins
+	eggs = databank.game_save.player.eggs
+	current_map = databank.game_save.scene.current_map
+	current_room = databank.game_save.scene.current_room
+	paths.display.update_display()
 
 
 func change_eggs_by(amount: int):

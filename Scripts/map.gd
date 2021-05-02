@@ -11,12 +11,12 @@ func _ready():
 func update_map():
 	clean_maps()
 	
+	if not stats.current_room in databank.game_save.enviroment[stats.current_map]:
+		databank.game_save.enviroment[stats.current_map][stats.current_room] = {"removed_items": [], "added_items": []}
+	
 	var map: Node2D = load(databank.maps[stats.current_map][stats.current_room].path).instance()
 	map.connect("tree_entered", self, "_on_map_enters_tree", [map])
 	call_deferred("add_child", map)
-	
-	if not stats.current_room in databank.game_save.enviroment[stats.current_map]:
-		databank.game_save.enviroment[stats.current_map][stats.current_room] = {"removed_items": [], "added_items": []}
 
 
 func _on_map_enters_tree(map_instance: Node2D):
@@ -30,19 +30,21 @@ func _on_map_enters_tree(map_instance: Node2D):
 
 
 func add_tile(item_instance: KinematicBody2D):
+	get_parent().get_node("tex").texture = item_instance.texture
+	print("UDPATED")
 	item_instance.position = paths.player.position
 	item_instance.position -= Vector2(8, 49)
 	item_instance.position.y += paths.player.get_height()
 	item_instance.position.y -= (item_instance.height/2)
 	
 	for node in get_children():
-		if "room" in node.name:
-			node.add_child(item_instance, false)
+		if "room" in node.name and node.name != "":
+			node.add_child(item_instance, true)
 			return
 
 
 func remove_tile(item_instance):
-	remove_child(item_instance)
+	item_instance.get_parent().remove_child(item_instance)
 
 
 func clean_maps():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=2]
+[gd_scene load_steps=95 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -16,10 +16,11 @@
 [ext_resource path="res://Assets/tiles/objects/torchfire.tres" type="Texture" id=14]
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=15]
 [ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scenes/animated_tile.tscn" type="PackedScene" id=17]
+[ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Assets/tiles/animations/water_full.png" type="Texture" id=18]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=19]
 [ext_resource path="res://templates/coin.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=21]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2952,11 +2953,13 @@ texture = ExtResource( 18 )
 hframes = 8
 fps = 6
 
-[node name="coin" parent="." instance=ExtResource( 20 )]
-position = Vector2( 77, 96 )
-
 [node name="respawn_point2" parent="." instance=ExtResource( 16 )]
 position = Vector2( 54, 91 )
+
+[node name="objects" parent="." instance=ExtResource( 21 )]
+
+[node name="coin" parent="objects" instance=ExtResource( 20 )]
+position = Vector2( 77, 96 )
 
 [editable path="torchfire_death"]
 [editable path="water_death"]

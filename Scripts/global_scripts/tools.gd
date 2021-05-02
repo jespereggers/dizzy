@@ -1,18 +1,17 @@
 extends Node
 
 
-func add_item_to_game_save(item_instance):
-	if not item_instance in databank.game_save.enviroment[stats.current_map].added_items:
-		databank.game_save.enviroment[stats.current_map].added_items.append(item_instance)
-	if item_instance in databank.game_save.enviroment[stats.current_map].removed_items:
-		databank.game_save.enviroment[stats.current_map].removed_items.remove(item_instance)
+func add_item_to_game_save(item):
+	var properties: Dictionary = get_collectable_item_properties(item)
+#	if not properties in databank.game_save.enviroment[stats.current_map][stats.current_room].added_items:
+	databank.game_save.enviroment[stats.current_map][stats.current_room].added_items.append(properties)
 
 
-func remove_item_from_game_save(item_instance):
-	if not item_instance in databank.game_save.enviroment[stats.current_map].removed_items:
-		databank.game_save.enviroment[stats.current_map].removed_items.append(item_instance)
-	if item_instance in databank.game_save.enviroment[stats.current_map].added_items:
-		databank.game_save.enviroment[stats.current_map].added_items.remove(item_instance)
+func remove_item_from_game_save(item):
+	var properties: Dictionary = get_collectable_item_properties(item)
+	for added_item in databank.game_save.enviroment[stats.current_map][stats.current_room].added_items:
+		if str(properties) == str(added_item):
+			databank.game_save.enviroment[stats.current_map][stats.current_room].added_items.erase(added_item)
 
 
 func load_file(path: String):
@@ -45,3 +44,7 @@ func save_file(path: String, content):
 	file.open(path, File.WRITE)
 	file.store_var(content, true)
 	file.close()
+
+
+func get_collectable_item_properties(item: KinematicBody2D) -> Dictionary:
+	return {"type": "collectable_item", "id": item.id, "item_name": item.item_name, "position": item.position, "height": item.height, "color": item.color, "collectable": item.collectable, "texture": item.texture, "shape": item.shape}

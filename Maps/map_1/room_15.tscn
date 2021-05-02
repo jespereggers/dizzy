@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -17,12 +17,13 @@
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=15]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=16]
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Scenes/animated_tile.tscn" type="PackedScene" id=18]
+[ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=19]
 [ext_resource path="res://Assets/tiles/items/shard.png" type="Texture" id=20]
 [ext_resource path="res://Assets/tiles/items/crowbar.png" type="Texture" id=21]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=23]
+[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=24]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2897,39 +2898,6 @@ texture = ExtResource( 19 )
 hframes = 2
 fps = 5
 
-[node name="item_old_message" parent="." instance=ExtResource( 17 )]
-modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
-position = Vector2( 159, 104 )
-item_name = "an old message"
-color = Color( 0.721569, 0.780392, 0.435294, 1 )
-texture = ExtResource( 12 )
-
-[node name="texture" parent="item_old_message" index="0"]
-texture = ExtResource( 12 )
-
-[node name="item_headphone" parent="." instance=ExtResource( 17 )]
-position = Vector2( 191, 120 )
-item_name = "headphone"
-texture = ExtResource( 13 )
-
-[node name="texture" parent="item_headphone" index="0"]
-position = Vector2( -8, -9 )
-texture = ExtResource( 13 )
-
-[node name="item_crowbar" parent="." instance=ExtResource( 17 )]
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-position = Vector2( 88, 120 )
-item_name = "a strong crowbar"
-color = Color( 0.439216, 0.643137, 0.698039, 1 )
-texture = ExtResource( 21 )
-
-[node name="texture" parent="item_crowbar" index="0"]
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-texture = ExtResource( 21 )
-
-[node name="coin" parent="." instance=ExtResource( 14 )]
-position = Vector2( 44, 120 )
-
 [node name="shard" type="Sprite" parent="."]
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 position = Vector2( 120, 112 )
@@ -3100,14 +3068,49 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="objects" parent="." instance=ExtResource( 24 )]
+
+[node name="coin" parent="objects" instance=ExtResource( 14 )]
+position = Vector2( 44, 120 )
+
+[node name="item_crowbar" parent="objects" instance=ExtResource( 17 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+position = Vector2( 88, 120 )
+item_name = "a strong crowbar"
+color = Color( 0.439216, 0.643137, 0.698039, 1 )
+texture = ExtResource( 21 )
+
+[node name="texture" parent="objects/item_crowbar" index="0"]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+texture = ExtResource( 21 )
+
+[node name="item_headphone" parent="objects" instance=ExtResource( 17 )]
+position = Vector2( 191, 120 )
+item_name = "headphone"
+texture = ExtResource( 13 )
+
+[node name="texture" parent="objects/item_headphone" index="0"]
+position = Vector2( -8, -9 )
+texture = ExtResource( 13 )
+
+[node name="item_old_message" parent="objects" instance=ExtResource( 17 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+position = Vector2( 159, 104 )
+item_name = "an old message"
+color = Color( 0.721569, 0.780392, 0.435294, 1 )
+texture = ExtResource( 12 )
+
+[node name="texture" parent="objects/item_old_message" index="0"]
+texture = ExtResource( 12 )
+
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]
-[editable path="item_old_message"]
-[editable path="item_headphone"]
-[editable path="item_crowbar"]
 [editable path="message1"]
 [editable path="message2"]
 [editable path="message3"]
 [editable path="nachricht1"]
 [editable path="nachricht2"]
 [editable path="nachricht3"]
+[editable path="objects/item_crowbar"]
+[editable path="objects/item_headphone"]
+[editable path="objects/item_old_message"]

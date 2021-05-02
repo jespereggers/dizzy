@@ -1,7 +1,7 @@
 extends Sprite
 
 export var fps: int = 4
-export var unique_id: String
+
 
 func _ready():
 	# Connect signals
@@ -29,20 +29,3 @@ func _on_pause_mode_changed_to(paused: bool):
 		$animation_player.stop()
 	else:
 		$animation_player.play("idle")
-
-
-func build():
-	paths.map.add_tile(self)
-	tools.add_item_to_game_save(self)
-	
-	for item in stats.inventory.size():
-		if stats.inventory[item] == self:
-			stats.inventory.remove(item)
-			break
-
-
-func destroy():
-	paths.map.remove_tile(self)
-	tools.remove_item_from_game_save(self)
-	
-	stats.inventory.append(self)

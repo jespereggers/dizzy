@@ -46,6 +46,7 @@ func _on_item_collected(item_instance):
 
 func _on_item_pressed(item_instance: KinematicBody2D):
 	if is_visible_in_tree():
+		print(" - ", item_instance.id)
 		item_instance.build()
 		close()
 
