@@ -34,15 +34,6 @@ layer = 4
 [node name="room_label" parent="display" index="3"]
 text = "toller raumname"
 
-[node name="tex" type="TextureRect" parent="."]
-margin_left = 12.846
-margin_top = 134.552
-margin_right = 52.846
-margin_bottom = 174.552
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [connection signal="body_exited" from="screen_area" to="." method="_on_screen_area_body_exited"]
 
 [editable path="map/user_interface"]

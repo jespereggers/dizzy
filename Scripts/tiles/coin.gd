@@ -1,7 +1,9 @@
 extends Sprite
 
+const TYPE = "coin"
 var overlaping_with_player: bool = false
-var properties: Dictionary = {}
+
+var id: String
 
 
 func _input(_event):
@@ -11,8 +13,9 @@ func _input(_event):
 			signals.emit_signal("coin_collected", self)
 
 
-func load_preset():
-	pass
+func set_properties(properties: Dictionary):
+	id = properties.id
+	self.position = properties.position
 
 
 func _on_area_body_entered(body):

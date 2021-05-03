@@ -44,10 +44,13 @@ func _on_item_collected(item_instance):
 	open()
 
 
-func _on_item_pressed(item_instance: KinematicBody2D):
+func _on_item_pressed(object_properties: Dictionary):
 	if is_visible_in_tree():
-		print(" - ", item_instance.id)
-		item_instance.build()
+		for item_properties in stats.inventory:
+			if item_properties == object_properties:
+				stats.inventory.erase(item_properties)
+				break
+		paths.map.add(object_properties)
 		close()
 
 

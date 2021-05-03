@@ -3080,17 +3080,9 @@ item_name = "a strong crowbar"
 color = Color( 0.439216, 0.643137, 0.698039, 1 )
 texture = ExtResource( 21 )
 
-[node name="texture" parent="objects/item_crowbar" index="0"]
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-texture = ExtResource( 21 )
-
 [node name="item_headphone" parent="objects" instance=ExtResource( 17 )]
 position = Vector2( 191, 120 )
 item_name = "headphone"
-texture = ExtResource( 13 )
-
-[node name="texture" parent="objects/item_headphone" index="0"]
-position = Vector2( -8, -9 )
 texture = ExtResource( 13 )
 
 [node name="item_old_message" parent="objects" instance=ExtResource( 17 )]
@@ -3098,9 +3090,6 @@ modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 159, 104 )
 item_name = "an old message"
 color = Color( 0.721569, 0.780392, 0.435294, 1 )
-texture = ExtResource( 12 )
-
-[node name="texture" parent="objects/item_old_message" index="0"]
 texture = ExtResource( 12 )
 
 [editable path="torchfire_death"]

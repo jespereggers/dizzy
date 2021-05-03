@@ -245,4 +245,5 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
 [connection signal="popup_hide" from="." to="." method="_on_inventory_popup_hide"]

@@ -29,22 +29,28 @@ func _on_map_enters_tree(map_instance: Node2D):
 			node.monitoring = true
 
 
-func add_tile(item_instance: KinematicBody2D):
-	get_parent().get_node("tex").texture = item_instance.texture
-	print("UDPATED")
-	item_instance.position = paths.player.position
-	item_instance.position -= Vector2(8, 49)
-	item_instance.position.y += paths.player.get_height()
-	item_instance.position.y -= (item_instance.height/2)
+func add(properties: Dictionary):
+	var object
+	
+	match properties.type:
+		"item":
+			object = load("res://templates/item.tscn").instance()
+			object.set_properties(properties)
+			object.load_template()
+	object.update_pos()
+	tools.add_object(self)
 	
 	for node in get_children():
-		if "room" in node.name and node.name != "":
-			node.add_child(item_instance, true)
-			return
+		if "room" in node.name:
+			node.get_node("objects").add_child(object)
+			break
 
 
-func remove_tile(item_instance):
-	item_instance.get_parent().remove_child(item_instance)
+func remove(object):
+	for node in get_children():
+		if "room" in node.name:
+			node.get_node("objects").remove_child(object)
+			break
 
 
 func clean_maps():

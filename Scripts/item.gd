@@ -1,57 +1,61 @@
 extends KinematicBody2D
 tool
 
-var unused: bool = true
 var player_is_in_range: bool = false
-var properties: Dictionary
 
 # Relevant to the Saving-System
-var type: String = "collectable_item"
-export var item_name: String
+const TYPE = "item"
 var id: String 
+export var item_name: String
 export var color: Color = "ffffff"
-var shape: Shape2D
+export var shape_extents: Vector2
+export var height: float
 export var collectable: bool = true
 export var texture : StreamTexture
-export var shape_radius: int
-export var height: float
 
 
-signal finished_loading_preset()
-
-func load_preset():
-	id = self.name
+func load_template():
 	self.modulate = color
-	get_node("texture").texture = texture
 	
-	if shape_radius != 0 and $area/collision.shape.get_class() == "CircleShape2D":
-		$area/collision.shape.radius = shape_radius
+	for child in get_children():
+		child.queue_free()
 	
-	properties = tools.get_collectable_item_properties(self)
-	emit_signal("finished_loading_preset")
+	var area: Area2D = Area2D.new()
+	area.name = "area"
+	var collision: CollisionShape2D = CollisionShape2D.new()
+	collision.name = "collision"
+	collision.shape = RectangleShape2D.new()
+	collision.shape.extents = shape_extents
+	self.add_child(area)
+	area.add_child(collision)
+	
+	area.connect("area_entered", self, "_on_area_entered")
+	area.connect("area_exited", self, "_on_area_exited")
+
+	# Texture
+	var sprite: Sprite = Sprite.new()
+	sprite.name = "sprite"
+	sprite.texture = texture
+	self.add_child(sprite)
 
 
-func load_template(_new_type: String, new_id: String, new_item_name: String, new_pos: Vector2, new_height: float, new_color: Color, new_collectable: bool, new_texture: Texture, new_shape: Shape2D):
-	id = new_id
-	self.name = new_id
-	item_name = new_item_name
-	self.position = new_pos
-	color = new_color
-	self.modulate = color
-	shape = new_shape
-	height = new_height
-	collectable = new_collectable
-	texture = new_texture
-	$texture.texture = texture
-	$area/collision.shape = new_shape
+func set_properties(properties: Dictionary):
+	id = properties.id
+	item_name = properties.item_name
+	color = properties.color
+	shape_extents = properties.shape_extent
+	height = properties.height
+	collectable = properties.collectable
+	texture = properties.texture
 	
-	properties = tools.get_collectable_item_properties(self)
+	self.position = properties.position
+	self.modulate = properties.color
 
 
 func _input(_event):
 	if Input.is_action_just_released("enter") and player_is_in_range and paths.player.is_on_floor() and collectable:
 		signals.emit_signal("item_collected", self)
-		
+
 
 func _on_area_area_entered(area):
 	if area.name == "item_detector":
@@ -66,28 +70,21 @@ func _on_area_area_exited(area):
 
 
 func build():
-	unused = false
 	update_pos()
-	paths.map.add_tile(self)
-	tools.add_item_to_game_save(self.duplicate())
-	$texture.texture = self.texture
-	for item in stats.inventory.size():
-		if stats.inventory[item] == self:
-			stats.inventory.remove(item)
+	paths.map.add(self)
+	tools.add_object(self)
+	
+	for object in stats.inventory.size():
+		if stats.inventory[object] == tools.get_object_properties(self):
+			stats.inventory.remove(object)
 			break
 
 
 func destroy():
-	if unused:
-		unused = false
-		databank.game_save.enviroment[stats.current_map][stats.current_room].removed_items.append(name)
-		name = str(randi())
-	else:
-		tools.remove_item_from_game_save(self.duplicate())
-
 	if stats.inventory.size() < 3:
-		paths.map.remove_tile(self)
-		stats.inventory.append(self.duplicate()) # DUPLICATE??
+		tools.remove_object(self)
+		paths.map.remove(self)
+		stats.inventory.append(tools.get_object_properties(self))
 
 
 func update_pos():
