@@ -1,7 +1,8 @@
 extends Sprite
 
-const TYPE = "coin"
+const type = "coin"
 var overlaping_with_player: bool = false
+var item_name: String = "coin"
 
 var id: String
 

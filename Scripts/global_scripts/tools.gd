@@ -3,12 +3,12 @@ extends Node
 
 func add_object(object):
 	var properties: Dictionary = get_object_properties(object)
-	databank.game_save.enviroment[stats.current_map][stats.current_room].added_items.append(properties)
+	databank.game_save.enviroment[stats.current_map][stats.current_room].objects.append(properties)
 
 
 func remove_object(object):
 	var properties: Dictionary = get_object_properties(object)
-	databank.game_save.enviroment[stats.current_map][stats.current_room].objects.erase(get_object_properties(properties))
+	databank.game_save.enviroment[stats.current_map][stats.current_room].objects.erase(properties)
 
 
 func load_file(path: String):

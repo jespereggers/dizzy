@@ -2,9 +2,10 @@ extends KinematicBody2D
 tool
 
 var player_is_in_range: bool = false
-
+var used: bool = true
+var origin: String
 # Relevant to the Saving-System
-const TYPE = "item"
+const type = "item"
 var id: String 
 export var item_name: String
 export var color: Color = "ffffff"
@@ -43,7 +44,7 @@ func set_properties(properties: Dictionary):
 	id = properties.id
 	item_name = properties.item_name
 	color = properties.color
-	shape_extents = properties.shape_extent
+	shape_extents = properties.shape_extents
 	height = properties.height
 	collectable = properties.collectable
 	texture = properties.texture
@@ -57,13 +58,13 @@ func _input(_event):
 		signals.emit_signal("item_collected", self)
 
 
-func _on_area_area_entered(area):
+func _on_area_entered(area):
 	if area.name == "item_detector":
 		paths.ui.locked = true
 		player_is_in_range = true
 
 
-func _on_area_area_exited(area):
+func _on_area_exited(area):
 	if area.name == "item_detector":
 		paths.ui.locked = false
 		player_is_in_range = false
@@ -82,6 +83,8 @@ func build():
 
 func destroy():
 	if stats.inventory.size() < 3:
+		if not used:
+			databank.game_save.enviroment[stats.current_map][stats.current_room].removed_objects.append(origin)
 		tools.remove_object(self)
 		paths.map.remove(self)
 		stats.inventory.append(tools.get_object_properties(self))
