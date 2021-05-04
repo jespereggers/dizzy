@@ -2953,7 +2953,7 @@ texture = ExtResource( 18 )
 hframes = 8
 fps = 6
 
-[node name="respawn_point2" parent="." instance=ExtResource( 16 )]
+[node name="respawn_point" parent="." instance=ExtResource( 16 )]
 position = Vector2( 54, 91 )
 
 [node name="objects" parent="." instance=ExtResource( 21 )]

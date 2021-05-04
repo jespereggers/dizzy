@@ -10,10 +10,6 @@ func _ready():
 
 func update_map():
 	clean_maps()
-	
-	if not stats.current_room in databank.game_save.enviroment[stats.current_map]:
-		databank.game_save.enviroment[stats.current_map][stats.current_room] = {"removed_objects": [], "objects": []}
-	
 	var map: Node2D = load(databank.maps[stats.current_map][stats.current_room].path).instance()
 	map.connect("tree_entered", self, "_on_map_enters_tree", [map])
 	call_deferred("add_child", map)
@@ -63,9 +59,13 @@ func respawn_player():
 	root.player.locked = false
 	root.player.action = ["idle"]
 	
-	if self.get_children()[0].has_node("respawn_point"):
-		root.player.position = self.get_children()[0].get_node("respawn_point").position 
-	else:
-		root.player.position = get_viewport_rect().size / 2
+	for child in get_children():
+		if "room_" in child.name:
+			if child.has_node("respawn_point"):
+				var new_pos: Vector2 = child.get_node("respawn_point").position 
+				new_pos += Vector2(8, 49)
+				root.player.position = new_pos
+			else:
+				root.player.position = get_viewport_rect().size / 2
 	
 	signals.emit_signal("player_respawned")

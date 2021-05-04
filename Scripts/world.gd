@@ -23,8 +23,9 @@ func _ready():
 	paths.display = $display
 	paths.ui = $map/user_interface
 	
-	stats.load_backend()
 	databank.load_game()
+	stats.load_backend()
+
 	
 	signals.emit_signal("backend_is_ready")
 

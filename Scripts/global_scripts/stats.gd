@@ -8,11 +8,6 @@ var current_room: Vector2
 
 
 func load_backend():
-	coins = 0
-	eggs = databank.max_eggs
-	current_map = "map_1"
-	current_room = Vector2(0,0)
-	yield(signals, "backend_is_ready")
 	inventory = databank.game_save.player.inventory
 	coins = databank.game_save.player.coins
 	eggs = databank.game_save.player.eggs

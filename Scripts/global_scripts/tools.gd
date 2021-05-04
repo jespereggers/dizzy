@@ -8,7 +8,9 @@ func add_object(object):
 
 func remove_object(object):
 	var properties: Dictionary = get_object_properties(object)
-	databank.game_save.enviroment[stats.current_map][stats.current_room].objects.erase(properties)
+	for object in databank.game_save.enviroment[stats.current_map][stats.current_room].objects:
+		if str(properties) == str(object):
+			databank.game_save.enviroment[stats.current_map][stats.current_room].objects.erase(object)
 
 
 func load_file(path: String):
@@ -46,7 +48,7 @@ func save_file(path: String, content):
 func get_object_properties(object) -> Dictionary:
 	match object.type:
 		"item":
-			return {"type": "item", "id": object.id, "item_name": object.item_name, "color": object.color, "shape_extents": object.shape_extents, "height": object.height, "collectable": object.collectable, "texture": object.texture, "position": object.position}
+			return {"type": "item", "origin": object.origin, "id": object.id, "item_name": object.item_name, "color": object.color, "shape_extents": object.shape_extents, "height": object.height, "collectable": object.collectable, "texture": object.texture, "position": object.position}
 		"coin":
-			return {"type": "coin", "id": object.id, "position": object.position}
+			return {"type": "coin", "origin": object.origin, "id": object.id, "position": object.position}
 	return {}

@@ -42,6 +42,7 @@ func load_template():
 
 func set_properties(properties: Dictionary):
 	id = properties.id
+	origin = properties.origin
 	item_name = properties.item_name
 	color = properties.color
 	shape_extents = properties.shape_extents

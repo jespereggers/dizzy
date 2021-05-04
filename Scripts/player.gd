@@ -20,6 +20,8 @@ const ACCEL: int = 8
 
 
 func _ready():
+	yield(signals, "backend_is_ready")
+	self.position = databank.game_save.player.position
 	signals.connect("room_changed", self, "_on_room_changed")
 	signals.connect("player_died", self, "_on_player_died")
 	signals.connect("player_respawned", self, "_on_player_respawned")
