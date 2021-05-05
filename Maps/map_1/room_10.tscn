@@ -2959,7 +2959,7 @@ position = Vector2( 54, 91 )
 [node name="objects" parent="." instance=ExtResource( 21 )]
 
 [node name="coin" parent="objects" instance=ExtResource( 20 )]
-position = Vector2( 77, 96 )
+position = Vector2( 80, 96 )
 
 [editable path="torchfire_death"]
 [editable path="water_death"]

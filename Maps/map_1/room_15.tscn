@@ -12,7 +12,7 @@
 [ext_resource path="res://Assets/tiles/build/7.png" type="Texture" id=10]
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
 [ext_resource path="res://Assets/tiles/items/old_message.png" type="Texture" id=12]
-[ext_resource path="res://Assets/tiles/items/headphone.png" type="Texture" id=13]
+[ext_resource path="res://Assets/tiles/items/dusty_headphone.png" type="Texture" id=13]
 [ext_resource path="res://templates/coin.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=15]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=16]
@@ -2904,6 +2904,30 @@ position = Vector2( 120, 112 )
 texture = ExtResource( 20 )
 centered = false
 
+[node name="coin" parent="." instance=ExtResource( 14 )]
+position = Vector2( 44, 120 )
+
+[node name="objects" parent="." instance=ExtResource( 24 )]
+
+[node name="item_crowbar" parent="objects" instance=ExtResource( 17 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+position = Vector2( 88, 120 )
+item_name = "a strong crowbar"
+color = Color( 0.439216, 0.643137, 0.698039, 1 )
+texture = ExtResource( 21 )
+
+[node name="item_headphone" parent="objects" instance=ExtResource( 17 )]
+position = Vector2( 191, 120 )
+item_name = "dusty headphone"
+texture = ExtResource( 13 )
+
+[node name="item_old_message" parent="objects" instance=ExtResource( 17 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+position = Vector2( 159, 104 )
+item_name = "an old message"
+color = Color( 0.721569, 0.780392, 0.435294, 1 )
+texture = ExtResource( 12 )
+
 [node name="message1" parent="." instance=ExtResource( 22 )]
 visible = false
 modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
@@ -3068,38 +3092,14 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="objects" parent="." instance=ExtResource( 24 )]
-
-[node name="coin" parent="objects" instance=ExtResource( 14 )]
-position = Vector2( 44, 120 )
-
-[node name="item_crowbar" parent="objects" instance=ExtResource( 17 )]
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-position = Vector2( 88, 120 )
-item_name = "a strong crowbar"
-color = Color( 0.439216, 0.643137, 0.698039, 1 )
-texture = ExtResource( 21 )
-
-[node name="item_headphone" parent="objects" instance=ExtResource( 17 )]
-position = Vector2( 191, 120 )
-item_name = "headphone"
-texture = ExtResource( 13 )
-
-[node name="item_old_message" parent="objects" instance=ExtResource( 17 )]
-modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
-position = Vector2( 159, 104 )
-item_name = "an old message"
-color = Color( 0.721569, 0.780392, 0.435294, 1 )
-texture = ExtResource( 12 )
-
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]
+[editable path="objects/item_crowbar"]
+[editable path="objects/item_headphone"]
+[editable path="objects/item_old_message"]
 [editable path="message1"]
 [editable path="message2"]
 [editable path="message3"]
 [editable path="nachricht1"]
 [editable path="nachricht2"]
 [editable path="nachricht3"]
-[editable path="objects/item_crowbar"]
-[editable path="objects/item_headphone"]
-[editable path="objects/item_old_message"]
