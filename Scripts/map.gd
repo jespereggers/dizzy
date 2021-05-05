@@ -10,7 +10,6 @@ func _ready():
 
 func update_map():
 	clean_maps()
-	
 	var map: Node2D = load(databank.maps[stats.current_map][stats.current_room].path).instance()
 	map.connect("tree_entered", self, "_on_map_enters_tree", [map])
 	call_deferred("add_child", map)
@@ -26,16 +25,28 @@ func _on_map_enters_tree(map_instance: Node2D):
 			node.monitoring = true
 
 
-func add_tile(item_instance: KinematicBody2D):
-	item_instance.position = paths.player.position
-	item_instance.position -= Vector2(8, 49)
-	item_instance.position.y += paths.player.get_height()
-	item_instance.position.y -= (item_instance.height/2)
+func add(properties: Dictionary):
+	var object
+	
+	match properties.type:
+		"item":
+			object = load("res://templates/item.tscn").instance()
+			object.set_properties(properties)
+			object.load_template()
+	object.update_pos()
+	tools.add_object(object)
 	
 	for node in get_children():
 		if "room" in node.name:
-			node.add_child(item_instance, false)
-			return
+			node.get_node("objects").add_child(object)
+			break
+
+
+func remove(object):
+	for node in get_children():
+		if "room" in node.name:
+			node.get_node("objects").remove_child(object)
+			break
 
 
 func clean_maps():
@@ -48,9 +59,13 @@ func respawn_player():
 	root.player.locked = false
 	root.player.action = ["idle"]
 	
-	if self.get_children()[0].has_node("respawn_point"):
-		root.player.position = self.get_children()[0].get_node("respawn_point").position 
-	else:
-		root.player.position = get_viewport_rect().size / 2
+	for child in get_children():
+		if "room_" in child.name:
+			if child.has_node("respawn_point"):
+				var new_pos: Vector2 = child.get_node("respawn_point").position 
+				new_pos += Vector2(8, 49)
+				root.player.position = new_pos
+			else:
+				root.player.position = get_viewport_rect().size / 2
 	
 	signals.emit_signal("player_respawned")

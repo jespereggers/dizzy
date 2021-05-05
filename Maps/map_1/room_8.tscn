@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=2]
+[gd_scene load_steps=96 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -12,14 +12,15 @@
 [ext_resource path="res://Assets/tiles/build/7.png" type="Texture" id=10]
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Assets/tiles/objects/lever_broken.png" type="Texture" id=13]
-[ext_resource path="res://Assets/tiles/objects/lever_on.png" type="Texture" id=14]
-[ext_resource path="res://Scenes/animated_tile.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Assets/tiles/objects/63.png" type="Texture" id=13]
+[ext_resource path="res://Assets/tiles/objects/62.png" type="Texture" id=14]
+[ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=16]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=17]
 [ext_resource path="res://Assets/tiles/animations/water_full.png" type="Texture" id=18]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=19]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=21]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2930,12 +2931,14 @@ position = Vector2( 136, 32 )
 texture = ExtResource( 13 )
 
 [node name="background2" parent="." instance=ExtResource( 20 )]
+visible = false
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
 margin_left = 32.0
 margin_right = 120.0
 margin_bottom = 56.0
 
 [node name="Label" type="Label" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 48.0
@@ -2949,7 +2952,6 @@ text = "click"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
@@ -2976,7 +2978,6 @@ text = "clack"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
@@ -3006,93 +3007,10 @@ align = 1
 valign = 1
 autowrap = true
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
-[node name="background5" parent="." instance=ExtResource( 20 )]
-visible = false
-modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
-margin_left = 32.0
-margin_right = 120.0
-margin_bottom = 56.0
-
-[node name="Label4" type="Label" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 48.0
-margin_top = 16.0
-margin_right = 104.0
-margin_bottom = 40.0
-custom_fonts/font = SubResource( 74 )
-custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
-custom_constants/line_spacing = 1
-text = "click"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="background6" parent="." instance=ExtResource( 20 )]
-visible = false
-modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
-margin_left = 32.0
-margin_right = 120.0
-margin_bottom = 56.0
-
-[node name="Label5" type="Label" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 48.0
-margin_top = 16.0
-margin_right = 104.0
-margin_bottom = 40.0
-custom_fonts/font = SubResource( 74 )
-custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
-custom_constants/line_spacing = 1
-text = "crack"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="background7" parent="." instance=ExtResource( 20 )]
-visible = false
-margin_left = 24.0
-margin_top = 40.0
-margin_right = 216.0
-margin_bottom = 112.0
-
-[node name="Label6" type="Label" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 40.0
-margin_top = 56.0
-margin_right = 200.0
-margin_bottom = 96.0
-custom_fonts/font = SubResource( 74 )
-custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
-custom_constants/line_spacing = 1
-text = "great, you finally
-broke off the lever
-for the portcullis"
-align = 1
-valign = 1
-autowrap = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
+[node name="objects" parent="." instance=ExtResource( 21 )]
 
 [editable path="torchfire_death"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=2]
+[gd_scene load_steps=87 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Assets/tiles/build/7.png" type="Texture" id=10]
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2880,5 +2881,7 @@ colliding_object = "spike"
 [node name="shape_of_death" parent="spike_death" index="0"]
 position = Vector2( 14.227, 3.016 )
 shape = SubResource( 73 )
+
+[node name="objects" parent="." instance=ExtResource( 13 )]
 
 [editable path="spike_death"]

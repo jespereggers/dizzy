@@ -40,18 +40,17 @@ func _unhandled_input(event):
 
 func _on_item_collected(item_instance):
 	if stats.inventory.size() < 3:
-		stats.inventory.append(item_instance.duplicate())
-		item_instance.queue_free()
+		item_instance.destroy()
 	open()
 
 
-func _on_item_pressed(item_instance: KinematicBody2D):
+func _on_item_pressed(object_properties: Dictionary):
 	if is_visible_in_tree():
-		paths.map.add_tile(item_instance)
-		for item in stats.inventory.size():
-			if stats.inventory[item] == item_instance:
-				stats.inventory.remove(item)
+		for item_properties in stats.inventory:
+			if item_properties == object_properties:
+				stats.inventory.erase(item_properties)
 				break
+		paths.map.add(object_properties)
 		close()
 
 

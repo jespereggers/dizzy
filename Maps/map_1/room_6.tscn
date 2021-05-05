@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=2]
+[gd_scene load_steps=94 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -16,8 +16,9 @@
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Maps/map_1/room_6.gd" type="Script" id=15]
 [ext_resource path="res://templates/coin.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scenes/animated_tile.tscn" type="PackedScene" id=17]
+[ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=18]
+[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=19]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2888,9 +2889,8 @@ format = 1
 tile_data = PoolIntArray( 0, 0, 0, 72, 3, 0, 216, 13, 0, 1048792, 3, 0, 1572936, 3, 0, 2621440, 0, 0, 2621464, 0, 0, 2621488, 0, 0, 2621656, 3, 0, 4194520, 3, 0, 5243080, 5, 0, 6553640, 123, 0, 6553664, 123, 0, 6553688, 123, 0, 6553712, 123, 0, 6553736, 123, 0, 7864529, 70, 0, 7864536, 536871030, 0, 7864544, 536871030, 0, 7864552, 536871030, 0, 8388608, 0, 0, 8388632, 1, 0, 8388648, 0, 0, 8388672, 0, 0, 8388696, 1, 0, 8388712, 0, 0, 8388736, 1, 0, 8388752, 0, 0, 8388776, 0, 0, 8388800, 1, 0, 8388816, 0, 0, 8388840, 12, 0 )
 
 [node name="rat" type="Sprite" parent="."]
-position = Vector2( 150, 124 )
+position = Vector2( 106.238, 124 )
 texture = ExtResource( 12 )
-flip_h = true
 
 [node name="rat_death_area" parent="rat" instance=ExtResource( 14 )]
 position = Vector2( 0, 1 )
@@ -2931,7 +2931,9 @@ texture = ExtResource( 18 )
 hframes = 2
 fps = 5
 
-[node name="coin" parent="." instance=ExtResource( 16 )]
+[node name="objects" parent="." instance=ExtResource( 19 )]
+
+[node name="coin" parent="objects" instance=ExtResource( 16 )]
 position = Vector2( 208, 72 )
 
 [editable path="rat/rat_death_area"]

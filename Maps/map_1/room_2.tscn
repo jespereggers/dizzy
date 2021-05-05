@@ -13,9 +13,9 @@
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=12]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scenes/animated_tile.tscn" type="PackedScene" id=14]
+[ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=15]
-[ext_resource path="res://templates/coin.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2872,7 +2872,6 @@ texture = ExtResource( 15 )
 hframes = 2
 fps = 5
 
-[node name="coin" parent="." instance=ExtResource( 16 )]
-position = Vector2( 200, 72 )
+[node name="objects" parent="." instance=ExtResource( 16 )]
 
 [editable path="torchfire_death"]
