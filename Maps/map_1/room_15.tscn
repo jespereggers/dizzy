@@ -2889,25 +2889,25 @@ modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 40, 64 )
 texture = ExtResource( 19 )
 hframes = 2
-fps = 5
+fps = 6
 
 [node name="torchfire_animated1" parent="." instance=ExtResource( 18 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 200, 64 )
 texture = ExtResource( 19 )
 hframes = 2
-fps = 5
+fps = 6
 
-[node name="shard" type="Sprite" parent="."]
+[node name="objects" parent="." instance=ExtResource( 24 )]
+
+[node name="shard" type="Sprite" parent="objects"]
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 position = Vector2( 120, 112 )
 texture = ExtResource( 20 )
 centered = false
 
-[node name="coin" parent="." instance=ExtResource( 14 )]
+[node name="coin" parent="objects" instance=ExtResource( 14 )]
 position = Vector2( 44, 120 )
-
-[node name="objects" parent="." instance=ExtResource( 24 )]
 
 [node name="item_crowbar" parent="objects" instance=ExtResource( 17 )]
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )

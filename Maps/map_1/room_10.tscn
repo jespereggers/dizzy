@@ -2883,7 +2883,7 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 extents = Vector2( 6, 7 )
 
 [sub_resource type="RectangleShape2D" id=73]
-extents = Vector2( 55, 5 )
+extents = Vector2( 55, 3 )
 
 [node name="room_10" type="Node2D"]
 __meta__ = {
@@ -2916,6 +2916,7 @@ colliding_object = "torchfire"
 shape = SubResource( 72 )
 
 [node name="water_death" parent="." instance=ExtResource( 12 )]
+position = Vector2( 0, 2 )
 colliding_object = "water"
 
 [node name="shape_of_death" parent="water_death" index="0"]
@@ -2927,7 +2928,7 @@ modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 20, 72 )
 texture = ExtResource( 19 )
 hframes = 2
-fps = 5
+fps = 6
 
 [node name="water_animated" parent="." instance=ExtResource( 17 )]
 position = Vector2( 176, 123 )

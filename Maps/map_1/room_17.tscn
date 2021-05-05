@@ -2910,14 +2910,14 @@ modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 20, 80 )
 texture = ExtResource( 16 )
 hframes = 2
-fps = 5
+fps = 6
 
 [node name="animated_tile1" parent="." instance=ExtResource( 15 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 160, 40 )
 texture = ExtResource( 16 )
 hframes = 2
-fps = 5
+fps = 6
 
 [node name="objects" parent="." instance=ExtResource( 17 )]
 

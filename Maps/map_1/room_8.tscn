@@ -2900,7 +2900,7 @@ modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 220, 72 )
 texture = ExtResource( 17 )
 hframes = 2
-fps = 5
+fps = 6
 
 [node name="water_animated" parent="." instance=ExtResource( 15 )]
 position = Vector2( 144, 123 )
