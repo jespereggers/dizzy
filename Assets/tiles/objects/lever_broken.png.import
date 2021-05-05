@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/63.png-d3c19d85b7f474fb1b690e21b498449d.stex"
+path="res://.import/lever_broken.png-3d568a61e713f782f11709689963a686.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tiles/objects/63.png"
-dest_files=[ "res://.import/63.png-d3c19d85b7f474fb1b690e21b498449d.stex" ]
+source_file="res://Assets/tiles/objects/lever_broken.png"
+dest_files=[ "res://.import/lever_broken.png-3d568a61e713f782f11709689963a686.stex" ]
 
 [params]
 

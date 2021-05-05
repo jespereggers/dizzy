@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/headphone.png-96372d4cb054d0993b1d47ce318d467d.stex"
+path="res://.import/lever_on.png-b19d4e2de429c81f0d28239ff278b367.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tiles/items/headphone.png"
-dest_files=[ "res://.import/headphone.png-96372d4cb054d0993b1d47ce318d467d.stex" ]
+source_file="res://Assets/tiles/objects/lever_on.png"
+dest_files=[ "res://.import/lever_on.png-b19d4e2de429c81f0d28239ff278b367.stex" ]
 
 [params]
 
