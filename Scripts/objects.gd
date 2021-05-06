@@ -4,13 +4,14 @@ var unused_object_ids: Array
 
 func _ready():
 	var untouched_room: bool = false
+	
 	if not stats.current_room in databank.game_save.enviroment[stats.current_map]:
 		untouched_room = true
 		databank.game_save.enviroment[stats.current_map][stats.current_room] = {"removed_objects": [], "objects": []}
 
 	# Remove objects
 	for object in get_children():
-		if not object.name in databank.game_save.enviroment[stats.current_map][stats.current_room].removed_objects and untouched_room:
+		if not object.name in databank.game_save.enviroment[stats.current_map][stats.current_room].removed_objects and untouched_room and object.get("type"):
 			# Generate untouched items
 			match object.type:
 				"item":

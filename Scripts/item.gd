@@ -12,7 +12,11 @@ export var color: Color = "ffffff"
 export var shape_extents: Vector2
 export var height: float
 export var collectable: bool = true
-export var texture : StreamTexture
+export var texture : Texture
+
+
+func _ready():
+	$sprite.texture = texture
 
 
 func load_template():

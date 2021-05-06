@@ -2919,11 +2919,11 @@ texture = ExtResource( 16 )
 hframes = 2
 fps = 6
 
-[node name="objects" parent="." instance=ExtResource( 17 )]
-
-[node name="dozy_sleep" type="Sprite" parent="objects"]
+[node name="dozy_sleep" type="Sprite" parent="."]
 position = Vector2( 132, 96 )
 texture = ExtResource( 14 )
+
+[node name="objects" parent="." instance=ExtResource( 17 )]
 
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]

@@ -2916,6 +2916,9 @@ item_name = "a strong crowbar"
 color = Color( 0.439216, 0.643137, 0.698039, 1 )
 texture = ExtResource( 21 )
 
+[node name="sprite" parent="objects/item_crowbar" index="0"]
+texture = ExtResource( 21 )
+
 [node name="item_dusty_headphone" parent="objects" instance=ExtResource( 17 )]
 position = Vector2( 16, 104 )
 item_name = "dusty headphone"
@@ -2926,6 +2929,9 @@ position = Vector2( 191, 120 )
 item_name = "dusty headphone"
 texture = ExtResource( 13 )
 
+[node name="sprite" parent="objects/item_headphone" index="0"]
+texture = ExtResource( 13 )
+
 [node name="item_old_message" parent="objects" instance=ExtResource( 17 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 159, 104 )
@@ -2933,12 +2939,17 @@ item_name = "an old message"
 color = Color( 0.721569, 0.780392, 0.435294, 1 )
 texture = ExtResource( 12 )
 
+[node name="sprite" parent="objects/item_old_message" index="0"]
+texture = ExtResource( 12 )
+
 [node name="message1" parent="." instance=ExtResource( 22 )]
+visible = false
 modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
 margin_right = 160.0
 margin_bottom = 72.0
 
 [node name="english1" type="Label" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0

@@ -10,3 +10,5 @@ item_name = "key"
 shape_extents = Vector2( 8, 8 )
 height = 14.0
 texture = ExtResource( 2 )
+
+[node name="sprite" type="Sprite" parent="."]
