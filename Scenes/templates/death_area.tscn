@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/tiles/death_area.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 11, 2 )
+extents = Vector2( 15, 3 )
 
 [node name="death_area" type="Area2D"]
 pause_mode = 1

@@ -2931,14 +2931,12 @@ position = Vector2( 136, 32 )
 texture = ExtResource( 14 )
 
 [node name="background2" parent="." instance=ExtResource( 20 )]
-visible = false
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
 margin_left = 32.0
 margin_right = 120.0
 margin_bottom = 56.0
 
 [node name="Label" type="Label" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 48.0
@@ -3003,6 +3001,87 @@ custom_constants/line_spacing = 1
 text = "Just keep trying
 it won't work in
 a million years"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="background5" parent="." instance=ExtResource( 20 )]
+visible = false
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_left = 32.0
+margin_right = 120.0
+margin_bottom = 56.0
+
+[node name="Label4" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 16.0
+margin_right = 104.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 74 )
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+text = "click"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="background6" parent="." instance=ExtResource( 20 )]
+visible = false
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_left = 32.0
+margin_right = 120.0
+margin_bottom = 56.0
+
+[node name="Label5" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 16.0
+margin_right = 104.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 74 )
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+text = "crack"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="background7" parent="." instance=ExtResource( 20 )]
+visible = false
+margin_left = 24.0
+margin_top = 40.0
+margin_right = 216.0
+margin_bottom = 112.0
+
+[node name="Label6" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 56.0
+margin_right = 200.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 74 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "great, you finally
+broke off the lever
+for the portcullis"
 align = 1
 valign = 1
 autowrap = true
