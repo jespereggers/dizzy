@@ -2936,9 +2936,13 @@ texture = ExtResource( 16 )
 flip_v = true
 
 [node name="item_railing" parent="." instance=ExtResource( 20 )]
-position = Vector2( 200, 48 )
+position = Vector2( 192, 40 )
 item_name = "a piece of railing"
 texture = ExtResource( 17 )
+
+[node name="sprite" parent="item_railing" index="0"]
+texture = ExtResource( 17 )
+flip_h = true
 
 [node name="denzil_sad" type="Sprite" parent="."]
 position = Vector2( 12, 108 )

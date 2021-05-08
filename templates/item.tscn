@@ -12,3 +12,5 @@ height = 14.0
 texture = ExtResource( 2 )
 
 [node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false

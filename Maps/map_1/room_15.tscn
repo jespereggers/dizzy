@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=23]
 [ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Assets/tiles/items/railing.png" type="Texture" id=25]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2911,7 +2912,7 @@ position = Vector2( 44, 120 )
 
 [node name="item_crowbar" parent="objects" instance=ExtResource( 17 )]
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-position = Vector2( 88, 120 )
+position = Vector2( 88, 112 )
 item_name = "a strong crowbar"
 color = Color( 0.439216, 0.643137, 0.698039, 1 )
 texture = ExtResource( 21 )
@@ -2919,28 +2920,31 @@ texture = ExtResource( 21 )
 [node name="sprite" parent="objects/item_crowbar" index="0"]
 texture = ExtResource( 21 )
 
-[node name="item_dusty_headphone" parent="objects" instance=ExtResource( 17 )]
-position = Vector2( 16, 104 )
-item_name = "dusty headphone"
-texture = ExtResource( 13 )
-
-[node name="item_headphone" parent="objects" instance=ExtResource( 17 )]
-position = Vector2( 191, 120 )
-item_name = "dusty headphone"
-texture = ExtResource( 13 )
-
-[node name="sprite" parent="objects/item_headphone" index="0"]
-texture = ExtResource( 13 )
-
 [node name="item_old_message" parent="objects" instance=ExtResource( 17 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
-position = Vector2( 159, 104 )
+position = Vector2( 152, 96 )
 item_name = "an old message"
 color = Color( 0.721569, 0.780392, 0.435294, 1 )
 texture = ExtResource( 12 )
 
 [node name="sprite" parent="objects/item_old_message" index="0"]
 texture = ExtResource( 12 )
+
+[node name="item" parent="objects" instance=ExtResource( 17 )]
+position = Vector2( 68, 112 )
+item_name = "test"
+texture = ExtResource( 25 )
+
+[node name="sprite" parent="objects/item" index="0"]
+texture = ExtResource( 25 )
+
+[node name="item_dusty_headphone" parent="objects" instance=ExtResource( 17 )]
+position = Vector2( 8, 103 )
+item_name = "dusty headphone"
+texture = ExtResource( 13 )
+
+[node name="sprite" parent="objects/item_dusty_headphone" index="0"]
+texture = ExtResource( 13 )
 
 [node name="message1" parent="." instance=ExtResource( 22 )]
 visible = false
@@ -3109,8 +3113,9 @@ __meta__ = {
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]
 [editable path="objects/item_crowbar"]
-[editable path="objects/item_headphone"]
 [editable path="objects/item_old_message"]
+[editable path="objects/item"]
+[editable path="objects/item_dusty_headphone"]
 [editable path="message1"]
 [editable path="message2"]
 [editable path="message3"]
