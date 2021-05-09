@@ -1612,11 +1612,11 @@ fps = 6
 
 [node name="objects" parent="." instance=ExtResource( 3 )]
 
-[node name="item_rusty_key" parent="objects" instance=ExtResource( 12 )]
+[node name="item_rusty_key" parent="." instance=ExtResource( 12 )]
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
-position = Vector2( 182, 10 )
+position = Vector2( 175, 2 )
 item_name = "a rusty key"
 color = Color( 0.407843, 0.215686, 0.168627, 1 )
 
 [editable path="torchfire_death"]
-[editable path="objects/item_rusty_key"]
+[editable path="item_rusty_key"]

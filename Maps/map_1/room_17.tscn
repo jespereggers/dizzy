@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -22,6 +22,8 @@
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=20]
 [ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Assets/tiles/objects/cell_door.png" type="Texture" id=22]
+[ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=23]
+[ext_resource path="res://templates/background.tscn" type="PackedScene" id=24]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2838,19 +2840,26 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 155/shapes = [  ]
 155/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=76]
+extents = Vector2( 9, 16 )
+
 [sub_resource type="RectangleShape2D" id=74]
 extents = Vector2( 6, 7 )
 
 [sub_resource type="RectangleShape2D" id=75]
 extents = Vector2( 6, 7 )
 
-[sub_resource type="RectangleShape2D" id=76]
-extents = Vector2( 9, 16 )
+[sub_resource type="DynamicFont" id=77]
+size = 7
+font_data = ExtResource( 23 )
 
 [node name="room_17" type="Node2D"]
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="respawn_point" parent="." instance=ExtResource( 21 )]
+position = Vector2( 12, 112 )
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
@@ -2866,6 +2875,15 @@ tile_set = SubResource( 73 )
 cell_size = Vector2( 1, 1 )
 format = 1
 tile_data = PoolIntArray( -65536, 43, 0, 7, 38, 0, 32, 4, 0, 56, 0, 0, 80, 5, 0, 96, 0, 0, 120, 5, 0, 136, 0, 0, 160, 4, 0, 184, 14, 0, 192, 4, 0, 983041, 47, 0, 1048592, 40, 0, 1048616, 1, 0, 1048760, 3, 0, 1048784, 0, 0, 1572904, 3, 0, 1573064, 4, 0, 1966080, 45, 0, 2621448, 50, 0, 2621624, 2, 0, 3145768, 1, 0, 3145936, 3, 0, 3670016, 33, 0, 3670024, 4, 0, 3670048, 4, 0, 3670072, 4, 0, 4194488, 5, 0, 4718632, 5, 0, 4718800, 5, 0, 5243064, 0, 0, 5767208, 1, 0, 5767352, 14, 0, 5767360, 2, 0, 5767384, 4, 0, 6815840, 37, 0, 6815904, 2, 0, 6815928, 14, 0, 7340120, 34, 0, 7340232, 5, 0, 7340256, 14, 0, 7864408, 35, 0, 7864464, 1073741860, 0, 7864504, 66, 0, 8388608, 0, 0, 8388632, 1, 0, 8388648, 1, 0, 8388664, 0, 0, 8388688, 1, 0, 8388704, 0, 0, 8388728, 1, 0, 8388744, 0, 0, 8388768, 0, 0, 8388816, 1, 0 )
+
+[node name="cell_door" type="Sprite" parent="."]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+position = Vector2( 48, 112 )
+texture = ExtResource( 22 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cell_door"]
+position = Vector2( -1, 0 )
+shape = SubResource( 76 )
 
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 20, 80 )
@@ -2907,15 +2925,6 @@ fps = 16
 
 [node name="objects" parent="." instance=ExtResource( 17 )]
 
-[node name="cell_door" type="Sprite" parent="."]
-modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
-position = Vector2( 48, 112 )
-texture = ExtResource( 22 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="cell_door"]
-position = Vector2( -1, 0 )
-shape = SubResource( 76 )
-
 [node name="item_moldy_bread" parent="." instance=ExtResource( 20 )]
 modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
 item_name = "a moldy bread"
@@ -2925,7 +2934,112 @@ texture = ExtResource( 19 )
 position = Vector2( 167, 88 )
 texture = ExtResource( 19 )
 
-[node name="respawn_point" parent="." instance=ExtResource( 21 )]
+[node name="background2" parent="." instance=ExtResource( 24 )]
+visible = false
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_right = 176.0
+margin_bottom = 64.0
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 160.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 77 )
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+text = "barred door with
+a large padlock"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="background3" parent="." instance=ExtResource( 24 )]
+visible = false
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_top = 32.0
+margin_right = 224.0
+margin_bottom = 96.0
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 208.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 77 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "\"psst...dozy? wake up!
+i need your help now!§"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="background4" parent="." instance=ExtResource( 24 )]
+visible = false
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_right = 184.0
+margin_bottom = 72.0
+
+[node name="Label3" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 168.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 77 )
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+text = "ein metalltor mit
+vorhängeschloss
+versperrt den weg"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="background5" parent="." instance=ExtResource( 24 )]
+visible = false
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_top = 32.0
+margin_right = 248.0
+margin_bottom = 96.0
+
+[node name="Label4" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 232.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 77 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "\"pssst...dozy? wach auf! ich brauche deine Hilfe!§"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
 
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]

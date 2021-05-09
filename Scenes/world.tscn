@@ -28,6 +28,18 @@ script = ExtResource( 5 )
 [node name="inventory" parent="map/user_interface" index="0"]
 visible = false
 
+[node name="death" parent="map/user_interface" index="1"]
+visible = true
+
+[node name="label" parent="map/user_interface/death" index="1"]
+anchor_top = 0.0625
+anchor_right = -0.00568182
+anchor_bottom = 0.0625
+autowrap = false
+
+[node name="label2" parent="map/user_interface/death" index="2"]
+margin_bottom = 57.0
+
 [node name="player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 128, 118 )
 
