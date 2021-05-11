@@ -2,7 +2,9 @@ extends Node
 
 var available_items: Array = ["parchment"]
 var max_eggs: int = 2
-var game_save: Dictionary = {}
+var game_save: Dictionary
+var settings: Dictionary
+var titlescreen: Dictionary
 
 var colors: Dictionary = {
 	"black": Color("#000000"),
@@ -100,16 +102,29 @@ var maps: Dictionary = {
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
-		save_game()
+		print("Close ", get_tree().current_scene.name)
+		if get_tree().current_scene.name == "world":
+			save_game()
+		save_setttings()
 		get_tree().quit()
 
 
+func load_databanks():
+	# Settings
+	if not File.new().file_exists(OS.get_user_data_dir() + "/settings.txt"):
+		store_default_settings()
+	settings = tools.load_file("user://settings.txt")
+	
+	# Titlescreen
+	titlescreen = tools.load_file("res://databanks/titlescreen.json")
+
+
 func load_game():
+	# Game Save
 	if not File.new().file_exists(OS.get_user_data_dir() + "/game_save.dizzy"):
 		store_default_game_save()
-		
 	game_save = tools.load_file("user://game_save.dizzy")
-
+	
 
 func save_game():
 	var world : Dictionary = {}
@@ -127,9 +142,18 @@ func save_game():
 	tools.save_file("user://game_save.dizzy", game_save)
 
 
+func save_setttings():
+	tools.save_file("user://settings.txt", settings)
+
+
 func store_default_game_save():
 	var template: Dictionary = tools.load_file("res://databanks/templates/game_save.json")
 	template.player.position = Vector2(128, 118)
 	template.scene.current_room = Vector2(0,0)
 	template.enviroment.map_1 = {}
 	tools.save_file("user://game_save.dizzy", template)
+
+
+func store_default_settings():
+	var template: Dictionary = tools.load_file("res://databanks/templates/settings.json")
+	tools.save_file("user://settings.txt", template)

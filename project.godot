@@ -15,7 +15,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Dizzy"
-run/main_scene="res://Scenes/world.tscn"
+run/main_scene="res://Scenes/titlescreen.tscn"
 config/icon="res://Ressources/icon.png"
 config/windows_native_icon="res://Ressources/icon.ico"
 

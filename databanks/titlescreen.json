@@ -1,0 +1,31 @@
+{
+    "main": [
+        ["play", "on_play"],
+        ["option", "on_option"],
+        ["credit", "on_credit"],
+        ["exit"]
+    ],
+    "on_play": [
+        ["new game"],
+        ["resume"],
+        ["back", "main"]
+    ],
+    "on_option": [
+        ["language", "on_language"],
+        ["sound", "on_sound"],
+        ["back", "main"]
+    ],
+    "on_credit":[
+        ["back", "main"]
+    ],
+    "on_language": [
+        ["english"],
+        ["german"],
+        ["back", "on_option"]
+    ],
+    "on_sound": [
+        ["sound on"],
+        ["sound off"],
+        ["back", "on_option"]
+    ]
+}
