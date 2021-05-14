@@ -55,6 +55,7 @@ func set_properties(properties: Dictionary):
 	texture = properties.texture
 	
 	self.position = properties.position
+	self.position.y += (self.height/2)
 	self.modulate = properties.color
 
 
