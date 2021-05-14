@@ -2934,6 +2934,7 @@ texture = ExtResource( 12 )
 
 [node name="item" parent="objects" instance=ExtResource( 17 )]
 position = Vector2( 68, 112 )
+z_as_relative = false
 item_name = "test"
 height = 16.0
 texture = ExtResource( 25 )
