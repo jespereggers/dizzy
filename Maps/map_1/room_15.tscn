@@ -2944,19 +2944,10 @@ texture = ExtResource( 25 )
 [node name="item_dusty_headphone" parent="objects" instance=ExtResource( 17 )]
 position = Vector2( 8, 103 )
 item_name = "dusty headphone"
-height = 18.0
+height = 17.0
 texture = ExtResource( 13 )
 
 [node name="sprite" parent="objects/item_dusty_headphone" index="0"]
-texture = ExtResource( 13 )
-
-[node name="item_dusty_headphone2" parent="objects" instance=ExtResource( 17 )]
-position = Vector2( 8, 103 )
-item_name = "dusty headphone"
-height = 16.0
-texture = ExtResource( 13 )
-
-[node name="sprite" parent="objects/item_dusty_headphone2" index="0"]
 texture = ExtResource( 13 )
 
 [node name="message1" parent="." instance=ExtResource( 22 )]
@@ -3129,7 +3120,6 @@ __meta__ = {
 [editable path="objects/item_old_message"]
 [editable path="objects/item"]
 [editable path="objects/item_dusty_headphone"]
-[editable path="objects/item_dusty_headphone2"]
 [editable path="message1"]
 [editable path="message2"]
 [editable path="message3"]
