@@ -110,6 +110,7 @@ func _on_setting_pressed(button_name: String):
 			load_menu("on_sound")
 		"exit":
 			databank.save_setttings()
+			yield(get_tree().create_timer(0.2), "timeout")
 			get_tree().quit()
 		
 	load_settings()

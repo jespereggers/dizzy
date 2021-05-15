@@ -33,7 +33,6 @@ func load_template():
 	collision.shape.extents = shape_extents
 	self.add_child(area)
 	area.add_child(collision)
-	
 	area.connect("area_entered", self, "_on_area_entered")
 	area.connect("area_exited", self, "_on_area_exited")
 
@@ -55,7 +54,6 @@ func set_properties(properties: Dictionary):
 	texture = properties.texture
 	
 	self.position = properties.position
-	self.position.y += (self.height/2)
 	self.modulate = properties.color
 
 
@@ -77,7 +75,6 @@ func _on_area_exited(area):
 
 
 func build():
-	update_pos()
 	paths.map.add(self)
 	tools.add_object(self)
 	
@@ -100,4 +97,4 @@ func update_pos():
 	self.position = paths.player.position
 	self.position -= Vector2(8, 49)
 	self.position.y += paths.player.get_height()
-	self.position.y -= (self.height/2)
+	self.position.y -= (self.height)

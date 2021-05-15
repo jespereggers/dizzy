@@ -2968,7 +2968,7 @@ shape = SubResource( 76 )
 [node name="objects" parent="." instance=ExtResource( 22 )]
 
 [node name="coin" parent="objects" instance=ExtResource( 16 )]
-position = Vector2( 168, 64 )
+position = Vector2( 175, 64 )
 
 [editable path="torchfire_death"]
 [editable path="water_death"]

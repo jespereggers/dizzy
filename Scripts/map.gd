@@ -33,7 +33,7 @@ func add(properties: Dictionary):
 			object = load("res://templates/item.tscn").instance()
 			object.set_properties(properties)
 			object.load_template()
-	object.update_pos()
+			object.update_pos()
 	tools.add_object(object)
 	
 	for node in get_children():
