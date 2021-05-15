@@ -9,7 +9,11 @@ func add_object(object):
 func remove_object(object):
 	var properties: Dictionary = get_object_properties(object)
 	for object in databank.game_save.enviroment[stats.current_map][stats.current_room].objects:
+		if object.origin == "item_crowbar":
+			print(object)
+			print(properties)
 		if str(properties) == str(object):
+			print("SUCCESS")
 			databank.game_save.enviroment[stats.current_map][stats.current_room].objects.erase(object)
 
 
