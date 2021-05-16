@@ -27,7 +27,7 @@ font_data = ExtResource( 4 )
 size = 7
 font_data = ExtResource( 4 )
 
-[sub_resource type="StyleBoxTexture" id=7]
+[sub_resource type="StyleBoxTexture" id=5]
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 144, 48 )
 
@@ -36,12 +36,13 @@ size = 7
 extra_spacing_bottom = -2
 font_data = ExtResource( 4 )
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=7]
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 160, 48 )
 
 [node name="inventory" type="Popup"]
 pause_mode = 2
+visible = true
 margin_right = 256.0
 margin_bottom = 192.0
 grow_horizontal = 0
@@ -127,7 +128,6 @@ __meta__ = {
 }
 
 [node name="label" type="Label" parent="item_list"]
-visible = false
 self_modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 margin_left = 40.0
 margin_top = 20.0
@@ -146,6 +146,7 @@ __meta__ = {
 }
 
 [node name="label_ger" type="Label" parent="item_list"]
+visible = false
 self_modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 margin_left = 16.0
 margin_top = 20.0
@@ -203,14 +204,13 @@ __meta__ = {
 }
 
 [node name="choose_item_dialogue" type="Panel" parent="."]
-visible = false
 margin_left = 56.0
 margin_top = 136.0
 margin_right = 200.0
 margin_bottom = 184.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -234,13 +234,14 @@ __meta__ = {
 }
 
 [node name="choose_item_dialogue_ger" type="Panel" parent="."]
+visible = false
 margin_left = 56.0
 margin_top = 136.0
 margin_right = 200.0
 margin_bottom = 184.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -263,14 +264,13 @@ __meta__ = {
 }
 
 [node name="full_inventory_dialogue" type="Panel" parent="."]
-visible = false
 margin_left = 48.0
 margin_top = 136.0
 margin_right = 208.0
 margin_bottom = 184.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 7 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false,
@@ -303,7 +303,7 @@ margin_right = 208.0
 margin_bottom = 184.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 7 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false,
