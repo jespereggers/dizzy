@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [sub_resource type="DynamicFont" id=2]
 size = 7
@@ -22,6 +24,7 @@ rect_min_size = Vector2( 100, 46 )
 focus_next = NodePath("../../option_2/option")
 focus_previous = NodePath("../../option_5/exit")
 size_flags_vertical = 0
+custom_styles/focus = SubResource( 1 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_hover = Color( 0.439216, 0.901961, 0.92549, 1 )
 custom_colors/font_color_pressed = Color( 0.133333, 0.533333, 0.584314, 1 )

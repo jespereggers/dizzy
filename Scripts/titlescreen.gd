@@ -2,10 +2,12 @@ extends Control
 
 var current_menue: String
 
+
 func _ready():
-	databank.load_databanks()
-	load_settings()
-	load_menu("main")
+	if get_tree().current_scene.name == "titlescreen":
+		databank.load_databanks()
+		load_settings()
+		load_menu("main")
 
 
 func load_settings():
@@ -92,9 +94,17 @@ func get_button_instance(button_name: String) -> Button:
 func _on_setting_pressed(button_name: String):
 	match button_name:
 		"new game":
+			get_tree().paused = false
 			databank.store_default_game_save()
 			get_tree().change_scene("res://Scenes/world.tscn")
 		"resume":
+			if get_tree().current_scene.name == "world":
+				print("111")
+				Input.action_press("ui_cancel")
+				yield(get_tree().create_timer(0.2), "timeout")
+				Input.action_release("ui_cancel")
+				return
+			get_tree().paused = false
 			get_tree().change_scene("res://Scenes/world.tscn")
 		"german":
 			databank.settings.language = "german"
@@ -114,3 +124,8 @@ func _on_setting_pressed(button_name: String):
 			get_tree().quit()
 		
 	load_settings()
+
+
+func _on_titlescreen_visibility_changed():
+	if is_visible_in_tree():
+		load_menu("main")

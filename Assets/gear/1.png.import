@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/exit.png-c58dad5695126cf563920d2a815f8668.stex"
+path="res://.import/1.png-a31576bd4bf5579f4f96715e7b385808.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tiles/menu/menue/exit.png"
-dest_files=[ "res://.import/exit.png-c58dad5695126cf563920d2a815f8668.stex" ]
+source_file="res://Assets/gear/1.png"
+dest_files=[ "res://.import/1.png-a31576bd4bf5579f4f96715e7b385808.stex" ]
 
 [params]
 

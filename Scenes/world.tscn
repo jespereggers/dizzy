@@ -1,13 +1,33 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenes/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/display.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/world.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/user_interface.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/map.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/titlescreen.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/user_interface/gear/0.png" type="Texture" id=7]
+[ext_resource path="res://Assets/user_interface/gear/1.png" type="Texture" id=8]
+[ext_resource path="res://Assets/user_interface/gear/2.png" type="Texture" id=9]
+[ext_resource path="res://Scripts/overlay.gd" type="Script" id=10]
+[ext_resource path="res://Assets/user_interface/exit/exit_button_normal.png" type="Texture" id=11]
+[ext_resource path="res://Assets/user_interface/exit/exit_button_pressed.png" type="Texture" id=12]
+[ext_resource path="res://Assets/user_interface/exit/exit_button_hover.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 120, 70 )
+
+[sub_resource type="InputEventAction" id=2]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
+
+[sub_resource type="InputEventAction" id=4]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
 
 [node name="world" type="Node2D"]
 script = ExtResource( 3 )
@@ -25,19 +45,90 @@ script = ExtResource( 5 )
 
 [node name="user_interface" parent="map" instance=ExtResource( 4 )]
 
+[node name="inventory" parent="map/user_interface" index="0"]
+visible = false
+
+[node name="death_dialog_spikes_eng" parent="map/user_interface" index="2"]
+visible = false
+
+[node name="found_coin" parent="map/user_interface" index="12"]
+visible = false
+
 [node name="player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 128, 118 )
 
 [node name="display" parent="." instance=ExtResource( 2 )]
-layer = 4
 
 [node name="room_label" parent="display" index="3"]
 text = "toller raumname"
 
+[node name="overlay" type="CanvasLayer" parent="."]
+script = ExtResource( 10 )
+
+[node name="open_settings" type="TextureButton" parent="overlay"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -25.0
+margin_top = 3.0
+margin_right = -10.0
+margin_bottom = 36.0
+focus_mode = 0
+enabled_focus_mode = 0
+shortcut = SubResource( 3 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="settings" type="Popup" parent="overlay"]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="titlescreen" parent="overlay/settings" instance=ExtResource( 6 )]
+pause_mode = 2
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 121.0
+margin_bottom = 65.0
+rect_scale = Vector2( 0.65, 0.65 )
+
+[node name="main" parent="overlay/settings/titlescreen" index="1"]
+margin_right = 369.0
+margin_bottom = 209.0
+size_flags_vertical = 3
+
+[node name="exit" type="TextureButton" parent="overlay/settings"]
+pause_mode = 2
+margin_left = 233.0
+margin_top = 41.0
+margin_right = 245.0
+margin_bottom = 74.0
+shortcut = SubResource( 5 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 13 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="body_exited" from="screen_area" to="." method="_on_screen_area_body_exited"]
+[connection signal="pressed" from="overlay/open_settings" to="overlay" method="_on_open_settings_pressed"]
+[connection signal="pressed" from="overlay/settings/exit" to="overlay" method="_on_exit_pressed"]
 
 [editable path="map/user_interface"]
 [editable path="map/user_interface/inventory"]
 [editable path="player"]
 [editable path="display"]
 [editable path="display/everplant_touch_integration"]
+[editable path="overlay/settings/titlescreen"]
