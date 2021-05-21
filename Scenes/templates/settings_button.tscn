@@ -1,17 +1,29 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/settings_button.gd" type="Script" id=1]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/tiles/menu/menue/play.png" type="Texture" id=4]
 
-[sub_resource type="StyleBoxEmpty" id=1]
+[sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.529412 )
+border_width_left = 20
+border_width_right = 20
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="DynamicFont" id=3]
 size = 7
 font_data = ExtResource( 3 )
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=4]
 
 [node name="button" type="Button"]
 anchor_left = 0.5
@@ -27,11 +39,14 @@ focus_next = NodePath("../../option_2/option")
 focus_previous = NodePath("../../option_5/exit")
 size_flags_horizontal = 4
 size_flags_vertical = 0
-custom_styles/focus = SubResource( 1 )
-custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color_hover = Color( 0.439216, 0.901961, 0.92549, 1 )
 custom_colors/font_color_pressed = Color( 0.133333, 0.533333, 0.584314, 1 )
-flat = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -61,7 +76,8 @@ rect_min_size = Vector2( 100, 45 )
 size_flags_horizontal = 4
 
 [node name="label" type="TextureRect" parent="."]
-material = SubResource( 3 )
+show_behind_parent = true
+material = SubResource( 4 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

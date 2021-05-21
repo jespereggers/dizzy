@@ -15,6 +15,7 @@ func _ready():
 	paths.player = $player
 	paths.map = $map
 	paths.display = $display
+	paths.settings = $overlay/settings
 	paths.ui = $map/user_interface
 	
 	databank.load_game()

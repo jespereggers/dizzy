@@ -144,3 +144,9 @@ func _on_setting_pressed(button_name: String):
 func _on_titlescreen_visibility_changed():
 	if is_visible_in_tree():
 		load_menu("main")
+
+
+func _on_close_pressed():
+	if get_tree().current_scene.name == "world":
+		get_tree().paused = false
+		get_parent().hide()

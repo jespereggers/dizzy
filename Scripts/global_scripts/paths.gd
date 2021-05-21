@@ -5,3 +5,4 @@ var player: KinematicBody2D
 var map: Node2D
 var display: CanvasLayer
 var ui: CanvasLayer
+var settings: Popup
