@@ -127,7 +127,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="label" type="Label" parent="item_list"]
+[node name="label_eng" type="Label" parent="item_list"]
 self_modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 margin_left = 40.0
 margin_top = 20.0
@@ -204,6 +204,7 @@ __meta__ = {
 }
 
 [node name="choose_item_dialogue" type="Panel" parent="."]
+visible = false
 margin_left = 56.0
 margin_top = 136.0
 margin_right = 200.0
@@ -217,6 +218,7 @@ __meta__ = {
 }
 
 [node name="label" type="Label" parent="choose_item_dialogue"]
+visible = false
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 128.0
@@ -248,6 +250,7 @@ __meta__ = {
 }
 
 [node name="label" type="Label" parent="choose_item_dialogue_ger"]
+visible = false
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 128.0
@@ -264,6 +267,7 @@ __meta__ = {
 }
 
 [node name="full_inventory_dialogue" type="Panel" parent="."]
+visible = false
 margin_left = 48.0
 margin_top = 136.0
 margin_right = 208.0
@@ -278,6 +282,7 @@ __meta__ = {
 }
 
 [node name="label" type="Label" parent="full_inventory_dialogue"]
+visible = false
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
@@ -296,7 +301,6 @@ __meta__ = {
 }
 
 [node name="full_inventory_dialogue_ger" type="Panel" parent="."]
-visible = false
 margin_left = 48.0
 margin_top = 136.0
 margin_right = 208.0
@@ -349,6 +353,7 @@ __meta__ = {
 }
 
 [node name="label3" type="Label" parent="full_inventory_dialogue_ger"]
+visible = false
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0

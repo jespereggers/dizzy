@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Assets/tiles/build/7.png" type="Texture" id=10]
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=12]
+[ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=13]
 
 [sub_resource type="TileSet" id=1]
 0/name = "2.png 0"
@@ -1566,6 +1567,9 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="respawn_point" parent="." instance=ExtResource( 13 )]
+position = Vector2( 12, 112 )
+
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 1, 1 )
@@ -1614,7 +1618,7 @@ fps = 6
 
 [node name="item_rusty_key" parent="." instance=ExtResource( 12 )]
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
-position = Vector2( 174, 2 )
+position = Vector2( 183, 10 )
 item_name = "a rusty key"
 color = Color( 0.407843, 0.215686, 0.168627, 1 )
 
