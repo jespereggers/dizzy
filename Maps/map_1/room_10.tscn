@@ -2890,6 +2890,9 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="respawn_point" parent="." instance=ExtResource( 16 )]
+position = Vector2( 12, 104 )
+
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 15 )
 cell_size = Vector2( 1, 1 )
@@ -2953,9 +2956,6 @@ position = Vector2( 88, 123 )
 texture = ExtResource( 18 )
 hframes = 8
 fps = 6
-
-[node name="respawn_point" parent="." instance=ExtResource( 16 )]
-position = Vector2( 54, 91 )
 
 [node name="objects" parent="." instance=ExtResource( 21 )]
 
