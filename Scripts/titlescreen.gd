@@ -27,13 +27,21 @@ func load_settings():
 
 
 func load_menu(menu_name: String):
+	match get_tree().current_scene.name:
+		"titlescreen":
+			$main.set("custom_constants/separation", 34)
+		"world":
+			$main.set("custom_constants/separation", 10)
+			
 	current_menue = menu_name
 	for button in $main.get_children():
 		button.queue_free()
 		yield(button, "tree_exited")
-
 		
 	for button in databank.titlescreen[menu_name]:
+		if button[0] == "play" and get_tree().current_scene.name == "world":
+			button = ["resume"]
+			
 		var button_template = get_button_instance(button[0])
 		if button.size() > 1:
 			button_template.connect("pressed", self, "load_menu", [button[1]])
@@ -43,19 +51,19 @@ func load_menu(menu_name: String):
 			match button[0]:
 				"resume":
 					if not File.new().file_exists(OS.get_user_data_dir() + "/game_save.dizzy"):
-						button_template.disabled = true
+						button_template.disable()
 				"english":
 					if databank.settings.language == "english":
-						button_template.disabled = true
+						button_template.disable()
 				"german":
 					if databank.settings.language == "german":
-						button_template.disabled = true
+						button_template.disable()
 				"sound on":
 					if databank.settings.sound == true:
-						button_template.disabled = true
+						button_template.disable()
 				"sound off":
 					if databank.settings.sound == false:
-						button_template.disabled = true
+						button_template.disable()
 	
 		$main.add_child(button_template)
 		
@@ -74,20 +82,27 @@ func load_menu(menu_name: String):
 			button.focus_neighbour_right = $main.get_child(0).get_path()
 			button.focus_neighbour_bottom = $main.get_child(0).get_path()
 	
+	if get_tree().current_scene.name == "world":
+		for button in $main.get_children():
+			if button.get_index() != 0 and button.get_index() < $main.get_child_count() - 1:
+				button.change_background(true)
+			if button.get_index() == $main.get_child_count() - 1:
+				button.show_behind_parent = true
+	
 	for button in $main.get_children():
 		if button.get_class() == "Button" and button.visible:
 			button.grab_focus()
 			break
 
-	if menu_name == "on_credit":
-		var credit_instance: Label = load("res://Scenes/templates/credits.tscn").instance()
+	if menu_name == "on_credits":
+		var credit_instance = load("res://Scenes/templates/credits.tscn").instance()
 		$main.add_child(credit_instance)
 		$main.move_child(credit_instance, 0)
 
 
 func get_button_instance(button_name: String) -> Button:
-	var button: Button = load("res://Scenes/templates/settings_button.tscn").instance()
-	button.text = button_name
+	var button: Button = load("res://Scenes/templates/settings_button.tscn").instance() #!
+	button.load_template(button_name, get_tree().current_scene.name)
 	return button
 
 
@@ -99,10 +114,8 @@ func _on_setting_pressed(button_name: String):
 			get_tree().change_scene("res://Scenes/world.tscn")
 		"resume":
 			if get_tree().current_scene.name == "world":
-				print("111")
-				Input.action_press("ui_cancel")
-				yield(get_tree().create_timer(0.2), "timeout")
-				Input.action_release("ui_cancel")
+				get_tree().paused = false
+				get_parent().hide()
 				return
 			get_tree().paused = false
 			get_tree().change_scene("res://Scenes/world.tscn")
@@ -120,6 +133,8 @@ func _on_setting_pressed(button_name: String):
 			load_menu("on_sound")
 		"exit":
 			databank.save_setttings()
+			if get_tree().current_scene.name == "world":
+				databank.save_game()
 			yield(get_tree().create_timer(0.2), "timeout")
 			get_tree().quit()
 		
@@ -129,3 +144,9 @@ func _on_setting_pressed(button_name: String):
 func _on_titlescreen_visibility_changed():
 	if is_visible_in_tree():
 		load_menu("main")
+
+
+func _on_close_pressed():
+	if get_tree().current_scene.name == "world":
+		get_tree().paused = false
+		get_parent().hide()
