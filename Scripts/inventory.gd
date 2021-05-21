@@ -25,7 +25,7 @@ func _unhandled_input(event):
 			yield(get_tree().create_timer(0.2), "timeout")
 			set_process_input(true)
 			
-	if Input.is_action_just_pressed("enter"):
+	if Input.is_action_just_pressed("enter") and not paths.settings.visible:
 		if self.is_visible_in_tree():
 			if get_node("hint").visible:
 				close()

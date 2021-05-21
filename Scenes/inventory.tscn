@@ -42,7 +42,6 @@ region_rect = Rect2( 0, 0, 160, 48 )
 
 [node name="inventory" type="Popup"]
 pause_mode = 2
-visible = true
 margin_right = 256.0
 margin_bottom = 192.0
 grow_horizontal = 0
