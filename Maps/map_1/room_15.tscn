@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=2]
+[gd_scene load_steps=106 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -26,6 +26,11 @@
 [ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Assets/tiles/items/railing.png" type="Texture" id=25]
 [ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Assets/tiles/menu/menue/options.png" type="Texture" id=27]
+[ext_resource path="res://Assets/tiles/menu/menue/new game.png" type="Texture" id=28]
+[ext_resource path="res://Assets/tiles/menu/menue/credits.png" type="Texture" id=29]
+[ext_resource path="res://Assets/tiles/menu/menue/exit.png" type="Texture" id=30]
+[ext_resource path="res://Assets/tiles/menu/menue/menue_border.png" type="Texture" id=31]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -3118,6 +3123,29 @@ __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 120, 64 )
+texture = ExtResource( 31 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Sprite"]
+position = Vector2( 0, -39 )
+texture = ExtResource( 28 )
+
+[node name="Sprite2" type="Sprite" parent="Sprite"]
+position = Vector2( 0, -13 )
+texture = ExtResource( 27 )
+
+[node name="Sprite3" type="Sprite" parent="Sprite"]
+position = Vector2( 0, 13 )
+texture = ExtResource( 29 )
+
+[node name="Sprite4" type="Sprite" parent="Sprite"]
+position = Vector2( 0, 39 )
+texture = ExtResource( 30 )
 
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]
