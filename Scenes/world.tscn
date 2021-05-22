@@ -51,9 +51,6 @@ visible = false
 [node name="death_dialog_spikes_eng" parent="map/user_interface" index="2"]
 visible = false
 
-[node name="found_coin" parent="map/user_interface" index="12"]
-visible = false
-
 [node name="player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 128, 118 )
 
