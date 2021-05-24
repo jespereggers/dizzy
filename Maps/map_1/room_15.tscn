@@ -3125,6 +3125,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 120, 64 )
 texture = ExtResource( 31 )
 __meta__ = {
@@ -3132,6 +3133,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="Sprite"]
+visible = false
 position = Vector2( 0, -39 )
 texture = ExtResource( 28 )
 

@@ -217,7 +217,6 @@ __meta__ = {
 }
 
 [node name="label" type="Label" parent="choose_item_dialogue"]
-visible = false
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 128.0
@@ -281,7 +280,6 @@ __meta__ = {
 }
 
 [node name="label" type="Label" parent="full_inventory_dialogue"]
-visible = false
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
@@ -300,6 +298,7 @@ __meta__ = {
 }
 
 [node name="full_inventory_dialogue_ger" type="Panel" parent="."]
+visible = false
 margin_left = 48.0
 margin_top = 136.0
 margin_right = 208.0
@@ -314,7 +313,6 @@ __meta__ = {
 }
 
 [node name="label" type="Label" parent="full_inventory_dialogue_ger"]
-visible = false
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0

@@ -1,29 +1,28 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/settings_button.gd" type="Script" id=1]
-[ext_resource path="res://templates/background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/tiles/menu/menue/play.png" type="Texture" id=4]
 
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
 [sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="StyleBoxEmpty" id=6]
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0, 0, 0.529412 )
-border_width_left = 20
-border_width_right = 20
-border_color = Color( 0.8, 0.8, 0.8, 0 )
-
-[sub_resource type="StyleBoxEmpty" id=7]
-
-[sub_resource type="StyleBoxEmpty" id=8]
-
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=6]
 size = 7
 font_data = ExtResource( 3 )
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=7]
+
+[sub_resource type="DynamicFont" id=8]
+size = 5
+font_data = ExtResource( 3 )
 
 [node name="button" type="Button"]
 anchor_left = 0.5
@@ -39,12 +38,12 @@ focus_next = NodePath("../../option_2/option")
 focus_previous = NodePath("../../option_5/exit")
 size_flags_horizontal = 4
 size_flags_vertical = 0
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 2 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
-custom_fonts/font = SubResource( 3 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color_hover = Color( 0.439216, 0.901961, 0.92549, 1 )
 custom_colors/font_color_pressed = Color( 0.133333, 0.533333, 0.584314, 1 )
 script = ExtResource( 1 )
@@ -52,40 +51,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="marker" type="ColorRect" parent="."]
-visible = false
+[node name="enabled" type="TextureRect" parent="."]
 show_behind_parent = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="background" parent="." instance=ExtResource( 2 )]
-self_modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
-show_behind_parent = true
+material = SubResource( 7 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -51.0
-margin_top = -24.0
-margin_right = 49.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 100, 45 )
-size_flags_horizontal = 4
-
-[node name="label" type="TextureRect" parent="."]
-show_behind_parent = true
-material = SubResource( 4 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -35.0
-margin_top = -9.0
-margin_right = 33.0
-margin_bottom = 9.0
+margin_left = -36.0
+margin_top = -8.0
+margin_right = 36.0
+margin_bottom = 10.0
 rect_min_size = Vector2( 0, 18 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -96,4 +72,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[editable path="background"]
+[node name="disabled" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.0
+margin_top = -8.0
+margin_right = 34.0
+margin_bottom = 9.0
+rect_scale = Vector2( 1.05, 1.05 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.4, 0.4, 0.4, 1 )
+text = "Play"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

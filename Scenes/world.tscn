@@ -37,7 +37,37 @@ script = ExtResource( 5 )
 
 [node name="user_interface" parent="map" instance=ExtResource( 4 )]
 
+[node name="death" parent="map/user_interface" index="1"]
+visible = false
+
 [node name="death_dialog_spikes_eng" parent="map/user_interface" index="2"]
+visible = false
+
+[node name="death_dialog_water_eng" parent="map/user_interface" index="3"]
+visible = false
+
+[node name="death_dialog_torch_eng" parent="map/user_interface" index="4"]
+visible = false
+
+[node name="death_dialog_rat_eng" parent="map/user_interface" index="5"]
+visible = false
+
+[node name="death_dialog_bat_eng" parent="map/user_interface" index="6"]
+visible = false
+
+[node name="death_dialog_spikes_ger" parent="map/user_interface" index="7"]
+visible = false
+
+[node name="death_dialog_water_ger" parent="map/user_interface" index="8"]
+visible = false
+
+[node name="death_dialog_torch_ger" parent="map/user_interface" index="9"]
+visible = false
+
+[node name="death_dialog_rat_ger" parent="map/user_interface" index="10"]
+visible = false
+
+[node name="death_dialog_bat_ger" parent="map/user_interface" index="11"]
 visible = false
 
 [node name="player" parent="." instance=ExtResource( 1 )]
@@ -71,7 +101,6 @@ __meta__ = {
 }
 
 [node name="settings" type="Popup" parent="overlay"]
-visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 popup_exclusive = true
@@ -85,15 +114,6 @@ margin_left = 8.0
 margin_top = 49.0
 margin_right = -8.0
 margin_bottom = -9.0
-
-[node name="main" parent="overlay/settings/titlescreen" index="1"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -4.0
-margin_right = -13.0
-margin_bottom = -10.0
-rect_scale = Vector2( 1.055, 1.055 )
-size_flags_vertical = 3
 
 [connection signal="body_exited" from="screen_area" to="." method="_on_screen_area_body_exited"]
 [connection signal="pressed" from="overlay/open_settings" to="overlay" method="_on_open_settings_pressed"]
