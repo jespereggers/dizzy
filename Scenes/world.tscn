@@ -111,9 +111,9 @@ __meta__ = {
 [node name="titlescreen" parent="overlay/settings" instance=ExtResource( 6 )]
 pause_mode = 2
 margin_left = 8.0
-margin_top = 49.0
+margin_top = 45.0
 margin_right = -8.0
-margin_bottom = -9.0
+margin_bottom = -13.0
 
 [connection signal="body_exited" from="screen_area" to="." method="_on_screen_area_body_exited"]
 [connection signal="pressed" from="overlay/open_settings" to="overlay" method="_on_open_settings_pressed"]
