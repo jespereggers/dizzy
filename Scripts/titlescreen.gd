@@ -4,6 +4,7 @@ var current_menue: String
 
 
 func _ready():
+	$credits/background/back.connect("pressed", self, "load_menu", ["main"])
 	if get_tree().current_scene.name == "titlescreen":
 		databank.load_databanks()
 		load_settings()
@@ -27,18 +28,28 @@ func load_settings():
 
 
 func load_menu(menu_name: String):
-	match get_tree().current_scene.name:
-		"titlescreen":
-			$main.set("custom_constants/separation", 34)
-		"world":
-			$main.set("custom_constants/separation", 10)
-			
 	current_menue = menu_name
-	for button in $main.get_children():
+	
+	if menu_name == "on_credits":
+		$settings.hide()
+		$credits/background/back.load_template("back")
+		$credits.show()
+	else:
+		$settings.show()
+		$credits.hide()
+		
+	for button in $settings/background/main.get_children():
 		button.queue_free()
 		yield(button, "tree_exited")
 		
 	for button in databank.titlescreen[menu_name]:
+		if button[0] == "back":
+			var missing_buttons: int = 3 - $settings/background/main.get_child_count()
+			for i in missing_buttons:
+				var button_instance: Button = load("res://Scenes/templates/settings_button.tscn").instance() 
+				button_instance.modulate.a = 0
+				$settings/background/main.add_child(button_instance)
+				
 		if button[0] == "play" and get_tree().current_scene.name == "world":
 			button = ["resume"]
 			
@@ -65,44 +76,12 @@ func load_menu(menu_name: String):
 					if databank.settings.sound == false:
 						button_template.disable()
 	
-		$main.add_child(button_template)
-		
-	for button in $main.get_children():
-		if button.get_index() - 1 >= 0:
-			button.focus_neighbour_left = $main.get_child(button.get_index() - 1).get_path()
-			button.focus_neighbour_top = $main.get_child(button.get_index() - 1).get_path()
-		else:
-			button.focus_neighbour_left = $main.get_child($main.get_child_count() - 1).get_path()
-			button.focus_neighbour_top = $main.get_child($main.get_child_count() - 1).get_path()
-	
-		if button.get_index() + 1 <= $main.get_child_count() - 1:
-			button.focus_neighbour_right = $main.get_child(button.get_index() + 1).get_path()
-			button.focus_neighbour_bottom = $main.get_child(button.get_index() + 1).get_path()
-		else:
-			button.focus_neighbour_right = $main.get_child(0).get_path()
-			button.focus_neighbour_bottom = $main.get_child(0).get_path()
-	
-	if get_tree().current_scene.name == "world":
-		for button in $main.get_children():
-			if button.get_index() != 0 and button.get_index() < $main.get_child_count() - 1:
-				button.change_background(true)
-			if button.get_index() == $main.get_child_count() - 1:
-				button.show_behind_parent = true
-	
-	for button in $main.get_children():
-		if button.get_class() == "Button" and button.visible:
-			button.grab_focus()
-			break
-
-	if menu_name == "on_credits":
-		var credit_instance = load("res://Scenes/templates/credits.tscn").instance()
-		$main.add_child(credit_instance)
-		$main.move_child(credit_instance, 0)
+		$settings/background/main.add_child(button_template)
 
 
 func get_button_instance(button_name: String) -> Button:
 	var button: Button = load("res://Scenes/templates/settings_button.tscn").instance() #!
-	button.load_template(button_name, get_tree().current_scene.name)
+	button.load_template(button_name)
 	return button
 
 
