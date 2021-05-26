@@ -2930,7 +2930,7 @@ texture = ExtResource( 13 )
 
 [node name="item_crowbar" parent="objects" instance=ExtResource( 17 )]
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-position = Vector2( 95, 120 )
+position = Vector2( 96, 120 )
 item_name = "a strong crowbar"
 color = Color( 0.439216, 0.643137, 0.698039, 1 )
 height = 7.0
@@ -3125,6 +3125,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 120, 64 )
 texture = ExtResource( 31 )
 __meta__ = {
