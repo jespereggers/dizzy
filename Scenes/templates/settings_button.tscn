@@ -44,24 +44,19 @@ custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 custom_fonts/font = SubResource( 6 )
-custom_colors/font_color_hover = Color( 0.439216, 0.901961, 0.92549, 1 )
-custom_colors/font_color_pressed = Color( 0.133333, 0.533333, 0.584314, 1 )
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": ""
 }
 
 [node name="enabled" type="TextureRect" parent="."]
 show_behind_parent = true
 material = SubResource( 7 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -36.0
-margin_top = -8.0
-margin_right = 60.0
-margin_bottom = 10.0
+margin_left = 2.0
+margin_top = -2.0
+margin_right = 98.0
+margin_bottom = 16.0
 rect_min_size = Vector2( 0, 18 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -74,14 +69,10 @@ __meta__ = {
 
 [node name="disabled" type="Label" parent="."]
 visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -36.0
-margin_top = -8.0
-margin_right = 60.0
-margin_bottom = 10.0
+margin_left = 2.0
+margin_top = -2.0
+margin_right = 98.0
+margin_bottom = 16.0
 custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0.4, 0.4, 0.4, 1 )
 text = "Play"

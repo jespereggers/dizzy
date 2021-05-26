@@ -2906,29 +2906,29 @@ shape = SubResource( 75 )
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 17, 72 )
 texture = ExtResource( 21 )
-hframes = 2
-fps = 6
+hframes = 4
+fps = 12
 
 [node name="torchfire_animated1" parent="." instance=ExtResource( 19 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 80, 16 )
 texture = ExtResource( 21 )
-hframes = 2
-fps = 6
+hframes = 4
+fps = 12
 
 [node name="torchfire_animated2" parent="." instance=ExtResource( 19 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 160, 16 )
 texture = ExtResource( 21 )
-hframes = 2
-fps = 6
+hframes = 4
+fps = 12
 
 [node name="torchfire_animated3" parent="." instance=ExtResource( 19 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 225, 72 )
 texture = ExtResource( 21 )
-hframes = 2
-fps = 6
+hframes = 4
+fps = 12
 
 [node name="coin" parent="." instance=ExtResource( 18 )]
 position = Vector2( 200, 48 )

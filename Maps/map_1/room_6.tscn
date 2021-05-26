@@ -2919,15 +2919,15 @@ shape = SubResource( 74 )
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 100, 16 )
 texture = ExtResource( 18 )
-hframes = 2
-fps = 6
+hframes = 4
+fps = 12
 
 [node name="torchfire_animated1" parent="." instance=ExtResource( 17 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 204, 16 )
 texture = ExtResource( 18 )
-hframes = 2
-fps = 6
+hframes = 4
+fps = 12
 
 [node name="objects" parent="." instance=ExtResource( 19 )]
 

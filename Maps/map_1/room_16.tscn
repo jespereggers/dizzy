@@ -1611,8 +1611,8 @@ shape = SubResource( 53 )
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 24, 64 )
 texture = ExtResource( 8 )
-hframes = 2
-fps = 6
+hframes = 4
+fps = 12
 
 [node name="objects" parent="." instance=ExtResource( 3 )]
 

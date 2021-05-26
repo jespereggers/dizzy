@@ -2895,15 +2895,15 @@ shape = SubResource( 73 )
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 20, 80 )
 texture = ExtResource( 16 )
-hframes = 2
-fps = 6
+hframes = 4
+fps = 12
 
 [node name="torchfire_animated1" parent="." instance=ExtResource( 15 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 160, 40 )
 texture = ExtResource( 16 )
-hframes = 2
-fps = 6
+hframes = 4
+fps = 12
 
 [node name="dozy_sleep" type="Sprite" parent="."]
 position = Vector2( 132, 96 )
@@ -3043,10 +3043,12 @@ __meta__ = {
 }
 
 [node name="message_2_ger2" parent="." instance=ExtResource( 24 )]
+visible = false
 margin_right = 184.0
 margin_bottom = 72.0
 
 [node name="Label5" type="Label" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
