@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/tiles/items/cannonball.png" type="Texture" id=3]
+[ext_resource path="res://templates/item.tscn" type="PackedScene" id=4]
 
 [node name="room_1" type="Node2D"]
 __meta__ = {
@@ -35,4 +37,15 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="item" parent="." instance=ExtResource( 4 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+position = Vector2( 80, 120 )
+item_name = "a cannonball"
+texture = ExtResource( 3 )
+
+[node name="sprite" parent="item" index="0"]
+texture = ExtResource( 3 )
+
 [node name="objects" parent="." instance=ExtResource( 2 )]
+
+[editable path="item"]
