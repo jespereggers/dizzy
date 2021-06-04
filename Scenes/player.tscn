@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/tiles/dizzy/dizzy_idle.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/state_machine/state_machine.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scripts/state_machine/climb_state.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/leaderbox_detector.gd" type="Script" id=9]
 [ext_resource path="res://Assets/tiles/dizzy/dizzy_death.png" type="Texture" id=10]
+[ext_resource path="res://Scripts/item_detector.gd" type="Script" id=11]
 
 [sub_resource type="Animation" id=1]
 length = 0.4
@@ -132,7 +133,7 @@ tracks/0/keys = {
 extents = Vector2( 7, 9 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 6, 8 )
+extents = Vector2( 9.62536, 9.30001 )
 
 [node name="player" type="KinematicBody2D"]
 collision/safe_margin = 0.01
@@ -224,6 +225,7 @@ position = Vector2( 0, 3 )
 shape = SubResource( 8 )
 
 [node name="item_detector" type="Area2D" parent="."]
+script = ExtResource( 11 )
 
 [node name="shape" type="CollisionShape2D" parent="item_detector"]
 position = Vector2( 0, 3 )
@@ -233,3 +235,5 @@ shape = SubResource( 8 )
 [connection signal="timeout" from="unlocked_cooldown" to="." method="_on_unlocked_cooldown_timeout"]
 [connection signal="area_entered" from="leaderbox_detector" to="leaderbox_detector" method="_on_leaderbox_detector_area_entered"]
 [connection signal="area_exited" from="leaderbox_detector" to="leaderbox_detector" method="_on_leaderbox_detector_area_exited"]
+[connection signal="area_entered" from="item_detector" to="item_detector" method="_on_item_detector_area_entered"]
+[connection signal="area_exited" from="item_detector" to="item_detector" method="_on_item_detector_area_exited"]

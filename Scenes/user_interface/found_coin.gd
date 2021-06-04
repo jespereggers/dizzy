@@ -9,10 +9,10 @@ func _ready():
 
 
 func _on_coin_collected(new_coin_instance):
+	get_parent().locked = true
 	signals.emit_signal("pause_mode_changed_to", true)
 	coin_instance = new_coin_instance
 	paths.player.hide()
-	get_parent().locked = true
 	get_tree().paused = true
 	self.popup()
 	yield(get_tree().create_timer(0.2), "timeout")

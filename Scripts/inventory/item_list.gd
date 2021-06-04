@@ -42,7 +42,7 @@ func load_items():
 		item_instance.grab_focus()
 		list_instance.get_child(list_instance.get_child_count() - 1).connect("pressed", get_parent(), "close")
 
-		if stats.inventory.size() > 2:
+		if stats.inventory.size() > 1 and get_parent().trying_to_hold_too_much:
 			self.set_process_input(false)
 			get_parent().get_node("full_inventory_dialogue").show()
 		else:

@@ -102,7 +102,6 @@ var maps: Dictionary = {
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
-		print("Close ", get_tree().current_scene.name)
 		if get_tree().current_scene.name == "world":
 			save_game()
 		save_setttings()

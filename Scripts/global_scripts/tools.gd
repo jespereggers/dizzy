@@ -9,11 +9,7 @@ func add_object(object):
 func remove_object(object):
 	var properties: Dictionary = get_object_properties(object)
 	for object in databank.game_save.enviroment[stats.current_map][stats.current_room].objects:
-		if object.origin == "item_crowbar":
-			print(object)
-			print(properties)
 		if str(properties) == str(object):
-			print("SUCCESS")
 			databank.game_save.enviroment[stats.current_map][stats.current_room].objects.erase(object)
 
 
@@ -21,7 +17,6 @@ func load_file(path: String):
 	path = path.replace("user://", OS.get_user_data_dir() + "/")
 
 	if not File.new().file_exists(path):
-		printerr("An unexpected error occured when trying to open " + path)
 		return
 		
 	var file = File.new()

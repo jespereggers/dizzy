@@ -58,6 +58,7 @@ func set_properties(properties: Dictionary):
 
 
 func _input(_event):
+	return
 	if Input.is_action_just_released("enter") and player_is_in_range and paths.player.is_on_floor() and collectable:
 		signals.emit_signal("item_collected", self)
 
