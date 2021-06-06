@@ -27,12 +27,11 @@ func _input(_event):
 					items_to_remove.append(item)
 				else:
 					paths.ui.inventory.trying_to_hold_too_much = true
+				break
 		
 		for item in items_to_remove:
+			detected_items.erase(item)
 			item.destroy()
-			
-		detected_items.clear()
 		
 		if open_inventory:
 			paths.ui.inventory.open()
-		
