@@ -133,7 +133,7 @@ tracks/0/keys = {
 extents = Vector2( 7, 9 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 9.62536, 9.30001 )
+extents = Vector2( 7, 9 )
 
 [node name="player" type="KinematicBody2D"]
 collision/safe_margin = 0.01
@@ -221,6 +221,7 @@ cast_to = Vector2( 0, 10 )
 script = ExtResource( 9 )
 
 [node name="shape" type="CollisionShape2D" parent="leaderbox_detector"]
+visible = false
 position = Vector2( 0, 3 )
 shape = SubResource( 8 )
 
