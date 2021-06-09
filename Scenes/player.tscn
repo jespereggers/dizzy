@@ -31,27 +31,27 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "death"
 length = 1.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("dizzy_death:visible")
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("dizzy_death:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ false, true, true ]
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.5 )
 }
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("dizzy_death:frame")
+tracks/1/type = "value"
+tracks/1/path = NodePath("dizzy_death:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 1.5 )
+"times": PoolRealArray( 0, 0.1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ false, true, true ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("texture:visible")
@@ -130,10 +130,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 7, 9 )
+extents = Vector2( 7, 9.46208 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 7, 9 )
+extents = Vector2( 7, 7.66976 )
 
 [node name="player" type="KinematicBody2D"]
 collision/safe_margin = 0.01
@@ -163,7 +163,7 @@ centered = false
 hframes = 31
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 3 )
+position = Vector2( 0.0468197, 2.46154 )
 shape = SubResource( 7 )
 __meta__ = {
 "_editor_description_": ""
@@ -229,7 +229,7 @@ shape = SubResource( 8 )
 script = ExtResource( 11 )
 
 [node name="shape" type="CollisionShape2D" parent="item_detector"]
-position = Vector2( 0, 3 )
+position = Vector2( 0.0834274, 2.37429 )
 shape = SubResource( 8 )
 
 [connection signal="animation_finished" from="animations" to="state_machine" method="_on_animation_animation_finished"]

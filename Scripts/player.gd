@@ -29,10 +29,16 @@ func _ready():
 
 
 func _on_player_respawned():
-	set_physics_process(false)
-	animations.play_backwards("death")
-	yield(animations, "animation_finished")
 	set_physics_process(true)
+	locked = true
+	#self.position.y += get_height()
+	animations.play_backwards("death")
+	yield(get_tree().create_timer(1.45), "timeout")
+	animations.play("idle")
+	$texture.show()
+	$dizzy_death.hide()
+	set_physics_process(true)
+	locked = false
 
 
 func _on_room_changed():
