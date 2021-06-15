@@ -3,7 +3,6 @@ extends Node
 
 func _ready():
 	signals.connect("coin_collected", self, "_on_coin_collected")
-	signals.connect("player_died", self, "_on_player_died")
 	$coin.stream.set_loop(false)
 	$dead.stream.set_loop(false)
 	$intro.stream.set_loop(false)
@@ -13,20 +12,20 @@ func _ready():
 
 
 func play(audio_name: String):
+	var new_audio = audio_name
 	for audio_instance in get_children():
-		if audio_instance.name == audio_name:
-			get_node(audio_name).play(0.0)
-			audio_instance.stream_paused = false
-		else:
-			audio_instance.stream_paused = true
+		audio_instance.stop()
+	get_node(new_audio).play(0)
+		#if audio_instance.name == audio_name:
+		#	get_node(audio_name).play(0.0)
+		#	audio_instance.stream_paused = false
+		#else:
+		#	audio_instance.seek(0.0)
+		#	audio_instance.stream_paused = true
 	
 	
 func _on_coin_collected(_coin_instance):
 	play("coin")
-	
-	
-func _on_player_died(_colliding_object):
-	play("dead")
 
 
 func _on_coin_finished():
@@ -38,8 +37,10 @@ func _on_dead_finished():
 
 
 func _on_intro_finished():
-	$theme.play()
+	if not $dead.playing:
+		$theme.play()
 
 
 func _on_theme_finished():
-	$theme.play()
+	if not $dead.playing:
+		$theme.play()

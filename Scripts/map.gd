@@ -56,9 +56,6 @@ func clean_maps():
 
 
 func respawn_player():
-	root.player.locked = false
-	root.player.action = ["idle"]
-	
 	for child in get_children():
 		if "room_" in child.name:
 			if child.has_node("respawn_point"):

@@ -13,7 +13,6 @@ onready var states: Dictionary = {
 func update_state(new_state: String):
 	if player.locked:
 		return
-
 	states[new_state].enter()
 
 

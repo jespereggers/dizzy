@@ -13,4 +13,5 @@ script = ExtResource( 1 )
 pause_mode = 1
 shape = SubResource( 1 )
 one_way_collision = true
+
 [connection signal="body_entered" from="." to="." method="_on_death_area_body_entered"]

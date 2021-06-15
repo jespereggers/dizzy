@@ -7,7 +7,7 @@ export var fps: int = 4
 func _ready():
 	# Connect signals
 	signals.connect("pause_mode_changed_to", self, "_on_pause_mode_changed_to")
-
+	signals.connect("player_died", self, "_on_player_died")
 	# Setup animation
 	var animation: Animation = Animation.new()
 	
@@ -31,6 +31,10 @@ func _ready():
 	# Start animation
 	anim_player.play("idle")
 	
+
+func _on_player_died(_colliding_obj):
+	anim_player.stop()
+
 
 func _on_pause_mode_changed_to(paused: bool):
 	if paused:

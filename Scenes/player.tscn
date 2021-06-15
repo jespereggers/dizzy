@@ -65,6 +65,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [ true, false, false ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("texture:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.2
@@ -161,6 +173,7 @@ position = Vector2( -252, -64 )
 texture = ExtResource( 10 )
 centered = false
 hframes = 31
+frame = 30
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2( 0.0468197, 2.46154 )

@@ -29,8 +29,8 @@ func _ready():
 
 
 func _on_player_respawned():
-	set_physics_process(true)
 	locked = true
+	action = ["idle"]
 	#self.position.y += get_height()
 	animations.play_backwards("death")
 	yield(get_tree().create_timer(1.45), "timeout")
@@ -47,14 +47,13 @@ func _on_room_changed():
 
 
 func _on_player_died(collision_object):
+	audio.play("dead")
 	# Play Death-animation
 	set_physics_process(false)
 	self.animations.play("death")
 	yield(animations, "animation_finished")
-	
-	# Launch Death-Screen
-	#$texture.scale = Vector2(1,1)
-	#self.hide()
+	set_physics_process(true)
+
 	paths.ui.death.start(collision_object)
 
 
@@ -102,6 +101,7 @@ func _physics_process(_delta):
 		texture.flip_h = motion.x < 0
 				
 	state_machine.update_state(action[0])
+
 	update_motion(action)
 
 	motion = move_and_slide(motion, UP)
