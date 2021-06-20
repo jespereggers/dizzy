@@ -15,16 +15,17 @@ func _on_item_detector_area_exited(area):
 
 func _input(_event):
 	if Input.is_action_just_released("enter") and paths.player.is_on_floor():
+		var available_items: Array = detected_items.duplicate()
 		var open_inventory: bool = false
 		var items_to_remove: Array
 		var full_inventory: bool = false
 		
-		if not detected_items.empty():
+		if not available_items.empty():
 			open_inventory = true
 
-		check_detections()
+		check_detections(available_items)
 
-		for item in detected_items:
+		for item in available_items:
 			if item.get("type") and item.type in ["shard", "coin"]:
 				items_to_remove = [item]
 				break
@@ -39,7 +40,7 @@ func _input(_event):
 		for item in items_to_remove:
 			match item.type:
 				"item":
-					detected_items.erase(item)
+					available_items.erase(item)
 					item.destroy()
 					if open_inventory:
 						paths.ui.inventory.open()
@@ -57,15 +58,15 @@ func _input(_event):
 			paths.ui.inventory.open()
 
 
-func check_detections():
+func check_detections(available_items):
 	var positions: Array
 	
-	for item in detected_items:
+	for item in available_items:
 		if item.position in positions:
 			# Decide which item to keep
 			var candidates: Array
 			# Get Candidates
-			for candidate in detected_items:
+			for candidate in available_items:
 				if candidate.position == item.position:
 					candidates.append(candidate)
 			# Choose highest item
@@ -74,9 +75,9 @@ func check_detections():
 				if candidate.get_index() > highest_item.get_index():
 					highest_item = candidate
 			# Delete lower items
-			for candidate in detected_items:
+			for candidate in available_items:
 				if candidate in candidates and not candidate == highest_item:
-					detected_items.erase(candidate)
+					available_items.erase(candidate)
 		else:
 			# Decide which item to keep
 			# Everything is just fine

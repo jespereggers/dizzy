@@ -9,6 +9,12 @@ func _ready():
 
 
 func _on_countable_collected(new_countable_instance):
+	match new_countable_instance.type:
+		"coin":
+			$label2_ger.text = "du findest eine münze"
+		"shard":
+			$label2_ger.text = "du findest einen stern"
+			
 	get_parent().locked = true
 	signals.emit_signal("pause_mode_changed_to", true)
 	countable_instance = new_countable_instance
