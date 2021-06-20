@@ -1,17 +1,17 @@
 extends Popup
 
-var coin_instance: Sprite
+var countable_instance: Sprite
 
 
 func _ready():
 	set_process_unhandled_input(false)
-	signals.connect("coin_collected", self, "_on_coin_collected")
+	signals.connect("countable_collected", self, "_on_countable_collected")
 
 
-func _on_coin_collected(new_coin_instance):
+func _on_countable_collected(new_countable_instance):
 	get_parent().locked = true
 	signals.emit_signal("pause_mode_changed_to", true)
-	coin_instance = new_coin_instance
+	countable_instance = new_countable_instance
 	paths.player.hide()
 	get_tree().paused = true
 	self.popup()
@@ -26,10 +26,17 @@ func _unhandled_input(event):
 		paths.player.show()
 		hide()
 		signals.emit_signal("pause_mode_changed_to", false)
-		
-		yield(get_tree().create_timer(0.2), "timeout")
+		var type = countable_instance.type
+		countable_instance.queue_free()
+		yield(get_tree().create_timer(0.1), "timeout")
 		get_parent().locked = false
-		coin_instance.queue_free()
-		stats.coins += 1
-		signals.emit_signal("coins_changed")
+		
+		match type:
+			"coin":
+				stats.coins += 1
+				signals.emit_signal("coins_changed")
+			"shard":
+				stats.shards += 1
+				signals.emit_signal("shards_changed")
+
 		audio.play("theme")

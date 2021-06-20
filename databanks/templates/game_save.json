@@ -2,6 +2,7 @@
     "player": {
         "eggs": 3,
         "coins": 0,
+        "shards": 0,
         "inventory": [],
         "position": null
     },

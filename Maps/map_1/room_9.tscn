@@ -17,12 +17,13 @@
 [ext_resource path="res://Assets/tiles/characters/yolkfolk/denzil_sad.png" type="Texture" id=15]
 [ext_resource path="res://Assets/tiles/objects/painting.png" type="Texture" id=16]
 [ext_resource path="res://Assets/tiles/items/railing.png" type="Texture" id=17]
-[ext_resource path="res://templates/coin.tscn" type="PackedScene" id=18]
+[ext_resource path="res://templates/shard.tscn" type="PackedScene" id=18]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=19]
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=21]
 [ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=22]
 [ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=23]
+
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )

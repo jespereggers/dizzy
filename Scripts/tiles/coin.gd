@@ -1,8 +1,8 @@
 extends Sprite
 
-const type = "coin"
+export var type: String = "coin"
+export var item_name: String = "coin"
 var overlaping_with_player: bool = false
-var item_name: String = "coin"
 var origin: String
 
 var id: String
@@ -10,10 +10,11 @@ var id: String
 
 func _input(_event):
 	if Input.is_action_just_pressed("enter"):
-		if overlaping_with_player:
-			databank.game_save.enviroment[stats.current_map][stats.current_room].removed_objects.append(origin)
-			tools.remove_object(self)
-			signals.emit_signal("coin_collected", self)
+		pass
+		#if overlaping_with_player:
+			#databank.game_save.enviroment[stats.current_map][stats.current_room].removed_objects.append(origin)
+			#tools.remove_object(self)
+			#signals.emit_signal("countable_collected", self)
 
 
 func load_template():

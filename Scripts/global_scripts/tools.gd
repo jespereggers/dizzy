@@ -50,4 +50,7 @@ func get_object_properties(object) -> Dictionary:
 			return {"type": "item", "origin": object.origin, "id": object.id, "item_name": object.item_name, "color": object.color, "shape_extents": object.shape_extents, "height": object.height, "collectable": object.collectable, "texture": object.texture, "position": object.position}
 		"coin":
 			return {"type": "coin", "origin": object.origin, "id": object.id, "position": object.position}
+		"shard":
+			return {"type": "shard", "origin": object.origin, "id": object.id, "position": object.position}
+			
 	return {}
