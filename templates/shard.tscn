@@ -7,7 +7,6 @@
 extents = Vector2( 8, 8 )
 
 [node name="shard" type="Sprite"]
-modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 type = "shard"

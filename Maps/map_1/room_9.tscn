@@ -24,7 +24,6 @@
 [ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=22]
 [ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=23]
 
-
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
 
