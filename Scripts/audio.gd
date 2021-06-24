@@ -7,10 +7,6 @@ func _ready():
 	$dead.stream.set_loop(false)
 	$intro.stream.set_loop(false)
 	$theme.stream.set_loop(false)
-	
-	#for i in get_children():
-		#i.play()
-		#i.stream_paused = true
 	play("theme")
 
 
@@ -19,20 +15,14 @@ func play(audio_name: String):
 	for audio_instance in get_children():
 		if not audio_instance.name == audio_name:
 			audio_instance.stream_paused = true
-			#audio_instance.stop()
+			audio_instance.stop()
 	get_node(new_audio).stream_paused = false
-	get_node(new_audio).play(get_node(new_audio).get_playback_position())
-	#$coin.get_playback_position()
-		#if audio_instance.name == audio_name:
-		#	get_node(audio_name).play(0.0)
-		#	audio_instance.stream_paused = false
-		#else:
-		#	audio_instance.seek(0.0)
-		#	audio_instance.stream_paused = true
+	get_node(new_audio).play(0)
 	
 	
 func _on_countable_collected(_coin_instance):
 	play("coin")
+	yield(get_tree().create_timer(2.55), "timeout")
 
 
 func _on_coin_finished():
