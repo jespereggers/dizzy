@@ -15,7 +15,7 @@
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/tiles/objects/water.tres" type="Texture" id=14]
 [ext_resource path="res://Assets/tiles/objects/barrel.png" type="Texture" id=15]
-[ext_resource path="res://templates/shard.tscn" type="PackedScene" id=16]
+[ext_resource path="res://templates/coin.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/templates/leader_box.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Assets/tiles/animations/water_full.png" type="Texture" id=18]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=19]
@@ -2872,9 +2872,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="respawn_point" parent="." instance=ExtResource( 21 )]
-position = Vector2( 108, 92 )
-
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
 cell_size = Vector2( 1, 1 )
@@ -2965,10 +2962,13 @@ position = Vector2( 180.442, 79.8597 )
 [node name="collision" parent="leaderbox2" index="0"]
 shape = SubResource( 76 )
 
+[node name="respawn_point" parent="." instance=ExtResource( 21 )]
+position = Vector2( 108, 92 )
+
 [node name="objects" parent="." instance=ExtResource( 22 )]
 
 [node name="coin" parent="objects" instance=ExtResource( 16 )]
-position = Vector2( 175, 64 )
+position = Vector2( 176, 64 )
 
 [editable path="torchfire_death"]
 [editable path="water_death"]
