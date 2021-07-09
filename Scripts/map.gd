@@ -56,13 +56,18 @@ func clean_maps():
 
 
 func respawn_player():
+	var new_pos: Vector2
 	for child in get_children():
 		if "room_" in child.name:
 			if child.has_node("respawn_point"):
-				var new_pos: Vector2 = child.get_node("respawn_point").position 
-				new_pos += Vector2(8, 49)
-				root.player.position = new_pos
+				print("path_1")
+				new_pos = child.get_node("respawn_point").position 
+				new_pos += Vector2(8, 48)
 			else:
-				root.player.position = get_viewport_rect().size / 2
+				print("path_2")
+				new_pos = get_viewport_rect().size / 2
+				new_pos += Vector2(8, 48)
+				
+	root.player.position = new_pos
 	
 	signals.emit_signal("player_respawned")
