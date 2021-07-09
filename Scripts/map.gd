@@ -3,6 +3,10 @@ extends Node2D
 onready var root: Node2D = get_parent()
 signal room_entered_tree
 
+export var default_respawn_position: Vector2 = Vector2(220,134)
+export var custom_respawn_correction: Vector2 = Vector2(8, 48)
+
+
 func _ready():
 	yield(signals, "backend_is_ready")
 	update_map()
@@ -60,13 +64,10 @@ func respawn_player():
 	for child in get_children():
 		if "room_" in child.name:
 			if child.has_node("respawn_point"):
-				print("path_1")
 				new_pos = child.get_node("respawn_point").position 
-				new_pos += Vector2(8, 48)
+				new_pos += custom_respawn_correction
 			else:
-				print("path_2")
-				new_pos = get_viewport_rect().size / 2
-				new_pos += Vector2(8, 48)
+				new_pos = default_respawn_position
 				
 	root.player.position = new_pos
 	
