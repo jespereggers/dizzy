@@ -38,7 +38,7 @@ script = ExtResource( 5 )
 [node name="user_interface" parent="map" instance=ExtResource( 4 )]
 
 [node name="player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 128, 118 )
+position = Vector2( 220, 134 )
 
 [node name="display" parent="." instance=ExtResource( 2 )]
 

@@ -2872,6 +2872,9 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="respawn_point" parent="." instance=ExtResource( 21 )]
+position = Vector2( 108, 92 )
+
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
 cell_size = Vector2( 1, 1 )
@@ -2961,9 +2964,6 @@ position = Vector2( 180.442, 79.8597 )
 
 [node name="collision" parent="leaderbox2" index="0"]
 shape = SubResource( 76 )
-
-[node name="respawn_point" parent="." instance=ExtResource( 21 )]
-position = Vector2( 108, 92 )
 
 [node name="objects" parent="." instance=ExtResource( 22 )]
 
