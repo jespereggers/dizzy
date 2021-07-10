@@ -73,13 +73,13 @@ var maps: Dictionary = {
 			"path": "res://Maps/map_1/room_6.tscn"
 		},
 		Vector2(1,2): {
-			"name": "DER OSTFLUEGEL",
+			"name": "DER OSTFLÜGEL",
 			"path": "res://Maps/map_1/room_7.tscn"
 		},
 		
 		#Etage 3
 		Vector2(-1,3): {
-			"name": "DER WESTFLUEGEL",
+			"name": "DER WESTFLÜGEL",
 			"path": "res://Maps/map_1/room_2.tscn"
 		},
 		Vector2(0,3): {
@@ -147,7 +147,7 @@ func save_setttings():
 
 func store_default_game_save():
 	var template: Dictionary = tools.load_file("res://databanks/templates/game_save.json")
-	template.player.position = Vector2(128, 118)
+	template.player.position = Vector2(188, 148)
 	template.scene.current_room = Vector2(0,0)
 	template.enviroment.map_1 = {}
 	tools.save_file("user://game_save.dizzy", template)
