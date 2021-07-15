@@ -22,8 +22,9 @@ func start(_colliding_object: String):
 func close():
 		if stats.eggs <= 0:
 			stats.eggs = databank.max_eggs
-			stats.current_room = Vector2(0,0)
-			paths.map.update_map()
+			if stats.current_room != Vector2(0,0):
+				stats.current_room = Vector2(0,0)
+				paths.map.update_map()
 		else:
 			stats.change_eggs_by(-1)
 		signals.emit_signal("eggs_changed")
