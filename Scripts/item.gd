@@ -33,8 +33,10 @@ func load_template():
 	collision.shape.extents = shape_extents
 	self.add_child(area)
 	area.add_child(collision)
-	area.connect("area_entered", self, "_on_area_entered")
-	area.connect("area_exited", self, "_on_area_exited")
+	if area.connect("area_entered", self, "_on_area_entered") != OK:
+		print("Error occured when trying to establish a connection")
+	if area.connect("area_exited", self, "_on_area_exited") != OK:
+		print("Error occured when trying to establish a connection")
 
 	# Texture
 	var sprite: Sprite = Sprite.new()
@@ -55,12 +57,6 @@ func set_properties(properties: Dictionary):
 	
 	self.position = properties.position
 	self.modulate = properties.color
-
-
-func _input(_event):
-	return
-	if Input.is_action_just_released("enter") and player_is_in_range and paths.player.is_on_floor() and collectable:
-		signals.emit_signal("item_collected", self)
 
 
 func _on_area_entered(area):

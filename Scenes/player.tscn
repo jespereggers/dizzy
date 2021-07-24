@@ -244,9 +244,13 @@ script = ExtResource( 11 )
 position = Vector2( 0, 2 )
 shape = SubResource( 8 )
 
+[node name="ticks" type="Timer" parent="."]
+autostart = true
+
 [connection signal="animation_finished" from="animations" to="state_machine" method="_on_animation_animation_finished"]
 [connection signal="timeout" from="unlocked_cooldown" to="." method="_on_unlocked_cooldown_timeout"]
 [connection signal="area_entered" from="leaderbox_detector" to="leaderbox_detector" method="_on_leaderbox_detector_area_entered"]
 [connection signal="area_exited" from="leaderbox_detector" to="leaderbox_detector" method="_on_leaderbox_detector_area_exited"]
 [connection signal="area_entered" from="item_detector" to="item_detector" method="_on_item_detector_area_entered"]
 [connection signal="area_exited" from="item_detector" to="item_detector" method="_on_item_detector_area_exited"]
+[connection signal="timeout" from="ticks" to="." method="_on_ticks_timeout"]

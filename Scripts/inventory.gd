@@ -27,9 +27,10 @@ func _unhandled_input(event):
 		if self.is_visible_in_tree():
 			if get_node("hint").visible:
 				close()
-		elif paths.player.item_detector.detected_items.empty() and not get_parent().death.visible and not get_parent().locked and paths.player.is_on_floor():
-			if not get_parent().get_node("found_coin").visible:
-				open()
+		elif paths.player.item_detector.detected_items.empty() and not get_parent().death.visible and paths.player.is_on_floor():
+			if not get_parent().locked:
+				if not get_parent().get_node("found_coin").visible:
+					open()
 			
 		# Secure
 		set_process_input(false)

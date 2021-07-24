@@ -5,7 +5,10 @@ you lost a life!,you lost a life!,du hast ein leben verloren!
 well done!,well done!,gut gemacht!
 you are carrying,you are carrying,du trägst
 nothing,nothing,leer
-choose item to use or drop,choose item to use or drop,wähle item zum benutzen oder fallenlassen
+"choose item to
+use or drop","choose item to
+use or drop","wähle benutzen
+oder ablegen"
 too much to hold,too much to hold,zu viel zum halten
 "you found
 a coin","you found
@@ -28,3 +31,9 @@ play,play,spielen
 sound on,sound on,sound an
 sound off,sound off,sound aus
 sound,sound,sound
+rockward's message,rockward's message,rockward's nachricht
+exit and don't drop,exit and don't drop,beenden ohne aktion
+"you are carrying
+too much to hold","you are carrying
+too much to hold","dein inventar
+ist schon voll"

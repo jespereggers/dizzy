@@ -22,6 +22,7 @@ func change_eggs_by(amount: int):
 	if amount == 0:
 		return
 		
+# warning-ignore:narrowing_conversion
 	eggs = clamp(eggs + amount, 0, databank.max_eggs)
 
 	signals.emit_signal("eggs_changed")

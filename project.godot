@@ -16,17 +16,17 @@ _global_script_class_icons={
 
 config/name="Dizzy"
 run/main_scene="res://Scenes/titlescreen.tscn"
-config/icon="res://Ressources/icon.png"
-config/windows_native_icon="res://Ressources/icon.ico"
+config/icon="res://Assets/icon.png"
 
 [autoload]
 
 signals="*res://Scripts/global_scripts/signals.gd"
 paths="*res://Scripts/global_scripts/paths.gd"
 stats="*res://Scripts/global_scripts/stats.gd"
-databank="*res://Scripts/global_scripts/databank.gd"
 tools="*res://Scripts/global_scripts/tools.gd"
 audio="*res://Scenes/audio.tscn"
+databank="*res://ressource_loader/ressource_loader.tscn"
+live="*res://Scripts/global_scripts/live.gd"
 
 [debug]
 

@@ -23,3 +23,6 @@ signal player_died(colliding_object)
 signal player_respawned()
 # warning-ignore:unused_signal
 signal room_changed()
+
+# warning-ignore:unused_signal
+signal new_room_touched()

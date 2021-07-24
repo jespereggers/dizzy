@@ -23,7 +23,8 @@ func load_items():
 			var button_instance: Button = load("res://Scenes/templates/item_template.tscn").instance()
 			button_instance.load_template(object_properties.item_name)
 			list_instance.add_child(button_instance)
-			button_instance.connect("pressed", get_parent(), "_on_item_pressed", [object_properties])
+			if button_instance.connect("pressed", get_parent(), "_on_item_pressed", [object_properties]) != OK:
+				print("Error occured when trying to establish a connection")
 	
 	get_parent().get_node("choose_item_dialogue").hide()
 	get_parent().get_node("full_inventory_dialogue").hide()
@@ -40,7 +41,8 @@ func load_items():
 		item_instance.load_template("exit and don't drop")
 		list_instance.add_child(item_instance)
 		item_instance.grab_focus()
-		list_instance.get_child(list_instance.get_child_count() - 1).connect("pressed", get_parent(), "close")
+		if list_instance.get_child(list_instance.get_child_count() - 1).connect("pressed", get_parent(), "close") != OK:
+			print("Error occured when trying to establish a connection")
 
 		if stats.inventory.size() > 1 and get_parent().trying_to_hold_too_much:
 			self.set_process_input(false)

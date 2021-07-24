@@ -13,5 +13,7 @@
     "enviroment": {
         "map_1": {
         }
-    }
+    },
+    "finished_dialogues": [],
+    "visited_rooms": []
 }

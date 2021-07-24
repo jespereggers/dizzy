@@ -5,7 +5,8 @@ var countable_instance: Sprite
 
 func _ready():
 	set_process_unhandled_input(false)
-	signals.connect("countable_collected", self, "_on_countable_collected")
+	if signals.connect("countable_collected", self, "_on_countable_collected") != OK:
+		print("Error occured when trying to establish a connection")
 
 
 func _on_countable_collected(new_countable_instance):

@@ -8,9 +8,13 @@ onready var root: Node2D = get_parent()
 
 
 func _ready():
-	signals.connect("coins_changed", self, "update_coins")
-	signals.connect("shards_changed", self, "update_shards")
-	signals.connect("eggs_changed", self, "update_eggs")
+	if signals.connect("coins_changed", self, "update_coins") != OK:
+		print("Error occured when trying to establish a connection")
+	if signals.connect("shards_changed", self, "update_shards") != OK:
+		print("Error occured when trying to establish a connection")
+	if signals.connect("eggs_changed", self, "update_eggs") != OK:
+		print("Error occured when trying to establish a connection")
+		
 	yield(signals, "backend_is_ready")
 	update_display()
 

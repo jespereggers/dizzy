@@ -59,12 +59,12 @@ func _input(_event):
 
 
 func check_detections(available_items):
-	var positions: Array
+	var positions: Array = []
 	
 	for item in available_items:
 		if item.position in positions:
 			# Decide which item to keep
-			var candidates: Array
+			var candidates: Array = []
 			# Get Candidates
 			for candidate in available_items:
 				if candidate.position == item.position:

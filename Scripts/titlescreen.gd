@@ -4,7 +4,8 @@ var current_menue: String
 
 
 func _ready():
-	$credits/background/back.connect("pressed", self, "load_menu", ["main"])
+	if $credits/background/back.connect("pressed", self, "load_menu", ["main"]) != OK:
+		print("Error occured when trying to establish a connection")
 	if get_tree().current_scene.name == "titlescreen":
 		databank.load_databanks()
 		load_settings()
@@ -90,14 +91,16 @@ func _on_setting_pressed(button_name: String):
 		"new game":
 			get_tree().paused = false
 			databank.store_default_game_save()
-			get_tree().change_scene("res://Scenes/world.tscn")
+			if get_tree().change_scene("res://Scenes/world.tscn") != OK:
+				print("Error occured when trying to switch the scene")
 		"resume":
 			if get_tree().current_scene.name == "world":
 				get_tree().paused = false
 				get_parent().hide()
 				return
 			get_tree().paused = false
-			get_tree().change_scene("res://Scenes/world.tscn")
+			if get_tree().change_scene("res://Scenes/world.tscn") != OK:
+				print("Error occured when trying to switch the scene")
 		"german":
 			databank.settings.language = "german"
 			load_menu("on_language")

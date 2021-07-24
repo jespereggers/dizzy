@@ -36,7 +36,7 @@ func _process(_delta):
 		input_end.emitting = true
 
 	if input_end.emitting:
-		var distance: Vector2
+		var distance: Vector2 = Vector2(0,0)
 		distance.x = input_end.position.x - input_start.position.x #- 50
 		distance.y = input_end.position.y - input_start.position.y #- 50
 

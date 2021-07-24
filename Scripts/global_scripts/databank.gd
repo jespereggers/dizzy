@@ -22,82 +22,94 @@ var maps: Dictionary = {
 		#Etage 0
 		Vector2(2,0): {
 			"name": "DAS GEFÄNGNIS",
-			"path": "res://Maps/map_1/room_17.tscn"
+			"path": "res://map/rooms/room_17.tscn"
 		},
 		Vector2(1,0): {
 			"name": "DIE WACKELIGE ANGELEGENHEIT",
-			"path": "res://Maps/map_1/room_16.tscn"
+			"path": "res://map/rooms/room_16.tscn"
 		},
 		Vector2(0,0): {
 			"name": "DAS BURGVERLIES",
-			"path": "res://Maps/map_1/room_15.tscn"
+			"path": "res://map/rooms/room_15.tscn"
 		},
 		Vector2(-1,0): {
 			"name": "SCHMUGGLERVERSTECK",
-			"path": "res://Maps/map_1/room_14.tscn"
+			"path": "res://map/rooms/room_14.tscn"
 		},
 		Vector2(-2,0): {
 			"name": "SCHUMRIGER FLUR",
-			"path": "res://Maps/map_1/room_13.tscn"
+			"path": "res://map/rooms/room_13.tscn"
 		},
 		Vector2(-3,0): {
 			"name": "EINSAME HÖHLE",
-			"path": "res://Maps/map_1/room_12.tscn"
+			"path": "res://map/rooms/room_12.tscn"
 		},
 		Vector2(-4,0): {
 			"name": "GEHEIMER KERKER",
-			"path": "res://Maps/map_1/room_11.tscn"
+			"path": "res://map/rooms/room_11.tscn"
 		},
 		
 		#Etage 1
 		Vector2(-1,1): {
 			"name": "GRABEN UND FALLGATTER",
-			"path": "res://Maps/map_1/room_8.tscn"
+			"path": "res://map/rooms/room_8.tscn"
 		},
 		Vector2(0,1): {
 			"name": "DIE EMPFANGSHALLE",
-			"path": "res://Maps/map_1/room_9.tscn"
+			"path": "res://map/rooms/room_9.tscn"
 		},
 		Vector2(1,1): {
 			"name": "AUSSENPOSTEN",
-			"path": "res://Maps/map_1/room_10.tscn"
+			"path": "res://map/rooms/room_10.tscn"
 		},
 		
 		#Etage 2
 		Vector2(-1,2): {
 			"name": "DER WESTFLUEGEL",
-			"path": "res://Maps/map_1/room_5.tscn"
+			"path": "res://map/rooms/room_5.tscn"
 		},
 		Vector2(0,2): {
 			"name": "DER BANKETTSAAL",
-			"path": "res://Maps/map_1/room_6.tscn"
+			"path": "res://map/rooms/room_6.tscn"
 		},
 		Vector2(1,2): {
 			"name": "DER OSTFLÜGEL",
-			"path": "res://Maps/map_1/room_7.tscn"
+			"path": "res://map/rooms/room_7.tscn"
 		},
 		
 		#Etage 3
 		Vector2(-1,3): {
 			"name": "DER WESTFLÜGEL",
-			"path": "res://Maps/map_1/room_2.tscn"
+			"path": "res://map/rooms/room_2.tscn"
 		},
 		Vector2(0,3): {
 			"name": "DAS TREPPENHAUS",
-			"path": "res://Maps/map_1/room_3.tscn"
+			"path": "res://map/rooms/room_3.tscn"
 		},
 		Vector2(1,3): {
 			"name": "DER OSTFLUEGEL",
-			"path": "res://Maps/map_1/room_4.tscn"
+			"path": "res://map/rooms/room_4.tscn"
 		},
 		
 		#Etage 4
 		Vector2(0,4): {
 			"name": "FINALER RAUM",
-			"path": "res://Maps/map_1/room_1.tscn"
+			"path": "res://map/rooms/room_1.tscn"
 		}
 	}
 }
+
+# Ressources
+var dialogues: Dictionary
+
+
+func _ready():
+	load_ressources("res://vanilla_content_pack")
+
+
+func load_ressources(mod_path: String):
+	for ressource in get_children():
+		ressource.import(mod_path)
 
 
 func _notification(what):
@@ -126,13 +138,15 @@ func load_game():
 	
 
 func save_game():
-	var world : Dictionary = {}
-	
 	# Player
 	game_save.player.eggs = stats.eggs
 	game_save.player.coins = stats.coins
 	game_save.player.inventory = stats.inventory
-	game_save.player.position = paths.player.position
+	
+	if stats.current_room == Vector2(0,0):
+		game_save.player.position = Vector2(188, 148)
+	else:
+		game_save.player.position = paths.player.position
 	
 	# Scene
 	game_save.scene.current_map = stats.current_map

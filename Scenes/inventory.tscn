@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/inventory.gd" type="Script" id=1]
 [ext_resource path="res://Assets/user_interface/backgrounds/large_inventory_background.png" type="Texture" id=2]
@@ -15,30 +15,25 @@ axis_stretch_vertical = 2
 
 [sub_resource type="DynamicFont" id=2]
 size = 7
-extra_spacing_bottom = -2
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 7
-extra_spacing_bottom = -2
-font_data = ExtResource( 4 )
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 144, 48 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 7
+extra_spacing_bottom = -2
 font_data = ExtResource( 4 )
 
 [sub_resource type="StyleBoxTexture" id=5]
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 144, 48 )
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 160, 48 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 7
 extra_spacing_bottom = -2
 font_data = ExtResource( 4 )
-
-[sub_resource type="StyleBoxTexture" id=7]
-texture = ExtResource( 5 )
-region_rect = Rect2( 0, 0, 160, 48 )
 
 [node name="inventory" type="Popup"]
 pause_mode = 2
@@ -72,96 +67,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="schablone1" type="Label" parent="item_list"]
-visible = false
-margin_left = 24.0
-margin_top = 32.0
-margin_right = 176.0
-margin_bottom = 48.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.305882, 0.309804, 0.313726, 1 )
-text = "parchment
-exit and don't drop"
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="schablone2" type="Label" parent="item_list"]
-visible = false
-margin_left = 16.0
-margin_top = 20.0
-margin_right = 192.0
-margin_bottom = 28.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.305882, 0.309804, 0.313726, 1 )
-text = "you are carrying"
-align = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="schablone3" type="Label" parent="item_list"]
-visible = false
-margin_left = 16.0
-margin_top = 40.0
-margin_right = 192.0
-margin_bottom = 48.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.984314, 0.0352941, 0.0588235, 1 )
-text = "nothing"
-align = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="label_eng" type="Label" parent="item_list"]
-self_modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-margin_left = 40.0
-margin_top = 20.0
-margin_right = 168.0
-margin_bottom = 27.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 3 )
-text = "you are carrying"
-align = 1
-uppercase = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="label_ger" type="Label" parent="item_list"]
-visible = false
-self_modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-margin_left = 16.0
-margin_top = 20.0
-margin_right = 192.0
-margin_bottom = 27.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 3 )
-text = "du transportierst"
-align = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="content" type="VBoxContainer" parent="item_list"]
 margin_left = 18.0
 margin_top = 31.0
@@ -192,7 +97,7 @@ margin_bottom = 103.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 text = "nothing"
 align = 1
 autowrap = true
@@ -209,7 +114,7 @@ margin_right = 200.0
 margin_bottom = 184.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -221,45 +126,14 @@ margin_top = 16.0
 margin_right = 128.0
 margin_bottom = 32.0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
-text = "chose item to
+text = "choose item to
 use or drop"
 align = 1
 uppercase = true
 __meta__ = {
 "_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="choose_item_dialogue_ger" type="Panel" parent="."]
-visible = false
-margin_left = 56.0
-margin_top = 136.0
-margin_right = 200.0
-margin_bottom = 184.0
-grow_horizontal = 0
-grow_vertical = 0
-custom_styles/panel = SubResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="label" type="Label" parent="choose_item_dialogue_ger"]
-visible = false
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 128.0
-margin_bottom = 32.0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 6 )
-custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
-text = "wähle benutzen
-oder ablegen"
-align = 1
-uppercase = true
-__meta__ = {
 "_edit_use_anchors_": false
 }
 
@@ -271,7 +145,7 @@ margin_right = 208.0
 margin_bottom = 184.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false,
@@ -286,7 +160,7 @@ margin_bottom = 32.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 text = "you are carrying
 too much to hold"
@@ -304,7 +178,7 @@ margin_right = 208.0
 margin_bottom = 184.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false,
@@ -319,7 +193,7 @@ margin_bottom = 32.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 text = "dein inventar
 ist schon voll"
@@ -338,7 +212,7 @@ margin_bottom = 32.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 text = "du kannst nicht
 mehr aufsammeln"
@@ -357,7 +231,7 @@ margin_bottom = 32.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 text = "du hast mehr als
 du tragen kannst"

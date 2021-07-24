@@ -181,7 +181,7 @@ margin_bottom = 14.0
 rect_scale = Vector2( 0.4, 0.4 )
 custom_fonts/font = SubResource( 5 )
 text = "Build
-0.4.0.0"
+0.5.2.9"
 align = 1
 valign = 1
 __meta__ = {

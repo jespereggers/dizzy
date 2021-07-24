@@ -23,9 +23,13 @@ const ACCEL: int = 8
 func _ready():
 	yield(signals, "backend_is_ready")
 	self.position = databank.game_save.player.position
-	signals.connect("room_changed", self, "_on_room_changed")
-	signals.connect("player_died", self, "_on_player_died")
-	signals.connect("player_respawned", self, "_on_player_respawned")
+	
+	if signals.connect("room_changed", self, "_on_room_changed") != OK:
+		print("Error occured when trying to establish a connection")
+	if signals.connect("player_died", self, "_on_player_died") != OK:
+		print("Error occured when trying to establish a connection")
+	if signals.connect("player_respawned", self, "_on_player_respawned") != OK:
+		print("Error occured when trying to establish a connection")
 
 
 func _on_player_respawned():
@@ -66,10 +70,12 @@ func _physics_process(_delta):
 	motion.x = clamp(motion.x, -MAXSPEED, MAXSPEED)
 
 	if is_on_leaderbox and "walk" in action and is_on_wall():
+# warning-ignore:integer_division
 		motion.y = -JUMPFORCE / 3
 		
 	if not locked or unlocked:
 		if can_autojump():
+# warning-ignore:integer_division
 			motion.y = -JUMPFORCE / 2
 			unlocked = true
 			$unlocked_cooldown.start(1.0)
@@ -102,12 +108,12 @@ func _physics_process(_delta):
 				
 	state_machine.update_state(action[0])
 
-	update_motion(action)
+	update_motion()
 
 	motion = move_and_slide(motion, UP)
 
 
-func update_motion(action: Array):
+func update_motion():
 	# action[0] -> action_name
 	# action[1] -> action_direction
 	
@@ -160,3 +166,9 @@ func can_autojump() -> bool:
 
 func _on_unlocked_cooldown_timeout():
 	unlocked = false
+
+
+func _on_ticks_timeout():
+	if is_on_floor() and not stats.current_room in databank.game_save.visited_rooms:
+		databank.game_save.visited_rooms.append(stats.current_room)
+		signals.emit_signal("new_room_touched")

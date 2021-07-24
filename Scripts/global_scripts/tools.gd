@@ -35,6 +35,23 @@ func load_file(path: String):
 	return content
 
 
+func get_files(path: String, format: String) -> Array:
+	var files : Array = []
+	var dir = Directory.new()
+	dir.open(path)
+	dir.list_dir_begin()
+	
+	while true:
+		var file = dir.get_next()
+		if file == "":
+			break
+		elif not file.begins_with(".") and file.ends_with("."+format):
+			file = file.replace("."+format,"")
+			files.append(file)
+	dir.list_dir_end()
+	return files
+
+
 func save_file(path: String, content):
 	path = path.replace("user://", OS.get_user_data_dir() + "/")
 	

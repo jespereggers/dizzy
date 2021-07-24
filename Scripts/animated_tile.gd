@@ -6,8 +6,11 @@ export var fps: int = 4
 
 func _ready():
 	# Connect signals
-	signals.connect("pause_mode_changed_to", self, "_on_pause_mode_changed_to")
-	signals.connect("player_died", self, "_on_player_died")
+	if signals.connect("pause_mode_changed_to", self, "_on_pause_mode_changed_to") != OK:
+		print("Error occured when trying to establish a connection")
+	if signals.connect("player_died", self, "_on_player_died") != OK:
+		print("Error occured when trying to establish a connection")
+		
 	# Setup animation
 	var animation: Animation = Animation.new()
 	
@@ -19,12 +22,15 @@ func _ready():
 	var anim_key: int = animation.add_track(Animation.TYPE_BEZIER, -1)
 	animation.track_set_path(anim_key, ":frame")
 
-	animation.bezier_track_insert_key(anim_key, 0.0, 0)
-	animation.bezier_track_insert_key(anim_key, (1.0 / fps) * (max_frame - 1), max_frame - 1)
+	if animation.bezier_track_insert_key(anim_key, 0.0, 0) != OK:
+		print("Error occured when trying to establish animation")
+	if animation.bezier_track_insert_key(anim_key, (1.0 / fps) * (max_frame - 1), max_frame - 1) != OK:
+		print("Error occured when trying to establish animation")
 	
 	# Acutally add the animation
 	anim_player = AnimationPlayer.new()
-	anim_player.add_animation("idle", animation)
+	if anim_player.add_animation("idle", animation) != OK:
+		print("Error occured when trying to establish animation")
 	
 	self.add_child(anim_player)
 	

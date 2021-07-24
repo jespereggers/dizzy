@@ -2,7 +2,8 @@ extends Node
 
 
 func _ready():
-	signals.connect("countable_collected", self, "_on_countable_collected")
+	if signals.connect("countable_collected", self, "_on_countable_collected") != OK:
+		print("Error occured when trying to establish a connection")
 	$coin.stream.set_loop(false)
 	$dead.stream.set_loop(false)
 	$intro.stream.set_loop(false)
