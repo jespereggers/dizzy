@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=2]
+[gd_scene load_steps=98 format=2]
 
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=20]
 [ext_resource path="res://Assets/tiles/build/9.png" type="Texture" id=21]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=22]
+[ext_resource path="res://Assets/tiles/items/mystical_artefact.png" type="Texture" id=23]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2903,6 +2904,17 @@ shape = SubResource( 73 )
 
 [node name="objects" parent="." instance=ExtResource( 6 )]
 
+[node name="item_mystical_artifact" parent="objects" instance=ExtResource( 7 )]
+modulate = Color( 0.435294, 0.239216, 0.52549, 1 )
+position = Vector2( 45, 120 )
+item_name = "a mystical artifact"
+color = Color( 0.435294, 0.239216, 0.52549, 1 )
+height = 7.0
+texture = ExtResource( 23 )
+
+[node name="sprite" parent="objects/item_mystical_artifact" index="0"]
+texture = ExtResource( 23 )
+
 [node name="item_old_message" parent="objects" instance=ExtResource( 7 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 160, 104 )
@@ -3094,6 +3106,7 @@ __meta__ = {
 
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]
+[editable path="objects/item_mystical_artifact"]
 [editable path="objects/item_old_message"]
 [editable path="popups/message_3_en/background"]
 [editable path="popups/message_1_de/nachricht1"]
