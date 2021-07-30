@@ -9,12 +9,12 @@ var current_room: Vector2
 
 
 func load_backend():
-	inventory = databank.game_save.player.inventory
-	coins = databank.game_save.player.coins
-	shards = databank.game_save.player.shards
-	eggs = databank.game_save.player.eggs
-	current_map = databank.game_save.scene.current_map
-	current_room = databank.game_save.scene.current_room
+	inventory = data.game_save.player.inventory
+	coins = data.game_save.player.coins
+	shards = data.game_save.player.shards
+	eggs = data.game_save.player.eggs
+	current_map = data.game_save.scene.current_map
+	current_room = data.game_save.scene.current_room
 	paths.display.update_display()
 
 
@@ -23,6 +23,6 @@ func change_eggs_by(amount: int):
 		return
 		
 # warning-ignore:narrowing_conversion
-	eggs = clamp(eggs + amount, 0, databank.max_eggs)
+	eggs = clamp(eggs + amount, 0, data.max_eggs)
 
 	signals.emit_signal("eggs_changed")

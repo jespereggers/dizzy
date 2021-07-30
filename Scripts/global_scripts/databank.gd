@@ -101,6 +101,7 @@ var maps: Dictionary = {
 
 # Ressources
 var dialogues: Dictionary
+var items: Dictionary
 
 
 func _ready():

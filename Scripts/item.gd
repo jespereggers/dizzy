@@ -84,7 +84,7 @@ func build():
 func destroy():
 	if stats.inventory.size() < 3:
 		if not used:
-			databank.game_save.enviroment[stats.current_map][stats.current_room].removed_objects.append(origin)
+			data.game_save.enviroment[stats.current_map][stats.current_room].removed_objects.append(origin)
 		tools.remove_object(self)
 		paths.map.remove(self)
 		stats.inventory.append(tools.get_object_properties(self))

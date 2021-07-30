@@ -20,7 +20,7 @@ func _ready():
 
 
 func update_display():
-	set_room_name_to(databank.maps[stats.current_map][stats.current_room].name)
+	set_room_name_to(data.maps[stats.current_map][stats.current_room].name)
 	set_coins_to(stats.coins)
 	set_eggs_to(stats.eggs)
 

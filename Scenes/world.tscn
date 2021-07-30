@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/display.tscn" type="PackedScene" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Assets/user_interface/gear/1.png" type="Texture" id=8]
 [ext_resource path="res://Assets/user_interface/gear/2.png" type="Texture" id=9]
 [ext_resource path="res://Scripts/overlay.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/camera.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/camera.gd" type="Script" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 120, 70 )
@@ -39,6 +41,11 @@ script = ExtResource( 5 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 128, 128 )
+
+[node name="camera" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 12 )
+shake_duration = 0.4
+shake_strenght = 50
 
 [node name="display" parent="." instance=ExtResource( 2 )]
 
@@ -83,11 +90,13 @@ margin_right = -8.0
 margin_bottom = -13.0
 
 [connection signal="body_exited" from="screen_area" to="." method="_on_screen_area_body_exited"]
+[connection signal="timeout" from="camera/timer" to="camera" method="_on_timer_timeout"]
 [connection signal="pressed" from="overlay/open_settings" to="overlay" method="_on_open_settings_pressed"]
 
 [editable path="map/user_interface"]
 [editable path="map/user_interface/inventory"]
 [editable path="player"]
+[editable path="camera"]
 [editable path="display"]
 [editable path="display/everplant_touch_integration"]
 [editable path="overlay/settings/titlescreen"]

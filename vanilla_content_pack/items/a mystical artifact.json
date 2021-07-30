@@ -1,0 +1,8 @@
+{
+    "on_build": {
+        "action": {
+            "type": "screen_shake",
+            "arguments": []
+        }
+    }
+}

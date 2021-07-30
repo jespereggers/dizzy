@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="camera" type="Camera2D"]
+anchor_mode = 0
+current = true
+
+[node name="timer" type="Timer" parent="."]
+
+[node name="tween" type="Tween" parent="."]

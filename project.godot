@@ -25,7 +25,7 @@ paths="*res://Scripts/global_scripts/paths.gd"
 stats="*res://Scripts/global_scripts/stats.gd"
 tools="*res://Scripts/global_scripts/tools.gd"
 audio="*res://Scenes/audio.tscn"
-databank="*res://ressource_loader/ressource_loader.tscn"
+data="*res://ressource_loader/ressource_loader.tscn"
 live="*res://Scripts/global_scripts/live.gd"
 
 [debug]

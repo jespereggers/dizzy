@@ -20,11 +20,11 @@ func start(_colliding_object: String):
 
 func close():
 		if stats.eggs <= 0:
-			stats.eggs = databank.max_eggs
+			stats.eggs = data.max_eggs
 			if stats.current_room != Vector2(0,0):
 				# Complete Restart
-				databank.game_save.visited_rooms.clear()
-				databank.game_save.finished_dialogues.clear()
+				data.game_save.visited_rooms.clear()
+				data.game_save.finished_dialogues.clear()
 				stats.current_room = Vector2(0,0)
 				paths.map.update_map()
 		else:

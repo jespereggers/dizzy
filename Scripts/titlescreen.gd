@@ -7,7 +7,7 @@ func _ready():
 	if $credits/background/back.connect("pressed", self, "load_menu", ["main"]) != OK:
 		print("Error occured when trying to establish a connection")
 	if get_tree().current_scene.name == "titlescreen":
-		databank.load_databanks()
+		data.load_databanks()
 		load_settings()
 		load_menu("main")
 
@@ -15,13 +15,13 @@ func _ready():
 func load_settings():
 	# Sound
 	var master_sound = AudioServer.get_bus_index("Master")
-	if databank.settings.sound == true:
+	if data.settings.sound == true:
 		AudioServer.set_bus_mute(master_sound, false)
 	else:
 		AudioServer.set_bus_mute(master_sound, true)
 	
 	# Language
-	match databank.settings.language:
+	match data.settings.language:
 		"german":
 			TranslationServer.set_locale("de")
 		"english":
@@ -43,7 +43,7 @@ func load_menu(menu_name: String):
 		button.queue_free()
 		yield(button, "tree_exited")
 		
-	for button in databank.titlescreen[menu_name]:
+	for button in data.titlescreen[menu_name]:
 		if button[0] == "back":
 			var missing_buttons: int = 3 - $settings/background/main.get_child_count()
 			for i in missing_buttons:
@@ -65,16 +65,16 @@ func load_menu(menu_name: String):
 					if not File.new().file_exists(OS.get_user_data_dir() + "/game_save.dizzy"):
 						button_template.disable()
 				"english":
-					if databank.settings.language == "english":
+					if data.settings.language == "english":
 						button_template.disable()
 				"german":
-					if databank.settings.language == "german":
+					if data.settings.language == "german":
 						button_template.disable()
 				"sound on":
-					if databank.settings.sound == true:
+					if data.settings.sound == true:
 						button_template.disable()
 				"sound off":
-					if databank.settings.sound == false:
+					if data.settings.sound == false:
 						button_template.disable()
 	
 		$settings/background/main.add_child(button_template)
@@ -90,7 +90,7 @@ func _on_setting_pressed(button_name: String):
 	match button_name:
 		"new game":
 			get_tree().paused = false
-			databank.store_default_game_save()
+			data.store_default_game_save()
 			if get_tree().change_scene("res://Scenes/world.tscn") != OK:
 				print("Error occured when trying to switch the scene")
 		"resume":
@@ -102,21 +102,21 @@ func _on_setting_pressed(button_name: String):
 			if get_tree().change_scene("res://Scenes/world.tscn") != OK:
 				print("Error occured when trying to switch the scene")
 		"german":
-			databank.settings.language = "german"
+			data.settings.language = "german"
 			load_menu("on_language")
 		"english":
-			databank.settings.language = "english"
+			data.settings.language = "english"
 			load_menu("on_language")
 		"sound on":
-			databank.settings.sound = true
+			data.settings.sound = true
 			load_menu("on_sound")
 		"sound off":
-			databank.settings.sound = false
+			data.settings.sound = false
 			load_menu("on_sound")
 		"exit":
-			databank.save_setttings()
+			data.save_setttings()
 			if get_tree().current_scene.name == "world":
-				databank.save_game()
+				data.save_game()
 			yield(get_tree().create_timer(0.2), "timeout")
 			get_tree().quit()
 		

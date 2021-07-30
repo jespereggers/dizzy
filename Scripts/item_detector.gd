@@ -45,11 +45,11 @@ func _input(_event):
 					if open_inventory:
 						paths.ui.inventory.open()
 				"shard":
-					databank.game_save.enviroment[stats.current_map][stats.current_room].removed_objects.append(item.origin)
+					data.game_save.enviroment[stats.current_map][stats.current_room].removed_objects.append(item.origin)
 					tools.remove_object(item)
 					signals.emit_signal("countable_collected", item)
 				"coin":
-					databank.game_save.enviroment[stats.current_map][stats.current_room].removed_objects.append(item.origin)
+					data.game_save.enviroment[stats.current_map][stats.current_room].removed_objects.append(item.origin)
 					tools.remove_object(item)
 					signals.emit_signal("countable_collected", item)
 		

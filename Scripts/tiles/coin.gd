@@ -12,7 +12,7 @@ func _input(_event):
 	if Input.is_action_just_pressed("enter"):
 		pass
 		#if overlaping_with_player:
-			#databank.game_save.enviroment[stats.current_map][stats.current_room].removed_objects.append(origin)
+			#data.game_save.enviroment[stats.current_map][stats.current_room].removed_objects.append(origin)
 			#tools.remove_object(self)
 			#signals.emit_signal("countable_collected", self)
 

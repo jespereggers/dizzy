@@ -6,13 +6,13 @@ func _ready():
 #	self.position += Vector2(8, 8)
 	var untouched_room: bool = false
 	
-	if not stats.current_room in databank.game_save.enviroment[stats.current_map]:
+	if not stats.current_room in data.game_save.enviroment[stats.current_map]:
 		untouched_room = true
-		databank.game_save.enviroment[stats.current_map][stats.current_room] = {"removed_objects": [], "objects": []}
+		data.game_save.enviroment[stats.current_map][stats.current_room] = {"removed_objects": [], "objects": []}
 	
 	# Remove objects
 	for object in get_children():
-		if not object.name in databank.game_save.enviroment[stats.current_map][stats.current_room].removed_objects and untouched_room and object.get("type"):
+		if not object.name in data.game_save.enviroment[stats.current_map][stats.current_room].removed_objects and untouched_room and object.get("type"):
 			# Generate untouched items
 			if object.type in ["item", "coin", "shard"]:
 				object.load_template()
@@ -23,11 +23,11 @@ func _ready():
 			object.origin = object.name
 			#object.position += Vector2(8, 49)
 			var properties: Dictionary = tools.get_object_properties(object)
-			databank.game_save.enviroment[stats.current_map][stats.current_room].objects.append(properties)
+			data.game_save.enviroment[stats.current_map][stats.current_room].objects.append(properties)
 		object.queue_free()
 
 	#Add objects
-	for properties in databank.game_save.enviroment[stats.current_map][stats.current_room].objects:
+	for properties in data.game_save.enviroment[stats.current_map][stats.current_room].objects:
 		match properties.type:
 			"item":
 				var item: KinematicBody2D = load("res://templates/item.tscn").instance()

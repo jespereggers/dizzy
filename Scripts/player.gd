@@ -22,7 +22,7 @@ const ACCEL: int = 8
 
 func _ready():
 	yield(signals, "backend_is_ready")
-	self.position = databank.game_save.player.position
+	self.position = data.game_save.player.position
 	
 	if signals.connect("room_changed", self, "_on_room_changed") != OK:
 		print("Error occured when trying to establish a connection")
@@ -169,6 +169,6 @@ func _on_unlocked_cooldown_timeout():
 
 
 func _on_ticks_timeout():
-	if is_on_floor() and not stats.current_room in databank.game_save.visited_rooms:
-		databank.game_save.visited_rooms.append(stats.current_room)
+	if is_on_floor() and not stats.current_room in data.game_save.visited_rooms:
+		data.game_save.visited_rooms.append(stats.current_room)
 		signals.emit_signal("new_room_touched")

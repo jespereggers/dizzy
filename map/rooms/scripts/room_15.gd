@@ -13,7 +13,7 @@ func _on_new_room_touched():
 
 
 func start_dialogue():
-	if "greeting" in databank.game_save.finished_dialogues:
+	if "greeting" in data.game_save.finished_dialogues:
 		return
 	
 	signals.emit_signal("pause_mode_changed_to", true)
@@ -21,7 +21,7 @@ func start_dialogue():
 	get_tree().paused = true
 	paths.ui.locked = true
 	
-	for phase in databank.dialogues["greeting"]:
+	for phase in data.dialogues["greeting"]:
 		for popup in phase:
 			if popup == "clear":
 				for popup_instance in $popups.get_children():
@@ -34,7 +34,7 @@ func start_dialogue():
 	
 	for popup_instance in $popups.get_children():
 		popup_instance.hide()
-	databank.game_save.finished_dialogues.append("greeting")
+	data.game_save.finished_dialogues.append("greeting")
 	
 	signals.emit_signal("pause_mode_changed_to", false)
 	paths.player.show()

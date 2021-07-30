@@ -13,12 +13,13 @@ func _ready():
 			
 	paths.world_root = self
 	paths.player = $player
+	paths.camera = $camera
 	paths.map = $map
 	paths.display = $display
 	paths.settings = $overlay/settings
 	paths.ui = $map/user_interface
 	
-	databank.load_game()
+	data.load_game()
 	stats.load_backend()
 
 	
@@ -32,7 +33,7 @@ func _on_screen_area_body_exited(body):
 
 		if body.position.x < $screen_area.position.x - $screen_area/collision.shape.extents.x:
 			# Left
-			if databank.maps[stats.current_map].keys().has(Vector2(stats.current_room.x - 1, stats.current_room.y)):
+			if data.maps[stats.current_map].keys().has(Vector2(stats.current_room.x - 1, stats.current_room.y)):
 				$player.position.x = $screen_area.position.x + $screen_area/collision.shape.extents.x - 5
 				stats.current_room = Vector2(stats.current_room.x - 1, stats.current_room.y)
 				$map.update_map()
@@ -43,7 +44,7 @@ func _on_screen_area_body_exited(body):
 				
 		if body.position.x > $screen_area.position.x + $screen_area/collision.shape.extents.x:
 			# Right
-			if databank.maps[stats.current_map].keys().has(Vector2(stats.current_room.x + 1, stats.current_room.y)):
+			if data.maps[stats.current_map].keys().has(Vector2(stats.current_room.x + 1, stats.current_room.y)):
 				stats.current_room = Vector2(stats.current_room.x + 1, stats.current_room.y)
 				$map.update_map()
 				paths.player.position.y = player_height
@@ -56,7 +57,7 @@ func _on_screen_area_body_exited(body):
 		# Check if the player left on Y-Axis
 		if body.position.y < $screen_area.position.y - $screen_area/collision.shape.extents.y:
 			# UP
-			if databank.maps[stats.current_map].keys().has(Vector2(stats.current_room.x, stats.current_room.y + 1)):
+			if data.maps[stats.current_map].keys().has(Vector2(stats.current_room.x, stats.current_room.y + 1)):
 				$player.position.y = $screen_area.position.y + $screen_area/collision.shape.extents.y - 15
 				stats.current_room = Vector2(stats.current_room.x, stats.current_room.y + 1)
 				$map.update_map()
@@ -65,7 +66,7 @@ func _on_screen_area_body_exited(body):
 				
 		if body.position.y > $screen_area.position.y + $screen_area/collision.shape.extents.y:
 			# DOWN
-			if databank.maps[stats.current_map].keys().has(Vector2(stats.current_room.x, stats.current_room.y - 1)):
+			if data.maps[stats.current_map].keys().has(Vector2(stats.current_room.x, stats.current_room.y - 1)):
 				$player.position.y = $screen_area.position.y - $screen_area/collision.shape.extents.y + 15
 				stats.current_room = Vector2(stats.current_room.x, stats.current_room.y - 1)
 				$map.update_map()

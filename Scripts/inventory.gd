@@ -8,9 +8,9 @@ var selected_item_instance: Button
 var trying_to_hold_too_much: bool = false
 
 func _ready():
-	item_list_panel.self_modulate = Color(databank.colors.green)
-	choose_item_dialogue.self_modulate = Color(databank.colors.white)
-	full_inventory_dialogue.self_modulate = Color(databank.colors.white)
+	item_list_panel.self_modulate = Color(data.colors.green)
+	choose_item_dialogue.self_modulate = Color(data.colors.white)
+	full_inventory_dialogue.self_modulate = Color(data.colors.white)
 
 
 func _unhandled_input(event):
@@ -44,7 +44,16 @@ func _on_item_pressed(object_properties: Dictionary):
 			if item_properties == object_properties:
 				stats.inventory.erase(item_properties)
 				break
+		
 		paths.map.add(object_properties)
+		
+		# Check on_build
+		if object_properties.item_name in data.items:
+			if data.items[object_properties.item_name].has("on_build"):
+				match data.items[object_properties.item_name].on_build.action.type:
+					"screen_shake":
+						paths.camera.shake()
+		
 		close()
 
 

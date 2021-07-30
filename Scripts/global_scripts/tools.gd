@@ -3,14 +3,14 @@ extends Node
 
 func add_object(object):
 	var properties: Dictionary = get_object_properties(object)
-	databank.game_save.enviroment[stats.current_map][stats.current_room].objects.append(properties)
+	data.game_save.enviroment[stats.current_map][stats.current_room].objects.append(properties)
 
 
 func remove_object(object):
 	var properties: Dictionary = get_object_properties(object)
-	for object in databank.game_save.enviroment[stats.current_map][stats.current_room].objects:
+	for object in data.game_save.enviroment[stats.current_map][stats.current_room].objects:
 		if str(properties) == str(object):
-			databank.game_save.enviroment[stats.current_map][stats.current_room].objects.erase(object)
+			data.game_save.enviroment[stats.current_map][stats.current_room].objects.erase(object)
 
 
 func load_file(path: String):
