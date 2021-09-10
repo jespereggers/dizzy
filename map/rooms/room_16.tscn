@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=12]
 [ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/tiles/items/crowbar.png" type="Texture" id=14]
+[ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://templates/background.tscn" type="PackedScene" id=16]
 
 [sub_resource type="TileSet" id=1]
 0/name = "2.png 0"
@@ -1563,6 +1565,10 @@ points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
 [sub_resource type="RectangleShape2D" id=53]
 extents = Vector2( 6, 7 )
 
+[sub_resource type="DynamicFont" id=54]
+size = 7
+font_data = ExtResource( 15 )
+
 [node name="room_16" type="Node2D"]
 __meta__ = {
 "_edit_lock_": true
@@ -1638,6 +1644,36 @@ modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
 position = Vector2( 184, 10 )
 item_name = "a rusty key"
 color = Color( 0.407843, 0.215686, 0.168627, 1 )
+
+[node name="popups" type="CanvasLayer" parent="."]
+
+[node name="message_1_en" type="Popup" parent="popups"]
+popup_exclusive = true
+
+[node name="background" parent="popups/message_1_en" instance=ExtResource( 16 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_right = 160.0
+margin_bottom = 72.0
+
+[node name="label" type="Label" parent="popups/message_1_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 144.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 54 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "\"blindtext
+blindtext
+blindtext?"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
 
 [editable path="torchfire_death"]
 [editable path="torchfire_death2"]

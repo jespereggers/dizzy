@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=2]
+[gd_scene load_steps=96 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=17]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=19]
+[ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=20]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2853,6 +2854,9 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="respawn_point" parent="." instance=ExtResource( 20 )]
+position = Vector2( 228, 116 )
+
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
 cell_size = Vector2( 1, 1 )
@@ -2909,12 +2913,14 @@ shape = SubResource( 74 )
 [node name="objects" parent="." instance=ExtResource( 17 )]
 
 [node name="background2" parent="." instance=ExtResource( 18 )]
+visible = false
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
 margin_top = 40.0
 margin_right = 200.0
 margin_bottom = 104.0
 
 [node name="Label" type="Label" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0

@@ -15,16 +15,16 @@ axis_stretch_vertical = 2
 
 [sub_resource type="DynamicFont" id=2]
 size = 7
-font_data = ExtResource( 4 )
-
-[sub_resource type="StyleBoxTexture" id=3]
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 144, 48 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 7
 extra_spacing_bottom = -2
 font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 7
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 144, 48 )
 
 [sub_resource type="StyleBoxTexture" id=5]
 texture = ExtResource( 5 )
@@ -89,6 +89,22 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="label_eng" type="Label" parent="item_list"]
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 168.0
+margin_bottom = 27.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "you are carrying"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
 [node name="hint" type="Label" parent="."]
 margin_left = 40.0
 margin_top = 96.0
@@ -97,7 +113,7 @@ margin_bottom = 103.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "nothing"
 align = 1
 autowrap = true
@@ -114,7 +130,7 @@ margin_right = 200.0
 margin_bottom = 184.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -126,7 +142,7 @@ margin_top = 16.0
 margin_right = 128.0
 margin_bottom = 32.0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 text = "choose item to
 use or drop"
@@ -186,6 +202,7 @@ __meta__ = {
 }
 
 [node name="label" type="Label" parent="full_inventory_dialogue_ger"]
+visible = false
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
@@ -204,7 +221,6 @@ __meta__ = {
 }
 
 [node name="label2" type="Label" parent="full_inventory_dialogue_ger"]
-visible = false
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0

@@ -2875,7 +2875,7 @@ __meta__ = {
 }
 
 [node name="respawn_point" parent="." instance=ExtResource( 22 )]
-position = Vector2( 228, 104 )
+position = Vector2( 228, 108 )
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 16 )
@@ -2892,19 +2892,19 @@ cell_size = Vector2( 1, 1 )
 format = 1
 tile_data = PoolIntArray( 72, 3, 0, 524376, 4, 0, 1572952, 5, 0, 1572968, 2, 0, 2621568, 4, 0, 2621592, 5, 0, 2621608, 12, 0, 2621616, 3, 0, 3145896, 536871064, 0, 3408040, 536871064, 0, 3670184, 536871064, 0, 3670208, 1, 0, 3670224, 0, 0, 3670248, 12, 0, 3932328, 536871064, 0, 4194472, 536871064, 0, 4456616, 536871064, 0, 4718760, 153, 0, 6291616, 0, 0, 6815904, 2, 0, 6815928, 5, 0, 7340232, 3, 0, 7864504, 66, 0, 7864536, 4, 0, 7864557, 156, 0, 7864558, 156, 0, 7864559, 156, 0, 7864560, 156, 0, 7864561, 156, 0, 7864562, 156, 0, 7864563, 156, 0, 7864564, 156, 0, 7864565, 156, 0, 7864566, 156, 0, 7864567, 156, 0, 7864568, 156, 0, 7864569, 156, 0, 7864570, 156, 0, 7864571, 156, 0, 7864572, 156, 0, 7864573, 156, 0, 7864574, 156, 0, 7864575, 156, 0, 7930095, 156, 0, 7930111, 156, 0, 7995631, 156, 0, 7995647, 156, 0, 8061167, 156, 0, 8061183, 156, 0, 8126703, 156, 0, 8126719, 156, 0, 8192239, 156, 0, 8192255, 156, 0, 8257775, 156, 0, 8257791, 156, 0, 8323311, 156, 0, 8323327, 156, 0, 8388768, 0, 0, 8388847, 156, 0, 8388863, 156, 0, 8454383, 156, 0, 8454399, 156, 0, 8519919, 156, 0, 8519935, 156, 0, 8585455, 156, 0, 8585471, 156, 0, 8650991, 156, 0, 8651007, 156, 0, 8716527, 156, 0, 8716543, 156, 0, 8782063, 156, 0, 8782064, 156, 0, 8782065, 156, 0, 8782066, 156, 0, 8782067, 156, 0, 8782068, 156, 0, 8782069, 156, 0, 8782070, 156, 0, 8782071, 156, 0, 8782072, 156, 0, 8782073, 156, 0, 8782074, 156, 0, 8782075, 156, 0, 8782076, 156, 0, 8782077, 156, 0, 8782078, 156, 0, 8782079, 156, 0 )
 
-[node name="torchfire_death" parent="." instance=ExtResource( 12 )]
-position = Vector2( 220, 72 )
-colliding_object = "torchfire"
-
-[node name="shape_of_death" parent="torchfire_death" index="0"]
-shape = SubResource( 73 )
-
 [node name="torchfire_animated" parent="." instance=ExtResource( 15 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 220, 72 )
 texture = ExtResource( 17 )
 hframes = 4
 fps = 12
+
+[node name="torchfire_death" parent="." instance=ExtResource( 12 )]
+position = Vector2( 220, 72 )
+colliding_object = "torchfire"
+
+[node name="shape_of_death" parent="torchfire_death" index="0"]
+shape = SubResource( 73 )
 
 [node name="water_animated" parent="." instance=ExtResource( 15 )]
 position = Vector2( 144, 123 )
@@ -2924,23 +2924,30 @@ texture = ExtResource( 18 )
 hframes = 4
 fps = 6
 
-[node name="lever_on" type="Sprite" parent="."]
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+[node name="objects" parent="." instance=ExtResource( 21 )]
+
+[node name="lever_on_off" type="Sprite" parent="objects"]
 position = Vector2( 136, 32 )
 texture = ExtResource( 13 )
 
-[node name="lever_broken" type="Sprite" parent="."]
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+[node name="lever_broken" type="Sprite" parent="objects"]
 position = Vector2( 136, 32 )
 texture = ExtResource( 14 )
 
-[node name="background2" parent="." instance=ExtResource( 20 )]
+[node name="popups" type="CanvasLayer" parent="."]
+
+[node name="object_message_1_en" type="Popup" parent="popups"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/object_message_1_en" instance=ExtResource( 20 )]
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
 margin_left = 32.0
 margin_right = 120.0
 margin_bottom = 56.0
 
-[node name="Label" type="Label" parent="."]
+[node name="label" type="Label" parent="popups/object_message_1_en"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 48.0
@@ -2958,15 +2965,18 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="background3" parent="." instance=ExtResource( 20 )]
-visible = false
+[node name="object_message_2_en" type="Popup" parent="popups"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/object_message_2_en" instance=ExtResource( 20 )]
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
 margin_left = 32.0
 margin_right = 120.0
 margin_bottom = 56.0
 
-[node name="Label2" type="Label" parent="."]
-visible = false
+[node name="label" type="Label" parent="popups/object_message_2_en"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 48.0
@@ -2984,21 +2994,24 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="background4" parent="." instance=ExtResource( 20 )]
-visible = false
-margin_left = 32.0
-margin_top = 40.0
-margin_right = 208.0
-margin_bottom = 112.0
+[node name="object_message_3_en" type="Popup" parent="popups"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label3" type="Label" parent="."]
-visible = false
+[node name="background" parent="popups/object_message_3_en" instance=ExtResource( 20 )]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 184.0
+margin_bottom = 80.0
+
+[node name="label" type="Label" parent="popups/object_message_3_en"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 48.0
-margin_top = 56.0
-margin_right = 192.0
-margin_bottom = 96.0
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 168.0
+margin_bottom = 64.0
 custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
@@ -3013,15 +3026,18 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="background5" parent="." instance=ExtResource( 20 )]
-visible = false
+[node name="object_message_4_en" type="Popup" parent="popups"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/object_message_4_en" instance=ExtResource( 20 )]
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
 margin_left = 32.0
 margin_right = 120.0
 margin_bottom = 56.0
 
-[node name="Label4" type="Label" parent="."]
-visible = false
+[node name="label" type="Label" parent="popups/object_message_4_en"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 48.0
@@ -3039,15 +3055,18 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="background6" parent="." instance=ExtResource( 20 )]
-visible = false
+[node name="object_message_5_en" type="Popup" parent="popups"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/object_message_5_en" instance=ExtResource( 20 )]
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
 margin_left = 32.0
 margin_right = 120.0
 margin_bottom = 56.0
 
-[node name="Label5" type="Label" parent="."]
-visible = false
+[node name="label" type="Label" parent="popups/object_message_5_en"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 48.0
@@ -3065,15 +3084,15 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="background7" parent="." instance=ExtResource( 20 )]
-visible = false
+[node name="object_message_6_en" type="Popup" parent="popups"]
+
+[node name="background" parent="popups/object_message_6_en" instance=ExtResource( 20 )]
 margin_left = 24.0
 margin_top = 40.0
 margin_right = 216.0
 margin_bottom = 112.0
 
-[node name="Label6" type="Label" parent="."]
-visible = false
+[node name="label" type="Label" parent="popups/object_message_6_en"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 40.0
@@ -3083,7 +3102,7 @@ margin_bottom = 96.0
 custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-text = "great, you finally
+text = "damn, you finally
 broke off the lever
 for the portcullis"
 align = 1
@@ -3094,6 +3113,182 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="objects" parent="." instance=ExtResource( 21 )]
+[node name="object_message_1_de" type="Popup" parent="popups"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/object_message_1_de" instance=ExtResource( 20 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_left = 32.0
+margin_right = 120.0
+margin_bottom = 56.0
+
+[node name="label" type="Label" parent="popups/object_message_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 16.0
+margin_right = 104.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 74 )
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+text = "klick"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="object_message_2_de" type="Popup" parent="popups"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/object_message_2_de" instance=ExtResource( 20 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_left = 32.0
+margin_right = 120.0
+margin_bottom = 56.0
+
+[node name="label" type="Label" parent="popups/object_message_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 16.0
+margin_right = 104.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 74 )
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+text = "klack"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="object_message_3_de" type="Popup" parent="popups"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/object_message_3_de" instance=ExtResource( 20 )]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 184.0
+margin_bottom = 80.0
+
+[node name="label" type="Label" parent="popups/object_message_3_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 168.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 74 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "Egal wie oft du
+drückst, es wird
+nichts passieren"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="object_message_4_de" type="Popup" parent="popups"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/object_message_4_de" instance=ExtResource( 20 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_left = 32.0
+margin_right = 120.0
+margin_bottom = 56.0
+
+[node name="label" type="Label" parent="popups/object_message_4_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 16.0
+margin_right = 104.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 74 )
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+text = "klick"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="object_message_5_de" type="Popup" parent="popups"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/object_message_5_de" instance=ExtResource( 20 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_left = 32.0
+margin_right = 120.0
+margin_bottom = 56.0
+
+[node name="label" type="Label" parent="popups/object_message_5_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 16.0
+margin_right = 104.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 74 )
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+text = "knack"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="object_message_6_de" type="Popup" parent="popups"]
+
+[node name="background" parent="popups/object_message_6_de" instance=ExtResource( 20 )]
+margin_left = 24.0
+margin_top = 40.0
+margin_right = 216.0
+margin_bottom = 112.0
+
+[node name="label" type="Label" parent="popups/object_message_6_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 56.0
+margin_right = 200.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 74 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "Du hast den Hebel
+für das Fallgitter
+soeben abgebrochen"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
 
 [editable path="torchfire_death"]
+[editable path="water_animated2"]

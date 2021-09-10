@@ -2891,6 +2891,9 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="respawn_point" parent="." instance=ExtResource( 16 )]
+position = Vector2( 12, 108 )
+
 [node name="water_animated3" parent="." instance=ExtResource( 17 )]
 position = Vector2( 80, 123 )
 texture = ExtResource( 18 )
@@ -2956,12 +2959,10 @@ texture = ExtResource( 18 )
 hframes = 4
 fps = 6
 
-[node name="respawn_point" parent="." instance=ExtResource( 16 )]
-position = Vector2( 52, 92 )
-
 [node name="objects" parent="." instance=ExtResource( 21 )]
 
 [node name="shard" parent="objects" instance=ExtResource( 22 )]
+visible = false
 position = Vector2( 16, 112 )
 
 [node name="coin2" parent="objects" instance=ExtResource( 20 )]

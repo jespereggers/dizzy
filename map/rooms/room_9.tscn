@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=2]
+[gd_scene load_steps=103 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -17,12 +17,14 @@
 [ext_resource path="res://Assets/tiles/characters/yolkfolk/denzil_sad.png" type="Texture" id=15]
 [ext_resource path="res://Assets/tiles/objects/painting.png" type="Texture" id=16]
 [ext_resource path="res://Assets/tiles/items/railing.png" type="Texture" id=17]
-[ext_resource path="res://templates/shard.tscn" type="PackedScene" id=18]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=19]
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=21]
 [ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=22]
 [ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=24]
+[ext_resource path="res://templates/background.tscn" type="PackedScene" id=25]
+[ext_resource path="res://templates/coin.tscn" type="PackedScene" id=26]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2851,13 +2853,20 @@ extents = Vector2( 6, 7 )
 [sub_resource type="RectangleShape2D" id=75]
 extents = Vector2( 6, 7 )
 
+[sub_resource type="RectangleShape2D" id=76]
+extents = Vector2( 4, 4 )
+
+[sub_resource type="DynamicFont" id=77]
+size = 7
+font_data = ExtResource( 24 )
+
 [node name="room_9" type="Node2D"]
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="respawn_point" parent="." instance=ExtResource( 23 )]
-position = Vector2( 228, 104 )
+position = Vector2( 228, 108 )
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
@@ -2930,25 +2939,6 @@ texture = ExtResource( 21 )
 hframes = 4
 fps = 12
 
-[node name="coin" parent="." instance=ExtResource( 18 )]
-position = Vector2( 200, 48 )
-
-[node name="painting" type="Sprite" parent="."]
-modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
-position = Vector2( 120, 36 )
-texture = ExtResource( 16 )
-flip_v = true
-
-[node name="item_railing" parent="." instance=ExtResource( 20 )]
-position = Vector2( 199, 48 )
-item_name = "a piece of railing"
-height = 7.0
-texture = ExtResource( 17 )
-
-[node name="sprite" parent="item_railing" index="0"]
-texture = ExtResource( 17 )
-flip_h = true
-
 [node name="denzil_sad" type="Sprite" parent="."]
 position = Vector2( 12, 108 )
 texture = ExtResource( 15 )
@@ -2960,9 +2950,280 @@ texture = ExtResource( 14 )
 
 [node name="objects" parent="." instance=ExtResource( 22 )]
 
+[node name="painting" type="Sprite" parent="objects"]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+position = Vector2( 120, 36 )
+texture = ExtResource( 16 )
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="objects/painting"]
+position = Vector2( 0, 28 )
+shape = SubResource( 76 )
+
+[node name="coin1" parent="objects" instance=ExtResource( 26 )]
+position = Vector2( 200, 48 )
+
+[node name="coin2" parent="objects" instance=ExtResource( 26 )]
+visible = false
+position = Vector2( 150, 72 )
+
+[node name="item_railing" parent="objects" instance=ExtResource( 20 )]
+position = Vector2( 200, 48 )
+item_name = "a piece of railing"
+height = 7.0
+texture = ExtResource( 17 )
+
+[node name="sprite" parent="objects/item_railing" index="0"]
+texture = ExtResource( 17 )
+flip_h = true
+
+[node name="popups" type="CanvasLayer" parent="."]
+
+[node name="message_1_en" type="Popup" parent="popups"]
+popup_exclusive = true
+
+[node name="background" parent="popups/message_1_en" instance=ExtResource( 25 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_right = 160.0
+margin_bottom = 72.0
+
+[node name="label" type="Label" parent="popups/message_1_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 144.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 77 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "\"ooh, there
+is a message
+on the table?"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_2_en" type="Popup" parent="popups"]
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/message_2_en" instance=ExtResource( 25 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_top = 40.0
+margin_right = 200.0
+margin_bottom = 104.0
+
+[node name="label" type="Label" parent="popups/message_2_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 184.0
+margin_bottom = 88.0
+custom_fonts/font = SubResource( 77 )
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+text = "i'll be right back!
+-signed rockwart-"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_3_en" type="Popup" parent="popups"]
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/message_3_en" instance=ExtResource( 25 )]
+margin_left = 56.0
+margin_top = 32.0
+margin_right = 184.0
+margin_bottom = 104.0
+
+[node name="label" type="Label" parent="popups/message_3_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 72.0
+margin_top = 48.0
+margin_right = 168.0
+margin_bottom = 88.0
+custom_fonts/font = SubResource( 77 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "you should
+pick up
+the message"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true,
+"_editor_description_": ""
+}
+
+[node name="object_message_2_en" type="Popup" parent="popups"]
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/object_message_2_en" instance=ExtResource( 25 )]
+margin_left = 24.0
+margin_top = 48.0
+margin_right = 216.0
+margin_bottom = 128.0
+
+[node name="label" type="Label" parent="popups/object_message_2_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 77 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "You turn
+the picture back
+around - something
+falls down"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_1_de" type="Popup" parent="popups"]
+popup_exclusive = true
+
+[node name="background" parent="popups/message_1_de" instance=ExtResource( 25 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_right = 160.0
+margin_bottom = 72.0
+
+[node name="label" type="Label" parent="popups/message_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 144.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 77 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "\"oh, da liegt
+eine nachricht
+auf dem tisch§"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_2_de" type="Popup" parent="popups"]
+popup_exclusive = true
+
+[node name="background" parent="popups/message_2_de" instance=ExtResource( 25 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 40.0
+margin_right = 200.0
+margin_bottom = 104.0
+
+[node name="label" type="Label" parent="popups/message_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 184.0
+margin_bottom = 88.0
+custom_fonts/font = SubResource( 77 )
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+text = "Bin gleich zurück!
+signiert 'rockwart'"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="object_message_1_de" type="Popup" parent="popups"]
+popup_exclusive = true
+
+[node name="background" parent="popups/object_message_1_de" instance=ExtResource( 25 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 48.0
+margin_top = 48.0
+margin_right = 192.0
+margin_bottom = 120.0
+
+[node name="label" type="Label" parent="popups/object_message_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 176.0
+margin_bottom = 104.0
+custom_fonts/font = SubResource( 77 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "\"nanu, etwas
+scheint hier
+verkehrt?"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="object_message_2_de" type="Popup" parent="popups"]
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/object_message_2_de" instance=ExtResource( 25 )]
+margin_left = 24.0
+margin_top = 48.0
+margin_right = 216.0
+margin_bottom = 128.0
+
+[node name="label" type="Label" parent="popups/object_message_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 77 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "Du drehst das Bild
+wieder richtig
+herum - dabei fällt
+etwas herunter"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]
 [editable path="torchfire_death2"]
 [editable path="torchfire_death3"]
-[editable path="coin"]
-[editable path="item_railing"]
+[editable path="objects/item_railing"]

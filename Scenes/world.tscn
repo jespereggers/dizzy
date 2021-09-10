@@ -44,8 +44,8 @@ position = Vector2( 128, 128 )
 
 [node name="camera" parent="." instance=ExtResource( 11 )]
 script = ExtResource( 12 )
-shake_duration = 0.4
-shake_strenght = 50
+shake_duration = 4.0
+shake_strenght = 75
 
 [node name="display" parent="." instance=ExtResource( 2 )]
 

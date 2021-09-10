@@ -2858,7 +2858,7 @@ position = Vector2( 12, 116 )
 tile_set = ExtResource( 12 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 524353, 22, 0, 1048641, 22, 0, 1572920, 23, 0, 3145884, 17, 0, 4718653, 19, 0, 5767184, 18, 0 )
+tile_data = PoolIntArray( 524385, 22, 0, 983137, 22, 0, 1441889, 22, 0, 1966168, 23, 0, 3145884, 17, 0, 4718653, 19, 0, 5767184, 18, 0, 6815840, 165, 0, 6815888, 536871078, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -2867,7 +2867,7 @@ __meta__ = {
 tile_set = SubResource( 70 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( -65536, 43, 0, 7, 38, 0, 32, 4, 0, 56, 0, 0, 80, 5, 0, 96, 0, 0, 120, 5, 0, 136, 0, 0, 160, 4, 0, 184, 14, 0, 192, 4, 0, 983041, 47, 0, 1048592, 40, 0, 1048616, 1, 0, 1048760, 3, 0, 1048784, 0, 0, 1572904, 3, 0, 1573064, 4, 0, 1966080, 45, 0, 2621448, 50, 0, 2621624, 2, 0, 3145768, 1, 0, 3145936, 3, 0, 3670016, 33, 0, 3670024, 4, 0, 3670048, 4, 0, 3670072, 4, 0, 4194488, 5, 0, 4718632, 5, 0, 4718800, 5, 0, 5243064, 0, 0, 5767208, 1, 0, 5767352, 14, 0, 5767360, 2, 0, 5767384, 4, 0, 6815840, 37, 0, 6815904, 2, 0, 6815928, 14, 0, 7340120, 34, 0, 7340232, 5, 0, 7340256, 14, 0, 7864408, 35, 0, 7864464, 1073741860, 0, 7864504, 66, 0, 8388608, 0, 0, 8388632, 1, 0, 8388648, 1, 0, 8388664, 0, 0, 8388688, 1, 0, 8388704, 0, 0, 8388728, 1, 0, 8388744, 0, 0, 8388768, 0, 0, 8388816, 1, 0 )
+tile_data = PoolIntArray( -65536, 43, 0, 7, 38, 0, 32, 4, 0, 56, 0, 0, 80, 5, 0, 96, 0, 0, 120, 5, 0, 136, 0, 0, 160, 4, 0, 184, 14, 0, 192, 4, 0, 983041, 47, 0, 1048592, 40, 0, 1048616, 1, 0, 1048760, 3, 0, 1048784, 0, 0, 1572904, 3, 0, 1573064, 4, 0, 1966080, 45, 0, 2621448, 50, 0, 2621624, 2, 0, 3145768, 1, 0, 3145936, 3, 0, 3670016, 33, 0, 3670024, 4, 0, 3670048, 4, 0, 3670072, 4, 0, 4194488, 5, 0, 4718632, 5, 0, 4718800, 5, 0, 5243064, 0, 0, 5767208, 1, 0, 5767352, 14, 0, 5767360, 2, 0, 5767384, 4, 0, 6815904, 2, 0, 6815928, 14, 0, 7340120, 34, 0, 7340232, 5, 0, 7340256, 14, 0, 7864408, 35, 0, 7864464, 1073741860, 0, 7864504, 66, 0, 8388608, 0, 0, 8388632, 1, 0, 8388648, 1, 0, 8388664, 0, 0, 8388688, 1, 0, 8388704, 0, 0, 8388728, 1, 0, 8388744, 0, 0, 8388768, 0, 0, 8388816, 1, 0 )
 
 [node name="cell_door" type="Sprite" parent="."]
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
@@ -2921,52 +2921,31 @@ fps = 16
 
 [node name="objects" parent="." instance=ExtResource( 17 )]
 
-[node name="item_moldy_bread" parent="." instance=ExtResource( 20 )]
+[node name="item_moldy_bread" parent="objects" instance=ExtResource( 20 )]
 modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
 position = Vector2( 175, 96 )
 item_name = "a moldy bread"
 color = Color( 0.345098, 0.552941, 0.262745, 1 )
 texture = ExtResource( 19 )
 
-[node name="sprite" parent="item_moldy_bread" index="0"]
+[node name="sprite" parent="objects/item_moldy_bread" index="0"]
 texture = ExtResource( 19 )
 
-[node name="message_1_eng" parent="." instance=ExtResource( 24 )]
-visible = false
-modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
-margin_right = 176.0
-margin_bottom = 64.0
+[node name="popups" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 160.0
-margin_bottom = 48.0
-custom_fonts/font = SubResource( 75 )
-custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
-custom_constants/line_spacing = 1
-text = "barred door with
-a large padlock"
-align = 1
-valign = 1
+[node name="message_1_en" type="Popup" parent="popups"]
+popup_exclusive = true
 __meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_use_anchors_": false
 }
 
-[node name="message_2_eng" parent="." instance=ExtResource( 24 )]
-visible = false
+[node name="background" parent="popups/message_1_en" instance=ExtResource( 24 )]
 modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
 margin_top = 32.0
 margin_right = 224.0
 margin_bottom = 96.0
 
-[node name="Label2" type="Label" parent="."]
-visible = false
+[node name="label" type="Label" parent="popups/message_1_en"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
@@ -2986,26 +2965,53 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="message_1_ger" parent="." instance=ExtResource( 24 )]
-visible = false
-modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
-margin_right = 184.0
-margin_bottom = 72.0
+[node name="object_message_1_en" type="Popup" parent="popups"]
+popup_exclusive = true
 
-[node name="Label3" type="Label" parent="."]
-visible = false
+[node name="background" parent="popups/object_message_1_en" instance=ExtResource( 24 )]
+margin_right = 176.0
+margin_bottom = 64.0
+
+[node name="label" type="Label" parent="popups/object_message_1_en"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 168.0
-margin_bottom = 56.0
+margin_right = 160.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 75 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "barred door with
+a large padlock"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="object_message_1_1_en" type="Popup" parent="popups"]
+margin_bottom = -3.456
+popup_exclusive = true
+
+[node name="background" parent="popups/object_message_1_1_en" instance=ExtResource( 24 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_right = 176.0
+margin_bottom = 64.0
+
+[node name="label" type="Label" parent="popups/object_message_1_1_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 160.0
+margin_bottom = 48.0
 custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-text = "ein metalltor mit
-vorhängeschloss
-versperrt den weg"
+text = "barred door with
+a large padlock"
 align = 1
 valign = 1
 __meta__ = {
@@ -3014,51 +3020,129 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="message_2_ger" parent="." instance=ExtResource( 24 )]
-visible = false
-modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
-margin_top = 32.0
-margin_right = 248.0
-margin_bottom = 96.0
+[node name="message_1_de" type="Popup" parent="popups"]
+margin_top = 8.0
+margin_bottom = 8.0
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label4" type="Label" parent="."]
-visible = false
+[node name="background" parent="popups/message_1_de" instance=ExtResource( 24 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 48.0
+margin_top = 16.0
+margin_right = 200.0
+margin_bottom = 88.0
+
+[node name="label" type="Label" parent="popups/message_1_de"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 48.0
-margin_right = 232.0
-margin_bottom = 80.0
+margin_left = 64.0
+margin_top = 32.0
+margin_right = 184.0
+margin_bottom = 72.0
 custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-text = "\"pssst...dozy? wach auf! ich brauche deine Hilfe!§"
+text = "\"pssst...dozy?
+wach auf du
+Schlafmütze!?"
 align = 1
 valign = 1
 autowrap = true
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
-[node name="message_2_ger2" parent="." instance=ExtResource( 24 )]
-visible = false
-margin_right = 184.0
-margin_bottom = 72.0
+[node name="message_2_de" type="Popup" parent="popups"]
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label5" type="Label" parent="."]
-visible = false
+[node name="background" parent="popups/message_2_de" instance=ExtResource( 24 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_left = 48.0
+margin_top = 32.0
+margin_right = 200.0
+margin_bottom = 96.0
+
+[node name="label" type="Label" parent="popups/message_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = 48.0
+margin_right = 184.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 75 )
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+text = "Dozy schläft
+tief und fest"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="object_message_1_de" type="Popup" parent="popups"]
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/object_message_1_de" instance=ExtResource( 24 )]
+margin_right = 136.0
+margin_bottom = 64.0
+
+[node name="label" type="Label" parent="popups/object_message_1_de"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 168.0
-margin_bottom = 56.0
+margin_right = 120.0
+margin_bottom = 48.0
 custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-text = "mit einem lauten quietschen öffnest du das gittertor"
+text = "Du rüttelst
+am Gitter"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="object_message_2_de" type="Popup" parent="popups"]
+margin_top = -8.0
+margin_bottom = -8.0
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/object_message_2_de" instance=ExtResource( 24 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_top = 40.0
+margin_right = 152.0
+margin_bottom = 96.0
+
+[node name="label" type="Label" parent="popups/object_message_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 136.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 75 )
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+text = "...ohne Erfolg"
 align = 1
 valign = 1
 autowrap = true
@@ -3067,14 +3151,18 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="message_2_ger3" parent="." instance=ExtResource( 24 )]
-visible = false
+[node name="object_message_3_de2" type="Popup" parent="popups"]
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/object_message_3_de2" instance=ExtResource( 24 )]
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
 margin_right = 160.0
 margin_bottom = 88.0
 
-[node name="Label6" type="Label" parent="."]
-visible = false
+[node name="label" type="Label" parent="popups/object_message_3_de2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
@@ -3084,8 +3172,38 @@ margin_bottom = 72.0
 custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-text = "das ergibt
-keinen sinn"
+text = "der Schlüssel
+ist viel zu verrostet"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="object_message_3_de" type="Popup" parent="popups"]
+margin_bottom = -3.456
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/object_message_3_de" instance=ExtResource( 24 )]
+margin_right = 184.0
+margin_bottom = 72.0
+
+[node name="label" type="Label" parent="popups/object_message_3_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 168.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 75 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "mit einem lauten quietschen öffnest du die gittertür"
 align = 1
 valign = 1
 autowrap = true
@@ -3096,4 +3214,4 @@ __meta__ = {
 
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]
-[editable path="item_moldy_bread"]
+[editable path="objects/item_moldy_bread"]

@@ -29,5 +29,5 @@ func shake():
 func _on_timer_timeout():
 	# Stops Shaking
 	set_process(false)
-	tween.interpolate_property(self, "offset", offset, Vector2(0,0), 0.1, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	tween.interpolate_property(self, "offset", offset, Vector2(0,0), 0, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	tween.start()
