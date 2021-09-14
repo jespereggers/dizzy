@@ -19,9 +19,6 @@
 [ext_resource path="res://map/rooms/room_14.tscn" type="PackedScene" id=17]
 
 [node name="map_1_demo" type="Node2D"]
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="room_1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, -544 )
