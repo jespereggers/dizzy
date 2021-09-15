@@ -166,6 +166,7 @@ anims/walk = SubResource( 6 )
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 5
+frame = 32
 
 [node name="dizzy_death" type="Sprite" parent="."]
 visible = false
@@ -203,29 +204,29 @@ script = ExtResource( 7 )
 enabled = true
 cast_to = Vector2( 0, 100 )
 
-[node name="raycast_left_buttom" type="RayCast2D" parent="."]
-position = Vector2( 0, 13 )
-rotation = -1.5708
-enabled = true
-cast_to = Vector2( 0, -10 )
-
 [node name="raycast_left_middle" type="RayCast2D" parent="."]
-position = Vector2( 0, 1 )
+position = Vector2( 0, 4 )
 rotation = -1.5708
 enabled = true
-cast_to = Vector2( 0, -10 )
+cast_to = Vector2( 0, -12 )
 
-[node name="raycast_right_buttom" type="RayCast2D" parent="."]
-position = Vector2( 0, 13 )
+[node name="raycast_left_bottom" type="RayCast2D" parent="."]
+position = Vector2( 0, 11 )
 rotation = -1.5708
 enabled = true
-cast_to = Vector2( 0, 10 )
+cast_to = Vector2( 0, -12 )
 
 [node name="raycast_right_middle" type="RayCast2D" parent="."]
-position = Vector2( 0, 1 )
+position = Vector2( 0, 4 )
 rotation = -1.5708
 enabled = true
-cast_to = Vector2( 0, 10 )
+cast_to = Vector2( 0, 12 )
+
+[node name="raycast_right_bottom" type="RayCast2D" parent="."]
+position = Vector2( 0, 11 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 12 )
 
 [node name="unlocked_cooldown" type="Timer" parent="."]
 

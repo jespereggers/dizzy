@@ -11,14 +11,20 @@ var unlocked: bool = false
 var action: Array = ["idle"]
 var locked: bool = false
 var is_on_leaderbox: bool = false
+var action_start_pos: Vector2 = Vector2(0,0)
+var is_autojumping: bool = false
 
-const UP: Vector2 = Vector2(0, -1)
-const GRAVITY: int  = 4
-const MAXFALLSPEED: int = 35
-const MAXSPEED: int = 40
-const JUMPFORCE: int = 120
-const ACCEL: int = 8
+# Movement
+var GRAVITY: float = 2.2
 
+var JUMP_SPEED: int = 90
+var MAX_JUMP_SPEED: int = 455
+var JUMP_FORCE: int = 95
+
+var WALK_SPEED: int = 8
+var MAX_WALK_SPEED: int = 40
+
+var UP: Vector2 = Vector2(0, -1)
 
 func _ready():
 	yield(signals, "backend_is_ready")
@@ -62,27 +68,32 @@ func _on_player_died(collision_object):
 
 
 func _physics_process(_delta):
+	var previous_action: Array = action
+	
 	motion.y += GRAVITY
-	
-	if motion.y > MAXFALLSPEED:
-		motion.y = MAXFALLSPEED
-	
-	motion.x = clamp(motion.x, -MAXSPEED, MAXSPEED)
 
-	if is_on_leaderbox and "walk" in action and is_on_wall():
+	motion.y = clamp(motion.y, -MAX_JUMP_SPEED, MAX_JUMP_SPEED)
+	motion.x = clamp(motion.x, -MAX_WALK_SPEED, MAX_WALK_SPEED)
+	
+	if is_on_floor():
+		is_autojumping = false
+		
+	#if is_on_leaderbox and "walk" in action and is_on_wall():
 # warning-ignore:integer_division
-		motion.y = -JUMPFORCE / 3
+	#	motion.y = -JUMP_SPEED / 3
 		
 	if not locked or unlocked:
 		if can_autojump():
+			is_autojumping = true
 # warning-ignore:integer_division
-			motion.y = -JUMPFORCE / 2
+			motion.y = -JUMP_SPEED*1.2
 			unlocked = true
 			$unlocked_cooldown.start(1.0)
+		elif motion.y < 0 and not feet_is_on_wall() and is_autojumping:
+			motion.y = lerp(motion.y, 0, 0.15)
 
-		if is_on_floor() or is_on_wall() or unlocked:
+		if is_on_floor() or unlocked:
 			action = []
-				
 			if Input.is_action_pressed("walk_left"):
 				action = ["walk", "left"]
 			elif Input.is_action_pressed("walk_right"):
@@ -101,15 +112,20 @@ func _physics_process(_delta):
 				action = ["salto"]
 				
 			if action == []:
-				action = ["idle"]
-			
+				if previous_action[0] == "walk" and action_start_pos.distance_to(self.position) > 4:
+					action = ["idle"]
+				else:
+					action = previous_action
+	
 	if not is_on_wall():
 		texture.flip_h = motion.x < 0
-				
-	state_machine.update_state(action[0])
-
+	
+	# Register start_pos of new action
+	if action[0] == "walk" and Input.is_action_just_pressed("walk_" + action[1]):
+		action_start_pos = self.position
+	
 	update_motion()
-
+	state_machine.update_state(action[0])
 	motion = move_and_slide(motion, UP)
 
 
@@ -119,25 +135,25 @@ func update_motion():
 	
 	match action[0]:
 		"idle":
-			motion.x = lerp(motion.x, 0, 0.2)
+			motion.x = 0
 			
 		"walk":
 			if action[1] == "left":
-				motion.x -= ACCEL
+				motion.x -= WALK_SPEED
 			else:
-				motion.x += ACCEL
+				motion.x += WALK_SPEED
 				
 		"jump":
 			if is_on_floor() and Input.is_action_pressed("jump"):
-				motion.y = -JUMPFORCE
+				motion.y -= JUMP_FORCE
 			if action[1] == "right":
-				motion.x += ACCEL
+				motion.x += WALK_SPEED * 0.8
 			else:
-				motion.x -= ACCEL
+				motion.x -= WALK_SPEED * 0.8
 				
 		"salto":
 			if is_on_floor() and Input.is_action_pressed("salto"):
-				motion.y = -JUMPFORCE
+				motion.y -= JUMP_FORCE
 				Input.action_release("salto")
 			motion.x = 0
 			
@@ -155,11 +171,24 @@ func can_autojump() -> bool:
 	if is_on_wall() and is_on_floor():
 		if texture.flip_h:
 			# Check autojump on left side
-			if not $raycast_left_middle.is_colliding():
+			if not $raycast_left_middle.is_colliding() and $raycast_left_bottom.is_colliding():
 				return true
 		else:
 			# Check autojump on right side
-			if not $raycast_right_middle.is_colliding():
+			if not $raycast_right_middle.is_colliding() and $raycast_right_bottom.is_colliding():
+				return true
+	return false
+
+
+func feet_is_on_wall() -> bool:
+	if is_on_wall() and is_on_floor():
+		if texture.flip_h:
+			# Check autojump on left side
+			if $raycast_left_bottom.is_colliding():
+				return true
+		else:
+			# Check autojump on right side
+			if $raycast_right_bottom.is_colliding():
 				return true
 	return false
 

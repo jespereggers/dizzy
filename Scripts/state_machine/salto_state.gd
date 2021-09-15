@@ -20,5 +20,5 @@ func _on_animation_finished():
 	else:
 		times_played = 0
 		player.action = ["idle"]
-		player.update_motion(["idle"])
+		player.update_motion()
 		player.locked = false

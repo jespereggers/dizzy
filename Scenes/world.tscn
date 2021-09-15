@@ -14,7 +14,7 @@
 [ext_resource path="res://Scripts/camera.gd" type="Script" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 120, 70 )
+extents = Vector2( 122, 70 )
 
 [sub_resource type="InputEventAction" id=2]
 action = "ui_cancel"

@@ -30,7 +30,7 @@ live="*res://Scripts/global_scripts/live.gd"
 
 [debug]
 
-settings/fps/force_fps=18
+settings/fps/force_fps=16
 
 [display]
 

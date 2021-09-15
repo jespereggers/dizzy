@@ -34,7 +34,7 @@ func _on_screen_area_body_exited(body):
 		if body.position.x < $screen_area.position.x - $screen_area/collision.shape.extents.x:
 			# Left
 			if data.maps[stats.current_map].keys().has(Vector2(stats.current_room.x - 1, stats.current_room.y)):
-				$player.position.x = $screen_area.position.x + $screen_area/collision.shape.extents.x - 5
+				$player.position.x = $screen_area.position.x + $screen_area/collision.shape.extents.x - 10
 				stats.current_room = Vector2(stats.current_room.x - 1, stats.current_room.y)
 				$map.update_map()
 				yield($map, "room_entered_tree")
@@ -48,7 +48,7 @@ func _on_screen_area_body_exited(body):
 				stats.current_room = Vector2(stats.current_room.x + 1, stats.current_room.y)
 				$map.update_map()
 				paths.player.position.y = player_height
-				$player.position.x = $screen_area.position.x - $screen_area/collision.shape.extents.x + 5
+				$player.position.x = $screen_area.position.x - $screen_area/collision.shape.extents.x + 10
 				yield($map, "room_entered_tree")
 				paths.player.position.y = player_height
 			else:
