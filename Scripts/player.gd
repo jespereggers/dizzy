@@ -21,7 +21,7 @@ var JUMP_SPEED: int = 90
 var MAX_JUMP_SPEED: int = 455
 var JUMP_FORCE: int = 95
 
-var WALK_SPEED: int = 8
+var WALK_SPEED: int = 20
 var MAX_WALK_SPEED: int = 40
 
 var UP: Vector2 = Vector2(0, -1)

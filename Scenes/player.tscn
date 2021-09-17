@@ -90,7 +90,7 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
+"update": 1,
 "values": [ 0, 1 ]
 }
 
@@ -106,7 +106,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 25, 32 ]
+"values": [ 25, 31 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -166,7 +166,7 @@ anims/walk = SubResource( 6 )
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 5
-frame = 32
+frame = 18
 
 [node name="dizzy_death" type="Sprite" parent="."]
 visible = false
@@ -231,6 +231,7 @@ cast_to = Vector2( 0, 12 )
 [node name="unlocked_cooldown" type="Timer" parent="."]
 
 [node name="leaderbox_detector" type="Area2D" parent="."]
+visible = false
 script = ExtResource( 9 )
 
 [node name="shape" type="CollisionShape2D" parent="leaderbox_detector"]
