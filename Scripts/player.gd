@@ -3,7 +3,6 @@ extends KinematicBody2D
 onready var animations: AnimationPlayer = $animations
 onready var texture: Sprite = $texture
 onready var state_machine: Node = $state_machine
-onready var collision: CollisionShape2D = $collision
 onready var item_detector: Area2D = $item_detector
 
 var motion: Vector2 = Vector2()

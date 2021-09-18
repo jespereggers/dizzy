@@ -13,6 +13,10 @@ onready var states: Dictionary = {
 func update_state(new_state: String):
 	if player.locked:
 		return
+	
+	for state in states:
+		player.get_node(state + "_collision").disabled = state != new_state
+	
 	states[new_state].enter()
 
 
