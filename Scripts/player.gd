@@ -15,21 +15,21 @@ var action_start_pos: Vector2 = Vector2(0,0)
 var is_autojumping: bool = false
 
 # Movement
-export var GRAVITY: float = 2.5
+var GRAVITY: float = 2.2
 
-export var JUMP_SPEED: int = 100
-export var MAX_JUMP_SPEED: int = 500
+var JUMP_SPEED: int = 90
+var MAX_JUMP_SPEED: int = 455
+var JUMP_FORCE: int = 95
 
-export var WALK_SPEED: int = 8
-export var MAX_WALK_SPEED: int = 40
+var WALK_SPEED: int = 20
+var MAX_WALK_SPEED: int = 40
 
 var UP: Vector2 = Vector2(0, -1)
-
 
 func _ready():
 	yield(signals, "backend_is_ready")
 	self.position = data.game_save.player.position
-
+	
 	if signals.connect("room_changed", self, "_on_room_changed") != OK:
 		print("Error occured when trying to establish a connection")
 	if signals.connect("player_died", self, "_on_player_died") != OK:
@@ -41,6 +41,7 @@ func _ready():
 func _on_player_respawned():
 	locked = true
 	action = ["idle"]
+	#self.position.y += get_height()
 	animations.play_backwards("death")
 	yield(get_tree().create_timer(1.45), "timeout")
 	animations.play("idle")
@@ -51,11 +52,8 @@ func _on_player_respawned():
 
 
 func _on_room_changed():
-	set_physics_process(false)
 	if animations.current_animation in ["idle", "walk"] and not is_on_floor():
 		self.position.y -= get_height()
-	yield(get_tree().create_timer(0.2), "timeout")
-	set_physics_process(true)
 
 
 func _on_player_died(collision_object):
@@ -71,6 +69,7 @@ func _on_player_died(collision_object):
 
 func _physics_process(_delta):
 	var previous_action: Array = action
+	
 	motion.y += GRAVITY
 
 	motion.y = clamp(motion.y, -MAX_JUMP_SPEED, MAX_JUMP_SPEED)
@@ -79,12 +78,21 @@ func _physics_process(_delta):
 	if is_on_floor():
 		is_autojumping = false
 		
+	#if is_on_leaderbox and "walk" in action and is_on_wall():
+# warning-ignore:integer_division
+	#	motion.y = -JUMP_SPEED / 3
+		
 	if not locked or unlocked:
-		if can_autojump(true):
-			self.position += Vector2(0, -9)
+		if can_autojump():
+			is_autojumping = true
+# warning-ignore:integer_division
+			motion.y = -JUMP_SPEED*1.2
 			unlocked = true
-			
-		if is_on_floor():
+			$unlocked_cooldown.start(1.0)
+		elif motion.y < 0 and not feet_is_on_wall() and is_autojumping:
+			motion.y = lerp(motion.y, 0, 0.15)
+
+		if is_on_floor() or unlocked:
 			action = []
 			if Input.is_action_pressed("walk_left"):
 				action = ["walk", "left"]
@@ -108,25 +116,28 @@ func _physics_process(_delta):
 					action = ["idle"]
 				else:
 					action = previous_action
-
+	
+	if not is_on_wall():
+		texture.flip_h = motion.x < 0
+	
 	# Register start_pos of new action
 	if action[0] == "walk" and Input.is_action_just_pressed("walk_" + action[1]):
 		action_start_pos = self.position
-
+	
 	update_motion()
 	state_machine.update_state(action[0])
 	motion = move_and_slide(motion, UP)
 
 
 func update_motion():
-	texture.flip_h = (action.size() > 1 and action[1] == "left")
-
+	# action[0] -> action_name
+	# action[1] -> action_direction
+	
 	match action[0]:
 		"idle":
 			motion.x = 0
 			
 		"walk":
-			motion.y += JUMP_SPEED * 0.04
 			if action[1] == "left":
 				motion.x -= WALK_SPEED
 			else:
@@ -134,7 +145,7 @@ func update_motion():
 				
 		"jump":
 			if is_on_floor() and Input.is_action_pressed("jump"):
-				motion.y -= JUMP_SPEED
+				motion.y -= JUMP_FORCE
 			if action[1] == "right":
 				motion.x += WALK_SPEED * 0.8
 			else:
@@ -142,7 +153,7 @@ func update_motion():
 				
 		"salto":
 			if is_on_floor() and Input.is_action_pressed("salto"):
-				motion.y -= JUMP_SPEED
+				motion.y -= JUMP_FORCE
 				Input.action_release("salto")
 			motion.x = 0
 			
@@ -156,24 +167,16 @@ func get_height() -> float:
 	return 99.99
 
 
-func can_autojump(check_dir: bool) -> bool:
-	if not check_dir:
-		# Check autojump on left side
-		if not $raycast_left_middle.is_colliding() and $raycast_left_bottom.is_colliding():
+func can_autojump() -> bool:
+	if is_on_wall() and is_on_floor():
+		if texture.flip_h:
+			# Check autojump on left side
+			if not $raycast_left_middle.is_colliding() and $raycast_left_bottom.is_colliding():
 				return true
-		# Check autojump on right side
-		if not $raycast_right_middle.is_colliding() and $raycast_right_bottom.is_colliding():
-			return true
-	else:
-		if is_on_wall() and is_on_floor():
-			if texture.flip_h:
-				# Check autojump on left side
-				if not $raycast_left_middle.is_colliding() and $raycast_left_bottom.is_colliding():
-					return true
-			else:
-				# Check autojump on right side
-				if not $raycast_right_middle.is_colliding() and $raycast_right_bottom.is_colliding():
-					return true
+		else:
+			# Check autojump on right side
+			if not $raycast_right_middle.is_colliding() and $raycast_right_bottom.is_colliding():
+				return true
 	return false
 
 
