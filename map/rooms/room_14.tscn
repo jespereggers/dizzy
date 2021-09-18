@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -16,7 +16,6 @@
 [ext_resource path="res://Assets/tiles/objects/water.tres" type="Texture" id=14]
 [ext_resource path="res://Assets/tiles/objects/barrel.png" type="Texture" id=15]
 [ext_resource path="res://templates/coin.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scenes/templates/leader_box.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Assets/tiles/animations/water_full.png" type="Texture" id=18]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=20]
@@ -2877,12 +2876,6 @@ extents = Vector2( 6, 7 )
 [sub_resource type="RectangleShape2D" id=74]
 extents = Vector2( 47, 3 )
 
-[sub_resource type="RectangleShape2D" id=75]
-extents = Vector2( 5.25386, 7.92744 )
-
-[sub_resource type="RectangleShape2D" id=76]
-extents = Vector2( 4.54495, 7.92387 )
-
 [sub_resource type="DynamicFont" id=77]
 size = 7
 font_data = ExtResource( 23 )
@@ -2974,18 +2967,6 @@ texture = ExtResource( 18 )
 hframes = 4
 fps = 6
 
-[node name="leaderbox" parent="." instance=ExtResource( 17 )]
-position = Vector2( 188.442, 95.8597 )
-
-[node name="collision" parent="leaderbox" index="0"]
-shape = SubResource( 75 )
-
-[node name="leaderbox2" parent="." instance=ExtResource( 17 )]
-position = Vector2( 180.442, 79.8597 )
-
-[node name="collision" parent="leaderbox2" index="0"]
-shape = SubResource( 76 )
-
 [node name="objects" parent="." instance=ExtResource( 22 )]
 
 [node name="coin" parent="objects" instance=ExtResource( 16 )]
@@ -3022,5 +3003,3 @@ __meta__ = {
 
 [editable path="torchfire_death"]
 [editable path="water_death"]
-[editable path="leaderbox"]
-[editable path="leaderbox2"]

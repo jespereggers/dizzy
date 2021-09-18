@@ -15,7 +15,7 @@ func enter():
 func _on_animation_finished():
 	times_played += 1
 	
-	if times_played < times_played_goal:
+	if times_played < times_played_goal or not player.is_on_floor():
 		paths.player.animations.play("jump")
 	else:
 		times_played = 0
