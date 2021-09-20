@@ -94,7 +94,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-length = 0.7
+length = 0.67
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("texture:frame")
 tracks/0/interp = 1
@@ -102,10 +103,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7 ),
+"times": PoolRealArray( 0, 0.67 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 25, 32 ]
+"values": [ 25, 31 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -140,22 +141,21 @@ tracks/0/keys = {
 "values": [ 16, 16, 24 ]
 }
 
-[sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 7, 9.62105 )
-
-[sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 7, 9.62105 )
-
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 7, 10.0371 )
-
-[sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 6.52138, 9.49466 )
-
-[sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 7, 9.62871 )
+extents = Vector2( 7, 9 )
 
 [sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 5, 8 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 9, 6 )
+
+[sub_resource type="CircleShape2D" id=10]
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 7, 9 )
+
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 7, 7 )
 
 [node name="player" type="KinematicBody2D"]
@@ -164,6 +164,8 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": ""
 }
+GRAVITY = 2.4
+JUMP_SPEED = 98
 
 [node name="animations" type="AnimationPlayer" parent="."]
 anims/climb = SubResource( 1 )
@@ -174,36 +176,35 @@ anims/salto = SubResource( 5 )
 anims/walk = SubResource( 6 )
 
 [node name="climb_collision" type="CollisionShape2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, 2.50056 )
-shape = SubResource( 12 )
-disabled = true
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="idle_collision" type="CollisionShape2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, 2.50056 )
-shape = SubResource( 9 )
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="walk_collision" type="CollisionShape2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, 2.50056 )
+visible = false
+position = Vector2( 0, 3 )
 shape = SubResource( 7 )
 disabled = true
 __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="idle_collision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 4 )
+shape = SubResource( 8 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="walk_collision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 6 )
+shape = SubResource( 9 )
+disabled = true
+__meta__ = {
+"_editor_description_": ""
+}
+
 [node name="jump_collision" type="CollisionShape2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, 2.50057 )
+visible = false
+position = Vector2( 0, 2 )
 rotation = 6.28319
-scale = Vector2( 1, 1 )
 shape = SubResource( 10 )
 disabled = true
 __meta__ = {
@@ -211,9 +212,8 @@ __meta__ = {
 }
 
 [node name="salto_collision" type="CollisionShape2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, 2.50056 )
-rotation = -0.00196365
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+position = Vector2( 0, 3 )
 shape = SubResource( 11 )
 disabled = true
 __meta__ = {
@@ -224,7 +224,7 @@ __meta__ = {
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 5
-frame = 32
+frame = 25
 
 [node name="dizzy_death" type="Sprite" parent="."]
 visible = false
@@ -292,7 +292,7 @@ script = ExtResource( 11 )
 [node name="shape" type="CollisionShape2D" parent="item_detector"]
 self_modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 0, 2 )
-shape = SubResource( 8 )
+shape = SubResource( 12 )
 
 [node name="ticks" type="Timer" parent="."]
 wait_time = 0.2
