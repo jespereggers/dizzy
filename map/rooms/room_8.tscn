@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -100,6 +100,9 @@ points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=26]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 7, 0, 7 )
+
+[sub_resource type="ConvexPolygonShape2D" id=76]
+points = PoolVector2Array( 8, 8, 0, 8, 0, 0, 8, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=27]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
@@ -2861,11 +2864,35 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 156/z_index = 0
+157/name = "1.png 157"
+157/texture = ExtResource( 6 )
+157/tex_offset = Vector2( 0, 0 )
+157/modulate = Color( 0, 0, 0, 1 )
+157/region = Rect2( 120, 0, 8, 8 )
+157/tile_mode = 0
+157/occluder_offset = Vector2( 0, 0 )
+157/navigation_offset = Vector2( 0, 0 )
+157/shape_offset = Vector2( 0, 0 )
+157/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+157/shape = SubResource( 76 )
+157/shape_one_way = false
+157/shape_one_way_margin = 1.0
+157/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 76 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+157/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=73]
 extents = Vector2( 6, 7 )
 
-[sub_resource type="DynamicFont" id=74]
+[sub_resource type="RectangleShape2D" id=74]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="DynamicFont" id=75]
 size = 7
 font_data = ExtResource( 19 )
 
@@ -2890,7 +2917,7 @@ __meta__ = {
 tile_set = SubResource( 72 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 72, 3, 0, 524376, 4, 0, 1572952, 5, 0, 1572968, 2, 0, 2621568, 4, 0, 2621592, 5, 0, 2621608, 12, 0, 2621616, 3, 0, 3145896, 536871064, 0, 3408040, 536871064, 0, 3670184, 536871064, 0, 3670208, 1, 0, 3670224, 0, 0, 3670248, 12, 0, 3932328, 536871064, 0, 4194472, 536871064, 0, 4456616, 536871064, 0, 4718760, 153, 0, 6291616, 0, 0, 6815904, 2, 0, 6815928, 5, 0, 7340232, 3, 0, 7864504, 66, 0, 7864536, 4, 0, 8388768, 0, 0 )
+tile_data = PoolIntArray( -261972, 157, 0, 72, 3, 0, 524376, 4, 0, 1572952, 5, 0, 1572968, 2, 0, 2621568, 4, 0, 2621592, 5, 0, 2621608, 12, 0, 2621616, 3, 0, 3145896, 536871064, 0, 3408040, 536871064, 0, 3670184, 536871064, 0, 3670208, 1, 0, 3670224, 0, 0, 3670248, 12, 0, 3932328, 536871064, 0, 4194472, 536871064, 0, 4456616, 536871064, 0, 4718760, 153, 0, 6291616, 0, 0, 6815904, 2, 0, 6815928, 5, 0, 7340232, 3, 0, 7864504, 66, 0, 7864536, 4, 0, 8388768, 0, 0 )
 
 [node name="torchfire_animated" parent="." instance=ExtResource( 15 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
@@ -2934,6 +2961,11 @@ texture = ExtResource( 13 )
 position = Vector2( 136, 32 )
 texture = ExtResource( 14 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="objects"]
+visible = false
+position = Vector2( 136, 32 )
+shape = SubResource( 74 )
+
 [node name="popups" type="CanvasLayer" parent="."]
 
 [node name="object_message_1_en" type="Popup" parent="popups"]
@@ -2954,7 +2986,7 @@ margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 74 )
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
 text = "click"
@@ -2983,7 +3015,7 @@ margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 74 )
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
 text = "clack"
@@ -3012,7 +3044,7 @@ margin_left = 24.0
 margin_top = 24.0
 margin_right = 168.0
 margin_bottom = 64.0
-custom_fonts/font = SubResource( 74 )
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
 text = "Just keep trying
@@ -3035,7 +3067,7 @@ __meta__ = {
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
 margin_left = 32.0
 margin_right = 120.0
-margin_bottom = 56.0
+margin_bottom = 71.0
 
 [node name="label" type="Label" parent="popups/object_message_4_en"]
 anchor_right = 1.0
@@ -3043,11 +3075,13 @@ anchor_bottom = 1.0
 margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
-margin_bottom = 40.0
-custom_fonts/font = SubResource( 74 )
+margin_bottom = 55.0
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-text = "click"
+text = "click
+clack
+click"
 align = 1
 valign = 1
 __meta__ = {
@@ -3073,7 +3107,7 @@ margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 74 )
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
 text = "crack"
@@ -3099,7 +3133,7 @@ margin_left = 40.0
 margin_top = 56.0
 margin_right = 200.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 74 )
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
 text = "damn, you finally
@@ -3131,7 +3165,7 @@ margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 74 )
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
 text = "klick"
@@ -3160,7 +3194,7 @@ margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 74 )
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
 text = "klack"
@@ -3189,7 +3223,7 @@ margin_left = 24.0
 margin_top = 24.0
 margin_right = 168.0
 margin_bottom = 64.0
-custom_fonts/font = SubResource( 74 )
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
 text = "Egal wie oft du
@@ -3212,7 +3246,7 @@ __meta__ = {
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
 margin_left = 32.0
 margin_right = 120.0
-margin_bottom = 56.0
+margin_bottom = 71.0
 
 [node name="label" type="Label" parent="popups/object_message_4_de"]
 anchor_right = 1.0
@@ -3220,11 +3254,13 @@ anchor_bottom = 1.0
 margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
-margin_bottom = 40.0
-custom_fonts/font = SubResource( 74 )
+margin_bottom = 55.0
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-text = "klick"
+text = "klick
+klack
+klick"
 align = 1
 valign = 1
 __meta__ = {
@@ -3250,7 +3286,7 @@ margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 74 )
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
 text = "knack"
@@ -3276,7 +3312,7 @@ margin_left = 40.0
 margin_top = 56.0
 margin_right = 200.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 74 )
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
 text = "Du hast den Hebel

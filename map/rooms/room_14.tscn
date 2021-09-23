@@ -2886,7 +2886,7 @@ __meta__ = {
 }
 
 [node name="respawn_point" parent="." instance=ExtResource( 21 )]
-position = Vector2( 231, 108 )
+position = Vector2( 228, 108 )
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )

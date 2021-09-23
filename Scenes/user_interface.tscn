@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/user_interface.gd" type="Script" id=1]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/inventory.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Assets/user_interface/backgrounds/coin_found_background_eng.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/user_interface/death.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/user_interface/found_coin.gd" type="Script" id=7]
 
@@ -13,16 +12,16 @@ size = 7
 extra_spacing_bottom = 2
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=2]
 size = 7
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 7
 extra_spacing_bottom = 2
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 7
 font_data = ExtResource( 4 )
 
@@ -31,8 +30,6 @@ pause_mode = 2
 script = ExtResource( 1 )
 
 [node name="inventory" parent="." instance=ExtResource( 3 )]
-
-[node name="label" parent="inventory/full_inventory_dialogue" index="0"]
 visible = true
 
 [node name="label3" parent="inventory/full_inventory_dialogue_ger" index="2"]
@@ -266,7 +263,7 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -32.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 custom_constants/line_spacing = 1
 text = "the rat goes
@@ -319,7 +316,7 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -32.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 custom_constants/line_spacing = 1
 text = "the bat bites
@@ -372,7 +369,7 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -32.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 custom_constants/line_spacing = 1
 text = "du wurdest von
@@ -425,7 +422,7 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -32.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 custom_constants/line_spacing = 1
 text = "du bist ins
@@ -528,7 +525,7 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -32.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 custom_constants/line_spacing = 1
 text = "die ratte sprang
@@ -582,7 +579,7 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -32.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 custom_constants/line_spacing = 1
 text = "die fledermaus
@@ -612,6 +609,7 @@ __meta__ = {
 }
 
 [node name="found_coin" type="Popup" parent="."]
+visible = true
 margin_left = 64.0
 margin_top = 64.0
 margin_right = 192.0
@@ -627,18 +625,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" type="TextureRect" parent="found_coin"]
+[node name="background" parent="found_coin" instance=ExtResource( 2 )]
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 margin_right = 128.0
 margin_bottom = 72.0
-grow_horizontal = 0
-grow_vertical = 0
-texture = ExtResource( 5 )
-stretch_mode = 2
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": true
-}
 
 [node name="label_eng" type="Label" parent="found_coin"]
 margin_left = 16.0
@@ -647,7 +637,7 @@ margin_right = 112.0
 margin_bottom = 33.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 text = "well done!"
 align = 1
@@ -666,7 +656,7 @@ margin_left = 16.0
 margin_top = 32.0
 margin_right = -16.0
 margin_bottom = -16.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
 text = "you found
@@ -686,7 +676,7 @@ margin_right = 112.0
 margin_bottom = 33.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 text = "sehr gut!"
 align = 1
@@ -706,7 +696,7 @@ margin_left = 16.0
 margin_top = 32.0
 margin_right = -16.0
 margin_bottom = -16.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
 text = "du findest
@@ -749,7 +739,7 @@ margin_right = 120.0
 margin_bottom = 33.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 text = "very good!"
 align = 1
@@ -769,7 +759,7 @@ margin_left = 8.0
 margin_top = 32.0
 margin_right = -8.0
 margin_bottom = -16.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
 text = "you found a
@@ -789,7 +779,7 @@ margin_right = 120.0
 margin_bottom = 33.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 text = "guter Fund!"
 align = 1
@@ -808,7 +798,7 @@ margin_left = 8.0
 margin_top = 32.0
 margin_right = -8.0
 margin_bottom = -16.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
 text = "du hast ein
