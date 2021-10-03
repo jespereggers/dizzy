@@ -1665,29 +1665,62 @@ texture = ExtResource( 14 )
 
 [node name="popups" type="CanvasLayer" parent="."]
 
-[node name="message_1_en" type="Popup" parent="popups"]
+[node name="message_1_de" type="Popup" parent="popups"]
 popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="background" parent="popups/message_1_en" instance=ExtResource( 16 )]
-modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
-margin_right = 160.0
+[node name="background" parent="popups/message_1_de" instance=ExtResource( 16 )]
+margin_right = 168.0
 margin_bottom = 72.0
 
-[node name="label" type="Label" parent="popups/message_1_en"]
+[node name="label" type="Label" parent="popups/message_1_de"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 144.0
+margin_right = 152.0
 margin_bottom = 56.0
 custom_fonts/font = SubResource( 53 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-text = "\"blindtext
-blindtext
-blindtext?"
+text = "du wirfst das
+artefakt auf den
+boden und gehst
+rasch in deckung"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_2_de" type="Popup" parent="popups"]
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/message_2_de" instance=ExtResource( 16 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_right = 240.0
+margin_bottom = 112.0
+
+[node name="label" type="Label" parent="popups/message_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 224.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 53 )
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+text = "es entläd seine enorme kraft und durch die erschütterung fällt die aufgetürmte stützkonstruktion in sich zusammen"
+align = 1
+valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""

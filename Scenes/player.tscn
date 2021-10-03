@@ -94,7 +94,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-length = 0.7
+length = 0.67
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("texture:frame")
 tracks/0/interp = 1
@@ -102,10 +103,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7 ),
+"times": PoolRealArray( 0, 0.67 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 25, 32 ]
+"values": [ 25, 31 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -149,6 +150,8 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": ""
 }
+GRAVITY = 2.4
+JUMP_SPEED = 98
 
 [node name="animations" type="AnimationPlayer" parent="."]
 anims/climb = SubResource( 1 )
