@@ -132,20 +132,23 @@ func update_motion():
 				motion.x += WALK_SPEED
 				
 		"jump":
+			#$jump_collision.position.y = position.y - $texture.global_position.y
 			if is_on_floor() and Input.is_action_pressed("jump"):
 				motion.y -= JUMP_SPEED
 			if action[1] == "right":
 				motion.x += WALK_SPEED * 0.8
 			else:
 				motion.x -= WALK_SPEED * 0.8
-				
+			$jump_collision.position.y = position.y - $texture.global_position.y
 		"salto":
+			#$salto_collision.position.y = position.y - $texture.global_position.y
 			if is_on_floor() and Input.is_action_pressed("salto"):
 				motion.y -= JUMP_SPEED
 				Input.action_release("salto")
 			motion.x = 0
-			
+			$salto_collision.position.y = position.y - $texture.global_position.y
 		"climb":
+			$climb_collision.position.y = position.y - $texture.global_position.y
 			pass
 
 
