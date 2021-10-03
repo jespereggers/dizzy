@@ -111,10 +111,11 @@ func _physics_process(_delta):
 	# Register start_pos of new action
 	if action[0] == "walk" and Input.is_action_just_pressed("walk_" + action[1]):
 		action_start_pos = self.position
-
+		
 	update_motion()
 	state_machine.update_state(action[0])
 	motion = move_and_slide(motion, UP)
+	$texture.position = position.round() - position
 
 
 func update_motion():
