@@ -111,10 +111,11 @@ func _physics_process(_delta):
 	# Register start_pos of new action
 	if action[0] == "walk" and Input.is_action_just_pressed("walk_" + action[1]):
 		action_start_pos = self.position
-
+		
 	update_motion()
 	state_machine.update_state(action[0])
 	motion = move_and_slide(motion, UP)
+	$texture.position = position.round() - position
 
 
 func update_motion():
@@ -132,20 +133,23 @@ func update_motion():
 				motion.x += WALK_SPEED
 				
 		"jump":
+			#$jump_collision.position.y = position.y - $texture.global_position.y
 			if is_on_floor() and Input.is_action_pressed("jump"):
 				motion.y -= JUMP_SPEED
 			if action[1] == "right":
 				motion.x += WALK_SPEED * 0.8
 			else:
 				motion.x -= WALK_SPEED * 0.8
-				
+			$jump_collision.position.y = position.y - $texture.global_position.y
 		"salto":
+			#$salto_collision.position.y = position.y - $texture.global_position.y
 			if is_on_floor() and Input.is_action_pressed("salto"):
 				motion.y -= JUMP_SPEED
 				Input.action_release("salto")
 			motion.x = 0
-			
+			$salto_collision.position.y = position.y - $texture.global_position.y
 		"climb":
+			$climb_collision.position.y = position.y - $texture.global_position.y
 			pass
 
 

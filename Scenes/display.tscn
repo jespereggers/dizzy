@@ -191,10 +191,10 @@ margin_bottom = 32.0
 rect_scale = Vector2( 0.4, 0.4 )
 custom_fonts/font = SubResource( 7 )
 text = "Build
-0.6.0.0
+0.6.2.0
 -
-Added New
-Controler"
+Controler
+Improved"
 align = 1
 valign = 1
 __meta__ = {

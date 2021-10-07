@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/tiles/dizzy/dizzy_idle.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/state_machine/state_machine.gd" type="Script" id=2]
@@ -142,20 +142,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 7, 9 )
-
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 5, 8 )
-
-[sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 9, 6 )
-
-[sub_resource type="CircleShape2D" id=10]
-
-[sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 7, 9 )
-
-[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 7, 7 )
 
 [node name="player" type="KinematicBody2D"]
@@ -175,46 +161,42 @@ anims/jump = SubResource( 4 )
 anims/salto = SubResource( 5 )
 anims/walk = SubResource( 6 )
 
-[node name="climb_collision" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, 3 )
-shape = SubResource( 7 )
+[node name="climb_collision" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, 2.50056 )
+polygon = PoolVector2Array( -1.79126, -9.47714, 2.04967, -9.4596, 5.01367, -7.33745, 5.87305, -5.40821, 9.78413, -5.74144, 11.2924, -2.58452, 10.3103, 0.397018, 6.87274, 1.50194, 6.06598, 3.57148, 6.875, 10.2494, -7.4375, 9.99944, -5.94788, 3.29087, -6.98265, 1.4844, -11.4199, -0.848212, -12.2793, -3.26852, -11.4023, -6.60083, -6.15834, -5.53098, -5.14111, -7.82852, -1.68603, -9.37191 )
 disabled = true
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="idle_collision" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, 4 )
-shape = SubResource( 8 )
+[node name="idle_collision" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, 2.50056 )
+polygon = PoolVector2Array( -2.04723, -9.42765, 2.13358, -9.46481, 6.01708, -5.45124, 9.80768, -4.37352, 11.1455, -3.42587, 11.0526, -1.58632, 6.85324, 1.70258, 3.73158, 4.3783, 5.84985, 7.55571, 6.14715, 9.72973, -6.30236, 9.19087, -5.96789, 7.27699, -3.8682, 4.1739, -11.1707, -1.58632, -10.9663, -3.81608, -2.06581, -9.61347 )
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="walk_collision" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, 6 )
-shape = SubResource( 9 )
+[node name="walk_collision" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, 2.50056 )
+polygon = PoolVector2Array( -2.44018, -9.89806, 3.11951, -10.0559, 5.90813, -6.53068, 10.7663, -2.07591, 4.73305, 4.29056, 6.92536, 5.72871, 6.90782, 10.1484, -8.43834, 9.5521, -8.36819, 5.57087, -6.17588, 3.83456, -12.4722, -2.35652, -6.17588, -6.63591 )
 disabled = true
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="jump_collision" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, 2 )
+[node name="jump_collision" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, 2.50057 )
 rotation = 6.28319
-shape = SubResource( 10 )
+polygon = PoolVector2Array( 0.067774, -9.7753, 7.15333, -7.56549, 9.94197, -2.23381, 7.35634, 11.7884, -0.132894, 11.7359, -10.1185, 11.1841, -10.122, -0.725408, -7.31591, -7.16204 )
 disabled = true
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="salto_collision" type="CollisionShape2D" parent="."]
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-position = Vector2( 0, 3 )
-shape = SubResource( 11 )
+[node name="salto_collision" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, 2.50056 )
+rotation = -0.00196365
+polygon = PoolVector2Array( -3.263, -9.69403, 2.87569, -9.80474, 7.11238, -5.92041, 12.0234, -6.05108, 12.2558, 0.631548, 5.80197, 0.478566, 7.13617, 10.2322, -8.95736, 10.1069, -6.08826, 0.0342941, -12.806, 0.266642, -12.0389, -6.30879, -6.19919, -5.99917 )
 disabled = true
 __meta__ = {
 "_editor_description_": ""
@@ -224,7 +206,7 @@ __meta__ = {
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 5
-frame = 25
+frame = 32
 
 [node name="dizzy_death" type="Sprite" parent="."]
 visible = false
@@ -292,7 +274,7 @@ script = ExtResource( 11 )
 [node name="shape" type="CollisionShape2D" parent="item_detector"]
 self_modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 0, 2 )
-shape = SubResource( 12 )
+shape = SubResource( 7 )
 
 [node name="ticks" type="Timer" parent="."]
 wait_time = 0.2
