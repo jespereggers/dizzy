@@ -162,7 +162,7 @@ func save_setttings():
 
 func store_default_game_save():
 	var template: Dictionary = tools.load_file("res://databanks/templates/game_save.json")
-	template.player.position = Vector2(188, 148)
+	template.player.position = Vector2(189, 148)
 	template.scene.current_room = Vector2(0,0)
 	template.enviroment.map_1 = {}
 	tools.save_file("user://game_save.dizzy", template)

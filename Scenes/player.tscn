@@ -94,7 +94,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-length = 0.7
+length = 0.62
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("texture:frame")
@@ -103,14 +103,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7 ),
+"times": PoolRealArray( 0, 0.62 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 25, 31 ]
 }
 
 [sub_resource type="Animation" id=5]
-length = 0.7
+length = 0.6
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("texture:frame")
 tracks/0/interp = 1
@@ -118,16 +119,16 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7 ),
+"times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 8, 15 ]
 }
 
 [sub_resource type="Animation" id=6]
-length = 0.7
+length = 0.64
 loop = true
-step = 0.7
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("texture:frame")
 tracks/0/interp = 1
@@ -135,7 +136,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.001, 0.7 ),
+"times": PoolRealArray( 0, 0.001, 0.64 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ 16, 16, 24 ]
@@ -150,8 +151,10 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": ""
 }
-GRAVITY = 2.0
-JUMP_SPEED = 86
+GRAVITY = 2.6
+JUMP_SPEED = 98
+MAX_JUMP_SPEED = 100
+MAX_WALK_SPEED = 45
 
 [node name="animations" type="AnimationPlayer" parent="."]
 anims/climb = SubResource( 1 )
@@ -170,28 +173,29 @@ __meta__ = {
 }
 
 [node name="idle_collision" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -2, -8, 2, -8, 5, -6, 6, -1, 7, 0, 7, 4, 6, 4, 6, 12, -6, 12, -6, 4, -7, 4, -7, 0, -6, -1, -5, -6 )
+polygon = PoolVector2Array( -2, -8, 2, -8, 5, -6, 6, -4, 7, -1, 7, 4, 6, 4, 6, 12, -6, 12, -6, 4, -7, 4, -7, -1, -6, -4, -5, -6 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="walk_collision" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -3, -7, 3, -7, 5, -5, 6, -3, 6, -1, 10, 1, 12, 1, 12, 4, 5, 4, 5, 12, -5, 12, -5, 4, -12, 4, -12, 1, -6, -1, -6, -3, -5, -5 )
+polygon = PoolVector2Array( -3, -7, 3, -7, 5, -5, 6, -3, 6, -1, 12, 1, 12, 4, 6, 4, 6, 11, 5, 12, -6, 12, -6, 4, -12, 4, -12, 1, -6, -1, -6, -3, -5, -5 )
 disabled = true
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="jump_collision" type="CollisionPolygon2D" parent="."]
-rotation = 6.28319
-polygon = PoolVector2Array( 1.99997, -6.00001, 7.99997, -6.00004, 11, -4.00005, 12, -5.35966e-05, 12, 7.99995, 8.00005, 11, 6.00005, 12, -5.99995, 12, -12, 7.00005, -12, 5.35966e-05, -7.00003, -5.99997, -2.00003, -5.99999 )
+rotation = -6.28319
+polygon = PoolVector2Array( 0.999998, -9, 3, -8, 12, -2.09815e-06, 12, 3, 10, 7, 5, 12, 2.09815e-06, 12, -3, 12, -9, 8, -12, 3, -12, 2.09815e-06, -7, -4, -3, -8, -1, -9 )
 disabled = true
+one_way_collision_margin = 0.0
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="salto_collision" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 6, -5, 6, 0, 7, 0, 7, 4, 6, 4, 6, 10, 6, 12, -6, 12, -6, 10, -6, 4, -7, 4, -7, 0, -6, 0, -6, -5 )
+polygon = PoolVector2Array( 6, 0, 7, 0, 7, 4, 6, 4, 6, 10, 6, 12, -6, 12, -6, 10, -6, 4, -7, 4, -7, 0, -6, 0, -5, -5, 4.08508, -5 )
 disabled = true
 __meta__ = {
 "_editor_description_": ""
@@ -201,7 +205,7 @@ __meta__ = {
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 5
-frame = 18
+frame = 24
 
 [node name="dizzy_death" type="Sprite" parent="."]
 visible = false

@@ -2877,6 +2877,6 @@ fps = 12
 [node name="objects" parent="." instance=ExtResource( 16 )]
 
 [node name="coin" parent="objects" instance=ExtResource( 18 )]
-position = Vector2( 39, 72 )
+position = Vector2( 40, 72 )
 
 [editable path="torchfire_death"]
