@@ -94,8 +94,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-length = 0.62
-step = 0.01
+length = 0.626
+step = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("texture:frame")
 tracks/0/interp = 1
@@ -103,7 +103,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.62 ),
+"times": PoolRealArray( 0, 0.626 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 25, 31 ]
@@ -151,9 +151,9 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": ""
 }
-GRAVITY = 2.6
-JUMP_SPEED = 98
+JUMP_SPEED = 97
 MAX_JUMP_SPEED = 100
+WALK_SPEED = 6
 MAX_WALK_SPEED = 45
 
 [node name="animations" type="AnimationPlayer" parent="."]
@@ -187,7 +187,7 @@ __meta__ = {
 
 [node name="jump_collision" type="CollisionPolygon2D" parent="."]
 rotation = -6.28319
-polygon = PoolVector2Array( 0.999998, -9, 3, -8, 12, -2.09815e-06, 12, 3, 10, 7, 5, 12, 2.09815e-06, 12, -3, 12, -9, 8, -12, 3, -12, 2.09815e-06, -7, -4, -3, -8, -1, -9 )
+polygon = PoolVector2Array( 0.999998, -9, 3, -8, 12, -2.09815e-06, 12, 3, 10, 7, 3.99995, 12, -5.35966e-05, 12, -5.00005, 12, -9, 8, -12, 3, -12, 2.09815e-06, -7, -4, -3, -8, -1, -9 )
 disabled = true
 one_way_collision_margin = 0.0
 __meta__ = {
@@ -205,7 +205,7 @@ __meta__ = {
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 5
-frame = 24
+frame = 25
 
 [node name="dizzy_death" type="Sprite" parent="."]
 visible = false
