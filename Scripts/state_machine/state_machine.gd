@@ -15,7 +15,7 @@ func update_state(new_state: String):
 		return
 	
 	for state in states:
-		player.get_node(state + "_collision").disabled = state != new_state
+		player.get_node(state + "_collision").disabled = (state != new_state)
 	
 	states[new_state].enter()
 
