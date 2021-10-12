@@ -8,11 +8,14 @@ onready var states: Dictionary = {
 	"salto": get_node("salto_state"),
 	"climb": get_node("climb_state")
 }
+var state: String = "idle"
 
 
 func update_state(new_state: String):
 	if player.locked:
 		return
+	
+	state = new_state
 	
 	for state in states:
 		player.get_node(state + "_collision").disabled = (state != new_state)

@@ -150,7 +150,9 @@ func update_motion():
 			$salto_collision.position.y = position.y - $texture.global_position.y
 		"climb":
 			$climb_collision.position.y = position.y - $texture.global_position.y
-			pass
+	
+	if $state_machine.state == "salto":
+		motion.x = 0
 
 
 func get_height() -> float:
