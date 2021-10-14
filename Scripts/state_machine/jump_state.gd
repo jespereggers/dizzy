@@ -4,7 +4,7 @@ onready var player: KinematicBody2D = get_parent().get_parent()
 onready var state_machine: Node = get_parent()
 
 var times_played: int = 0
-var times_played_goal: int = 2
+var times_played_goal: int = 1
 
 
 func enter():

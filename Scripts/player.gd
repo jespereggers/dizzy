@@ -13,6 +13,7 @@ var is_on_leaderbox: bool = false
 var action_start_pos: Vector2 = Vector2(0,0)
 var is_autojumping: bool = false
 
+var last_pos: Vector2 = Vector2(0,0)
 # Movement
 export var GRAVITY: float = 2.5
 
@@ -69,6 +70,7 @@ func _on_player_died(collision_object):
 
 
 func _physics_process(_delta):
+	last_pos = position
 	var previous_action: Array = action
 	motion.y += GRAVITY
 
@@ -80,7 +82,10 @@ func _physics_process(_delta):
 		
 	if not locked or unlocked:
 		if can_autojump(true):
-			self.position += Vector2(0, -9)
+			if $texture.flip_h:
+				self.position += Vector2(-2, -9)
+			else:
+				self.position += Vector2(2, -9)
 			unlocked = true
 			
 		if is_on_floor():
@@ -103,10 +108,7 @@ func _physics_process(_delta):
 				action = ["salto"]
 				
 			if action == []:
-				if previous_action[0] == "walk" and action_start_pos.distance_to(self.position) > 4:
-					action = ["idle"]
-				else:
-					action = previous_action
+				action = ["idle"]
 
 	# Register start_pos of new action
 	if action[0] == "walk" and Input.is_action_just_pressed("walk_" + action[1]):
@@ -116,11 +118,21 @@ func _physics_process(_delta):
 	state_machine.update_state(action[0])
 	motion = move_and_slide(motion, UP)
 	$texture.position = position.round() - position
+	
+	# Adjust position
+	if Input.is_action_just_pressed("ui_left"):
+		self.position.x -= 4
+	if Input.is_action_just_pressed("ui_right"):
+		self.position.x += 4
+	
+	if $state_machine.state == "idle":
+		$texture.position = (position/4).round()*4 - position
 
 
 func update_motion():
-	texture.flip_h = (action.size() > 1 and action[1] == "left")
-
+	if not locked:
+		texture.flip_h = (action.size() > 1 and action[1] == "left")
+	
 	match action[0]:
 		"idle":
 			motion.x = 0

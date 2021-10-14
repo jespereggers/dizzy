@@ -24,6 +24,12 @@ func update_state(new_state: String):
 
 
 func _on_animation_animation_finished(anim_name):
-	#update_state("idle")
+	update_state("idle")
+	#print("Try")
+	#if get_parent().is_on_floor() or get_parent().can_autojump(false):
+		#print(get_parent().can_autojump(false))
+	#	print("Switch")
+	#	update_state("idle")
+
 	if anim_name in states.keys():
 		states[anim_name]._on_animation_finished()
