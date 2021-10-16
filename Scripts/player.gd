@@ -5,6 +5,7 @@ onready var texture: Sprite = $texture
 onready var state_machine: Node = $state_machine
 onready var item_detector: Area2D = $item_detector
 
+export var grid_movement: bool = true
 var motion: Vector2 = Vector2()
 var unlocked: bool = false
 var action: Array = ["idle"]
@@ -24,7 +25,6 @@ export var WALK_SPEED: int = 8
 export var MAX_WALK_SPEED: int = 40
 
 var UP: Vector2 = Vector2(0, -1)
-
 
 func _ready():
 	yield(signals, "backend_is_ready")
@@ -125,7 +125,7 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_right"):
 		self.position.x += 4
 	
-	if $state_machine.state == "idle":
+	if $state_machine.state == "idle" and grid_movement == true:
 		$texture.position = (position/4).round()*4 - position
 
 
