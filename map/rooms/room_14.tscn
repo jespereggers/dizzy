@@ -2917,16 +2917,6 @@ centered = false
 position = Vector2( 10, 12 )
 shape = SubResource( 72 )
 
-[node name="barrel_water" type="Sprite" parent="."]
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-position = Vector2( 36, 116 )
-rotation = 1.57079
-texture = ExtResource( 15 )
-flip_v = true
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="barrel_water"]
-polygon = PoolVector2Array( -12, 3.99992, -12, -3.00008, -11, -3.00007, -11, -6.00007, -9.99996, -6.00006, -9.99995, -9.00006, -8.99995, -9.00006, -8.99993, -11.0001, -7.99993, -11, -7.99993, -12, 4.00007, -12, 4.00007, -11, 5.00007, -11, 5.00005, -8.99997, 6.00005, -8.99996, 8.00003, -4.99995, 7.99997, 4.00005, 6.99995, 7.00004, 5.99995, 7.00004, 5.99994, 9.00004, 4.99994, 9.00003, 4.99993, 11, 3.99993, 11, 3.99992, 12, -8.00008, 11.9999, -8.00007, 10.9999, -9.00007, 10.9999, -9.00006, 8.99994, -10.0001, 8.99994, -10, 6.99994, -11, 6.99993, -11, 3.99993 )
-
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 108, 32 )
 colliding_object = "torchfire"

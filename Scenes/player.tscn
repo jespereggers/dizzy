@@ -173,7 +173,7 @@ __meta__ = {
 }
 
 [node name="idle_collision" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -2, -8, 2, -8, 5, -6, 6, -4, 7, -1, 7, 4, 6, 4, 6, 12, -6, 12, -6, 4, -7, 4, -7, -1, -6, -4, -5, -6 )
+polygon = PoolVector2Array( -8, -8, 8, -8, 8, 2, 6, 12, -6, 12, -8, 2 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -205,7 +205,7 @@ __meta__ = {
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 5
-frame = 25
+frame = 1
 
 [node name="dizzy_death" type="Sprite" parent="."]
 visible = false
