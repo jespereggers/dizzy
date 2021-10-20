@@ -8,8 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Scripts/player.gd"
+}, {
+"base": "Node2D",
+"class": "Sensor",
+"language": "GDScript",
+"path": "res://Scripts/Sensor.gd"
+} ]
 _global_script_class_icons={
+"Player": "",
+"Sensor": ""
 }
 
 [application]
@@ -86,6 +98,10 @@ walk_right={
 
 locale_filter=[ 1, [ "de", "en" ] ]
 translations=PoolStringArray( "res://Assets/translations/translations.de.translation", "res://Assets/translations/translations.en.translation" )
+
+[physics]
+
+common/physics_fps=12
 
 [rendering]
 

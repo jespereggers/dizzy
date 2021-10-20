@@ -89,7 +89,7 @@ margin_top = 45.0
 margin_right = -8.0
 margin_bottom = -13.0
 
-[connection signal="body_exited" from="screen_area" to="." method="_on_screen_area_body_exited"]
+[connection signal="area_exited" from="screen_area" to="." method="_on_screen_area_area_exited"]
 [connection signal="timeout" from="camera/timer" to="camera" method="_on_timer_timeout"]
 [connection signal="pressed" from="overlay/open_settings" to="overlay" method="_on_open_settings_pressed"]
 

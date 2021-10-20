@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var player: KinematicBody2D = $player
+onready var player: Area2D = $player
 onready var map: Node2D = $map
 
 enum LANGUAGES {english, german}
@@ -25,13 +25,12 @@ func _ready():
 	
 	signals.emit_signal("backend_is_ready")
 
-
-func _on_screen_area_body_exited(body):
-	if body.name == "player":
+func _on_screen_area_area_exited(area):
+	if area.name == "player":
 		# Check if the player left on X-Axis
 		var player_height: float = paths.player.position.y
 
-		if body.position.x < $screen_area.position.x - $screen_area/collision.shape.extents.x:
+		if area.position.x < $screen_area.position.x - $screen_area/collision.shape.extents.x:
 			# Left
 			if data.maps[stats.current_map].keys().has(Vector2(stats.current_room.x - 1, stats.current_room.y)):
 				$player.position.x = $screen_area.position.x + $screen_area/collision.shape.extents.x - 10
@@ -42,7 +41,7 @@ func _on_screen_area_body_exited(body):
 			else:
 				stats.change_eggs_by(-1)
 				
-		if body.position.x > $screen_area.position.x + $screen_area/collision.shape.extents.x:
+		if area.position.x > $screen_area.position.x + $screen_area/collision.shape.extents.x:
 			# Right
 			if data.maps[stats.current_map].keys().has(Vector2(stats.current_room.x + 1, stats.current_room.y)):
 				stats.current_room = Vector2(stats.current_room.x + 1, stats.current_room.y)
@@ -55,7 +54,7 @@ func _on_screen_area_body_exited(body):
 				stats.change_eggs_by(-1)
 				
 		# Check if the player left on Y-Axis
-		if body.position.y < $screen_area.position.y - $screen_area/collision.shape.extents.y:
+		if area.position.y < $screen_area.position.y - $screen_area/collision.shape.extents.y:
 			# UP
 			if data.maps[stats.current_map].keys().has(Vector2(stats.current_room.x, stats.current_room.y + 1)):
 				$player.position.y = $screen_area.position.y + $screen_area/collision.shape.extents.y - 15
@@ -64,7 +63,7 @@ func _on_screen_area_body_exited(body):
 			else:
 				stats.change_eggs_by(-1)
 				
-		if body.position.y > $screen_area.position.y + $screen_area/collision.shape.extents.y:
+		if area.position.y > $screen_area.position.y + $screen_area/collision.shape.extents.y:
 			# DOWN
 			if data.maps[stats.current_map].keys().has(Vector2(stats.current_room.x, stats.current_room.y - 1)):
 				$player.position.y = $screen_area.position.y - $screen_area/collision.shape.extents.y + 15
