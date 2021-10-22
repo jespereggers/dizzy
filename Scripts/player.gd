@@ -82,8 +82,6 @@ func is_next_to_wall(dir:int) -> bool:
 	return false
 
 func get_distance_to_ceiling() -> float:
-	if is_inside_terrain():
-		return 0.0
 	return ceiling_sensor.get_distance()
 
 func get_distance_to_floor() -> float:
