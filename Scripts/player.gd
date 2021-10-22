@@ -44,7 +44,6 @@ func _ready():
 func _physics_process(_delta):
 	if not locked:
 		state_machine.update()
-	print(global_position)
 
 # Dizzy Animation
 func change_animation(name:String):
