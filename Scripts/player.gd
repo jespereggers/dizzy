@@ -69,12 +69,12 @@ func is_inside_terrain() -> bool:
 func is_on_floor() -> bool:
 	return floor_sensor.zero_distance() or is_inside_terrain()
 
-func is_next_to_wall(dir:int, step_size:int) -> bool:
+func is_next_to_wall(dir:int) -> bool:
 	match dir:
 		-1:
-			return wall_sensor_left.get_distance() < step_size
+			return wall_sensor_left.is_colliding()
 		1:
-			return wall_sensor_right.get_distance() < step_size
+			return wall_sensor_right.is_colliding()
 		0:
 			return false
 		var val: 
@@ -168,7 +168,7 @@ class PlayerStateMachine:
 	func _update_state():
 		match _state:
 			"walk","jump","fall":
-				if not _player.is_next_to_wall(_dir,STEP_X_SIZE):
+				if not _player.is_next_to_wall(_dir):
 					_player.position.x += STEP_X_SIZE * _dir
 				continue
 			"walk","idle":

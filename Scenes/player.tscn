@@ -155,30 +155,30 @@ script = ExtResource( 5 )
 
 [node name="RayCast2DTop" type="RayCast2D" parent="WallSensorLeft"]
 position = Vector2( -8, -7 )
-cast_to = Vector2( -4, 0 )
+cast_to = Vector2( -3, 0 )
 
 [node name="RayCast2DMiddle" type="RayCast2D" parent="WallSensorLeft"]
 position = Vector2( -8, -2 )
-cast_to = Vector2( -4, 0 )
+cast_to = Vector2( -3, 0 )
 
 [node name="RayCast2DBottom" type="RayCast2D" parent="WallSensorLeft"]
 position = Vector2( -8, 3 )
-cast_to = Vector2( -4, 0 )
+cast_to = Vector2( -3, 0 )
 
 [node name="WallSensorRight" type="Node2D" parent="."]
 script = ExtResource( 5 )
 
 [node name="RayCast2DTop" type="RayCast2D" parent="WallSensorRight"]
 position = Vector2( 8, -7 )
-cast_to = Vector2( 4, 0 )
+cast_to = Vector2( 3, 0 )
 
 [node name="RayCast2DMiddle" type="RayCast2D" parent="WallSensorRight"]
 position = Vector2( 8, -2 )
-cast_to = Vector2( 4, 0 )
+cast_to = Vector2( 3, 0 )
 
 [node name="RayCast2DBottom" type="RayCast2D" parent="WallSensorRight"]
 position = Vector2( 8, 3 )
-cast_to = Vector2( 4, 0 )
+cast_to = Vector2( 3, 0 )
 
 [node name="TerrainSensor" type="Node2D" parent="."]
 script = ExtResource( 5 )
