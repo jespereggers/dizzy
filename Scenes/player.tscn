@@ -87,7 +87,7 @@ anims/death = SubResource( 2 )
 texture = ExtResource( 3 )
 hframes = 8
 vframes = 5
-frame = 1
+frame = 32
 
 [node name="dizzy_death" type="Sprite" parent="."]
 visible = false
@@ -121,6 +121,7 @@ __meta__ = {
 }
 
 [node name="CeilingSensor" type="Node2D" parent="."]
+position = Vector2( 0, 1 )
 script = ExtResource( 5 )
 
 [node name="RayCast2DLeft" type="RayCast2D" parent="CeilingSensor"]
@@ -154,7 +155,7 @@ cast_to = Vector2( 0, 8 )
 script = ExtResource( 5 )
 
 [node name="RayCast2DTop" type="RayCast2D" parent="WallSensorLeft"]
-position = Vector2( -8, -7 )
+position = Vector2( -8, -6 )
 cast_to = Vector2( -3, 0 )
 
 [node name="RayCast2DMiddle" type="RayCast2D" parent="WallSensorLeft"]
@@ -169,7 +170,7 @@ cast_to = Vector2( -3, 0 )
 script = ExtResource( 5 )
 
 [node name="RayCast2DTop" type="RayCast2D" parent="WallSensorRight"]
-position = Vector2( 8, -7 )
+position = Vector2( 8, -6 )
 cast_to = Vector2( 3, 0 )
 
 [node name="RayCast2DMiddle" type="RayCast2D" parent="WallSensorRight"]
