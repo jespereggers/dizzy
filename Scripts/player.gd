@@ -9,7 +9,9 @@ onready var ceiling_sensor: Sensor = $CeilingSensor
 onready var floor_sensor: Sensor = $FloorSensor
 onready var wall_sensor_right: Sensor = $WallSensorRight
 onready var wall_sensor_left: Sensor = $WallSensorLeft
-onready var terrain_sensor: Sensor = $TerrainSensor
+onready var lower_terrain_sensor: Sensor = $LowerTerrainSensor
+onready var upper_terrain_sensor: Sensor = $UpperTerrainSensor
+onready var alternate_ceiling_sensor: Sensor = $AlternateCeilingSensor
 
 var state_machine: PlayerStateMachine
 
@@ -23,6 +25,10 @@ var animation_data := {
 
 var animation_first_frame: int
 var animation_last_frame: int
+
+const STUN_THRESHOLD = 2
+const STEP_X_SIZE = 4
+var stun_level := 0
 
 var unlocked: bool = false
 var action: Array = ["idle"]
@@ -44,6 +50,14 @@ func _ready():
 func _physics_process(_delta):
 	if not locked:
 		state_machine.update()
+		
+	#unstuck dizzy after entering new room
+	if is_inside_ceiling() and is_inside_floor():
+		for i in 4:
+			if is_inside_floor():
+				position.y -= 2
+			else:
+				break
 
 # Dizzy Animation
 func change_animation(name:String):
@@ -61,13 +75,38 @@ func advance_animation():
 		texture.frame = animation_first_frame
 
 # Dizzy Movement
-func is_inside_terrain() -> bool:
-	if terrain_sensor.is_colliding():
+
+func move_x(dir:int):
+	if dir == 0:
+		return
+	if not is_next_to_wall(dir):
+		position.x += STEP_X_SIZE * dir
+		#fix collisions by rising Dizzy
+		for i in 4:
+			if is_inside_floor():
+				position.y -= 2
+			else:
+				break
+		
+
+func is_stunned():
+	return stun_level > 0
+
+func is_inside_floor() -> bool:
+	if lower_terrain_sensor.is_colliding():
+		return true
+	return false
+	
+func is_inside_ceiling() -> bool:
+	if upper_terrain_sensor.is_colliding():
 		return true
 	return false
 
 func is_on_floor() -> bool:
-	return floor_sensor.zero_distance() or is_inside_terrain()
+	return floor_sensor.zero_distance() or is_inside_floor()
+	
+func is_on_ceiling() -> bool:
+	return ceiling_sensor.zero_distance() or is_inside_ceiling()
 
 func is_next_to_wall(dir:int) -> bool:
 	match dir:
@@ -82,16 +121,18 @@ func is_next_to_wall(dir:int) -> bool:
 	return false
 
 func get_distance_to_ceiling() -> float:
-	return ceiling_sensor.get_distance()
+	if is_inside_ceiling():
+		return alternate_ceiling_sensor.get_distance()
+	else:
+		return ceiling_sensor.get_distance()
 
 func get_distance_to_floor() -> float:
-	if is_inside_terrain():
+	if is_inside_floor():
 		return 0.0
 	return floor_sensor.get_distance()
 
-#resembles behaviour of movement.gs
+
 class PlayerStateMachine:
-	const STEP_X_SIZE = 4
 	const MAX_POWER = 7
 	const INITIAL_JUMP_POWER = 7
 	const INITIAL_FALL_POWER = 1
@@ -106,23 +147,10 @@ class PlayerStateMachine:
 		_enter_state("idle")
 
 	func update():
-		if ["idle","walk"].has(_state):
-			_enter_key_state()
-		_update_state()
-
-		#check if dizzy should fall
-		if ["idle","walk"].has(_state):
-			if not _player.is_on_floor():
-				_enter_state("fall")
-				_power += 1
-				_player.position.y += 1
-
-		#fix collisions by rising Dizzy
-		for i in 4:
-			if _player.is_inside_terrain():
-				_player.position.y -= 1
-			else:
-				break
+		var new_state := _get_state_transition()
+		if new_state:
+			_enter_state(new_state)
+		_update_state() 
 
 
 	func _enter_key_state():
@@ -133,70 +161,88 @@ class PlayerStateMachine:
 			_dir -= 1
 
 		if Input.is_action_pressed("jump"):
-			_enter_state("jump")
+				return "jump"
 		elif _dir != 0:
-			_enter_state("walk")
+			return "walk"
 		else:
-			_enter_state("idle")
+			return "idle"
 
-		#update sprite orientation
-		_player.texture.flip_h = (_dir == -1)
-
+	func _get_state_transition() -> String:
+		match _state:
+			"idle","walk":
+				if _player.is_on_floor():
+					return _enter_key_state()
+				else:
+					return("fall")
+			"fall":
+				if _player.is_on_floor():
+					return _enter_key_state()
+			"jump":
+				if _player.is_on_floor() and _player.texture.frame == _player.animation_first_frame and not _player.is_stunned() and _salto_it > 8:
+					return _enter_key_state()
+		return ""
+				
 	func _enter_state(new_state:String):
-		var _old_state = _state
+		var old_state = _state
 		_state = new_state
 		match(_state):
 			"idle":
-				_dir = 0
-				_power = 0
 				_player.change_animation("idle")
 			"walk":
-				_power = 0
 				_player.change_animation("walk")
 			"jump":
-				_power = INITIAL_JUMP_POWER
-				if _dir != 0:
-					_player.change_animation("jump")
-				else:
+				_salto_it = 0
+				_player.stun_level = 0
+				if _dir == 0:
 					_player.change_animation("salto")
-			"fall":
-				_power = INITIAL_FALL_POWER
-				#do not change animation
-
-	func _update_state():
-		match _state:
-			"walk","jump","fall":
-				if not _player.is_next_to_wall(_dir):
-					_player.position.x += STEP_X_SIZE * _dir
-				continue
-			"walk","idle":
-				_player.advance_animation()
-			"jump":
-				_player.position.y -= min(_power,_player.get_distance_to_ceiling())
-				_power -= 1
-				_player.advance_animation()
-				if _power < 0: #jump ends
-					if _player.is_on_floor():
-						_enter_key_state()
-					else:
-						_enter_state("fall")
-			"fall":
-				var step_y = min(_power,_player.get_distance_to_floor())
-				_player.position.y += step_y
-				_player.advance_animation()
-				if step_y < _power: #fall ends
-					_enter_roll()
 				else:
-					_power +=1
-					_power = min(_power,MAX_POWER)
-
-	func _enter_roll():
-		_power = 1
-		if([_player.animation_data["jump"][0],_player.animation_data["salto"][0]].has(_player.animation_first_frame)): #only roll when jumping
-			if _player.texture.frame != _player.animation_first_frame: #keep rolling until upright frame is reached
-				return
-		_enter_key_state()
-
+					_player.change_animation("jump")
+			"fall":
+				_player.change_animation("walk")
+			"stunned_jump":
+				pass
+	
+	var _salto_it:int
+	var _jump_moves := [-6,-4,-4,-4,-4,-4,-2,-2,2,2,4,4,4,4,4,6]
+	const FALL_SPEED = 6
+	
+	func _update_state():
+		_player.texture.flip_h = (_dir == -1)
+		_player.advance_animation()
+		match _state:
+			"jump":
+				_player.move_x(_dir)
+				var step_y = _jump_moves[min(_salto_it,_jump_moves.size()-1)]
+				var stun_level_change = 0 
+				if(step_y < 0):
+					var new_step_y = max(step_y, -_player.get_distance_to_ceiling())
+					if new_step_y != step_y:
+						step_y = new_step_y
+						stun_level_change = 1
+					else:
+						stun_level_change = -_player.stun_level
+				if(step_y > 0):
+					stun_level_change = -1
+					var new_step_y = min(step_y, _player.get_distance_to_floor())
+					if new_step_y != step_y:
+						step_y = new_step_y
+				if not _player.is_stunned(): # Can't move upwards if stunned
+					_player.position.y += step_y
+				_player.stun_level += stun_level_change
+				_player.stun_level = max(_player.stun_level,0)
+				if _player.is_on_floor():
+					_player.stun_level = 0
+				_salto_it += 1
+			"walk":
+				_player.move_x(_dir)
+			"idle":
+				pass
+			"fall":
+				var step_y = min(FALL_SPEED,_player.get_distance_to_floor())
+				_player.position.y += step_y
+				if not _player.is_on_floor():
+					_player.move_x(_dir)
+					
 
 func _on_player_respawned():
 	locked = true
