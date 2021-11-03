@@ -79,8 +79,7 @@ func _ready():
 func _process(delta):
 	var p = get_parent()
 	if p:
-		if p.is_stunned():
-			visible = true
+		visible = p.is_stunned()
 		text = \"stun: \" + str(p.stun_level)
 "
 
@@ -136,7 +135,6 @@ __meta__ = {
 }
 
 [node name="StunLabel" type="Label" parent="."]
-visible = false
 margin_left = 11.0
 margin_top = -8.0
 margin_right = 51.0
@@ -147,6 +145,7 @@ __meta__ = {
 }
 
 [node name="CeilingSensor" type="Node2D" parent="."]
+visible = false
 position = Vector2( 0, -8 )
 script = ExtResource( 5 )
 
@@ -162,6 +161,7 @@ position = Vector2( 7, 0 )
 cast_to = Vector2( 0, -8 )
 
 [node name="InnerCeilingSensor" type="Node2D" parent="."]
+visible = false
 position = Vector2( 0, 2 )
 script = ExtResource( 5 )
 
@@ -195,19 +195,52 @@ cast_to = Vector2( 0, 8 )
 position = Vector2( -3, 0 )
 script = ExtResource( 5 )
 
-[node name="RayCast2DBottom" type="RayCast2D" parent="WallSensorLeft"]
+[node name="RayCast2D" type="RayCast2D" parent="WallSensorLeft"]
 position = Vector2( -8, 3 )
+cast_to = Vector2( -4, 0 )
+
+[node name="InnerWallSensorLeft" type="Node2D" parent="."]
+position = Vector2( -3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="InnerWallSensorLeft"]
+position = Vector2( -3, 3 )
+cast_to = Vector2( -4, 0 )
+
+[node name="LowerWallSensorLeft" type="Node2D" parent="."]
+position = Vector2( -3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="LowerWallSensorLeft"]
+position = Vector2( -5, 7 )
 cast_to = Vector2( -3, 0 )
 
 [node name="WallSensorRight" type="Node2D" parent="."]
 position = Vector2( 3, 0 )
 script = ExtResource( 5 )
 
-[node name="RayCast2DBottom" type="RayCast2D" parent="WallSensorRight"]
+[node name="RayCast2D" type="RayCast2D" parent="WallSensorRight"]
 position = Vector2( 8, 3 )
+cast_to = Vector2( 4, 0 )
+
+[node name="InnerWallSensorRight" type="Node2D" parent="."]
+position = Vector2( 3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="InnerWallSensorRight"]
+position = Vector2( 3, 3 )
+cast_to = Vector2( 4, 0 )
+
+[node name="LowerWallSensorRight" type="Node2D" parent="."]
+position = Vector2( 3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="LowerWallSensorRight"]
+position = Vector2( 4, 7 )
 cast_to = Vector2( 3, 0 )
 
 [node name="LowerTerrainSensor" type="Node2D" parent="."]
+visible = false
 position = Vector2( 0, 10 )
 script = ExtResource( 5 )
 
@@ -228,6 +261,7 @@ position = Vector2( -5, 1 )
 cast_to = Vector2( 0, -6 )
 
 [node name="UpperTerrainSensor" type="Node2D" parent="."]
+visible = false
 position = Vector2( 0, -2 )
 script = ExtResource( 5 )
 
