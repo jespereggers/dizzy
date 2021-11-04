@@ -14,6 +14,7 @@ onready var inner_wall_sensor_left: Sensor = $InnerWallSensorLeft
 onready var lower_wall_sensor_right: Sensor = $LowerWallSensorRight
 onready var lower_wall_sensor_left: Sensor = $LowerWallSensorLeft
 onready var lower_terrain_sensor: Sensor = $LowerTerrainSensor
+onready var center_terrain_sensor: Sensor = $CenterTerrainSensor
 onready var upper_terrain_sensor: Sensor = $UpperTerrainSensor
 onready var inner_ceiling_sensor: Sensor = $InnerCeilingSensor
 
@@ -36,6 +37,7 @@ var stun_level := 0
 
 var unlocked: bool = false
 var locked: bool = false
+var paused: bool = false
 
 func _ready():
 	yield(signals, "backend_is_ready")
@@ -51,8 +53,22 @@ func _ready():
 	state_machine = PlayerStateMachine.new(self)
 
 func _physics_process(_delta):
+	
+	if Input.is_action_just_pressed("pause"):
+		if paused:
+			locked = false
+		else:
+			locked = true
+			paused = true
+	if Input.is_action_just_pressed("resume"):
+		locked = false
+		paused = false
+
+	
 	if not locked:
 		state_machine.update()
+		if paused:
+			locked = true
 		
 #	#unstuck dizzy after entering new room
 #	if is_inside_ceiling() and is_inside_floor():
@@ -82,14 +98,18 @@ func advance_animation():
 func move_x(dir:int):
 	if dir == 0:
 		return
-	if not is_next_to_wall(dir) and (is_on_floor() or not is_next_to_low_wall(dir)):
+	#if (not is_next_to_wall(dir) and (is_on_floor() or not is_next_to_low_wall(dir))) or is_inside_ceiling():
+	if not is_next_to_wall(dir) or center_terrain_sensor.is_colliding():
 		position.x += STEP_X_SIZE * dir
 		#step up
+		var deb_y_before = position.y
 		for i in 4:
-			if is_inside_floor():
+			if is_inside_floor() and not center_terrain_sensor.is_colliding():
 				position.y -= 2
 			else:
 				break
+		if position.y != deb_y_before:
+			print("step: " +str(deb_y_before - position.y) + " from ", deb_y_before -148, " to ", position.y -148)
 
 func is_stunned():
 	return stun_level > 0
@@ -136,7 +156,7 @@ func is_next_to_low_wall(dir:int) -> bool:
 
 func get_distance_to_ceiling() -> float:
 	if is_inside_ceiling():
-		return inner_ceiling_sensor.get_distance()
+		return 0.0
 	else:
 		return ceiling_sensor.get_distance()
 
@@ -259,7 +279,7 @@ class PlayerStateMachine:
 				_player.move_x(_dir)
 				
 				if _jump_frame_counter == _jump_moves.size(): #end jump
-					if distance_to_floor == 0: #has_landed
+					if _player.is_on_floor() or (distance_to_floor == 0 and not _player.is_next_to_wall(_dir) and _player.get_distance_to_floor() > 8): #has_landed
 						_enter_state("idle")
 					elif _player.is_next_to_low_wall(_dir):
 						_enter_state("idle") # Switch to "idle" instead of "jump_roll" if very close to wall; see jump_close_to_wall.gif 
