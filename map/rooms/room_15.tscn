@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=2]
@@ -22,6 +22,8 @@
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=20]
 [ext_resource path="res://Assets/tiles/build/9.png" type="Texture" id=21]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=22]
+[ext_resource path="res://Assets/tiles/items/mystical_artefact.png" type="Texture" id=23]
+[ext_resource path="res://Assets/tiles/items/bitten_apple.png" type="Texture" id=24]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2853,7 +2855,7 @@ pause_mode = 2
 script = ExtResource( 9 )
 
 [node name="respawn_point" parent="." instance=ExtResource( 3 )]
-position = Vector2( 116, 116 )
+position = Vector2( 180, 101 )
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -2868,7 +2870,7 @@ __meta__ = {
 tile_set = SubResource( 71 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 24, 1, 0, 40, 0, 0, 64, 0, 0, 88, 1, 0, 104, 0, 0, 128, 1, 0, 144, 0, 0, 168, 1, 0, 224, 3, 0, 2097152, 14, 0, 2097160, 5, 0, 2097176, 2, 0, 2097200, 0, 0, 2097224, 5, 0, 2097240, 4, 0, 2097264, 2, 0, 2097288, 0, 0, 2097312, 1, 0, 2097328, 3, 0, 2097344, 14, 0, 2097352, 5, 0, 2097368, 2, 0, 2621488, 4, 0, 2621576, 5, 0, 2621592, 4, 0, 3145728, 14, 0, 3145736, 3, 0, 3145800, 0, 0, 3145824, 1, 0, 3145920, 0, 0, 4194304, 14, 0, 4718600, 3, 0, 7340168, 536870933, 0, 7340184, 21, 0, 7864320, 7, 0, 7864328, 7, 0, 7864336, 7, 0, 7864344, 7, 0, 8388608, 0, 0, 8388632, 1, 0, 8388648, 1, 0, 8388664, 0, 0, 8388688, 1, 0, 8388704, 0, 0, 8388728, 0, 0, 8388752, 1, 0, 8388768, 1, 0, 8388784, 0, 0, 8388808, 1, 0, 8388824, 0, 0 )
+tile_data = PoolIntArray( 0, 0, 0, 24, 1, 0, 40, 0, 0, 64, 0, 0, 88, 1, 0, 104, 0, 0, 128, 1, 0, 144, 0, 0, 168, 1, 0, 224, 3, 0, 2097152, 4, 0, 2097176, 2, 0, 2097200, 0, 0, 2097224, 5, 0, 2097240, 4, 0, 2097264, 2, 0, 2097288, 0, 0, 2097312, 1, 0, 2097328, 3, 0, 2097344, 14, 0, 2097352, 5, 0, 2097368, 2, 0, 2621488, 4, 0, 2621576, 5, 0, 2621592, 4, 0, 3145728, 14, 0, 3145736, 3, 0, 3145800, 0, 0, 3145824, 1, 0, 3145920, 0, 0, 4194304, 14, 0, 4718600, 3, 0, 7340168, 536870933, 0, 7340184, 21, 0, 7864320, 7, 0, 7864328, 7, 0, 7864336, 7, 0, 7864344, 7, 0, 8388608, 0, 0, 8388632, 1, 0, 8388648, 1, 0, 8388664, 0, 0, 8388688, 1, 0, 8388704, 0, 0, 8388728, 0, 0, 8388752, 1, 0, 8388768, 1, 0, 8388784, 0, 0, 8388808, 1, 0, 8388824, 0, 0 )
 
 [node name="torchfire_death" parent="." instance=ExtResource( 4 )]
 position = Vector2( 40, 64 )
@@ -2900,6 +2902,17 @@ fps = 12
 
 [node name="objects" parent="." instance=ExtResource( 6 )]
 
+[node name="item_mystical_artifact" parent="objects" instance=ExtResource( 7 )]
+modulate = Color( 0.435294, 0.239216, 0.52549, 1 )
+position = Vector2( 45, 120 )
+item_name = "a mystical artifact"
+color = Color( 0.435294, 0.239216, 0.52549, 1 )
+height = 7.0
+texture = ExtResource( 23 )
+
+[node name="sprite" parent="objects/item_mystical_artifact" index="0"]
+texture = ExtResource( 23 )
+
 [node name="item_old_message" parent="objects" instance=ExtResource( 7 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 160, 104 )
@@ -2910,6 +2923,17 @@ texture = ExtResource( 19 )
 
 [node name="sprite" parent="objects/item_old_message" index="0"]
 texture = ExtResource( 19 )
+
+[node name="item_bitten_apple" parent="objects" instance=ExtResource( 7 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+position = Vector2( 144, 104 )
+item_name = "a bitten apple"
+color = Color( 0.345098, 0.552941, 0.262745, 1 )
+height = 7.0
+texture = ExtResource( 24 )
+
+[node name="sprite" parent="objects/item_bitten_apple" index="0"]
+texture = ExtResource( 24 )
 
 [node name="popups" type="CanvasLayer" parent="."]
 
@@ -3087,7 +3111,9 @@ __meta__ = {
 
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]
+[editable path="objects/item_mystical_artifact"]
 [editable path="objects/item_old_message"]
+[editable path="objects/item_bitten_apple"]
 [editable path="popups/message_3_en/background"]
 [editable path="popups/message_1_de/nachricht1"]
 [editable path="popups/message_2_de/nachricht2"]
