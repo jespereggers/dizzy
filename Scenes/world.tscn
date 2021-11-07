@@ -48,11 +48,13 @@ shake_duration = 4.0
 shake_strenght = 75
 
 [node name="display" parent="." instance=ExtResource( 2 )]
+layer = -1
 
 [node name="room_label" parent="display" index="3"]
 text = "toller raumname"
 
 [node name="overlay" type="CanvasLayer" parent="."]
+layer = 0
 script = ExtResource( 10 )
 
 [node name="open_settings" type="TextureButton" parent="overlay"]

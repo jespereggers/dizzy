@@ -1,6 +1,8 @@
 class_name Player
 extends Area2D
 
+signal left_room
+
 onready var animations: AnimationPlayer = $animations
 onready var texture: Sprite = $texture
 onready var item_detector: Area2D = $item_detector
@@ -30,86 +32,96 @@ var animation_data := {
 
 var animation_first_frame: int
 var animation_last_frame: int
+var walk_idle_shared_frame_counter := 0
 
 const STEP_X_SIZE = 4
 const STEP_Y_SIZE = 6
 var stun_level := 0
 
-var unlocked: bool = false
-var locked: bool = false
+var script_locked:bool = false
+var pause_locked: bool = false
 var paused: bool = false
 
 func _ready():
 	yield(signals, "backend_is_ready")
 	self.position = data.game_save.player.position
-
 	if signals.connect("room_changed", self, "_on_room_changed") != OK:
 		print("Error occured when trying to establish a connection")
 	if signals.connect("player_died", self, "_on_player_died") != OK:
 		print("Error occured when trying to establish a connection")
 	if signals.connect("player_respawned", self, "_on_player_respawned") != OK:
 		print("Error occured when trying to establish a connection")
-
+	if paths.map.connect("maps_cleaned", self, "_on_maps_cleaned") != OK:
+		print("Error occured when trying to establish a connection")
+	if paths.map.connect("map_loaded", self, "_on_map_loaded") != OK:
+		print("Error occured when trying to establish a connection")
 	state_machine = PlayerStateMachine.new(self)
 
 func _physics_process(_delta):
-	
-	if Input.is_action_just_pressed("pause"):
-		if paused:
-			locked = false
-		else:
-			locked = true
-			paused = true
-	if Input.is_action_just_pressed("resume"):
-		locked = false
-		paused = false
+	if not script_locked:
+		if Input.is_action_just_pressed("pause"):
+			if paused:
+				pause_locked = false
+			else:
+				pause_locked = true
+				paused = true
+		if Input.is_action_just_pressed("resume"):
+			pause_locked = false
+			paused = false
 
-	
-	if not locked:
-		state_machine.update()
-		if paused:
-			locked = true
+
+		if not pause_locked:
+			state_machine.update()
+			if paused:
+				pause_locked = true
+
+		# Change room
+		var new_room_dir := Vector2()
+		var new_player_pos := position
+		if position.x > 236:
+			new_room_dir.x += 1
+			new_player_pos.x = 20
+		elif position.x < 20:
+			new_room_dir.x -= 1
+			new_player_pos.x = 236
 		
-#	#unstuck dizzy after entering new room
-#	if is_inside_ceiling() and is_inside_floor():
-#		for i in 4:
-#			if is_inside_floor():
-#				position.y -= 2
-#			else:
-#				break
+		if position.y < 49:
+			new_room_dir.y += 1
+			new_player_pos.y = 161
+		elif position.y > 174:
+			new_room_dir.y -= 1
+			new_player_pos.y = 49
+		
+		if new_room_dir:
+			position = new_player_pos
+			emit_signal("left_room",new_room_dir) 
 
 # Dizzy Animation
-func change_animation(name:String,frame:int = 0):
+func change_animation(name:String):
 	if not animation_data.has(name):
 		push_error("No animation named " + name)
-	if animation_first_frame == animation_data[name][0]:
+	if animation_first_frame == animation_data[name][0]: # This is the same animation
 		return
 	animation_first_frame = animation_data[name][0] 
 	animation_last_frame = animation_data[name][1]
-	texture.frame = animation_first_frame + frame
+	texture.frame = animation_first_frame
+	if name == "walk":
+		texture.frame += walk_idle_shared_frame_counter % 8
+	if name == "idle":
+		texture.frame += walk_idle_shared_frame_counter % 2
 
 func advance_animation():
 	texture.frame += 1
+	walk_idle_shared_frame_counter += 1
 	if texture.frame > animation_last_frame: #loop
 		texture.frame = animation_first_frame
 
 # Dizzy Movement
-
 func move_x(dir:int):
 	if dir == 0:
 		return
-	#if (not is_next_to_wall(dir) and (is_on_floor() or not is_next_to_low_wall(dir))) or is_inside_ceiling():
 	if not is_next_to_wall(dir) or center_terrain_sensor.is_colliding():
 		position.x += STEP_X_SIZE * dir
-		#step up
-		var deb_y_before = position.y
-		for i in 4:
-			if is_inside_floor() and not center_terrain_sensor.is_colliding():
-				position.y -= 2
-			else:
-				break
-		if position.y != deb_y_before:
-			print("step: " +str(deb_y_before - position.y) + " from ", deb_y_before -148, " to ", position.y -148)
 
 func is_stunned():
 	return stun_level > 0
@@ -120,7 +132,7 @@ func is_inside_floor() -> bool:
 	return false
 	
 func is_inside_ceiling() -> bool:
-	if upper_terrain_sensor.is_colliding():
+	if upper_terrain_sensor.is_colliding() and position.y > 54: # At 54 Dizzy is clipping into the highest row of blocks and can enter the room above
 		return true
 	return false
 
@@ -185,7 +197,13 @@ class PlayerStateMachine:
 		var new_state := _get_state_transition()
 		if new_state:
 			_enter_state(new_state)
-		_update_state() 
+		_update_state()
+		#step up
+		for i in 8:
+			if _player.is_inside_floor() and not _player.center_terrain_sensor.is_colliding():
+				_player.position.y -= 1
+			else:
+				break
 
 	func _get_state_from_input():
 		_dir = 0
@@ -236,7 +254,7 @@ class PlayerStateMachine:
 				_dir = 0
 				_player.change_animation("idle")
 			"walk":
-				_player.change_animation("walk",7) #start with last frame
+				_player.change_animation("walk") #start with last frame
 			"jump":
 				_jump_frame_counter = 0
 				_player.stun_level = 0
@@ -278,7 +296,7 @@ class PlayerStateMachine:
 				_jump_frame_counter += 1
 				_player.move_x(_dir)
 				
-				if _jump_frame_counter == _jump_moves.size(): #end jump
+				if _jump_frame_counter >= _jump_moves.size() and _jump_frame_counter % 8 == 0: # End jump on standing frame
 					if _player.is_on_floor() or (distance_to_floor == 0 and not _player.is_next_to_wall(_dir) and _player.get_distance_to_floor() > 8): #has_landed
 						_enter_state("idle")
 					elif _player.is_next_to_low_wall(_dir):
@@ -288,7 +306,7 @@ class PlayerStateMachine:
 			"jump_roll":
 				_player.position.y += min(_jump_moves.back(), _player.get_distance_to_floor())
 				_player.move_x(_dir)
-				if _player.is_on_floor() and _player.texture.frame == _player.animation_first_frame:
+				if (_player.is_on_floor() or _player.is_next_to_low_wall(_dir)) and _player.texture.frame == _player.animation_first_frame:
 					_enter_state("idle")
 			"fall":
 				var step_y = min(STEP_Y_SIZE,_player.get_distance_to_floor())
@@ -297,10 +315,9 @@ class PlayerStateMachine:
 					_player.move_x(_dir)
 				if _player.is_on_floor():
 					return _enter_state(_get_state_from_input())
-					
 
 func _on_player_respawned():
-	locked = true
+	script_locked = true
 	state_machine._enter_state("idle")
 	animations.play_backwards("death")
 	yield(get_tree().create_timer(1.45), "timeout")
@@ -308,36 +325,34 @@ func _on_player_respawned():
 	$texture.show()
 	$dizzy_death.hide()
 	set_physics_process(true)
-	locked = false
-
-
-func _on_room_changed():
-	set_physics_process(false)
-	if state_machine._state in ["idle", "walk"] and not is_on_floor():
-		self.position.y -= get_height()
-	yield(get_tree().create_timer(0.2), "timeout")
-	set_physics_process(true)
-
+	script_locked = false
 
 func _on_player_died(collision_object):
 	audio.play("dead")
 	# Play Death-animation
-	set_physics_process(false)
+	script_locked = true
 	self.animations.play("death")
 	yield(animations, "animation_finished")
-	set_physics_process(true)
+	script_locked = false
 
 	paths.ui.death.start(collision_object)
 
-func get_height() -> float:
-	if $raycast.is_colliding():
-		return self.position.distance_to($raycast.get_collision_point())
-	return 99.99
+func _on_map_loaded():
+	if state_machine._state == "walk": #Emulator version skips a frame if walking offscreen
+		advance_animation()
+	script_locked = false
+	visible = true
 
-func _on_unlocked_cooldown_timeout():
-	unlocked = false
+func _on_maps_cleaned():
+	script_locked = true
+	visible = false
 
 func _on_ticks_timeout():
 	if is_on_floor() and not stats.current_room in data.game_save.visited_rooms:
 		data.game_save.visited_rooms.append(stats.current_room)
 		signals.emit_signal("new_room_touched")
+
+func get_height() -> float:
+	if $raycast.is_colliding():
+		return self.position.distance_to($raycast.get_collision_point())
+	return 99.99
