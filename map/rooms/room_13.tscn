@@ -2847,7 +2847,7 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 158/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=72]
-extents = Vector2( 15, 3 )
+extents = Vector2( 15, 4 )
 
 [node name="room_13" type="Node2D"]
 __meta__ = {
@@ -2880,6 +2880,8 @@ flip_v = true
 position = Vector2( 192, 44 )
 texture = ExtResource( 16 )
 flip_v = true
+
+[node name="bat_animation" type="AnimationPlayer" parent="."]
 
 [node name="water_death" parent="." instance=ExtResource( 14 )]
 position = Vector2( -168, 0 )

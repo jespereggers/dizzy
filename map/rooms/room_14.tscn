@@ -201,8 +201,8 @@ points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 [sub_resource type="ConvexPolygonShape2D" id=59]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 24, 0, 24 )
 
-[sub_resource type="ConvexPolygonShape2D" id=60]
-points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
+[sub_resource type="ConvexPolygonShape2D" id=76]
+points = PoolVector2Array( 8, 8, 0, 8, 0, 0, 8, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=61]
 points = PoolVector2Array( 0, 7, 6, 1, 8, 0, 8, 8, 0, 8 )
@@ -1497,14 +1497,14 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 73/navigation_offset = Vector2( 0, 0 )
 73/shape_offset = Vector2( 0, 0 )
 73/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-73/shape = SubResource( 60 )
+73/shape = SubResource( 76 )
 73/shape_one_way = false
 73/shape_one_way_margin = 1.0
 73/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 60 ),
+"shape": SubResource( 76 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 73/z_index = 0
@@ -2871,10 +2871,10 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 extents = Vector2( 10, 12 )
 
 [sub_resource type="RectangleShape2D" id=73]
-extents = Vector2( 6, 7 )
+extents = Vector2( 8, 6 )
 
 [sub_resource type="RectangleShape2D" id=74]
-extents = Vector2( 47, 3 )
+extents = Vector2( 47, 4 )
 
 [sub_resource type="DynamicFont" id=75]
 size = 7
@@ -2902,7 +2902,7 @@ __meta__ = {
 tile_set = SubResource( 71 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 0, 3, 0, 16, 5, 0, 32, 13, 0, 48, 4, 0, 72, 2, 0, 96, 4, 0, 120, 5, 0, 136, 3, 0, 152, 0, 0, 176, 1, 0, 192, 0, 0, 216, 0, 0, 1048592, 2, 0, 1048616, 3, 0, 1048632, 1, 0, 1048672, 1, 0, 1048688, 0, 0, 1572864, 3, 0, 1572920, 4, 0, 1572944, 3, 0, 2097376, 1, 0, 2621456, 3, 0, 2621472, 5, 0, 2621488, 2, 0, 2621512, 16, 0, 2621664, 3, 0, 3145728, 5, 0, 3145800, 4, 0, 3670048, 1, 0, 4194520, 4, 0, 4718752, 4, 0, 5243032, 15, 0, 5243104, 5, 0, 5767312, 12, 0, 5767320, 2, 0, 5767344, 5, 0, 6291592, 3, 0, 6815768, 0, 0, 6815840, 0, 0, 6815864, 5, 0, 6815920, 4, 0, 7340128, 3, 0, 7340144, 15, 0, 7340184, 5, 0, 7340200, 14, 0, 7340232, 3, 0, 7864432, 5, 0, 7864448, 4, 0, 7864496, 8, 0, 7864536, 7, 0, 7864544, 7, 0, 7864552, 7, 0, 8388760, 9, 0, 8388824, 0, 0 )
+tile_data = PoolIntArray( 0, 3, 0, 16, 5, 0, 32, 13, 0, 48, 4, 0, 72, 2, 0, 96, 4, 0, 120, 5, 0, 136, 3, 0, 152, 0, 0, 176, 1, 0, 192, 0, 0, 216, 0, 0, 1048592, 2, 0, 1048616, 3, 0, 1048632, 1, 0, 1048672, 1, 0, 1048688, 0, 0, 1572864, 3, 0, 1572920, 4, 0, 1572944, 3, 0, 2097376, 1, 0, 2621456, 3, 0, 2621472, 5, 0, 2621488, 2, 0, 2621512, 16, 0, 2621664, 3, 0, 3145728, 5, 0, 3145800, 4, 0, 3670048, 1, 0, 4194520, 4, 0, 4718752, 4, 0, 5243032, 15, 0, 5243104, 5, 0, 5767312, 12, 0, 5767320, 2, 0, 5767344, 5, 0, 6291592, 3, 0, 6815840, 0, 0, 6815864, 5, 0, 6815920, 4, 0, 7340128, 3, 0, 7340144, 15, 0, 7340184, 5, 0, 7340200, 14, 0, 7340232, 3, 0, 7864432, 5, 0, 7864448, 4, 0, 7864496, 8, 0, 7864536, 7, 0, 7864544, 7, 0, 7864552, 7, 0, 8388760, 9, 0, 8388824, 0, 0 )
 __meta__ = {
 "_editor_description_": ""
 }

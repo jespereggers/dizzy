@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=2]
+[gd_scene load_steps=95 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -31,7 +31,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 8, 0, 8 )
 points = PoolVector2Array( 0, 0, 16, 0, 16, 8, 0, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
-points = PoolVector2Array( 16, 16, 0.163902, 16, 0.163902, 0.195923, 16, 0.195923 )
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( 20, 0, 20, 1, 18, 5, 16, 8, 4, 8, 0, 0 )
@@ -98,6 +98,9 @@ points = PoolVector2Array( 0, 0, 8, 0, 8, 6, 0, 6 )
 
 [sub_resource type="ConvexPolygonShape2D" id=26]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
+
+[sub_resource type="ConvexPolygonShape2D" id=75]
+points = PoolVector2Array( 8, 9, 0, 9, 0, 0, 8, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=27]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
@@ -201,7 +204,7 @@ points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 [sub_resource type="ConvexPolygonShape2D" id=60]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 24, 0, 24 )
 
-[sub_resource type="ConvexPolygonShape2D" id=61]
+[sub_resource type="ConvexPolygonShape2D" id=74]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=62]
@@ -1497,14 +1500,14 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 73/navigation_offset = Vector2( 0, 0 )
 73/shape_offset = Vector2( 0, 0 )
 73/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-73/shape = SubResource( 61 )
+73/shape = SubResource( 74 )
 73/shape_one_way = false
 73/shape_one_way_margin = 1.0
 73/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 61 ),
+"shape": SubResource( 74 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 73/z_index = 0
@@ -2845,9 +2848,30 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 155/shape_one_way_margin = 0.0
 155/shapes = [  ]
 155/z_index = 0
+156/name = "2.png 156"
+156/texture = ExtResource( 11 )
+156/tex_offset = Vector2( 0, 0 )
+156/modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+156/region = Rect2( 112, 64, 8, 9 )
+156/tile_mode = 0
+156/occluder_offset = Vector2( 0, 0 )
+156/navigation_offset = Vector2( 0, 0 )
+156/shape_offset = Vector2( 0, 0 )
+156/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+156/shape = SubResource( 75 )
+156/shape_one_way = false
+156/shape_one_way_margin = 1.0
+156/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 75 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+156/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=73]
-extents = Vector2( 6, 7 )
+extents = Vector2( 8, 5 )
 
 [node name="room_5" type="Node2D"]
 __meta__ = {
@@ -2871,7 +2895,7 @@ __meta__ = {
 tile_set = SubResource( 72 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 96, 74, 0, 104, 76, 0, 160, 30, 0, 176, 0, 0, 200, 1, 0, 216, 0, 0, 524376, 74, 0, 524384, 73, 0, 524392, 73, 0, 524400, 75, 0, 524456, 5, 0, 1048656, 74, 0, 1048664, 73, 0, 1048672, 73, 0, 1048680, 73, 0, 1048688, 73, 0, 1048696, 76, 0, 1572936, 74, 0, 1572944, 73, 0, 1572952, 73, 0, 1572960, 73, 0, 1572968, 73, 0, 1572976, 73, 0, 1572984, 73, 0, 1572992, 75, 0, 1573040, 60, 0, 2097216, 74, 0, 2097224, 73, 0, 2097232, 73, 0, 2097240, 73, 0, 2097248, 73, 0, 2097256, 73, 0, 2097264, 73, 0, 2097272, 73, 0, 2097280, 73, 0, 2097288, 76, 0, 2621496, 74, 0, 2621504, 73, 0, 2621512, 73, 0, 2621520, 73, 0, 2621528, 73, 0, 2621536, 73, 0, 2621544, 73, 0, 2621552, 73, 0, 2621560, 73, 0, 2621568, 73, 0, 2621576, 73, 0, 2621584, 75, 0, 2621624, 5, 0, 2621672, 12, 0, 3145792, 5, 0, 3145856, 1, 0, 3670144, 3, 0, 3670200, 3, 0, 4194368, 3, 0, 4718792, 16, 0, 5243000, 4, 0, 5243024, 4, 0, 5243048, 5, 0, 5243064, 4, 0, 5767232, 5, 0, 6815808, 3, 0, 7340112, 112, 0, 7864530, 113, 0, 8388672, 0, 0, 8388696, 0, 0, 8388720, 0, 0, 8388800, 0, 0, 8388824, 0, 0 )
+tile_data = PoolIntArray( 96, 74, 0, 104, 76, 0, 160, 30, 0, 176, 0, 0, 200, 1, 0, 216, 0, 0, 524376, 74, 0, 524384, 73, 0, 524392, 73, 0, 524400, 75, 0, 524456, 5, 0, 1048656, 74, 0, 1048664, 73, 0, 1048672, 73, 0, 1048680, 73, 0, 1048688, 73, 0, 1048696, 76, 0, 1572936, 74, 0, 1572944, 73, 0, 1572952, 73, 0, 1572960, 73, 0, 1572968, 73, 0, 1572976, 73, 0, 1572984, 73, 0, 1572992, 75, 0, 1573040, 60, 0, 2097216, 74, 0, 2097224, 73, 0, 2097232, 73, 0, 2097240, 73, 0, 2097248, 73, 0, 2097256, 73, 0, 2097264, 73, 0, 2097272, 73, 0, 2097280, 73, 0, 2097288, 76, 0, 2621496, 74, 0, 2621504, 156, 0, 2621512, 156, 0, 2621520, 156, 0, 2621528, 156, 0, 2621536, 156, 0, 2621544, 156, 0, 2621552, 156, 0, 2621560, 156, 0, 2621568, 73, 0, 2621576, 156, 0, 2621584, 75, 0, 2621624, 5, 0, 2621672, 12, 0, 3145792, 5, 0, 3145856, 1, 0, 3670144, 3, 0, 3670200, 3, 0, 4194368, 3, 0, 4718792, 16, 0, 5243000, 4, 0, 5243024, 4, 0, 5243048, 5, 0, 5243064, 4, 0, 5767232, 5, 0, 6815808, 3, 0, 7340112, 112, 0, 7864530, 113, 0, 8388672, 0, 0, 8388696, 0, 0, 8388720, 0, 0, 8388800, 0, 0, 8388824, 0, 0 )
 __meta__ = {
 "_edit_lock_": true
 }

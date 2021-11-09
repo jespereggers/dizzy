@@ -93,7 +93,7 @@ points = PoolVector2Array( 0, 8, 6, 2, 8, 1, 13, 1, 16, 4, 16, 8 )
 points = PoolVector2Array( 0, 0, 8, 0, 8, 4, 0, 4 )
 
 [sub_resource type="ConvexPolygonShape2D" id=24]
-points = PoolVector2Array( 0, 0, 8, 0, 8, 6, 0, 6 )
+points = PoolVector2Array( 0, 0, 8, 0, 8, 16, 0, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=25]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
@@ -2791,7 +2791,7 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 153/texture = ExtResource( 7 )
 153/tex_offset = Vector2( 0, 0 )
 153/modulate = Color( 1, 1, 1, 1 )
-153/region = Rect2( 16, 24, 8, 6 )
+153/region = Rect2( 16, 24, 8, 16 )
 153/tile_mode = 0
 153/occluder_offset = Vector2( 0, 0 )
 153/navigation_offset = Vector2( 0, 0 )
@@ -2887,7 +2887,7 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 157/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=74]
-extents = Vector2( 6, 7 )
+extents = Vector2( 8, 5 )
 
 [sub_resource type="RectangleShape2D" id=75]
 extents = Vector2( 8, 8 )
@@ -2917,7 +2917,7 @@ __meta__ = {
 tile_set = SubResource( 73 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( -261972, 157, 0, 72, 3, 0, 524376, 4, 0, 1572952, 5, 0, 1572968, 2, 0, 2621568, 4, 0, 2621592, 5, 0, 2621608, 12, 0, 2621616, 3, 0, 3145896, 536871064, 0, 3408040, 536871064, 0, 3670184, 536871064, 0, 3670208, 1, 0, 3670224, 0, 0, 3670248, 12, 0, 3932328, 536871064, 0, 4194472, 536871064, 0, 4456616, 536871064, 0, 4718760, 153, 0, 6291616, 0, 0, 6815904, 2, 0, 6815928, 5, 0, 7340232, 3, 0, 7864504, 66, 0, 7864536, 4, 0, 8388768, 0, 0 )
+tile_data = PoolIntArray( 72, 3, 0, 524376, 4, 0, 1572952, 5, 0, 1572968, 2, 0, 2621568, 4, 0, 2621592, 5, 0, 2621608, 12, 0, 2621616, 3, 0, 3145896, 536871064, 0, 3408040, 536871064, 0, 3670184, 536871064, 0, 3670208, 1, 0, 3670224, 0, 0, 3670248, 12, 0, 3932328, 536871064, 0, 4194472, 536871064, 0, 4456616, 536871064, 0, 4718760, 536871064, 0, 4980904, 153, 0, 6291616, 0, 0, 6815904, 2, 0, 6815928, 5, 0, 7340232, 3, 0, 7864504, 66, 0, 7864536, 4, 0, 8388768, 0, 0 )
 
 [node name="torchfire_animated" parent="." instance=ExtResource( 15 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
@@ -2954,13 +2954,11 @@ fps = 6
 [node name="objects" parent="." instance=ExtResource( 21 )]
 
 [node name="lever_on_off" type="Sprite" parent="objects"]
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 position = Vector2( 136, 32 )
 texture = ExtResource( 13 )
 
 [node name="lever_broken" type="Sprite" parent="objects"]
 visible = false
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 position = Vector2( 136, 32 )
 texture = ExtResource( 14 )
 
