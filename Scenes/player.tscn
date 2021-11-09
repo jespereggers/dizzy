@@ -144,6 +144,7 @@ __meta__ = {
 }
 
 [node name="CeilingSensor" type="Node2D" parent="."]
+visible = false
 position = Vector2( 0, -8 )
 script = ExtResource( 5 )
 
@@ -159,6 +160,7 @@ position = Vector2( 7, 0 )
 cast_to = Vector2( 0, -8 )
 
 [node name="FloorSensor" type="Node2D" parent="."]
+visible = false
 position = Vector2( 0, 12 )
 script = ExtResource( 5 )
 
@@ -174,6 +176,7 @@ position = Vector2( 5, 0 )
 cast_to = Vector2( 0, 8 )
 
 [node name="WallSensorLeft" type="Node2D" parent="."]
+visible = false
 position = Vector2( -3, 0 )
 script = ExtResource( 5 )
 
@@ -182,6 +185,7 @@ position = Vector2( -8, 3 )
 cast_to = Vector2( -4, 0 )
 
 [node name="InnerWallSensorLeft" type="Node2D" parent="."]
+visible = false
 position = Vector2( -3, 0 )
 script = ExtResource( 5 )
 
@@ -197,7 +201,12 @@ script = ExtResource( 5 )
 position = Vector2( -5, 7 )
 cast_to = Vector2( -3, 0 )
 
+[node name="RayCast2D2" type="RayCast2D" parent="LowerWallSensorLeft"]
+position = Vector2( -5, 11 )
+cast_to = Vector2( -3, 0 )
+
 [node name="WallSensorRight" type="Node2D" parent="."]
+visible = false
 position = Vector2( 3, 0 )
 script = ExtResource( 5 )
 
@@ -206,6 +215,7 @@ position = Vector2( 8, 3 )
 cast_to = Vector2( 4, 0 )
 
 [node name="InnerWallSensorRight" type="Node2D" parent="."]
+visible = false
 position = Vector2( 3, 0 )
 script = ExtResource( 5 )
 
@@ -218,10 +228,15 @@ position = Vector2( 3, 0 )
 script = ExtResource( 5 )
 
 [node name="RayCast2D" type="RayCast2D" parent="LowerWallSensorRight"]
-position = Vector2( 4, 7 )
+position = Vector2( 5, 7 )
+cast_to = Vector2( 3, 0 )
+
+[node name="RayCast2D2" type="RayCast2D" parent="LowerWallSensorRight"]
+position = Vector2( 5, 11 )
 cast_to = Vector2( 3, 0 )
 
 [node name="LowerTerrainSensor" type="Node2D" parent="."]
+visible = false
 position = Vector2( 0, 10 )
 script = ExtResource( 5 )
 
@@ -242,6 +257,7 @@ position = Vector2( -5, 1 )
 cast_to = Vector2( 0, -6 )
 
 [node name="UpperTerrainSensor" type="Node2D" parent="."]
+visible = false
 position = Vector2( 0, -2 )
 script = ExtResource( 5 )
 
@@ -262,6 +278,7 @@ position = Vector2( -7, 5 )
 cast_to = Vector2( 0, -9 )
 
 [node name="CenterTerrainSensor" type="Node2D" parent="."]
+visible = false
 position = Vector2( 0, -2 )
 script = ExtResource( 5 )
 

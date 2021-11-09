@@ -56,8 +56,18 @@ func _ready():
 		print("Error occured when trying to establish a connection")
 	state_machine = PlayerStateMachine.new(self)
 
+const MAP_CHANGE_EXIT_BOTTOM = 176
+const MAP_CHANGE_EXIT_TOP = 49
+const MAP_CHANGE_ENTRY_BOTTOM = 163
+const MAP_CHANGE_ENTRY_TOP = 49
+
+const MAP_CHANGE_EXIT_LEFT = 20
+const MAP_CHANGE_EXIT_RIGHT = 236
+const MAP_CHANGE_ENTRY_LEFT = 20
+const MAP_CHANGE_ENTRY_RIGHT = 236
+
 func _physics_process(_delta):
-	print(position)
+	var old_position = position
 	if not script_locked:
 		if Input.is_action_just_pressed("pause"):
 			if paused:
@@ -78,25 +88,25 @@ func _physics_process(_delta):
 		# Change room
 		var new_room_dir := Vector2()
 		var new_player_pos := position
-		if position.x > 236:
+		if position.x > MAP_CHANGE_EXIT_RIGHT:
 			new_room_dir.x += 1
-			new_player_pos.x = 20
-		elif position.x < 20:
+			new_player_pos.x = MAP_CHANGE_ENTRY_LEFT
+		elif position.x < MAP_CHANGE_EXIT_LEFT:
 			new_room_dir.x -= 1
-			new_player_pos.x = 236
+			new_player_pos.x = MAP_CHANGE_ENTRY_RIGHT
 		
-		if position.y < 49:
-			var remaining_movement = 49 - position.y
+		if position.y < MAP_CHANGE_EXIT_TOP:
 			new_room_dir.y += 1
-			new_player_pos.y = 165 - remaining_movement
-		elif position.y > 176:
+			new_player_pos.y = MAP_CHANGE_ENTRY_BOTTOM
+		elif position.y > MAP_CHANGE_EXIT_BOTTOM:
 			new_room_dir.y -= 1
-			new_player_pos.y = 49
+			new_player_pos.y = MAP_CHANGE_ENTRY_TOP
 		
 		if new_room_dir:
 			position = new_player_pos
 			emit_signal("left_room",new_room_dir) 
-
+	if (position != old_position) and paused:
+		print(position)
 # Dizzy Animation
 func change_animation(name:String):
 	if not animation_data.has(name):
@@ -121,9 +131,12 @@ func advance_animation():
 func move_x(dir:int):
 	if dir == 0:
 		return
-	if not is_next_to_wall(dir) or center_terrain_sensor.is_colliding():
-		position.x += STEP_X_SIZE * dir
-
+	if position.y > 54:
+		if not is_next_to_wall(dir) or center_terrain_sensor.is_colliding():
+			position.x += STEP_X_SIZE * dir
+	else:
+		if not is_next_to_wall(dir) and not center_terrain_sensor.is_colliding(): # At <= 54 Dizzy is clipping into the highest row and moves upwards instead of to the side ...\o/
+			position.x += STEP_X_SIZE * dir
 func is_stunned():
 	return stun_level > 0
 
@@ -133,7 +146,7 @@ func is_inside_floor() -> bool:
 	return false
 	
 func is_inside_ceiling() -> bool:
-	if upper_terrain_sensor.is_colliding() and position.y > 54: # At 54 Dizzy is clipping into the highest row of blocks and can enter the room above
+	if upper_terrain_sensor.is_colliding() and position.y > 54: # At <= 54 Dizzy is clipping into the highest row of blocks and can enter the room above
 		return true
 	return false
 
@@ -189,6 +202,7 @@ class PlayerStateMachine:
 
 	var _dir := 0 			# left: -1, front: 0, right: 1
 	var _state := "idle"			# "idle", "walk", "jump", "jump_fall","jump_roll","fall", "
+	var _jumped_through_floor
 
 	func _init(player):
 		_player = player
@@ -257,6 +271,7 @@ class PlayerStateMachine:
 			"walk":
 				_player.change_animation("walk") #start with last frame
 			"jump":
+				_jumped_through_floor = false
 				_jump_frame_counter = 0
 				_player.stun_level = 0
 				if _dir == 0:
@@ -288,11 +303,11 @@ class PlayerStateMachine:
 			"jump_fall":
 				var step_y = _jump_moves[_jump_frame_counter]
 				var distance_to_floor = _player.get_distance_to_floor()
-				if _player.is_stunned():			# Use up stun before falling down
+				if _player.is_stunned():     # Use up stun before falling down
 					_player.stun_level -= 1
 				else:
 					_player.position.y += min(step_y, distance_to_floor)
-					if _player.is_on_floor() and _player.is_next_to_wall(_dir): # Bounce in corners
+					if _player.is_on_floor() and (_player.is_next_to_wall(_dir) or _jumped_through_floor): # Bounce in corners and after jumping a room up through a floor
 						_player.position.y -= step_y - distance_to_floor
 				_jump_frame_counter += 1
 				_player.move_x(_dir)
@@ -319,19 +334,17 @@ class PlayerStateMachine:
 
 func _on_player_respawned():
 	script_locked = true
-	state_machine._enter_state("idle")
 	animations.play_backwards("death")
-	yield(get_tree().create_timer(1.45), "timeout")
-	animations.play("idle")
-	$texture.show()
+	yield(animations, "animation_finished")
 	$dizzy_death.hide()
-	set_physics_process(true)
+	$texture.show()
+	state_machine._enter_state("idle")
 	script_locked = false
 
 func _on_player_died(collision_object):
-	audio.play("dead")
 	# Play Death-animation
 	script_locked = true
+	audio.play("dead")
 	self.animations.play("death")
 	yield(animations, "animation_finished")
 	script_locked = false
@@ -341,6 +354,7 @@ func _on_player_died(collision_object):
 func _on_map_loaded():
 	if state_machine._state == "walk": #Emulator version skips a frame if walking offscreen
 		advance_animation()
+	state_machine._jumped_through_floor = (is_inside_floor() or floor_sensor.is_colliding()) and position.y == MAP_CHANGE_ENTRY_BOTTOM
 	script_locked = false
 	visible = true
 
