@@ -45,6 +45,9 @@ font_data = ExtResource( 2 )
 
 [node name="display" type="CanvasLayer"]
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 48.0, 192.0 ]
+}
 
 [node name="overlay" type="TextureRect" parent="."]
 margin_right = 256.0

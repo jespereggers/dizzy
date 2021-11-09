@@ -7,7 +7,7 @@ signal map_loaded
 export var default_respawn: Vector2 = Vector2(220,134)
 #export var custom_respawn_correction: Vector2 = Vector2(8, 48)
 
-const BLACKSCREEN_DURATION = 0.35 #map change
+const BLACKSCREEN_DURATION = 0.35 # Map change
 
 func _ready():
 	yield(signals, "backend_is_ready")

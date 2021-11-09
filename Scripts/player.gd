@@ -18,7 +18,6 @@ onready var lower_wall_sensor_left: Sensor = $LowerWallSensorLeft
 onready var lower_terrain_sensor: Sensor = $LowerTerrainSensor
 onready var center_terrain_sensor: Sensor = $CenterTerrainSensor
 onready var upper_terrain_sensor: Sensor = $UpperTerrainSensor
-onready var inner_ceiling_sensor: Sensor = $InnerCeilingSensor
 
 var state_machine: PlayerStateMachine
 
@@ -58,6 +57,7 @@ func _ready():
 	state_machine = PlayerStateMachine.new(self)
 
 func _physics_process(_delta):
+	print(position)
 	if not script_locked:
 		if Input.is_action_just_pressed("pause"):
 			if paused:
@@ -86,9 +86,10 @@ func _physics_process(_delta):
 			new_player_pos.x = 236
 		
 		if position.y < 49:
+			var remaining_movement = 49 - position.y
 			new_room_dir.y += 1
-			new_player_pos.y = 161
-		elif position.y > 174:
+			new_player_pos.y = 165 - remaining_movement
+		elif position.y > 176:
 			new_room_dir.y -= 1
 			new_player_pos.y = 49
 		
