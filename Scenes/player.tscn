@@ -198,10 +198,6 @@ position = Vector2( -3, 0 )
 script = ExtResource( 5 )
 
 [node name="RayCast2D" type="RayCast2D" parent="LowerWallSensorLeft"]
-position = Vector2( -5, 7 )
-cast_to = Vector2( -3, 0 )
-
-[node name="RayCast2D2" type="RayCast2D" parent="LowerWallSensorLeft"]
 position = Vector2( -5, 11 )
 cast_to = Vector2( -3, 0 )
 
@@ -228,10 +224,6 @@ position = Vector2( 3, 0 )
 script = ExtResource( 5 )
 
 [node name="RayCast2D" type="RayCast2D" parent="LowerWallSensorRight"]
-position = Vector2( 5, 7 )
-cast_to = Vector2( 3, 0 )
-
-[node name="RayCast2D2" type="RayCast2D" parent="LowerWallSensorRight"]
 position = Vector2( 5, 11 )
 cast_to = Vector2( 3, 0 )
 

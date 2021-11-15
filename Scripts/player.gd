@@ -315,6 +315,12 @@ class PlayerStateMachine:
 				if _jump_frame_counter >= _jump_moves.size() and _jump_frame_counter % 8 == 0: # End jump on standing frame
 					if _player.is_on_floor() or (distance_to_floor == 0 and not _player.is_next_to_wall(_dir) and _player.get_distance_to_floor() > 8): #has_landed
 						_enter_state("idle")
+					elif _player.get_distance_to_floor() <= 8:
+						if _player.is_next_to_low_wall(_dir) and not _player.is_next_to_wall(_dir):
+							_enter_state("jump_roll") # Roll over Treepot Room 5
+							
+						else:
+							_enter_state("idle") 
 					elif _player.is_next_to_low_wall(_dir):
 						_enter_state("idle") # Switch to "idle" instead of "jump_roll" if very close to wall; see jump_close_to_wall.gif 
 					else:
