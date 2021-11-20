@@ -6,7 +6,6 @@ extends Node2D
 # var b = "text"
 
 
-# Called when the node enters the scene tree for the first time.
+# Called when the node enters the scene tree for the first time.func _ready():
 func _ready():
-	pass
-	#$animation_player.play("walk")
+	$rat_animation.play("walk")

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/2.png-8847616ea9211e52472026a72aeede8e.stex"
+path="res://.import/copyright_grey.png-a1f63ef40530cc13fa4bc62a5b4eb522.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tiles/build/2.png"
-dest_files=[ "res://.import/2.png-8847616ea9211e52472026a72aeede8e.stex" ]
+source_file="res://Assets/tiles/menu/menue/disabled_buttons/copyright_grey.png"
+dest_files=[ "res://.import/copyright_grey.png-a1f63ef40530cc13fa4bc62a5b4eb522.stex" ]
 
 [params]
 

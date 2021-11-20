@@ -2862,13 +2862,25 @@ font_data = ExtResource( 24 )
 
 [node name="room_9" type="Node2D"]
 __meta__ = {
-"_edit_horizontal_guides_": [ 104.0 ],
+"_edit_horizontal_guides_": [ 127.0, 103.0 ],
 "_edit_lock_": true,
-"_edit_vertical_guides_": [ 230.0, 14.0 ]
+"_edit_vertical_guides_": [ 230.0, 180.0, 204.0 ]
 }
 
-[node name="respawn_point" parent="." instance=ExtResource( 23 )]
+[node name="respawn_point1" parent="." instance=ExtResource( 23 )]
+position = Vector2( 12, 44 )
+
+[node name="respawn_point2" parent="." instance=ExtResource( 23 )]
+position = Vector2( 228, 44 )
+
+[node name="respawn_point3" parent="." instance=ExtResource( 23 )]
+position = Vector2( 12, 108 )
+
+[node name="respawn_point4" parent="." instance=ExtResource( 23 )]
 position = Vector2( 228, 108 )
+
+[node name="respawn_point5" parent="." instance=ExtResource( 23 )]
+position = Vector2( 192, 115 )
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
@@ -2917,6 +2929,7 @@ shape = SubResource( 75 )
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 12, 72 )
 texture = ExtResource( 21 )
+flip_h = true
 hframes = 4
 fps = 12
 
@@ -2938,6 +2951,7 @@ fps = 12
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 228, 72 )
 texture = ExtResource( 21 )
+flip_h = true
 hframes = 4
 fps = 12
 

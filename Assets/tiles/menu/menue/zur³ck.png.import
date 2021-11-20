@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/2.png-8847616ea9211e52472026a72aeede8e.stex"
+path="res://.import/zur³ck.png-520991077a210206b7f4bb0d7f5b551f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tiles/build/2.png"
-dest_files=[ "res://.import/2.png-8847616ea9211e52472026a72aeede8e.stex" ]
+source_file="res://Assets/tiles/menu/menue/zur³ck.png"
+dest_files=[ "res://.import/zur³ck.png-520991077a210206b7f4bb0d7f5b551f.stex" ]
 
 [params]
 
@@ -28,7 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false

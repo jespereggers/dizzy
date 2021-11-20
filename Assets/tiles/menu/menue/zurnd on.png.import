@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/2.png-8847616ea9211e52472026a72aeede8e.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
-source_file="res://Assets/tiles/build/2.png"
-dest_files=[ "res://.import/2.png-8847616ea9211e52472026a72aeede8e.stex" ]
-
+source_file="res://Assets/tiles/menu/menue/zurnd on.png"
 [params]
 
 compress/mode=0
@@ -20,7 +15,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +26,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

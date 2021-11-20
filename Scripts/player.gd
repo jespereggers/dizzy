@@ -313,18 +313,20 @@ class PlayerStateMachine:
 				_player.move_x(_dir)
 				
 				if _jump_frame_counter >= _jump_moves.size() and _jump_frame_counter % 8 == 0: # End jump on standing frame
-					if _player.is_on_floor() or (distance_to_floor == 0 and not _player.is_next_to_wall(_dir) and _player.get_distance_to_floor() > 8): #has_landed
+					if _player.is_on_floor() : #has_landed
 						_enter_state("idle")
-					elif _player.get_distance_to_floor() <= 8:
-						if _player.is_next_to_low_wall(_dir) and not _player.is_next_to_wall(_dir):
-							_enter_state("jump_roll") # Roll over Treepot Room 5
-							
+					elif _player.get_distance_to_floor() > 8:
+						if(distance_to_floor == 0 and not _player.is_next_to_wall(_dir)): #had landed after vertical move, 
+							_enter_state("idle")
+						elif _player.is_next_to_low_wall(_dir):
+							_enter_state("idle")
 						else:
-							_enter_state("idle") 
-					elif _player.is_next_to_low_wall(_dir):
-						_enter_state("idle") # Switch to "idle" instead of "jump_roll" if very close to wall; see jump_close_to_wall.gif 
-					else:
-						_enter_state("jump_roll")
+							_enter_state("jump_roll")
+					else:  # distance <= 8:
+						if _player.is_next_to_low_wall(_dir) and _player.is_next_to_wall(_dir):
+							_enter_state("idle") # Switch to "idle" instead of "jump_roll" if very close to wall; see jump_close_to_wall.gif 
+						else:
+							_enter_state("jump_roll") # Roll over Treepot Room 5, Roll down stairs in rom 14
 			"jump_roll":
 				_player.position.y += min(_jump_moves.back(), _player.get_distance_to_floor())
 				_player.move_x(_dir)

@@ -2880,8 +2880,11 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="respawn_point" parent="." instance=ExtResource( 20 )]
-position = Vector2( 104, 88 )
+[node name="respawn_point1" parent="." instance=ExtResource( 20 )]
+position = Vector2( 12, 116 )
+
+[node name="respawn_point2" parent="." instance=ExtResource( 20 )]
+position = Vector2( 228, 108 )
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 13 )
@@ -2904,8 +2907,9 @@ tile_data = PoolIntArray( 0, 0, 0, 72, 3, 0, 216, 13, 0, 1048792, 3, 0, 1572936,
 position = Vector2( 120, 120 )
 
 [node name="rat" type="Sprite" parent="."]
-position = Vector2( 140.949, 124 )
+position = Vector2( 150, 124 )
 texture = ExtResource( 12 )
+flip_h = true
 
 [node name="rat_death_area" parent="rat" instance=ExtResource( 14 )]
 position = Vector2( -7.62939e-06, 0 )
