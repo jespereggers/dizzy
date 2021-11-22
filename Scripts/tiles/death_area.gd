@@ -7,5 +7,7 @@ func _ready():
 		push_error("failed to etablish connection")
 
 func _on_death_area_area_entered(area):
-	if area.name == "player":
-		signals.emit_signal("player_died", colliding_object)
+	if area.has_method("kill"):
+		area.kill(colliding_object)
+		
+		

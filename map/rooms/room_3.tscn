@@ -3063,9 +3063,9 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 184.0
 margin_bottom = 88.0
-custom_fonts/font = SubResource( 81 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 81 )
 text = "the wooden door has
 warped and jammed"
 align = 1
@@ -3088,9 +3088,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 159.0
 margin_bottom = 56.0
-custom_fonts/font = SubResource( 81 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 81 )
 text = "you apply the
 crowbar and pry
 open the door"
@@ -3117,9 +3117,9 @@ margin_left = 16.0
 margin_top = 48.0
 margin_right = 184.0
 margin_bottom = 88.0
-custom_fonts/font = SubResource( 81 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 81 )
 text = "die holztür hat
 sich mit der zeit
 verzogen und klemmt"
@@ -3143,9 +3143,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 176.0
 margin_bottom = 56.0
-custom_fonts/font = SubResource( 81 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 81 )
 text = "mit der brechstange
 hebelst du die tür
 aus den angeln"

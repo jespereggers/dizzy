@@ -28,24 +28,8 @@ func clean_maps():
 
 func load_map():
 	var map: Node2D = load(data.maps[stats.current_map][stats.current_room].path).instance()
-#	if connect("tree_entered", self, "_on_map_enters_tree", [map]) != OK:
-#		print("Error occured when trying to establish a connection")
-#	call_deferred("add_child", map)
 	add_child(map)
 	emit_signal("map_loaded")
-
-
-
-#func _on_map_enters_tree(map_instance: Node2D):
-#	emit_signal("room_entered_tree")
-#	yield(get_tree().create_timer(0.2), "timeout")
-#
-#	if map_instance == null:
-#		return
-#	for node in map_instance.get_children():
-#		if node.get_class() == "Area2D":
-#			node.monitoring = true
-
 
 func add(properties: Dictionary):
 	var object
@@ -70,17 +54,3 @@ func remove(object):
 			node.get_node("objects").remove_child(object)
 			break
 
-
-func respawn_player():
-	var new_pos: Vector2
-	for child in get_children():
-		if "room_" in child.name:
-			if child.has_node("respawn_point"):
-				new_pos = child.get_node("respawn_point").global_position 
-				#new_pos += custom_respawn_correction
-			else:
-				new_pos = default_respawn
-				
-	root.player.position = new_pos
-	
-	signals.emit_signal("player_respawned")

@@ -3,7 +3,7 @@ extends Node
 var inventory: Array = []
 var coins: int
 var shards: int
-var eggs: int
+var eggs: int setget set_eggs
 var current_map: String
 var current_room: Vector2
 
@@ -18,11 +18,9 @@ func load_backend():
 	paths.display.update_display()
 
 
-func change_eggs_by(amount: int):
-	if amount == 0:
-		return
-		
+func set_eggs(value: int):
+	eggs = value
 # warning-ignore:narrowing_conversion
-	eggs = clamp(eggs + amount, 0, data.max_eggs)
-
+	eggs = clamp(eggs, 0, data.max_eggs)
 	signals.emit_signal("eggs_changed")
+	print("eggs: ",eggs)

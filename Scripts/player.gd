@@ -2,6 +2,7 @@ class_name Player
 extends Area2D
 
 signal left_room
+signal player_died
 
 onready var animations: AnimationPlayer = $animations
 onready var texture: Sprite = $texture
@@ -22,6 +23,7 @@ onready var upper_terrain_sensor: Sensor = $UpperTerrainSensor
 var state_machine: PlayerStateMachine
 
 var animation_data := {
+	"respawn_idle": [0,0],
 	"idle": [0,1],
 	"salto": [8,15],
 	"walk": [16,23],
@@ -37,6 +39,11 @@ const STEP_X_SIZE = 4
 const STEP_Y_SIZE = 6
 var stun_level := 0
 
+var was_killed := false
+var killer_name:String = ""
+
+var respawn_position := Vector2(188,148)
+
 var script_locked:bool = false
 var pause_locked: bool = false
 var paused: bool = false
@@ -45,10 +52,6 @@ func _ready():
 	yield(signals, "backend_is_ready")
 	self.position = data.game_save.player.position
 	if signals.connect("room_changed", self, "_on_room_changed") != OK:
-		print("Error occured when trying to establish a connection")
-	if signals.connect("player_died", self, "_on_player_died") != OK:
-		print("Error occured when trying to establish a connection")
-	if signals.connect("player_respawned", self, "_on_player_respawned") != OK:
 		print("Error occured when trying to establish a connection")
 	if paths.map.connect("maps_cleaned", self, "_on_maps_cleaned") != OK:
 		print("Error occured when trying to establish a connection")
@@ -82,6 +85,8 @@ func _physics_process(_delta):
 
 		if not pause_locked:
 			state_machine.update()
+			if was_killed:
+				_die()
 			if paused:
 				pause_locked = true
 
@@ -104,14 +109,16 @@ func _physics_process(_delta):
 		
 		if new_room_dir:
 			position = new_player_pos
-			emit_signal("left_room",new_room_dir) 
+			respawn_position = new_player_pos
+			emit_signal("left_room",new_room_dir)
 	if (position != old_position) and paused:
 		print(position)
+
 # Dizzy Animation
 func change_animation(name:String):
 	if not animation_data.has(name):
 		push_error("No animation named " + name)
-	if animation_first_frame == animation_data[name][0]: # This is the same animation
+	if animation_first_frame == animation_data[name][0] and animation_last_frame == animation_data[name][1]: # This is the same animation
 		return
 	animation_first_frame = animation_data[name][0] 
 	animation_last_frame = animation_data[name][1]
@@ -201,12 +208,12 @@ class PlayerStateMachine:
 	var _jump_corner_roll_final_raise = 0
 
 	var _dir := 0 			# left: -1, front: 0, right: 1
-	var _state := "idle"			# "idle", "walk", "jump", "jump_fall","jump_roll","fall", "
+	var _state := "respawn_idle"			# "idle", "walk", "jump", "jump_fall","jump_roll","fall", "
 	var _jumped_through_floor
 
 	func _init(player):
 		_player = player
-		_enter_state("idle")
+		_enter_state("respawn_idle")
 
 	func update():
 		var new_state := _get_state_transition()
@@ -226,7 +233,7 @@ class PlayerStateMachine:
 			_dir += 1
 		if Input.is_action_pressed("walk_left"):
 			_dir -= 1
-
+		_player.texture.flip_h = (_dir == -1)
 		if Input.is_action_pressed("jump"):
 				return "jump"
 		elif _dir != 0:
@@ -242,6 +249,9 @@ class PlayerStateMachine:
 
 	func _get_state_transition() -> String:
 		match _state:
+			"respawn_idle":
+				# landing occurs during update_state(), calls _get_state_from_input()
+				pass
 			"idle","walk":
 				if _player.is_on_floor():
 					return _get_state_from_input()
@@ -260,10 +270,14 @@ class PlayerStateMachine:
 				# landing occurs during update_state(), calls _get_state_from_input()
 					pass
 		return ""
-				
+	
 	func _enter_state(new_state:String):
 		_state = new_state
 		match(_state):
+			"respawn_idle":
+				_dir = 0
+				_player.walk_idle_shared_frame_counter = 2
+				_player.change_animation("respawn_idle")
 			"idle":
 				_player.stun_level = 0
 				_dir = 0
@@ -287,6 +301,11 @@ class PlayerStateMachine:
 		_player.texture.flip_h = (_dir == -1)
 		_player.advance_animation()
 		match _state:
+			"respawn_idle":
+				_player.position.y += STEP_Y_SIZE
+				if _player.is_on_floor():
+					_enter_state(_get_state_from_input())
+					_player.move_x(_dir)
 			"idle":
 				pass
 			"walk":
@@ -340,24 +359,34 @@ class PlayerStateMachine:
 				if _player.is_on_floor():
 					return _enter_state(_get_state_from_input())
 
-func _on_player_respawned():
+func respawn():
 	script_locked = true
+	was_killed = false
+	killer_name = ""
+	position = respawn_position
+#	animations.play("death")
+#	animations.advance(10)
 	animations.play_backwards("death")
+	animations.advance(0) #hide texture immediately
 	yield(animations, "animation_finished")
 	$dizzy_death.hide()
 	$texture.show()
-	state_machine._enter_state("idle")
+	state_machine._enter_state("respawn_idle")
 	script_locked = false
 
-func _on_player_died(collision_object):
-	# Play Death-animation
+func kill(by:String):
+	was_killed = true
+	killer_name = by
+
+func _die():
+	was_killed = false
 	script_locked = true
+	# Play Death-animation
 	audio.play("dead")
 	self.animations.play("death")
+	signals.emit_signal("player_died", killer_name)
 	yield(animations, "animation_finished")
-	script_locked = false
-
-	paths.ui.death.start(collision_object)
+	paths.ui.death.start(killer_name)
 
 func _on_map_loaded():
 	if state_machine._state == "walk": #Emulator version skips a frame if walking offscreen

@@ -136,7 +136,6 @@ func load_game():
 	if not File.new().file_exists(OS.get_user_data_dir() + "/game_save.dizzy"):
 		store_default_game_save()
 	game_save = tools.load_file("user://game_save.dizzy")
-	
 
 func save_game():
 	# Player
@@ -163,6 +162,7 @@ func save_setttings():
 func store_default_game_save():
 	var template: Dictionary = tools.load_file("res://databanks/templates/game_save.json")
 	template.player.position = Vector2(188, 148)
+	template.player.eggs = 2
 	template.scene.current_room = Vector2(0,0)
 	template.enviroment.map_1 = {}
 	tools.save_file("user://game_save.dizzy", template)

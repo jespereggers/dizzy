@@ -22,16 +22,13 @@ func close():
 		if stats.eggs <= 0:
 			stats.eggs = data.max_eggs
 			if stats.current_room != Vector2(0,0):
-				# Complete Restart
-				data.game_save.visited_rooms.clear()
-				data.game_save.finished_dialogues.clear()
-				stats.current_room = Vector2(0,0)
-				paths.map.update_map()
+				# Game Over! Back to title.
+				if get_tree().change_scene("res://Scenes/titlescreen.tscn") != OK:
+					print("Error occured when trying to switch to tiltelscreen")
 		else:
-			stats.change_eggs_by(-1)
-		signals.emit_signal("eggs_changed")
+			stats.eggs -=1
 			
-		paths.map.respawn_player()
+		paths.player.respawn()
 		
 		set_process_unhandled_input(false)
 		get_tree().paused = false
