@@ -11,22 +11,29 @@ const BLACKSCREEN_DURATION = 0.4 #map change
 
 func _ready():
 	yield(signals, "backend_is_ready")
-	load_map()
+	_load_map()
+	
+func change_room(new_room_coords:Vector2):
+	if not data.maps[stats.current_map].keys().has(new_room_coords):
+		push_error("Error: Can't load nonexisting room")
+	stats.current_room = new_room_coords
+	_update_map()
+	paths.display.update_display()
 
-
-func update_map():
-	clean_maps()
+func _update_map():
+	_clean_maps()
 	yield(get_tree().create_timer(BLACKSCREEN_DURATION), "timeout") #blackscreen
-	load_map()
+	_load_map()
 
-func clean_maps():
+func _clean_maps():
 	for room in get_children():
-		if str(room.filename) != data.maps[stats.current_map][stats.current_room].path and room.name != "user_interface":
+		#if str(room.filename) != data.maps[stats.current_map][stats.current_room].path and room.name != "user_interface":
+		if room.name != "user_interface":
 			room.queue_free()
 	emit_signal("maps_cleaned")
 
 
-func load_map():
+func _load_map():
 	var map: Node2D = load(data.maps[stats.current_map][stats.current_room].path).instance()
 	add_child(map)
 	emit_signal("map_loaded")

@@ -29,9 +29,6 @@ func _ready():
 func _on_player_left_room(dir:Vector2):
 	var new_room_coords = stats.current_room + dir
 	if data.maps[stats.current_map].keys().has(new_room_coords):
-		stats.current_room = new_room_coords
-		$map.update_map()
-		$display.update_display()
+		paths.map.change_room(new_room_coords)
 	else:
-		stats.change_eggs_by(-1)
-
+		paths.player.kill("out of bounds")

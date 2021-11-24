@@ -7,6 +7,11 @@ var eggs: int setget set_eggs
 var current_map: String
 var current_room: Vector2
 
+var infinite_eggs := false
+
+func _input(event):
+	if event.is_action_pressed("more_eggs"):
+		self.eggs = data.max_eggs
 
 func load_backend():
 	inventory = data.game_save.player.inventory
@@ -23,4 +28,3 @@ func set_eggs(value: int):
 # warning-ignore:narrowing_conversion
 	eggs = clamp(eggs, 0, data.max_eggs)
 	signals.emit_signal("eggs_changed")
-	print("eggs: ",eggs)

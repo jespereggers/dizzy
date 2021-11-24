@@ -20,15 +20,13 @@ func start(_colliding_object: String):
 
 func close():
 		if stats.eggs <= 0:
-			stats.eggs = data.max_eggs
-			if stats.current_room != Vector2(0,0):
-				# Game Over! Back to title.
-				if get_tree().change_scene("res://Scenes/titlescreen.tscn") != OK:
-					print("Error occured when trying to switch to tiltelscreen")
+			# Game Over! Back to title.
+			if get_tree().change_scene("res://Scenes/titlescreen.tscn") != OK:
+				print("Error occured when trying to switch to tiltelscreen")
 		else:
-			stats.eggs -=1
-			
-		paths.player.respawn()
+			if not stats.infinite_eggs:
+				stats.eggs -=1
+		paths.map.change_room(paths.player.respawn_room) # A dead player respawns on signal 'map_loaded'
 		
 		set_process_unhandled_input(false)
 		get_tree().paused = false

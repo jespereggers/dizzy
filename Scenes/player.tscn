@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/tiles/dizzy/dizzy_death.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/item_detector.gd" type="Script" id=2]
@@ -19,7 +19,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 1 )
+"times": PoolRealArray( 0.1, 1 )
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("dizzy_death:visible")
@@ -44,6 +44,44 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, false ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "respawn"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("dizzy_death:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("dizzy_death:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("texture:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -84,14 +122,15 @@ shape = SubResource( 1 )
 
 [node name="animations" type="AnimationPlayer" parent="."]
 anims/death = SubResource( 2 )
+anims/respawn = SubResource( 6 )
 
 [node name="texture" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 3 )
 hframes = 8
 vframes = 5
 
 [node name="dizzy_death" type="Sprite" parent="."]
-visible = false
 position = Vector2( -256, -68 )
 texture = ExtResource( 1 )
 centered = false

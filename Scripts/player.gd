@@ -3,6 +3,7 @@ extends Area2D
 
 signal left_room
 signal player_died
+signal physics_frame_processed
 
 onready var animations: AnimationPlayer = $animations
 onready var texture: Sprite = $texture
@@ -40,11 +41,16 @@ const STEP_Y_SIZE = 6
 var stun_level := 0
 
 var was_killed := false
+var is_dead := false
 var killer_name:String = ""
 
 var respawn_position := Vector2(188,148)
+var respawn_room := Vector2(0,0)
+var possibly_unsafe_respawn_position := Vector2(188,148) # We do not immediately accept the new position, it could be dangerous.
+var possibly_unsafe_respawn_room := Vector2(0,0)
 
 var script_locked:bool = false
+var script_unlock_next_frame:bool = false
 var pause_locked: bool = false
 var paused: bool = false
 
@@ -71,7 +77,10 @@ const MAP_CHANGE_ENTRY_RIGHT = 236
 
 func _physics_process(_delta):
 	var old_position = position
-	if not script_locked:
+	if script_unlock_next_frame and script_locked:
+		script_unlock_next_frame = false
+		script_locked = false
+	elif not script_locked:
 		if Input.is_action_just_pressed("pause"):
 			if paused:
 				pause_locked = false
@@ -109,8 +118,10 @@ func _physics_process(_delta):
 		
 		if new_room_dir:
 			position = new_player_pos
-			respawn_position = new_player_pos
 			emit_signal("left_room",new_room_dir)
+		elif is_on_floor() and state_machine._state in ["walking","idle"]:
+			respawn_position = possibly_unsafe_respawn_position # We are safe now.
+			respawn_room = possibly_unsafe_respawn_room
 	if (position != old_position) and paused:
 		print(position)
 
@@ -361,17 +372,15 @@ class PlayerStateMachine:
 
 func respawn():
 	script_locked = true
-	was_killed = false
+	is_dead = false
 	killer_name = ""
 	position = respawn_position
 #	animations.play("death")
 #	animations.advance(10)
-	animations.play_backwards("death")
-	animations.advance(0) #hide texture immediately
-	yield(animations, "animation_finished")
-	$dizzy_death.hide()
-	$texture.show()
+	animations.play("respawn")
+	#animations.advance(0) #hide texture immediately
 	state_machine._enter_state("respawn_idle")
+	yield(animations, "animation_finished")
 	script_locked = false
 
 func kill(by:String):
@@ -380,6 +389,7 @@ func kill(by:String):
 
 func _die():
 	was_killed = false
+	is_dead = true
 	script_locked = true
 	# Play Death-animation
 	audio.play("dead")
@@ -389,11 +399,18 @@ func _die():
 	paths.ui.death.start(killer_name)
 
 func _on_map_loaded():
-	if state_machine._state == "walk": #Emulator version skips a frame if walking offscreen
-		advance_animation()
-	state_machine._jumped_through_floor = (is_inside_floor() or floor_sensor.is_colliding()) and position.y == MAP_CHANGE_ENTRY_BOTTOM
-	script_locked = false
 	visible = true
+	if is_dead:
+		respawn()
+	else:
+		if state_machine._state == "walk": #Emulator version skips a frame if walking offscreen
+			advance_animation()
+		state_machine._jumped_through_floor = (is_inside_floor() or floor_sensor.is_colliding()) and position.y == MAP_CHANGE_ENTRY_BOTTOM
+		respawn_position = possibly_unsafe_respawn_position # In case one jump changes two rooms.
+		respawn_room = possibly_unsafe_respawn_room
+		possibly_unsafe_respawn_position = position
+		possibly_unsafe_respawn_room = stats.current_room
+		script_unlock_next_frame = true #wait until dizzy is drawn at the edge of screen before unlocking him
 
 func _on_maps_cleaned():
 	script_locked = true
