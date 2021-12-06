@@ -12,4 +12,3 @@ script = ExtResource( 1 )
 [node name="shape_of_death" type="CollisionShape2D" parent="."]
 pause_mode = 1
 shape = SubResource( 1 )
-one_way_collision = true

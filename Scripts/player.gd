@@ -40,9 +40,7 @@ const STEP_X_SIZE = 4
 const STEP_Y_SIZE = 6
 var stun_level := 0
 
-var was_killed := false
 var is_dead := false
-var killer_name:String = ""
 
 var respawn_position := Vector2(188,148)
 var respawn_room := Vector2(0,0)
@@ -94,8 +92,9 @@ func _physics_process(_delta):
 
 		if not pause_locked:
 			state_machine.update()
-			if was_killed:
-				_die()
+			var death_check = DeathAreas.is_colliding($CollisionShape2D)
+			if death_check.killed == true:
+				_die(death_check.cause_of_death)
 			if paused:
 				pause_locked = true
 
@@ -373,30 +372,22 @@ class PlayerStateMachine:
 func respawn():
 	script_locked = true
 	is_dead = false
-	killer_name = ""
 	position = respawn_position
-#	animations.play("death")
-#	animations.advance(10)
 	animations.play("respawn")
-	#animations.advance(0) #hide texture immediately
 	state_machine._enter_state("respawn_idle")
 	yield(animations, "animation_finished")
 	script_locked = false
 
-func kill(by:String):
-	was_killed = true
-	killer_name = by
-
-func _die():
-	was_killed = false
+func _die(by:String):
 	is_dead = true
 	script_locked = true
 	# Play Death-animation
 	audio.play("dead")
 	self.animations.play("death")
-	signals.emit_signal("player_died", killer_name)
+	animations.advance(0)
+	signals.emit_signal("player_died", by)
 	yield(animations, "animation_finished")
-	paths.ui.death.start(killer_name)
+	paths.ui.death.start(by)
 
 func _on_map_loaded():
 	visible = true
