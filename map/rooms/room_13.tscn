@@ -2847,7 +2847,7 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 158/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=72]
-extents = Vector2( 15, 4 )
+extents = Vector2( 15, 3 )
 
 [node name="room_13" type="Node2D"]
 __meta__ = {
@@ -2886,33 +2886,29 @@ flip_v = true
 
 [node name="water_death" parent="." instance=ExtResource( 14 )]
 position = Vector2( -168, 0 )
-colliding_object = "water"
 
 [node name="shape_of_death" parent="water_death" index="0"]
-position = Vector2( 224, 125 )
+position = Vector2( 224, 124 )
 shape = SubResource( 72 )
 
 [node name="water_death1" parent="." instance=ExtResource( 14 )]
 position = Vector2( -112, 0 )
-colliding_object = "water"
 
 [node name="shape_of_death" parent="water_death1" index="0"]
-position = Vector2( 224, 125 )
+position = Vector2( 224, 124 )
 shape = SubResource( 72 )
 
 [node name="water_death2" parent="." instance=ExtResource( 14 )]
 position = Vector2( -56, 0 )
-colliding_object = "water"
 
 [node name="shape_of_death" parent="water_death2" index="0"]
-position = Vector2( 224, 125 )
+position = Vector2( 224, 124 )
 shape = SubResource( 72 )
 
 [node name="water_death3" parent="." instance=ExtResource( 14 )]
-colliding_object = "water"
 
 [node name="shape_of_death" parent="water_death3" index="0"]
-position = Vector2( 224, 125 )
+position = Vector2( 224, 124 )
 shape = SubResource( 72 )
 
 [node name="water_animated" parent="." instance=ExtResource( 13 )]

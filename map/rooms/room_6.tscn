@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=2]
+[gd_scene load_steps=97 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -19,7 +19,6 @@
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=18]
 [ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=19]
-[ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=21]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=22]
 
@@ -2865,10 +2864,10 @@ tracks/1/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=73]
-extents = Vector2( 6, 7 )
+extents = Vector2( 8, 5 )
 
 [sub_resource type="RectangleShape2D" id=74]
-extents = Vector2( 6, 7 )
+extents = Vector2( 8, 5 )
 
 [sub_resource type="DynamicFont" id=75]
 size = 7
@@ -2879,12 +2878,6 @@ script = ExtResource( 15 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="respawn_point1" parent="." instance=ExtResource( 20 )]
-position = Vector2( 12, 116 )
-
-[node name="respawn_point2" parent="." instance=ExtResource( 20 )]
-position = Vector2( 228, 108 )
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 13 )
@@ -2913,7 +2906,6 @@ flip_h = true
 
 [node name="rat_death_area" parent="rat" instance=ExtResource( 14 )]
 position = Vector2( -7.62939e-06, 0 )
-colliding_object = "rat"
 
 [node name="rat_animation" type="AnimationPlayer" parent="."]
 playback_speed = 1.2
@@ -2921,14 +2913,12 @@ anims/walk = SubResource( 72 )
 
 [node name="torchfire_death" parent="." instance=ExtResource( 14 )]
 position = Vector2( 100, 16 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 73 )
 
 [node name="torchfire_death1" parent="." instance=ExtResource( 14 )]
 position = Vector2( 204, 16 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death1" index="0"]
 shape = SubResource( 74 )

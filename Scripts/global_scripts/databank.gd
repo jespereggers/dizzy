@@ -144,7 +144,7 @@ func save_game():
 	game_save.player.inventory = stats.inventory
 	
 	if stats.current_room == Vector2(0,0):
-		game_save.player.position = Vector2(188, 148)
+		game_save.player.position = Vector2(188, 149)
 	else:
 		game_save.player.position = paths.player.position
 	
@@ -161,7 +161,7 @@ func save_setttings():
 
 func store_default_game_save():
 	var template: Dictionary = tools.load_file("res://databanks/templates/game_save.json")
-	template.player.position = Vector2(188, 148)
+	template.player.position = Vector2(188, 149)
 	template.player.eggs = 2
 	template.scene.current_room = Vector2(0,0)
 	template.enviroment.map_1 = {}

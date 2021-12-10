@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -20,7 +20,6 @@
 [ext_resource path="res://Assets/tiles/animations/water_full.png" type="Texture" id=18]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=20]
-[ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=23]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=24]
@@ -2872,10 +2871,10 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 extents = Vector2( 12, 12 )
 
 [sub_resource type="RectangleShape2D" id=73]
-extents = Vector2( 12, 8 )
+extents = Vector2( 8, 5 )
 
 [sub_resource type="RectangleShape2D" id=74]
-extents = Vector2( 47, 4 )
+extents = Vector2( 47, 3 )
 
 [sub_resource type="DynamicFont" id=75]
 size = 7
@@ -2885,12 +2884,6 @@ font_data = ExtResource( 23 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="respawn_point1" parent="." instance=ExtResource( 21 )]
-position = Vector2( 228, 108 )
-
-[node name="respawn_point2" parent="." instance=ExtResource( 21 )]
-position = Vector2( 228, 20 )
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
@@ -2936,7 +2929,6 @@ polygon = PoolVector2Array( -10.1361, 1.25, -8.46073, 1.25, -8.46073, 0, -5.1099
 
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 108, 32 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 73 )
@@ -2950,7 +2942,6 @@ fps = 12
 
 [node name="water_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 48, 124 )
-colliding_object = "water"
 
 [node name="shape_of_death" parent="water_death" index="0"]
 shape = SubResource( 74 )
@@ -2994,9 +2985,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 75 )
 text = "\"blindtext
 blindtext
 blindtext?"

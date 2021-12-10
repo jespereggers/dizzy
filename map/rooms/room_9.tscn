@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=2]
+[gd_scene load_steps=102 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -21,7 +21,6 @@
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=21]
 [ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=22]
-[ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=24]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=25]
 [ext_resource path="res://templates/coin.tscn" type="PackedScene" id=26]
@@ -2867,21 +2866,6 @@ __meta__ = {
 "_edit_vertical_guides_": [ 230.0, 180.0, 204.0 ]
 }
 
-[node name="respawn_point1" parent="." instance=ExtResource( 23 )]
-position = Vector2( 12, 44 )
-
-[node name="respawn_point2" parent="." instance=ExtResource( 23 )]
-position = Vector2( 228, 44 )
-
-[node name="respawn_point3" parent="." instance=ExtResource( 23 )]
-position = Vector2( 12, 108 )
-
-[node name="respawn_point4" parent="." instance=ExtResource( 23 )]
-position = Vector2( 228, 108 )
-
-[node name="respawn_point5" parent="." instance=ExtResource( 23 )]
-position = Vector2( 192, 115 )
-
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
 cell_size = Vector2( 1, 1 )
@@ -2899,28 +2883,24 @@ tile_data = PoolIntArray( 3670016, 0, 0, 3670040, 1, 0, 3670056, 0, 0, 3670192, 
 
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 12, 72 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 72 )
 
 [node name="torchfire_death1" parent="." instance=ExtResource( 13 )]
 position = Vector2( 80, 16 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death1" index="0"]
 shape = SubResource( 73 )
 
 [node name="torchfire_death2" parent="." instance=ExtResource( 13 )]
 position = Vector2( 160, 16 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death2" index="0"]
 shape = SubResource( 74 )
 
 [node name="torchfire_death3" parent="." instance=ExtResource( 13 )]
 position = Vector2( 228, 72 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death3" index="0"]
 shape = SubResource( 75 )
@@ -3009,9 +2989,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "\"ooh, there
 is a message
 on the table?"
@@ -3041,9 +3021,9 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 184.0
 margin_bottom = 88.0
+custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "i'll be right back!
 -signed rockwart-"
 align = 1
@@ -3072,9 +3052,9 @@ margin_left = 72.0
 margin_top = 48.0
 margin_right = 168.0
 margin_bottom = 88.0
+custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "you should
 pick up
 the message"
@@ -3104,9 +3084,9 @@ margin_left = 40.0
 margin_top = 64.0
 margin_right = 200.0
 margin_bottom = 112.0
+custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "You turn
 the picture back
 around - something
@@ -3133,9 +3113,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "\"oh, da liegt
 eine nachricht
 auf dem tisch§"
@@ -3162,9 +3142,9 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 184.0
 margin_bottom = 88.0
+custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "Bin gleich zurück!
 signiert 'rockwart'"
 align = 1
@@ -3191,9 +3171,9 @@ margin_left = 64.0
 margin_top = 64.0
 margin_right = 176.0
 margin_bottom = 104.0
+custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "\"nanu, etwas
 scheint hier
 verkehrt?"
@@ -3223,9 +3203,9 @@ margin_left = 40.0
 margin_top = 64.0
 margin_right = 200.0
 margin_bottom = 112.0
+custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "Du drehst das Bild
 wieder richtig
 herum - dabei fällt

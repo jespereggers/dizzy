@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -21,7 +21,6 @@
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=19]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=21]
-[ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=22]
 [ext_resource path="res://templates/shard.tscn" type="PackedScene" id=23]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -2902,9 +2901,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="respawn_point" parent="." instance=ExtResource( 22 )]
-position = Vector2( 228, 108 )
-
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 16 )
 cell_size = Vector2( 1, 1 )
@@ -2922,7 +2918,6 @@ tile_data = PoolIntArray( 72, 3, 0, 524376, 4, 0, 1572952, 5, 0, 1572968, 2, 0, 
 
 [node name="torchfire_death" parent="." instance=ExtResource( 12 )]
 position = Vector2( 220, 72 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 74 )

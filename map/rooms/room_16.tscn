@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://Assets/tiles/build/7.png" type="Texture" id=10]
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=12]
-[ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/tiles/items/crowbar.png" type="Texture" id=14]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=16]
@@ -1575,7 +1574,7 @@ points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
 78/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=52]
-extents = Vector2( 6, 7 )
+extents = Vector2( 8, 5 )
 
 [sub_resource type="DynamicFont" id=53]
 size = 7
@@ -1585,9 +1584,6 @@ font_data = ExtResource( 15 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="respawn_point" parent="." instance=ExtResource( 13 )]
-position = Vector2( 12, 116 )
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -1625,17 +1621,8 @@ __meta__ = {
 
 [node name="torchfire_death" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 64 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
-shape = SubResource( 52 )
-
-[node name="torchfire_death2" parent="." instance=ExtResource( 2 )]
-visible = false
-position = Vector2( 76, 97 )
-colliding_object = "torchfire"
-
-[node name="shape_of_death" parent="torchfire_death2" index="0"]
 shape = SubResource( 52 )
 
 [node name="torchfire_animated" parent="." instance=ExtResource( 4 )]
@@ -1682,9 +1669,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 152.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 53 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 53 )
 text = "du wirfst das
 artefakt auf den
 boden und gehst
@@ -1714,9 +1701,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 224.0
 margin_bottom = 96.0
+custom_fonts/font = SubResource( 53 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 53 )
 text = "es entläd seine enorme kraft und durch die erschütterung fällt die aufgetürmte stützkonstruktion in sich zusammen"
 align = 1
 valign = 1
@@ -1727,6 +1714,5 @@ __meta__ = {
 }
 
 [editable path="torchfire_death"]
-[editable path="torchfire_death2"]
 [editable path="item_rusty_key"]
 [editable path="objects/item_crowbar"]

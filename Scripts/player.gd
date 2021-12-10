@@ -44,8 +44,8 @@ var is_dead := false
 
 var respawn_position := Vector2(188,148)
 var respawn_room := Vector2(0,0)
-var possibly_unsafe_respawn_position := Vector2(188,148) # We do not immediately accept the new position, it could be dangerous.
-var possibly_unsafe_respawn_room := Vector2(0,0)
+#var possibly_unsafe_respawn_position := Vector2(188,149) # We do not immediately accept the new position, it could be dangerous.
+#var possibly_unsafe_respawn_room := Vector2(0,0)
 
 var script_locked:bool = false
 var script_unlock_next_frame:bool = false
@@ -92,9 +92,11 @@ func _physics_process(_delta):
 
 		if not pause_locked:
 			state_machine.update()
-			var death_check = DeathAreas.is_colliding($CollisionShape2D)
-			if death_check.killed == true:
-				_die(death_check.cause_of_death)
+			if not state_machine._state == "respawn_idle": # Dizzy should not die if he spawns inside a death_zone
+				var death_check = DeathAreas.is_colliding($CollisionShape2D)
+				if death_check.killed == true:
+					if death_check.cause_of_death != "no_spawn":
+						_die(death_check.cause_of_death)
 			if paused:
 				pause_locked = true
 
@@ -118,9 +120,6 @@ func _physics_process(_delta):
 		if new_room_dir:
 			position = new_player_pos
 			emit_signal("left_room",new_room_dir)
-		elif is_on_floor() and state_machine._state in ["walking","idle"]:
-			respawn_position = possibly_unsafe_respawn_position # We are safe now.
-			respawn_room = possibly_unsafe_respawn_room
 	if (position != old_position) and paused:
 		print(position)
 
@@ -397,10 +396,10 @@ func _on_map_loaded():
 		if state_machine._state == "walk": #Emulator version skips a frame if walking offscreen
 			advance_animation()
 		state_machine._jumped_through_floor = (is_inside_floor() or floor_sensor.is_colliding()) and position.y == MAP_CHANGE_ENTRY_BOTTOM
-		respawn_position = possibly_unsafe_respawn_position # In case one jump changes two rooms.
-		respawn_room = possibly_unsafe_respawn_room
-		possibly_unsafe_respawn_position = position
-		possibly_unsafe_respawn_room = stats.current_room
+		var death_check = DeathAreas.is_colliding($CollisionShape2D)
+		if death_check.cause_of_death != "no_spawn":
+			respawn_position = position
+			respawn_room = stats.current_room
 		script_unlock_next_frame = true #wait until dizzy is drawn at the edge of screen before unlocking him
 
 func _on_maps_cleaned():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -20,7 +20,6 @@
 [ext_resource path="res://Assets/tiles/animations/dozy_sleep.png" type="Texture" id=18]
 [ext_resource path="res://Assets/tiles/items/moldy_bread.png" type="Texture" id=19]
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=20]
-[ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Assets/tiles/objects/cell_door.png" type="Texture" id=22]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=23]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=24]
@@ -2835,10 +2834,10 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 extents = Vector2( 8, 16 )
 
 [sub_resource type="RectangleShape2D" id=72]
-extents = Vector2( 6, 7 )
+extents = Vector2( 8, 5 )
 
 [sub_resource type="RectangleShape2D" id=73]
-extents = Vector2( 6, 7 )
+extents = Vector2( 8, 5 )
 
 [sub_resource type="RectangleShape2D" id=74]
 extents = Vector2( 11, 6 )
@@ -2851,9 +2850,6 @@ font_data = ExtResource( 23 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="respawn_point" parent="." instance=ExtResource( 21 )]
-position = Vector2( 12, 116 )
 
 [node name="background_before" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
@@ -2890,14 +2886,12 @@ shape = SubResource( 71 )
 
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 20, 80 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 72 )
 
 [node name="torchfire_death1" parent="." instance=ExtResource( 13 )]
 position = Vector2( 160, 40 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death1" index="0"]
 shape = SubResource( 73 )
@@ -2906,6 +2900,7 @@ shape = SubResource( 73 )
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 20, 80 )
 texture = ExtResource( 16 )
+flip_h = true
 hframes = 4
 fps = 12
 
@@ -2966,9 +2961,9 @@ margin_left = 16.0
 margin_top = 48.0
 margin_right = 208.0
 margin_bottom = 80.0
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 75 )
 text = "\"psst...dozy? wake up!
 i need your help now!§"
 align = 1
@@ -2993,9 +2988,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 160.0
 margin_bottom = 48.0
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 75 )
 text = "barred door with
 a large padlock"
 align = 1
@@ -3021,9 +3016,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 160.0
 margin_bottom = 48.0
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 75 )
 text = "barred door with
 a large padlock"
 align = 1
@@ -3056,9 +3051,9 @@ margin_left = 64.0
 margin_top = 32.0
 margin_right = 184.0
 margin_bottom = 72.0
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 75 )
 text = "\"pssst...dozy?
 wach auf du
 Schlafmütze!?"
@@ -3090,9 +3085,9 @@ margin_left = 64.0
 margin_top = 48.0
 margin_right = 184.0
 margin_bottom = 80.0
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 75 )
 text = "Dozy schläft
 tief und fest"
 align = 1
@@ -3120,9 +3115,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 120.0
 margin_bottom = 48.0
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 75 )
 text = "Du rüttelst
 am Gitter"
 align = 1
@@ -3153,9 +3148,9 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 136.0
 margin_bottom = 80.0
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 75 )
 text = "...ohne Erfolg"
 align = 1
 valign = 1
@@ -3183,9 +3178,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 72.0
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 75 )
 text = "der Schlüssel
 ist viel zu verrostet"
 align = 1
@@ -3214,9 +3209,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 168.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 75 )
 text = "mit einem lauten quietschen öffnest du die gittertür"
 align = 1
 valign = 1

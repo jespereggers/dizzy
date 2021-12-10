@@ -1,8 +1,7 @@
-[gd_scene load_steps=99 format=2]
+[gd_scene load_steps=98 format=2]
 
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=2]
-[ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=4]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=6]
@@ -2854,9 +2853,6 @@ font_data = ExtResource( 8 )
 pause_mode = 2
 script = ExtResource( 9 )
 
-[node name="respawn_point" parent="." instance=ExtResource( 3 )]
-position = Vector2( 180, 101 )
-
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 1, 1 )
@@ -2874,14 +2870,12 @@ tile_data = PoolIntArray( 0, 0, 0, 24, 1, 0, 40, 0, 0, 64, 0, 0, 88, 1, 0, 104, 
 
 [node name="torchfire_death" parent="." instance=ExtResource( 4 )]
 position = Vector2( 40, 64 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 72 )
 
 [node name="torchfire_death1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 200, 64 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death1" index="0"]
 shape = SubResource( 73 )
@@ -2952,9 +2946,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "\"ooh, there
 is a message
 on the table?"
@@ -2984,9 +2978,9 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 184.0
 margin_bottom = 88.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "i'll be right back!
 -signed rockwart-"
 align = 1
@@ -3013,9 +3007,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 120.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "you should
 pick up
 the message"
@@ -3041,9 +3035,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "\"oh, da liegt
 eine nachricht
 auf dem tisch§"
@@ -3070,9 +3064,9 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 184.0
 margin_bottom = 88.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "Bin gleich zurück!
 signiert 'rockwart'"
 align = 1
@@ -3096,9 +3090,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 120.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "den zettel
 solltest du
 mitnehmen"
