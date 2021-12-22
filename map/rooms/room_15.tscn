@@ -1,7 +1,8 @@
-[gd_scene load_steps=98 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/tiles/items/dusty_headphone.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=4]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=6]
@@ -2898,10 +2899,10 @@ fps = 12
 
 [node name="item_mystical_artifact" parent="objects" instance=ExtResource( 7 )]
 modulate = Color( 0.435294, 0.239216, 0.52549, 1 )
-position = Vector2( 45, 120 )
+position = Vector2( 16, 112 )
 item_name = "a mystical artifact"
 color = Color( 0.435294, 0.239216, 0.52549, 1 )
-height = 7.0
+height = 0.0
 texture = ExtResource( 23 )
 
 [node name="sprite" parent="objects/item_mystical_artifact" index="0"]
@@ -2912,7 +2913,7 @@ modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 160, 104 )
 item_name = "rockwart's message"
 color = Color( 0.721569, 0.780392, 0.435294, 1 )
-height = 7.0
+height = 0.0
 texture = ExtResource( 19 )
 
 [node name="sprite" parent="objects/item_old_message" index="0"]
@@ -2923,11 +2924,20 @@ modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
 position = Vector2( 144, 104 )
 item_name = "a bitten apple"
 color = Color( 0.345098, 0.552941, 0.262745, 1 )
-height = 7.0
+height = 0.0
 texture = ExtResource( 24 )
 
 [node name="sprite" parent="objects/item_bitten_apple" index="0"]
 texture = ExtResource( 24 )
+
+[node name="item_headphones" parent="objects" instance=ExtResource( 7 )]
+position = Vector2( 192, 118 )
+item_name = "dusty headphones"
+height = 0.0
+texture = ExtResource( 3 )
+
+[node name="sprite" parent="objects/item_headphones" index="0"]
+texture = ExtResource( 3 )
 
 [node name="popups" type="CanvasLayer" parent="."]
 
@@ -3108,6 +3118,7 @@ __meta__ = {
 [editable path="objects/item_mystical_artifact"]
 [editable path="objects/item_old_message"]
 [editable path="objects/item_bitten_apple"]
+[editable path="objects/item_headphones"]
 [editable path="popups/message_3_en/background"]
 [editable path="popups/message_1_de/nachricht1"]
 [editable path="popups/message_2_de/nachricht2"]

@@ -37,7 +37,6 @@ font_data = ExtResource( 4 )
 
 [node name="inventory" type="Popup"]
 pause_mode = 2
-visible = true
 margin_right = 256.0
 margin_bottom = 192.0
 grow_horizontal = 0
@@ -214,43 +213,6 @@ custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 text = "dein inventar
 ist schon voll"
-align = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="label2" type="Label" parent="full_inventory_dialogue_ger"]
-visible = false
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 144.0
-margin_bottom = 32.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 6 )
-custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
-text = "du kannst nicht
-mehr aufsammeln"
-align = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="label3" type="Label" parent="full_inventory_dialogue_ger"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 144.0
-margin_bottom = 32.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 6 )
-custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
-text = "du hast mehr als
-du tragen kannst"
 align = 1
 uppercase = true
 __meta__ = {

@@ -5794,7 +5794,7 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 extents = Vector2( 19, 5 )
 
 [sub_resource type="RectangleShape2D" id=151]
-extents = Vector2( 26.6109, 23.0778 )
+extents = Vector2( 20, 24 )
 
 [node name="room_7" type="Node2D"]
 __meta__ = {
@@ -5833,11 +5833,10 @@ position = Vector2( 14.227, -1.984 )
 shape = SubResource( 150 )
 
 [node name="no_spawn_area" parent="." instance=ExtResource( 12 )]
-position = Vector2( 5.63515, 7.28429 )
 cause_of_death = "no_spawn"
 
 [node name="shape_of_death" parent="no_spawn_area" index="0"]
-position = Vector2( 21.8379, 16.0938 )
+position = Vector2( 28, 24 )
 shape = SubResource( 151 )
 
 [node name="objects" parent="." instance=ExtResource( 13 )]
