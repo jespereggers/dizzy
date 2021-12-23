@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -16,7 +16,6 @@
 [ext_resource path="res://Assets/tiles/characters/yolkfolk/dozy_sleep.png" type="Texture" id=14]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=16]
-[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Assets/tiles/animations/dozy_sleep.png" type="Texture" id=18]
 [ext_resource path="res://Assets/tiles/items/moldy_bread.png" type="Texture" id=19]
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=20]
@@ -2925,19 +2924,16 @@ texture = ExtResource( 18 )
 hframes = 441
 fps = 16
 
-[node name="objects" parent="." instance=ExtResource( 17 )]
-
-[node name="item_moldy_bread" parent="objects" instance=ExtResource( 20 )]
+[node name="item_moldy_bread" parent="." instance=ExtResource( 20 )]
 modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
-position = Vector2( 175, 96 )
+position = Vector2( 168, 105 )
 item_name = "a moldy bread"
-color = Color( 0.345098, 0.552941, 0.262745, 1 )
+
+[node name="Sprite" type="Sprite" parent="item_moldy_bread"]
+position = Vector2( 8, -9 )
 texture = ExtResource( 19 )
 
-[node name="sprite" parent="objects/item_moldy_bread" index="0"]
-texture = ExtResource( 19 )
-
-[node name="coin" parent="objects" instance=ExtResource( 25 )]
+[node name="coin" parent="." instance=ExtResource( 25 )]
 position = Vector2( 64, 48 )
 
 [node name="popups" type="CanvasLayer" parent="."]
@@ -2961,9 +2957,9 @@ margin_left = 16.0
 margin_top = 48.0
 margin_right = 208.0
 margin_bottom = 80.0
-custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 75 )
 text = "\"psst...dozy? wake up!
 i need your help now!§"
 align = 1
@@ -2988,9 +2984,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 160.0
 margin_bottom = 48.0
-custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 75 )
 text = "barred door with
 a large padlock"
 align = 1
@@ -3016,9 +3012,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 160.0
 margin_bottom = 48.0
-custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 75 )
 text = "barred door with
 a large padlock"
 align = 1
@@ -3051,9 +3047,9 @@ margin_left = 64.0
 margin_top = 32.0
 margin_right = 184.0
 margin_bottom = 72.0
-custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 75 )
 text = "\"pssst...dozy?
 wach auf du
 Schlafmütze!?"
@@ -3085,9 +3081,9 @@ margin_left = 64.0
 margin_top = 48.0
 margin_right = 184.0
 margin_bottom = 80.0
-custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 75 )
 text = "Dozy schläft
 tief und fest"
 align = 1
@@ -3115,9 +3111,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 120.0
 margin_bottom = 48.0
-custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 75 )
 text = "Du rüttelst
 am Gitter"
 align = 1
@@ -3148,9 +3144,9 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 136.0
 margin_bottom = 80.0
-custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 75 )
 text = "...ohne Erfolg"
 align = 1
 valign = 1
@@ -3178,9 +3174,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 72.0
-custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 75 )
 text = "der Schlüssel
 ist viel zu verrostet"
 align = 1
@@ -3209,9 +3205,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 168.0
 margin_bottom = 56.0
-custom_fonts/font = SubResource( 75 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 75 )
 text = "mit einem lauten quietschen öffnest du die gittertür"
 align = 1
 valign = 1
@@ -3223,4 +3219,3 @@ __meta__ = {
 
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]
-[editable path="objects/item_moldy_bread"]

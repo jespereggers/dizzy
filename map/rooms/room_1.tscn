@@ -1,7 +1,6 @@
-[gd_scene load_steps=93 format=2]
+[gd_scene load_steps=92 format=2]
 
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/tiles/items/cannonball.png" type="Texture" id=3]
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/tiles/build/9.png" type="Texture" id=5]
@@ -2996,13 +2995,10 @@ __meta__ = {
 
 [node name="item" parent="." instance=ExtResource( 4 )]
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
-position = Vector2( 80, 119 )
+position = Vector2( 72, 128 )
 item_name = "a cannonball"
+
+[node name="Sprite" type="Sprite" parent="item"]
+show_behind_parent = true
+position = Vector2( 8, -8 )
 texture = ExtResource( 3 )
-
-[node name="sprite" parent="item" index="0"]
-texture = ExtResource( 3 )
-
-[node name="objects" parent="." instance=ExtResource( 2 )]
-
-[editable path="item"]

@@ -1,17 +1,13 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scripts/item.gd" type="Script" id=1]
-[ext_resource path="res://Assets/tiles/items/rusty_key.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/inventory/item.gd" type="Script" id=1]
 
-[node name="item" type="KinematicBody2D"]
-collision/safe_margin = 0.01
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[node name="item" type="Area2D"]
 script = ExtResource( 1 )
-item_name = "key"
-shape_extents = Vector2( 8, 8 )
-height = 14.0
-texture = ExtResource( 2 )
 
-[node name="sprite" type="Sprite" parent="."]
-position = Vector2( -8, -8 )
-texture = ExtResource( 2 )
-centered = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 8, -8 )
+shape = SubResource( 1 )

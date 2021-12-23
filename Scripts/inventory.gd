@@ -27,7 +27,7 @@ func _unhandled_input(event):
 		if self.is_visible_in_tree():
 			if get_node("hint").visible:
 				close()
-		elif paths.player.item_detector.detected_items.empty() and not get_parent().death.visible and paths.player.is_on_floor():
+		elif ItemCollision.get_colliding_items(paths.player.get_node("item_detector/shape")).empty() and not get_parent().death.visible and paths.player.is_on_floor():
 			if not get_parent().locked:
 				if not get_parent().get_node("found_coin").visible:
 					open()
@@ -38,22 +38,10 @@ func _unhandled_input(event):
 		set_process_input(true)
 
 
-func _on_item_pressed(object_properties: Dictionary):
+func _on_item_pressed(item: Item):
 	if is_visible_in_tree():
-		for item_properties in stats.inventory:
-			if item_properties == object_properties:
-				stats.inventory.erase(item_properties)
-				break
-		
-		paths.map.add(object_properties)
-		
-		# Check on_build
-		if object_properties.item_name in data.items:
-			if data.items[object_properties.item_name].has("on_build"):
-				match data.items[object_properties.item_name].on_build.action.type:
-					"screen_shake":
-						paths.camera.shake()
-		
+		item.get_dropped()
+		stats.remove_item_from_inventory(item)
 		close()
 
 

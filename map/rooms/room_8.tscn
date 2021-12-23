@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=2]
+[gd_scene load_steps=98 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -20,7 +20,6 @@
 [ext_resource path="res://Assets/tiles/animations/water_full.png" type="Texture" id=18]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=19]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=21]
 [ext_resource path="res://templates/shard.tscn" type="PackedScene" id=23]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -2947,22 +2946,19 @@ texture = ExtResource( 18 )
 hframes = 4
 fps = 6
 
-[node name="objects" parent="." instance=ExtResource( 21 )]
-
-[node name="lever_on_off" type="Sprite" parent="objects"]
+[node name="lever_on_off" type="Sprite" parent="."]
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 position = Vector2( 136, 32 )
 texture = ExtResource( 13 )
 
-[node name="lever_broken" type="Sprite" parent="objects"]
+[node name="lever_broken" type="Sprite" parent="."]
 visible = false
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
 position = Vector2( 136, 32 )
 texture = ExtResource( 14 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="objects"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lever_broken"]
 visible = false
-position = Vector2( 136, 32 )
 shape = SubResource( 75 )
 
 [node name="popups" type="CanvasLayer" parent="."]
@@ -2985,9 +2981,9 @@ margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "click"
 align = 1
 valign = 1
@@ -3014,9 +3010,9 @@ margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "clack"
 align = 1
 valign = 1
@@ -3043,9 +3039,9 @@ margin_left = 24.0
 margin_top = 24.0
 margin_right = 168.0
 margin_bottom = 64.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "Just keep trying
 it won't work in
 a million years"
@@ -3075,9 +3071,9 @@ margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
 margin_bottom = 55.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "click
 clack
 click"
@@ -3106,9 +3102,9 @@ margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "crack"
 align = 1
 valign = 1
@@ -3132,9 +3128,9 @@ margin_left = 40.0
 margin_top = 56.0
 margin_right = 200.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "damn, you finally
 broke off the lever
 for the portcullis"
@@ -3164,9 +3160,9 @@ margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "klick"
 align = 1
 valign = 1
@@ -3193,9 +3189,9 @@ margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "klack"
 align = 1
 valign = 1
@@ -3222,9 +3218,9 @@ margin_left = 24.0
 margin_top = 24.0
 margin_right = 168.0
 margin_bottom = 64.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "Egal wie oft du
 drückst, es wird
 nichts passieren"
@@ -3254,9 +3250,9 @@ margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
 margin_bottom = 55.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "klick
 klack
 klick"
@@ -3285,9 +3281,9 @@ margin_left = 48.0
 margin_top = 16.0
 margin_right = 104.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "knack"
 align = 1
 valign = 1
@@ -3311,9 +3307,9 @@ margin_left = 40.0
 margin_top = 56.0
 margin_right = 200.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "Du hast den Hebel
 für das Fallgitter
 soeben abgebrochen"

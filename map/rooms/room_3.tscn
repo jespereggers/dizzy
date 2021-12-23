@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -16,7 +16,6 @@
 [ext_resource path="res://Assets/tiles/objects/stuck_door.png" type="Texture" id=14]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=16]
-[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=17]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=19]
 
@@ -3036,8 +3035,6 @@ centered = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stuck_door"]
 position = Vector2( 6, 16 )
 shape = SubResource( 80 )
-
-[node name="objects" parent="." instance=ExtResource( 17 )]
 
 [node name="background2" parent="." instance=ExtResource( 18 )]
 visible = false

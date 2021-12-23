@@ -7,6 +7,8 @@ signal map_loaded
 export var default_respawn: Vector2 = Vector2(220,134)
 #export var custom_respawn_correction: Vector2 = Vector2(8, 48)
 
+var room_node:Node2D = null
+
 const BLACKSCREEN_DURATION = 0.4 #map change
 
 func _ready():
@@ -16,27 +18,52 @@ func _ready():
 func change_room(new_room_coords:Vector2):
 	if not data.maps[stats.current_map].keys().has(new_room_coords):
 		push_error("Error: Can't load nonexisting room")
-	stats.current_room = new_room_coords
-	_update_map()
-	paths.display.update_display()
-
-func _update_map():
 	_clean_maps()
+	stats.current_room = new_room_coords
 	yield(get_tree().create_timer(BLACKSCREEN_DURATION), "timeout") #blackscreen
 	_load_map()
+	paths.display.update_display()
 
 func _clean_maps():
 	for room in get_children():
 		#if str(room.filename) != data.maps[stats.current_map][stats.current_room].path and room.name != "user_interface":
 		if room.name != "user_interface":
+			_unload_items(room)
 			room.queue_free()
 	emit_signal("maps_cleaned")
 
 
 func _load_map():
-	var map: Node2D = load(data.maps[stats.current_map][stats.current_room].path).instance()
-	add_child(map)
+	room_node = load(data.maps[stats.current_map][stats.current_room].path).instance()
+	add_child(room_node)
+	_load_items(room_node)
 	emit_signal("map_loaded")
+
+func _unique_item_string(item:Node2D):
+	return item.name + str(item.position)
+
+func _load_items(room:Node):
+	if not stats.current_room in data.game_save.enviroment[stats.current_map]:
+		data.game_save.enviroment[stats.current_map][stats.current_room] = {"removed_items": [], "remembered_items": []}
+	#remove and remember items
+	for child in room.get_children():
+		if (child is Item) or (child is Coin):
+			var unique_item_string = _unique_item_string(child)
+			if not data.game_save.enviroment[stats.current_map][stats.current_room].removed_items.has(unique_item_string):
+				data.game_save.enviroment[stats.current_map][stats.current_room].removed_items.append(unique_item_string)
+				data.game_save.enviroment[stats.current_map][stats.current_room].remembered_items.append(child)
+			room.remove_child(child)
+		#place remembered items
+	for item in data.game_save.enviroment[stats.current_map][stats.current_room].remembered_items:
+		room.add_child(item)
+	data.game_save.enviroment[stats.current_map][stats.current_room].remembered_items = []
+		
+func _unload_items(room:Node):
+	#remember items
+	for child in room.get_children():
+		if (child is Item) or (child is Coin):
+			data.game_save.enviroment[stats.current_map][stats.current_room].remembered_items.append(child)
+			room.remove_child(child)
 
 func add(properties: Dictionary):
 	var object

@@ -18,12 +18,12 @@ func load_items():
 		list_instance.remove_child(item)
 			
 	# Instance new items to the inventory
-	for object_properties in stats.inventory:
+	for item in stats.inventory:
 		if list_instance.get_child_count() < 2:
 			var button_instance: Button = load("res://Scenes/templates/item_template.tscn").instance()
-			button_instance.load_template(object_properties.item_name)
+			button_instance.load_template(item .item_name)
 			list_instance.add_child(button_instance)
-			if button_instance.connect("pressed", get_parent(), "_on_item_pressed", [object_properties]) != OK:
+			if button_instance.connect("pressed", get_parent(), "_on_item_pressed", [item ]) != OK:
 				print("Error occured when trying to establish a connection")
 	
 	get_parent().get_node("choose_item_dialogue").hide()

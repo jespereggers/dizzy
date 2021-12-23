@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -16,11 +16,9 @@
 [ext_resource path="res://Assets/tiles/characters/yolkfolk/denzil_happy.png" type="Texture" id=14]
 [ext_resource path="res://Assets/tiles/characters/yolkfolk/denzil_sad.png" type="Texture" id=15]
 [ext_resource path="res://Assets/tiles/objects/painting.png" type="Texture" id=16]
-[ext_resource path="res://Assets/tiles/items/railing.png" type="Texture" id=17]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=19]
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=21]
-[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=24]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=25]
 [ext_resource path="res://templates/coin.tscn" type="PackedScene" id=26]
@@ -2944,8 +2942,6 @@ visible = false
 position = Vector2( 12, 108 )
 texture = ExtResource( 14 )
 
-[node name="objects" parent="." instance=ExtResource( 22 )]
-
 [node name="painting" type="Sprite" parent="."]
 modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
 position = Vector2( 120, 36 )
@@ -2966,11 +2962,6 @@ position = Vector2( 150, 72 )
 [node name="item_railing" parent="." instance=ExtResource( 20 )]
 position = Vector2( 200, 48 )
 item_name = "a piece of railing"
-height = 7.0
-texture = ExtResource( 17 )
-
-[node name="sprite" parent="item_railing" index="0"]
-texture = ExtResource( 17 )
 
 [node name="popups" type="CanvasLayer" parent="."]
 
@@ -2989,9 +2980,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 56.0
-custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 77 )
 text = "\"ooh, there
 is a message
 on the table?"
@@ -3021,9 +3012,9 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 184.0
 margin_bottom = 88.0
-custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 77 )
 text = "i'll be right back!
 -signed rockwart-"
 align = 1
@@ -3052,9 +3043,9 @@ margin_left = 72.0
 margin_top = 48.0
 margin_right = 168.0
 margin_bottom = 88.0
-custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 77 )
 text = "you should
 pick up
 the message"
@@ -3084,9 +3075,9 @@ margin_left = 40.0
 margin_top = 64.0
 margin_right = 200.0
 margin_bottom = 112.0
-custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 77 )
 text = "You turn
 the picture back
 around - something
@@ -3113,9 +3104,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 56.0
-custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 77 )
 text = "\"oh, da liegt
 eine nachricht
 auf dem tisch§"
@@ -3142,9 +3133,9 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 184.0
 margin_bottom = 88.0
-custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 77 )
 text = "Bin gleich zurück!
 signiert 'rockwart'"
 align = 1
@@ -3171,9 +3162,9 @@ margin_left = 64.0
 margin_top = 64.0
 margin_right = 176.0
 margin_bottom = 104.0
-custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 77 )
 text = "\"nanu, etwas
 scheint hier
 verkehrt?"
@@ -3203,9 +3194,9 @@ margin_left = 40.0
 margin_top = 64.0
 margin_right = 200.0
 margin_bottom = 112.0
-custom_fonts/font = SubResource( 77 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 77 )
 text = "Du drehst das Bild
 wieder richtig
 herum - dabei fällt

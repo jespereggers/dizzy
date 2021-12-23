@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=2]
+[gd_scene load_steps=94 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=13]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=15]
-[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=16]
 [ext_resource path="res://templates/coin.tscn" type="PackedScene" id=18]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -2978,9 +2977,7 @@ texture = ExtResource( 15 )
 hframes = 4
 fps = 12
 
-[node name="objects" parent="." instance=ExtResource( 16 )]
-
-[node name="coin" parent="objects" instance=ExtResource( 18 )]
+[node name="coin" parent="." instance=ExtResource( 18 )]
 position = Vector2( 40, 72 )
 
 [editable path="torchfire_death"]

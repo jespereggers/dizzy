@@ -1,8 +1,7 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=3]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/tiles/build/5.png" type="Texture" id=5]
 [ext_resource path="res://Assets/tiles/build/1.png" type="Texture" id=6]
@@ -1637,17 +1636,14 @@ visible = false
 modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
 position = Vector2( 104, 32 )
 item_name = "a rusty key"
-color = Color( 0.407843, 0.215686, 0.168627, 1 )
 
-[node name="objects" parent="." instance=ExtResource( 3 )]
-
-[node name="item_crowbar" parent="objects" instance=ExtResource( 12 )]
-position = Vector2( 181, 120 )
+[node name="item_crowbar" parent="." instance=ExtResource( 12 )]
+position = Vector2( 176, 128 )
 item_name = "a strong crowbar"
-height = 7.0
-texture = ExtResource( 14 )
 
-[node name="sprite" parent="objects/item_crowbar" index="0"]
+[node name="Sprite" type="Sprite" parent="item_crowbar"]
+show_behind_parent = true
+position = Vector2( 8, -8 )
 texture = ExtResource( 14 )
 
 [node name="popups" type="CanvasLayer" parent="."]
@@ -1669,9 +1665,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 152.0
 margin_bottom = 56.0
-custom_fonts/font = SubResource( 53 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 53 )
 text = "du wirfst das
 artefakt auf den
 boden und gehst
@@ -1701,9 +1697,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 224.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 53 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 53 )
 text = "es entläd seine enorme kraft und durch die erschütterung fällt die aufgetürmte stützkonstruktion in sich zusammen"
 align = 1
 valign = 1
@@ -1715,4 +1711,3 @@ __meta__ = {
 
 [editable path="torchfire_death"]
 [editable path="item_rusty_key"]
-[editable path="objects/item_crowbar"]

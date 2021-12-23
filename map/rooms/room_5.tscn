@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=2]
+[gd_scene load_steps=97 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=13]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=15]
-[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Assets/tiles/items/withered_plant.png" type="Texture" id=17]
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=18]
 [ext_resource path="res://templates/coin.tscn" type="PackedScene" id=19]
@@ -3006,21 +3005,16 @@ texture = ExtResource( 15 )
 hframes = 4
 fps = 12
 
-[node name="objects" parent="." instance=ExtResource( 16 )]
-
-[node name="coin" parent="objects" instance=ExtResource( 19 )]
+[node name="coin" parent="." instance=ExtResource( 19 )]
 position = Vector2( 221, 112 )
 
-[node name="item_withered_plant" parent="objects" instance=ExtResource( 18 )]
+[node name="item_withered_plant" parent="." instance=ExtResource( 18 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
-position = Vector2( 221, 112 )
+position = Vector2( 212.676, 120.027 )
 item_name = "a withered plant"
-color = Color( 0.721569, 0.780392, 0.435294, 1 )
-height = 7.0
-texture = ExtResource( 17 )
 
-[node name="sprite" parent="objects/item_withered_plant" index="0"]
+[node name="Sprite" type="Sprite" parent="item_withered_plant"]
+position = Vector2( 8.47308, -8.02715 )
 texture = ExtResource( 17 )
 
 [editable path="torchfire_death"]
-[editable path="objects/item_withered_plant"]
