@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=102 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Assets/tiles/characters/yolkfolk/denzil_happy.png" type="Texture" id=14]
 [ext_resource path="res://Assets/tiles/characters/yolkfolk/denzil_sad.png" type="Texture" id=15]
 [ext_resource path="res://Assets/tiles/objects/painting.png" type="Texture" id=16]
+[ext_resource path="res://Assets/tiles/items/railing.png" type="Texture" id=17]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=19]
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=21]
@@ -2853,7 +2854,10 @@ extents = Vector2( 8, 5 )
 [sub_resource type="RectangleShape2D" id=76]
 extents = Vector2( 4, 4 )
 
-[sub_resource type="DynamicFont" id=77]
+[sub_resource type="RectangleShape2D" id=77]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="DynamicFont" id=78]
 size = 7
 font_data = ExtResource( 24 )
 
@@ -2868,7 +2872,7 @@ __meta__ = {
 tile_set = ExtResource( 12 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 24, 54, 0, 100, 65, 0, 184, 536870966, 0, 1048672, 61, 0, 1048712, 62, 0, 1572940, 17, 0, 1572960, 64, 0, 1573020, 17, 0, 2621440, 53, 0, 2621456, 53, 0, 2621472, 53, 0, 2621488, 53, 0, 2621616, 536870965, 0, 2621648, 536870965, 0, 2621664, 536870965, 0, 3145832, 63, 0, 3670104, 536870968, 0, 3670152, 56, 0, 3735656, 536870969, 0, 3735680, 57, 0, 4194376, 536870968, 0, 4194456, 56, 0, 4718648, 536870968, 0, 4718760, 56, 0, 5242888, 17, 0, 5242920, 536870968, 0, 5243064, 56, 0, 5243104, 17, 0, 5767192, 536870968, 0, 5767368, 56, 0, 6291512, 52, 0, 6291520, 52, 0, 6291528, 52, 0, 6291536, 52, 0, 6291544, 52, 0, 6291552, 52, 0, 6291560, 52, 0, 6291568, 52, 0, 6291576, 52, 0, 6291584, 52, 0, 6291592, 52, 0, 6291600, 52, 0, 6291608, 52, 0, 6291616, 52, 0, 6291624, 52, 0, 6291632, 52, 0, 6291672, 56, 0, 6815784, 52, 0, 6815792, 52, 0, 6815800, 52, 0, 6815808, 52, 0, 6815816, 52, 0, 6815824, 52, 0, 6815832, 52, 0, 6815840, 52, 0, 6815848, 52, 0, 6815856, 52, 0, 6815864, 52, 0, 6815872, 52, 0, 6815880, 52, 0, 6815888, 52, 0, 6815896, 52, 0, 6815904, 52, 0, 6815912, 52, 0, 6815920, 52, 0, 6815928, 52, 0, 6815936, 52, 0, 7340056, 52, 0, 7340064, 52, 0, 7340072, 52, 0, 7340080, 52, 0, 7340088, 52, 0, 7340096, 52, 0, 7340104, 52, 0, 7340112, 52, 0, 7340120, 52, 0, 7340128, 52, 0, 7340136, 52, 0, 7340144, 52, 0, 7340152, 52, 0, 7340160, 52, 0, 7340168, 52, 0, 7340176, 52, 0, 7340184, 52, 0, 7340192, 52, 0, 7340200, 52, 0, 7340208, 52, 0, 7340216, 52, 0, 7340224, 52, 0, 7340232, 52, 0, 7340240, 52, 0, 7929844, 161, 0, 7929845, 161, 0, 7929846, 161, 0, 7929847, 161, 0, 7929848, 161, 0, 7929849, 161, 0, 7929850, 161, 0, 7929851, 161, 0, 7929852, 161, 0, 7929853, 161, 0, 7929854, 161, 0, 7929855, 161, 0, 7864320, 161, 0, 7864321, 161, 0, 7864322, 161, 0, 7864323, 161, 0, 7864488, 60, 0, 7864512, 60, 0, 7995380, 161, 0, 7929856, 161, 0, 8060916, 161, 0, 8060927, 161, 0, 8126452, 161, 0, 8126463, 161, 0, 8191988, 161, 0, 8191999, 161, 0, 8257523, 161, 0, 8257524, 161, 0, 8257535, 161, 0, 8323059, 161, 0, 8323060, 161, 0, 8323071, 161, 0, 8388595, 161, 0, 8388596, 161, 0, 8388601, 161, 0, 8388606, 161, 0, 8454131, 161, 0, 8454132, 161, 0, 8454135, 161, 0, 8454136, 161, 0, 8454137, 161, 0, 8454138, 161, 0, 8454139, 161, 0, 8454140, 161, 0, 8454141, 161, 0, 8519667, 161, 0, 8519668, 161, 0, 8519669, 161, 0, 8519670, 161, 0, 8519671, 161, 0, 8519677, 161, 0, 8585203, 161, 0, 8585204, 161, 0, 8585205, 161, 0, 8650739, 161, 0, 8650740, 161, 0, 8716275, 161, 0, 8716276, 161, 0, 8781810, 161, 0, 8781811, 161, 0, 8847347, 161, 0, 8847359, 161, 0, 8781824, 161, 0, 8781825, 161, 0, 8912883, 161, 0, 8912884, 161, 0, 8912885, 161, 0, 8912886, 161, 0, 8912887, 161, 0, 8912888, 161, 0, 8912889, 161, 0, 8912890, 161, 0, 8912891, 161, 0, 8912892, 161, 0, 8912893, 161, 0, 8912894, 161, 0, 8912895, 161, 0 )
+tile_data = PoolIntArray( 24, 54, 0, 100, 65, 0, 184, 536870966, 0, 1048672, 61, 0, 1048712, 62, 0, 1572940, 17, 0, 1572960, 64, 0, 1573020, 17, 0, 2621440, 53, 0, 2621456, 53, 0, 2621488, 53, 0, 2621616, 536870965, 0, 2621632, 536870965, 0, 2621648, 536870965, 0, 2621664, 536870965, 0, 3145832, 63, 0, 3670104, 536870968, 0, 3670152, 56, 0, 3735656, 536870969, 0, 3735680, 57, 0, 4194376, 536870968, 0, 4194456, 56, 0, 4718648, 536870968, 0, 4718760, 56, 0, 5242888, 17, 0, 5242920, 536870968, 0, 5243064, 56, 0, 5243104, 17, 0, 5767192, 536870968, 0, 5767368, 56, 0, 6291512, 52, 0, 6291520, 52, 0, 6291528, 52, 0, 6291536, 52, 0, 6291544, 52, 0, 6291552, 52, 0, 6291560, 52, 0, 6291568, 52, 0, 6291576, 52, 0, 6291584, 52, 0, 6291592, 52, 0, 6291600, 52, 0, 6291608, 52, 0, 6291616, 52, 0, 6291624, 52, 0, 6291632, 52, 0, 6291672, 56, 0, 6815784, 52, 0, 6815792, 52, 0, 6815800, 52, 0, 6815808, 52, 0, 6815816, 52, 0, 6815824, 52, 0, 6815832, 52, 0, 6815840, 52, 0, 6815848, 52, 0, 6815856, 52, 0, 6815864, 52, 0, 6815872, 52, 0, 6815880, 52, 0, 6815888, 52, 0, 6815896, 52, 0, 6815904, 52, 0, 6815912, 52, 0, 6815920, 52, 0, 6815928, 52, 0, 6815936, 52, 0, 7340056, 52, 0, 7340064, 52, 0, 7340072, 52, 0, 7340080, 52, 0, 7340088, 52, 0, 7340096, 52, 0, 7340104, 52, 0, 7340112, 52, 0, 7340120, 52, 0, 7340128, 52, 0, 7340136, 52, 0, 7340144, 52, 0, 7340152, 52, 0, 7340160, 52, 0, 7340168, 52, 0, 7340176, 52, 0, 7340184, 52, 0, 7340192, 52, 0, 7340200, 52, 0, 7340208, 52, 0, 7340216, 52, 0, 7340224, 52, 0, 7340232, 52, 0, 7340240, 52, 0, 7929844, 161, 0, 7929845, 161, 0, 7929846, 161, 0, 7929847, 161, 0, 7929848, 161, 0, 7929849, 161, 0, 7929850, 161, 0, 7929851, 161, 0, 7929852, 161, 0, 7929853, 161, 0, 7929854, 161, 0, 7929855, 161, 0, 7864320, 161, 0, 7864321, 161, 0, 7864322, 161, 0, 7864323, 161, 0, 7864488, 60, 0, 7864512, 60, 0, 7995380, 161, 0, 7929856, 161, 0, 8060916, 161, 0, 8060927, 161, 0, 8126452, 161, 0, 8126463, 161, 0, 8191988, 161, 0, 8191999, 161, 0, 8257523, 161, 0, 8257524, 161, 0, 8257535, 161, 0, 8323059, 161, 0, 8323060, 161, 0, 8323071, 161, 0, 8388595, 161, 0, 8388596, 161, 0, 8388601, 161, 0, 8388606, 161, 0, 8454131, 161, 0, 8454132, 161, 0, 8454135, 161, 0, 8454136, 161, 0, 8454137, 161, 0, 8454138, 161, 0, 8454139, 161, 0, 8454140, 161, 0, 8454141, 161, 0, 8519667, 161, 0, 8519668, 161, 0, 8519669, 161, 0, 8519670, 161, 0, 8519671, 161, 0, 8519677, 161, 0, 8585203, 161, 0, 8585204, 161, 0, 8585205, 161, 0, 8650739, 161, 0, 8650740, 161, 0, 8716275, 161, 0, 8716276, 161, 0, 8781810, 161, 0, 8781811, 161, 0, 8847347, 161, 0, 8847359, 161, 0, 8781824, 161, 0, 8781825, 161, 0, 8912883, 161, 0, 8912884, 161, 0, 8912885, 161, 0, 8912886, 161, 0, 8912887, 161, 0, 8912888, 161, 0, 8912889, 161, 0, 8912890, 161, 0, 8912891, 161, 0, 8912892, 161, 0, 8912893, 161, 0, 8912894, 161, 0, 8912895, 161, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -2953,15 +2957,24 @@ position = Vector2( 0, 28 )
 shape = SubResource( 76 )
 
 [node name="coin1" parent="." instance=ExtResource( 26 )]
-position = Vector2( 200, 48 )
+position = Vector2( 40, 48 )
 
 [node name="coin2" parent="." instance=ExtResource( 26 )]
 visible = false
-position = Vector2( 150, 72 )
+position = Vector2( 168, 80 )
 
 [node name="item_railing" parent="." instance=ExtResource( 20 )]
-position = Vector2( 200, 48 )
-item_name = "a piece of railing"
+position = Vector2( 32, 56 )
+item_name = "A Piece of Railing"
+item_priority = 98
+
+[node name="CollisionShape2D" parent="item_railing" index="0"]
+shape = SubResource( 77 )
+
+[node name="Sprite" type="Sprite" parent="item_railing"]
+show_behind_parent = true
+position = Vector2( 8, -8 )
+texture = ExtResource( 17 )
 
 [node name="popups" type="CanvasLayer" parent="."]
 
@@ -2980,9 +2993,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 78 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "\"ooh, there
 is a message
 on the table?"
@@ -3012,9 +3025,9 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 184.0
 margin_bottom = 88.0
+custom_fonts/font = SubResource( 78 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "i'll be right back!
 -signed rockwart-"
 align = 1
@@ -3043,9 +3056,9 @@ margin_left = 72.0
 margin_top = 48.0
 margin_right = 168.0
 margin_bottom = 88.0
+custom_fonts/font = SubResource( 78 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "you should
 pick up
 the message"
@@ -3075,9 +3088,9 @@ margin_left = 40.0
 margin_top = 64.0
 margin_right = 200.0
 margin_bottom = 112.0
+custom_fonts/font = SubResource( 78 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "You turn
 the picture back
 around - something
@@ -3104,9 +3117,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 78 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "\"oh, da liegt
 eine nachricht
 auf dem tisch§"
@@ -3133,9 +3146,9 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 184.0
 margin_bottom = 88.0
+custom_fonts/font = SubResource( 78 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "Bin gleich zurück!
 signiert 'rockwart'"
 align = 1
@@ -3162,9 +3175,9 @@ margin_left = 64.0
 margin_top = 64.0
 margin_right = 176.0
 margin_bottom = 104.0
+custom_fonts/font = SubResource( 78 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "\"nanu, etwas
 scheint hier
 verkehrt?"
@@ -3194,9 +3207,9 @@ margin_left = 40.0
 margin_top = 64.0
 margin_right = 200.0
 margin_bottom = 112.0
+custom_fonts/font = SubResource( 78 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 77 )
 text = "Du drehst das Bild
 wieder richtig
 herum - dabei fällt

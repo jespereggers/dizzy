@@ -2895,38 +2895,38 @@ texture = ExtResource( 22 )
 hframes = 4
 fps = 12
 
+[node name="item_old_message" parent="." instance=ExtResource( 7 )]
+position = Vector2( 152, 112 )
+item_name = "rockwart's message"
+item_priority = 99
+
+[node name="Sprite" type="Sprite" parent="item_old_message"]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+show_behind_parent = true
+position = Vector2( 8, -8 )
+texture = ExtResource( 19 )
+
+[node name="item_bitten_apple" parent="." instance=ExtResource( 7 )]
+position = Vector2( 136, 112 )
+item_name = "a bitten appel"
+item_priority = 98
+
+[node name="Sprite" type="Sprite" parent="item_bitten_apple"]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+show_behind_parent = true
+position = Vector2( 8, -8 )
+texture = ExtResource( 24 )
+
 [node name="item_mystical_artifact" parent="." instance=ExtResource( 7 )]
-modulate = Color( 0.435294, 0.239216, 0.52549, 1 )
 position = Vector2( 8, 120 )
 script = ExtResource( 6 )
 item_name = "Mystical Artifact"
 
 [node name="Sprite" type="Sprite" parent="item_mystical_artifact"]
-show_behind_parent = true
-position = Vector2( 8, -9 )
-texture = ExtResource( 23 )
-
-[node name="item_old_message" parent="." instance=ExtResource( 7 )]
-modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
-position = Vector2( 154, 109 )
-item_name = "Old Message"
-item_priority = 10
-
-[node name="Sprite" type="Sprite" parent="item_old_message"]
-show_behind_parent = true
-position = Vector2( 9, -8 )
-texture = ExtResource( 19 )
-
-[node name="item_bitten_apple" parent="." instance=ExtResource( 7 )]
-modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
-position = Vector2( 136, 112 )
-item_name = "Bitten Appel"
-item_priority = 20
-
-[node name="Sprite" type="Sprite" parent="item_bitten_apple"]
+modulate = Color( 0.435294, 0.239216, 0.52549, 1 )
 show_behind_parent = true
 position = Vector2( 8, -8 )
-texture = ExtResource( 24 )
+texture = ExtResource( 23 )
 
 [node name="item_headphones" parent="." instance=ExtResource( 7 )]
 position = Vector2( 192, 128 )
@@ -2935,7 +2935,7 @@ item_priority = 30
 
 [node name="Sprite" type="Sprite" parent="item_headphones"]
 show_behind_parent = true
-position = Vector2( 8, -10 )
+position = Vector2( 9, -9 )
 texture = ExtResource( 3 )
 
 [node name="popups" type="CanvasLayer" parent="."]
@@ -2955,9 +2955,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "\"ooh, there
 is a message
 on the table?"
@@ -2987,9 +2987,9 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 184.0
 margin_bottom = 88.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "i'll be right back!
 -signed rockwart-"
 align = 1
@@ -3016,9 +3016,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 120.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "you should
 pick up
 the message"
@@ -3044,9 +3044,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "\"oh, da liegt
 eine nachricht
 auf dem tisch§"
@@ -3073,9 +3073,9 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 184.0
 margin_bottom = 88.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "Bin gleich zurück!
 signiert 'rockwart'"
 align = 1
@@ -3099,9 +3099,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 120.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "den zettel
 solltest du
 mitnehmen"
@@ -3114,6 +3114,10 @@ __meta__ = {
 
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]
+[editable path="item_old_message"]
+[editable path="item_bitten_apple"]
+[editable path="item_mystical_artifact"]
+[editable path="item_headphones"]
 [editable path="popups/message_3_en/background"]
 [editable path="popups/message_1_de/nachricht1"]
 [editable path="popups/message_2_de/nachricht2"]

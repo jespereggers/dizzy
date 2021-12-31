@@ -2953,13 +2953,13 @@ hframes = 4
 fps = 6
 
 [node name="outboard_motor" parent="." instance=ExtResource( 23 )]
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-position = Vector2( 71.2594, 103.476 )
+position = Vector2( 72, 104 )
 item_name = "an outboard motor"
 
 [node name="Sprite" type="Sprite" parent="outboard_motor"]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 show_behind_parent = true
-position = Vector2( 7.94598, -7.54868 )
+position = Vector2( 8, -8 )
 texture = ExtResource( 16 )
 
 [editable path="water_animated3"]
