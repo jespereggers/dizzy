@@ -37,10 +37,10 @@ func _unhandled_input(event):
 		get_parent().locked = false
 		
 		match type:
-			"coin":
+			"Coin":
 				stats.coins += 1
 				signals.emit_signal("coins_changed")
-			"shard":
+			"Shard":
 				stats.shards += 1
 				signals.emit_signal("shards_changed")
 
