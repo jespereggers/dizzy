@@ -2,8 +2,8 @@ extends Node
 
 var inventory: Array = []
 var inventory_capacity := 2
-var coins: int
-var shards: int
+var coins: int setget set_coins
+var shards: int setget set_shards
 var eggs: int setget set_eggs
 var current_map: String
 var current_room: Vector2
@@ -28,6 +28,12 @@ func set_eggs(value: int):
 # warning-ignore:narrowing_conversion
 	eggs = clamp(eggs, 0, data.max_eggs)
 	signals.emit_signal("eggs_changed")
+
+func set_coins(value:int):
+	coins = value
+
+func set_shards(value:int):
+	shards = value
 
 func add_item_to_inventory(item:Item) -> Item:
 	print("add item")

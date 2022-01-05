@@ -4,7 +4,7 @@ extends Node
 # probably relateded:
 #	 https://github.com/godotengine/godot/issues/53099
 #  https://github.com/godotengine/godot/issues/54749
-var _items:Array
+var _items:Array = []
 
 func new_item(area:Item):
 	_items.append(area)

@@ -88,7 +88,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 7, 10 )
+extents = Vector2( 6, 10 )
 
 [sub_resource type="GDScript" id=5]
 script/source = "extends Label
@@ -121,6 +121,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, 2 )
 shape = SubResource( 1 )
 
@@ -185,7 +186,6 @@ __meta__ = {
 }
 
 [node name="CeilingSensor" type="Node2D" parent="."]
-visible = false
 position = Vector2( 0, -8 )
 script = ExtResource( 5 )
 
@@ -201,7 +201,6 @@ position = Vector2( 7, 0 )
 cast_to = Vector2( 0, -8 )
 
 [node name="FloorSensor" type="Node2D" parent="."]
-visible = false
 position = Vector2( 0, 12 )
 script = ExtResource( 5 )
 
@@ -217,7 +216,6 @@ position = Vector2( 5, 0 )
 cast_to = Vector2( 0, 8 )
 
 [node name="WallSensorLeft" type="Node2D" parent="."]
-visible = false
 position = Vector2( -3, 0 )
 script = ExtResource( 5 )
 
@@ -226,7 +224,6 @@ position = Vector2( -8, 3 )
 cast_to = Vector2( -4, 0 )
 
 [node name="InnerWallSensorLeft" type="Node2D" parent="."]
-visible = false
 position = Vector2( -3, 0 )
 script = ExtResource( 5 )
 
@@ -243,7 +240,6 @@ position = Vector2( -5, 11 )
 cast_to = Vector2( -3, 0 )
 
 [node name="WallSensorRight" type="Node2D" parent="."]
-visible = false
 position = Vector2( 3, 0 )
 script = ExtResource( 5 )
 
@@ -252,7 +248,6 @@ position = Vector2( 8, 3 )
 cast_to = Vector2( 4, 0 )
 
 [node name="InnerWallSensorRight" type="Node2D" parent="."]
-visible = false
 position = Vector2( 3, 0 )
 script = ExtResource( 5 )
 
@@ -269,7 +264,6 @@ position = Vector2( 5, 11 )
 cast_to = Vector2( 3, 0 )
 
 [node name="LowerTerrainSensor" type="Node2D" parent="."]
-visible = false
 position = Vector2( 0, 10 )
 script = ExtResource( 5 )
 
@@ -290,7 +284,6 @@ position = Vector2( -5, 1 )
 cast_to = Vector2( 0, -6 )
 
 [node name="UpperTerrainSensor" type="Node2D" parent="."]
-visible = false
 position = Vector2( 0, -2 )
 script = ExtResource( 5 )
 
@@ -311,7 +304,6 @@ position = Vector2( -7, 5 )
 cast_to = Vector2( 0, -9 )
 
 [node name="CenterTerrainSensor" type="Node2D" parent="."]
-visible = false
 position = Vector2( 0, -2 )
 script = ExtResource( 5 )
 
