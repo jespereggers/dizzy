@@ -6,7 +6,7 @@ onready var hint_instance: Label = get_parent().get_node("hint")
 
 signal finished_showing_full_inventory
 
-const DURATION_SHOWING_FULL_INVENTORY = 2.5
+const DURATION_SHOWING_FULL_INVENTORY = 2.7
 
 func select_item(item_instance: Button):
 	if root.selected_item_instance != null and item_instance != null and item_instance.get_class() == "Button" and item_instance != root.selected_item_instance:
