@@ -17,12 +17,12 @@ func _unhandled_input(event):
 	if event is InputEventScreenTouch:
 		if $hint.is_visible_in_tree():
 			close()
-			
+
 			# Secure
 			set_process_input(false)
 			yield(get_tree().create_timer(0.2), "timeout")
 			set_process_input(true)
-			
+
 	if Input.is_action_just_pressed("enter") and not paths.settings.visible:
 		if self.is_visible_in_tree():
 			if get_node("hint").visible:
@@ -31,7 +31,7 @@ func _unhandled_input(event):
 			if not get_parent().locked:
 				if not get_parent().get_node("found_countable").visible:
 					open()
-			
+
 		# Secure
 		set_process_input(false)
 		yield(get_tree().create_timer(0.2), "timeout")
@@ -68,7 +68,6 @@ func close():
 	get_tree().paused = false
 	paths.player.visible = true
 	self.visible = false
-	
 	# Secure
 	set_process_input(false)
 	yield(get_tree().create_timer(0.2), "timeout")
