@@ -6,3 +6,9 @@ onready var inventory: Popup = $inventory
 
 var locked: bool = false
 var player_on_item: bool = false
+
+
+func dialogue_event(event: String = ""):
+	match event:
+		"found_coin":
+			pass
