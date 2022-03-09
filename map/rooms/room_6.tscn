@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=2]
+[gd_scene load_steps=96 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -18,8 +18,8 @@
 [ext_resource path="res://templates/coin.tscn" type="PackedScene" id=16]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=18]
-[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=19]
-[ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=21]
+[ext_resource path="res://templates/background.tscn" type="PackedScene" id=22]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -40,7 +40,7 @@ points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=7]
-points = PoolVector2Array( 0, 0, 24, 0, 24, 7, 0, 7 )
+points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=8]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -2265,7 +2265,7 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 123/texture = ExtResource( 11 )
 123/tex_offset = Vector2( 0, 0 )
 123/modulate = Color( 1, 1, 1, 1 )
-123/region = Rect2( 48, 0, 24, 7 )
+123/region = Rect2( 48, 0, 24, 8 )
 123/tile_mode = 0
 123/occluder_offset = Vector2( 0, 0 )
 123/navigation_offset = Vector2( 0, 0 )
@@ -2863,19 +2863,20 @@ tracks/1/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=73]
-extents = Vector2( 6, 7 )
+extents = Vector2( 8, 5 )
 
 [sub_resource type="RectangleShape2D" id=74]
-extents = Vector2( 6, 7 )
+extents = Vector2( 8, 5 )
+
+[sub_resource type="DynamicFont" id=75]
+size = 7
+font_data = ExtResource( 21 )
 
 [node name="room_6" type="Node2D"]
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="respawn_point" parent="." instance=ExtResource( 20 )]
-position = Vector2( 104, 88 )
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 13 )
@@ -2892,18 +2893,16 @@ cell_size = Vector2( 1, 1 )
 format = 1
 tile_data = PoolIntArray( 0, 0, 0, 72, 3, 0, 216, 13, 0, 1048792, 3, 0, 1572936, 3, 0, 2621440, 0, 0, 2621464, 0, 0, 2621488, 0, 0, 2621656, 3, 0, 4194520, 3, 0, 5243080, 5, 0, 6553640, 123, 0, 6553664, 123, 0, 6553688, 123, 0, 6553712, 123, 0, 6553736, 123, 0, 7864529, 70, 0, 7864536, 536871030, 0, 7864544, 536871030, 0, 7864552, 536871030, 0, 8388608, 0, 0, 8388632, 1, 0, 8388648, 0, 0, 8388672, 0, 0, 8388696, 1, 0, 8388712, 0, 0, 8388736, 1, 0, 8388752, 0, 0, 8388776, 0, 0, 8388800, 1, 0, 8388816, 0, 0, 8388840, 12, 0 )
 
-[node name="objects" parent="." instance=ExtResource( 19 )]
-
-[node name="coin" parent="objects" instance=ExtResource( 16 )]
+[node name="coin" parent="." instance=ExtResource( 16 )]
 position = Vector2( 120, 120 )
 
 [node name="rat" type="Sprite" parent="."]
-position = Vector2( 140.949, 124 )
+position = Vector2( 150, 124 )
 texture = ExtResource( 12 )
+flip_h = true
 
-[node name="rat_death_area" parent="rat" instance=ExtResource( 14 )]
+[node name="rat_death" parent="rat" instance=ExtResource( 14 )]
 position = Vector2( -7.62939e-06, 0 )
-colliding_object = "rat"
 
 [node name="rat_animation" type="AnimationPlayer" parent="."]
 playback_speed = 1.2
@@ -2911,14 +2910,12 @@ anims/walk = SubResource( 72 )
 
 [node name="torchfire_death" parent="." instance=ExtResource( 14 )]
 position = Vector2( 100, 16 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 73 )
 
 [node name="torchfire_death1" parent="." instance=ExtResource( 14 )]
 position = Vector2( 204, 16 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death1" index="0"]
 shape = SubResource( 74 )
@@ -2937,6 +2934,68 @@ texture = ExtResource( 18 )
 hframes = 4
 fps = 12
 
-[editable path="rat/rat_death_area"]
+[node name="popups" type="CanvasLayer" parent="."]
+
+[node name="message_1_en" type="Popup" parent="popups"]
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/message_1_en" instance=ExtResource( 22 )]
+margin_right = 192.0
+margin_bottom = 72.0
+
+[node name="label" type="Label" parent="popups/message_1_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 176.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 75 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "die ratte schnappt
+sich den apfel
+und verschwindet"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_1_de" type="Popup" parent="popups"]
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/message_1_de" instance=ExtResource( 22 )]
+margin_right = 192.0
+margin_bottom = 72.0
+
+[node name="label" type="Label" parent="popups/message_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 176.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 75 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "die ratte schnappt
+sich den apfel
+und verschwindet"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[editable path="rat/rat_death"]
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]

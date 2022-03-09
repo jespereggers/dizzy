@@ -1,35 +1,17 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Assets/tiles/dizzy/dizzy_idle.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/state_machine/state_machine.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/player.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/state_machine/idle_state.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/state_machine/walk_state.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/state_machine/jump_state.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/state_machine/salto_state.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/state_machine/climb_state.gd" type="Script" id=8]
-[ext_resource path="res://Assets/tiles/dizzy/dizzy_death.png" type="Texture" id=10]
-[ext_resource path="res://Scripts/item_detector.gd" type="Script" id=11]
+[ext_resource path="res://Assets/tiles/dizzy/dizzy_death.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/item_detector.gd" type="Script" id=2]
+[ext_resource path="res://Assets/tiles/dizzy/dizzy_idle.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/player.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Sensor.gd" type="Script" id=5]
+[ext_resource path="res://Assets/tiles/dizzy/dizzy_respawn.png" type="Texture" id=6]
 
-[sub_resource type="Animation" id=1]
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("texture:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 32, 36 ]
-}
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 10 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "death"
-length = 1.5
+length = 3.1
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("dizzy_death:frame")
 tracks/0/interp = 1
@@ -38,7 +20,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 1 )
+"times": PoolRealArray( 0, 3.1 )
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("dizzy_death:visible")
@@ -47,10 +29,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 3.1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ false, true, true ]
+"values": [ true, true ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("texture:visible")
@@ -59,230 +41,288 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 3.1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true, false, false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("texture:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
+"values": [ false, false ]
 }
 
 [sub_resource type="Animation" id=3]
-length = 0.2
-loop = true
+resource_name = "respawn"
+length = 1.6
 tracks/0/type = "value"
-tracks/0/path = NodePath("texture:frame")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0, 1 ]
-}
-
-[sub_resource type="Animation" id=4]
-length = 0.626
-step = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("texture:frame")
+tracks/0/path = NodePath("texture:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.626 ),
+"times": PoolRealArray( 0, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("dizzy_respawn:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 25, 31 ]
+"values": [ 0, 14 ]
 }
-
-[sub_resource type="Animation" id=5]
-length = 0.6
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("texture:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6 ),
+tracks/2/type = "value"
+tracks/2/path = NodePath("dizzy_respawn:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.6 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 8, 15 ]
+"update": 1,
+"values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=6]
-length = 0.64
-loop = true
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("texture:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.001, 0.64 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 16, 16, 24 ]
-}
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 6, 10 )
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 7, 7 )
+[sub_resource type="GDScript" id=5]
+script/source = "extends Label
 
-[node name="player" type="KinematicBody2D"]
-collision/safe_margin = 0.01
-script = ExtResource( 3 )
+func _process(_delta):
+	var p = get_parent()
+	if p:
+		text = p.state_machine._state
+"
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends Label
+
+func _ready():
+	text = \"stunned\"
+
+func _process(delta):
+	var p = get_parent()
+	if p:
+		visible = p.is_stunned()
+		text = \"stun: \" + str(p.stun_level)
+"
+
+[node name="player" type="Area2D"]
+z_index = 1
+script = ExtResource( 4 )
 __meta__ = {
+"_edit_vertical_guides_": [ -9.0, -11.0, -50.0 ],
 "_editor_description_": ""
 }
-JUMP_SPEED = 97
-MAX_JUMP_SPEED = 100
-WALK_SPEED = 6
-MAX_WALK_SPEED = 45
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 2 )
+shape = SubResource( 1 )
 
 [node name="animations" type="AnimationPlayer" parent="."]
-anims/climb = SubResource( 1 )
+playback_speed = 3.0
 anims/death = SubResource( 2 )
-anims/idle = SubResource( 3 )
-anims/jump = SubResource( 4 )
-anims/salto = SubResource( 5 )
-anims/walk = SubResource( 6 )
-
-[node name="climb_collision" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 2, -7, 4, -6, 6, -3, 6, 0, 6, 4, 6, 12, -6, 12, -6, 4, -6, 0, -6, -3, -4, -6, -2, -7 )
-disabled = true
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="idle_collision" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -2, -8, 2, -8, 5, -6, 6, -4, 7, -1, 7, 4, 6, 4, 6, 12, -6, 12, -6, 4, -7, 4, -7, -1, -6, -4, -5, -6 )
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="walk_collision" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -3, -7, 3, -7, 5, -5, 6, -3, 6, -1, 12, 1, 12, 4, 6, 4, 6, 11, 5, 12, -6, 12, -6, 4, -12, 4, -12, 1, -6, -1, -6, -3, -5, -5 )
-disabled = true
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="jump_collision" type="CollisionPolygon2D" parent="."]
-position = Vector2( 0, 3 )
-rotation = 4.71239
-polygon = PoolVector2Array( 12, 0.374988, 10.8125, 8.31249, 3.06251, 12.6875, -5.18749, 10.6875, -9.31249, 5.43751, -9.56251, -5.99999, -6.56251, -10.5625, 2.56249, -14.125, 9.74999, -9.50001 )
-disabled = true
-one_way_collision_margin = 0.0
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="salto_collision" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 6, 0, 7, 0, 7, 4, 6, 4, 6, 10, 6, 12, -6, 12, -6, 10, -6, 4, -7, 4, -7, 0, -6, 0, -5, -5, 4.08508, -5 )
-disabled = true
-__meta__ = {
-"_editor_description_": ""
-}
+anims/respawn = SubResource( 3 )
 
 [node name="texture" type="Sprite" parent="."]
-texture = ExtResource( 1 )
+texture = ExtResource( 3 )
 hframes = 8
 vframes = 5
-frame = 25
 
 [node name="dizzy_death" type="Sprite" parent="."]
 visible = false
-position = Vector2( -252, -64 )
-texture = ExtResource( 10 )
+position = Vector2( -256, -68 )
+texture = ExtResource( 1 )
 centered = false
 hframes = 31
-frame = 30
 
-[node name="state_machine" type="Node" parent="."]
-script = ExtResource( 2 )
-
-[node name="climb_state" type="Node" parent="state_machine"]
-script = ExtResource( 8 )
-
-[node name="idle_state" type="Node" parent="state_machine"]
-script = ExtResource( 4 )
-
-[node name="walk_state" type="Node" parent="state_machine"]
-script = ExtResource( 5 )
-
-[node name="jump_state" type="Node" parent="state_machine"]
-script = ExtResource( 6 )
-
-[node name="salto_state" type="Node" parent="state_machine"]
-script = ExtResource( 7 )
-
-[node name="raycast" type="RayCast2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-enabled = true
-cast_to = Vector2( 0, 100 )
-
-[node name="raycast_left_middle" type="RayCast2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, 4 )
-rotation = -1.5708
-enabled = true
-cast_to = Vector2( 0, -12 )
-
-[node name="raycast_left_bottom" type="RayCast2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, 11 )
-rotation = -1.5708
-enabled = true
-cast_to = Vector2( 0, -12 )
-
-[node name="raycast_right_middle" type="RayCast2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, 4 )
-rotation = -1.5708
-enabled = true
-cast_to = Vector2( 0, 12 )
-
-[node name="raycast_right_bottom" type="RayCast2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, 11 )
-rotation = -1.5708
-enabled = true
-cast_to = Vector2( 0, 12 )
+[node name="dizzy_respawn" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 6 )
+centered = false
+offset = Vector2( -115, -29 )
+hframes = 15
+frame = 14
 
 [node name="unlocked_cooldown" type="Timer" parent="."]
 
 [node name="item_detector" type="Area2D" parent="."]
-script = ExtResource( 11 )
+script = ExtResource( 2 )
 
 [node name="shape" type="CollisionShape2D" parent="item_detector"]
 self_modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, 2 )
-shape = SubResource( 7 )
+position = Vector2( 1, 2 )
+shape = SubResource( 4 )
 
 [node name="ticks" type="Timer" parent="."]
 wait_time = 0.2
 autostart = true
 
-[connection signal="animation_changed" from="animations" to="state_machine" method="_on_animations_animation_changed"]
-[connection signal="animation_finished" from="animations" to="state_machine" method="_on_animation_animation_finished"]
+[node name="StateLabel" type="Label" parent="."]
+margin_left = -11.0
+margin_top = -23.0
+margin_right = 29.0
+margin_bottom = -9.0
+script = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StunLabel" type="Label" parent="."]
+margin_left = 11.0
+margin_top = -8.0
+margin_right = 51.0
+margin_bottom = 6.0
+script = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CeilingSensor" type="Node2D" parent="."]
+position = Vector2( 0, -8 )
+script = ExtResource( 5 )
+
+[node name="RayCast2DLeft" type="RayCast2D" parent="CeilingSensor"]
+position = Vector2( -7, 0 )
+cast_to = Vector2( 0, -8 )
+
+[node name="RayCast2DMiddle" type="RayCast2D" parent="CeilingSensor"]
+cast_to = Vector2( 0, -8 )
+
+[node name="RayCast2DRight" type="RayCast2D" parent="CeilingSensor"]
+position = Vector2( 7, 0 )
+cast_to = Vector2( 0, -8 )
+
+[node name="FloorSensor" type="Node2D" parent="."]
+position = Vector2( 0, 12 )
+script = ExtResource( 5 )
+
+[node name="RayCast2DLeft" type="RayCast2D" parent="FloorSensor"]
+position = Vector2( -5, 0 )
+cast_to = Vector2( 0, 8 )
+
+[node name="RayCast2DMiddle" type="RayCast2D" parent="FloorSensor"]
+cast_to = Vector2( 0, 8 )
+
+[node name="RayCast2DRight" type="RayCast2D" parent="FloorSensor"]
+position = Vector2( 5, 0 )
+cast_to = Vector2( 0, 8 )
+
+[node name="WallSensorLeft" type="Node2D" parent="."]
+position = Vector2( -3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="WallSensorLeft"]
+position = Vector2( -8, 3 )
+cast_to = Vector2( -4, 0 )
+
+[node name="InnerWallSensorLeft" type="Node2D" parent="."]
+position = Vector2( -3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="InnerWallSensorLeft"]
+position = Vector2( -3, 3 )
+cast_to = Vector2( -4, 0 )
+
+[node name="LowerWallSensorLeft" type="Node2D" parent="."]
+position = Vector2( -3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="LowerWallSensorLeft"]
+position = Vector2( -5, 11 )
+cast_to = Vector2( -3, 0 )
+
+[node name="WallSensorRight" type="Node2D" parent="."]
+position = Vector2( 3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="WallSensorRight"]
+position = Vector2( 8, 3 )
+cast_to = Vector2( 4, 0 )
+
+[node name="InnerWallSensorRight" type="Node2D" parent="."]
+position = Vector2( 3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="InnerWallSensorRight"]
+position = Vector2( 3, 3 )
+cast_to = Vector2( 4, 0 )
+
+[node name="LowerWallSensorRight" type="Node2D" parent="."]
+position = Vector2( 3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="LowerWallSensorRight"]
+position = Vector2( 5, 11 )
+cast_to = Vector2( 3, 0 )
+
+[node name="LowerTerrainSensor" type="Node2D" parent="."]
+position = Vector2( 0, 10 )
+script = ExtResource( 5 )
+
+[node name="RayCast2DTopLeft" type="RayCast2D" parent="LowerTerrainSensor"]
+position = Vector2( -5, -5 )
+cast_to = Vector2( 10, 0 )
+
+[node name="RayCast2DTopRight2" type="RayCast2D" parent="LowerTerrainSensor"]
+position = Vector2( 5, -5 )
+cast_to = Vector2( 0, 6 )
+
+[node name="RayCast2DBottomRight" type="RayCast2D" parent="LowerTerrainSensor"]
+position = Vector2( 5, 1 )
+cast_to = Vector2( -10, 0 )
+
+[node name="RayCast2DBottomLeft" type="RayCast2D" parent="LowerTerrainSensor"]
+position = Vector2( -5, 1 )
+cast_to = Vector2( 0, -6 )
+
+[node name="UpperTerrainSensor" type="Node2D" parent="."]
+position = Vector2( 0, -2 )
+script = ExtResource( 5 )
+
+[node name="RayCast2DTopLeft" type="RayCast2D" parent="UpperTerrainSensor"]
+position = Vector2( -7, -5 )
+cast_to = Vector2( 14, 0 )
+
+[node name="RayCast2DTopRight2" type="RayCast2D" parent="UpperTerrainSensor"]
+position = Vector2( 7, -5 )
+cast_to = Vector2( 0, 9 )
+
+[node name="RayCast2DBottomRight" type="RayCast2D" parent="UpperTerrainSensor"]
+position = Vector2( 7, 5 )
+cast_to = Vector2( -14, 0 )
+
+[node name="RayCast2DBottomLeft" type="RayCast2D" parent="UpperTerrainSensor"]
+position = Vector2( -7, 5 )
+cast_to = Vector2( 0, -9 )
+
+[node name="CenterTerrainSensor" type="Node2D" parent="."]
+position = Vector2( 0, -2 )
+script = ExtResource( 5 )
+
+[node name="RayCast2DTopLeft" type="RayCast2D" parent="CenterTerrainSensor"]
+position = Vector2( -7, 1 )
+cast_to = Vector2( 14, 0 )
+
+[node name="RayCast2DTopRight2" type="RayCast2D" parent="CenterTerrainSensor"]
+position = Vector2( 7, 1 )
+cast_to = Vector2( 0, 4 )
+
+[node name="RayCast2DBottomRight" type="RayCast2D" parent="CenterTerrainSensor"]
+position = Vector2( 7, 5 )
+cast_to = Vector2( -14, 0 )
+
+[node name="RayCast2DBottomLeft" type="RayCast2D" parent="CenterTerrainSensor"]
+position = Vector2( -7, 5 )
+cast_to = Vector2( 0, -4 )
+
+[node name="raycast" type="RayCast2D" parent="."]
+
 [connection signal="timeout" from="unlocked_cooldown" to="." method="_on_unlocked_cooldown_timeout"]
-[connection signal="area_entered" from="item_detector" to="item_detector" method="_on_item_detector_area_entered"]
-[connection signal="area_exited" from="item_detector" to="item_detector" method="_on_item_detector_area_exited"]
 [connection signal="timeout" from="ticks" to="." method="_on_ticks_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/inventory.gd" type="Script" id=1]
 [ext_resource path="res://Assets/user_interface/backgrounds/large_inventory_background.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/user_interface/backgrounds/mid_inventory_background.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/inventory/item_list.gd" type="Script" id=6]
+[ext_resource path="res://templates/background.tscn" type="PackedScene" id=7]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -37,7 +38,6 @@ font_data = ExtResource( 4 )
 
 [node name="inventory" type="Popup"]
 pause_mode = 2
-visible = true
 margin_right = 256.0
 margin_bottom = 192.0
 grow_horizontal = 0
@@ -155,7 +155,6 @@ __meta__ = {
 }
 
 [node name="full_inventory_dialogue" type="Panel" parent="."]
-visible = false
 margin_left = 48.0
 margin_top = 136.0
 margin_right = 208.0
@@ -187,70 +186,389 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="full_inventory_dialogue_ger" type="Panel" parent="."]
+[node name="invenory_2_item_NEW" type="Popup" parent="."]
+margin_left = 24.0
+margin_top = 56.0
+margin_right = 232.0
+margin_bottom = 136.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="invenory_2_item_NEW" instance=ExtResource( 7 )]
+margin_right = 208.0
+margin_bottom = 80.0
+
+[node name="label_en" type="Label" parent="invenory_2_item_NEW"]
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 168.0
+margin_bottom = 27.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0392157, 0.698039, 0.956863, 1 )
+text = "you are carrying"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label_de" type="Label" parent="invenory_2_item_NEW"]
 visible = false
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 192.0
+margin_bottom = 27.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "dein inventar"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hint_en" type="Label" parent="invenory_2_item_NEW"]
+visible = false
+margin_left = 16.0
+margin_top = 40.0
+margin_right = 192.0
+margin_bottom = 47.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0392157, 0.698039, 0.956863, 1 )
+text = "nothing"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hint_de" type="Label" parent="invenory_2_item_NEW"]
+visible = false
+margin_left = 16.0
+margin_top = 40.0
+margin_right = 192.0
+margin_bottom = 47.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0392157, 0.698039, 0.956863, 1 )
+text = "nichts"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="items_en_de" type="Label" parent="invenory_2_item_NEW"]
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 192.0
+margin_bottom = 56.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "Item1
+item2"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exit_and_drop_en" type="Label" parent="invenory_2_item_NEW"]
+margin_left = 24.0
+margin_top = 48.0
+margin_right = 192.0
+margin_bottom = 56.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0392157, 0.698039, 0.956863, 1 )
+text = "exit and don't drop"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exit_and_drop_de" type="Label" parent="invenory_2_item_NEW"]
+visible = false
+margin_left = 24.0
+margin_top = 48.0
+margin_right = 192.0
+margin_bottom = 56.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "beenden ohne aktion"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="invenory_4_item_NEW" type="Popup" parent="."]
+margin_left = 24.0
+margin_top = 48.0
+margin_right = 232.0
+margin_bottom = 144.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="invenory_4_item_NEW" instance=ExtResource( 7 )]
+modulate = Color( 0.0392157, 0.698039, 0.956863, 1 )
+margin_right = 208.0
+margin_bottom = 96.0
+
+[node name="label_en" type="Label" parent="invenory_4_item_NEW"]
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 192.0
+margin_bottom = 27.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0392157, 0.698039, 0.956863, 1 )
+text = "you are carrying"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label_de" type="Label" parent="invenory_4_item_NEW"]
+visible = false
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 192.0
+margin_bottom = 27.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0392157, 0.698039, 0.956863, 1 )
+text = "dein inventar"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hint_en" type="Label" parent="invenory_4_item_NEW"]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 192.0
+margin_bottom = 56.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0392157, 0.698039, 0.956863, 1 )
+text = "nothing"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hint_de" type="Label" parent="invenory_4_item_NEW"]
+visible = false
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 192.0
+margin_bottom = 56.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0392157, 0.698039, 0.956863, 1 )
+text = "nichts"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="items_en_de" type="Label" parent="invenory_4_item_NEW"]
+visible = false
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 192.0
+margin_bottom = 64.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.952941, 0.0313726, 0.788235, 1 )
+text = "item1
+item2
+item3
+item4"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exit_and_drop_en" type="Label" parent="invenory_4_item_NEW"]
+visible = false
+margin_left = 24.0
+margin_top = 64.0
+margin_right = 192.0
+margin_bottom = 72.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0392157, 0.698039, 0.956863, 1 )
+text = "exit and don't drop"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exit_and_drop_de" type="Label" parent="invenory_4_item_NEW"]
+visible = false
+margin_left = 24.0
+margin_top = 64.0
+margin_right = 192.0
+margin_bottom = 72.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0392157, 0.698039, 0.956863, 1 )
+text = "beenden ohne aktion"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="chose_item_dialog_en_NEW" type="Popup" parent="."]
+margin_left = 56.0
+margin_top = 136.0
+margin_right = 200.0
+margin_bottom = 184.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background_en" parent="chose_item_dialog_en_NEW" instance=ExtResource( 7 )]
+modulate = Color( 0.952941, 0.0313726, 0.788235, 1 )
+margin_right = 144.0
+
+[node name="label_en" type="Label" parent="chose_item_dialog_en_NEW"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 128.0
+margin_bottom = 32.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.952941, 0.0313726, 0.788235, 1 )
+text = "choose item to
+use or drop"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="chose_item_dialog_de_NEW" type="Popup" parent="."]
+margin_left = 56.0
+margin_top = 136.0
+margin_right = 200.0
+margin_bottom = 184.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background_de" parent="chose_item_dialog_de_NEW" instance=ExtResource( 7 )]
+margin_right = 144.0
+
+[node name="label_de" type="Label" parent="chose_item_dialog_de_NEW"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 128.0
+margin_bottom = 32.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "wähle benutzen
+oder ablegen"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="full_item_dialog_en_NEW" type="Popup" parent="."]
 margin_left = 48.0
 margin_top = 136.0
 margin_right = 208.0
 margin_bottom = 184.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_styles/panel = SubResource( 5 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+popup_exclusive = true
 __meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_use_anchors_": false
 }
 
-[node name="label" type="Label" parent="full_inventory_dialogue_ger"]
+[node name="background_en" parent="full_item_dialog_en_NEW" instance=ExtResource( 7 )]
+modulate = Color( 0.952941, 0.0313726, 0.788235, 1 )
+margin_right = 160.0
+
+[node name="label_en" type="Label" parent="full_item_dialog_en_NEW"]
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 32.0
-grow_horizontal = 0
-grow_vertical = 0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 6 )
-custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
-text = "dein inventar
-ist schon voll"
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.952941, 0.0313726, 0.788235, 1 )
+text = "you are carrying
+too much to hold"
 align = 1
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="label2" type="Label" parent="full_inventory_dialogue_ger"]
-visible = false
+[node name="full_item_dialog_de_NEW" type="Popup" parent="."]
+margin_left = 48.0
+margin_top = 136.0
+margin_right = 207.0
+margin_bottom = 184.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background_de" parent="full_item_dialog_de_NEW" instance=ExtResource( 7 )]
+modulate = Color( 0.211765, 0.952941, 0.0313726, 1 )
+margin_right = 160.0
+
+[node name="label_de" type="Label" parent="full_item_dialog_de_NEW"]
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 32.0
-grow_horizontal = 0
-grow_vertical = 0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 6 )
-custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.211765, 0.952941, 0.0313726, 1 )
 text = "du kannst nicht
-mehr aufsammeln"
-align = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="label3" type="Label" parent="full_inventory_dialogue_ger"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 144.0
-margin_bottom = 32.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 6 )
-custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
-text = "du hast mehr als
-du tragen kannst"
+noch mehr tragen"
 align = 1
 uppercase = true
 __meta__ = {

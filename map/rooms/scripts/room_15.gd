@@ -4,20 +4,15 @@ signal enter_pressed
 
 
 func _ready():
-	if signals.connect("new_room_touched", self, "_on_new_room_touched") != OK:
-		print("Error occured when trying to establish a connection")
-
-
-func _on_new_room_touched():
 	start_dialogue()
-
 
 func start_dialogue():
 	if "greeting" in data.game_save.finished_dialogues:
 		return
 	
 	signals.emit_signal("pause_mode_changed_to", true)
-	paths.player.hide()
+	paths.player.script_locked = true
+	paths.player.visible = false
 	get_tree().paused = true
 	paths.ui.locked = true
 	
@@ -37,7 +32,9 @@ func start_dialogue():
 	data.game_save.finished_dialogues.append("greeting")
 	
 	signals.emit_signal("pause_mode_changed_to", false)
-	paths.player.show()
+	paths.player.script_locked = false
+	paths.player.visible = true
+	paths.player.respawn()
 	get_tree().paused = false
 	paths.ui.locked = false
 

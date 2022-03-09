@@ -41,8 +41,6 @@ func set_shards_to(amount: int):
 
 
 func update_eggs():
-	if stats.eggs == 0:
-		root.player.animations.play("death")
 	set_eggs_to(stats.eggs)
 
 

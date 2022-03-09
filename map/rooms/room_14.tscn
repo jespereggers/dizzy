@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -16,11 +16,11 @@
 [ext_resource path="res://Assets/tiles/objects/water.tres" type="Texture" id=14]
 [ext_resource path="res://Assets/tiles/objects/barrel.png" type="Texture" id=15]
 [ext_resource path="res://templates/coin.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Assets/tiles/animations/water_full.png" type="Texture" id=18]
+[ext_resource path="res://Assets/tiles/objects/barrel_water.png" type="Texture" id=17]
+[ext_resource path="res://Assets/tiles/animations/water_full4.png" type="Texture" id=18]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=20]
-[ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Assets/tiles/objects/barrel_boat.png" type="Texture" id=21]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=23]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=24]
 
@@ -109,7 +109,7 @@ points = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=29]
-points = PoolVector2Array( 15, 23, 0, 23, 0, 0, 15, 0 )
+points = PoolVector2Array( 16, 24, 0, 24, 0, 0, 16, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=30]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 8, 0, 8 )
@@ -202,7 +202,7 @@ points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 points = PoolVector2Array( 0, 0, 8, 0, 8, 24, 0, 24 )
 
 [sub_resource type="ConvexPolygonShape2D" id=60]
-points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
+points = PoolVector2Array( 8, 8, 0, 8, 0, 0, 8, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=61]
 points = PoolVector2Array( 0, 7, 6, 1, 8, 0, 8, 8, 0, 8 )
@@ -308,7 +308,7 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 3/texture = ExtResource( 6 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
-3/region = Rect2( 96, 80, 15, 23 )
+3/region = Rect2( 96, 80, 16, 24 )
 3/tile_mode = 0
 3/occluder_offset = Vector2( 0, 0 )
 3/navigation_offset = Vector2( 0, 0 )
@@ -2868,15 +2868,18 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 159/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=72]
-extents = Vector2( 10, 12 )
+extents = Vector2( 12, 12 )
 
 [sub_resource type="RectangleShape2D" id=73]
-extents = Vector2( 6, 7 )
+extents = Vector2( 20, 12 )
 
 [sub_resource type="RectangleShape2D" id=74]
+extents = Vector2( 8, 5 )
+
+[sub_resource type="RectangleShape2D" id=75]
 extents = Vector2( 47, 3 )
 
-[sub_resource type="DynamicFont" id=75]
+[sub_resource type="DynamicFont" id=76]
 size = 7
 font_data = ExtResource( 23 )
 
@@ -2885,15 +2888,12 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="respawn_point" parent="." instance=ExtResource( 21 )]
-position = Vector2( 228, 108 )
-
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
 cell_size = Vector2( 1, 1 )
 cell_quadrant_size = 1
 format = 1
-tile_data = PoolIntArray( 2621544, 17, 0, 5767392, 155, 0 )
+tile_data = PoolIntArray( 2621544, 17, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -2902,37 +2902,51 @@ __meta__ = {
 tile_set = SubResource( 71 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 0, 3, 0, 16, 5, 0, 32, 13, 0, 48, 4, 0, 72, 2, 0, 96, 4, 0, 120, 5, 0, 136, 3, 0, 152, 0, 0, 176, 1, 0, 192, 0, 0, 216, 0, 0, 1048592, 2, 0, 1048616, 3, 0, 1048632, 1, 0, 1048672, 1, 0, 1048688, 0, 0, 1572864, 3, 0, 1572920, 4, 0, 1572944, 3, 0, 2097376, 1, 0, 2621456, 3, 0, 2621472, 5, 0, 2621488, 2, 0, 2621512, 16, 0, 2621664, 3, 0, 3145728, 5, 0, 3145800, 4, 0, 3670048, 1, 0, 4194520, 4, 0, 4718752, 4, 0, 5243032, 15, 0, 5243104, 67, 0, 5767312, 12, 0, 5767320, 2, 0, 5767344, 5, 0, 5767400, 154, 0, 6291592, 3, 0, 6815840, 0, 0, 6815864, 5, 0, 6815920, 4, 0, 7340128, 3, 0, 7340144, 15, 0, 7340184, 5, 0, 7340200, 14, 0, 7340232, 3, 0, 7864432, 5, 0, 7864448, 4, 0, 7864496, 8, 0, 7864536, 7, 0, 7864544, 7, 0, 7864552, 7, 0, 8388760, 9, 0, 8388824, 0, 0 )
+tile_data = PoolIntArray( 0, 3, 0, 16, 5, 0, 32, 13, 0, 48, 4, 0, 72, 2, 0, 96, 4, 0, 120, 5, 0, 136, 3, 0, 152, 0, 0, 176, 1, 0, 192, 0, 0, 216, 0, 0, 1048592, 2, 0, 1048616, 3, 0, 1048632, 1, 0, 1048672, 1, 0, 1048688, 0, 0, 1572864, 3, 0, 1572920, 4, 0, 1572944, 3, 0, 2097376, 1, 0, 2621456, 3, 0, 2621472, 5, 0, 2621488, 2, 0, 2621512, 16, 0, 2621664, 3, 0, 3145728, 5, 0, 3145800, 4, 0, 3670048, 1, 0, 4194520, 4, 0, 4718752, 4, 0, 5243032, 15, 0, 5243104, 5, 0, 5767312, 12, 0, 5767320, 2, 0, 5767344, 5, 0, 6291592, 3, 0, 6815840, 0, 0, 6815864, 5, 0, 6815920, 4, 0, 7340128, 3, 0, 7340144, 15, 0, 7340184, 5, 0, 7340200, 14, 0, 7340232, 3, 0, 7864432, 5, 0, 7864448, 4, 0, 7864496, 8, 0, 7864536, 7, 0, 7864544, 7, 0, 7864552, 7, 0, 8388760, 9, 0, 8388824, 0, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="barrel" type="Sprite" parent="."]
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-position = Vector2( 114, 80 )
+position = Vector2( 112, 80 )
 texture = ExtResource( 15 )
 centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="barrel"]
-position = Vector2( 10, 12 )
+[node name="interaktionsbereich" type="CollisionShape2D" parent="barrel"]
+position = Vector2( 12, 12 )
 shape = SubResource( 72 )
 
 [node name="barrel_water" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-position = Vector2( 36, 116 )
-rotation = 1.57079
-texture = ExtResource( 15 )
-flip_v = true
+position = Vector2( 76, 108 )
+texture = ExtResource( 17 )
+
+[node name="interaktionsbereich" type="CollisionShape2D" parent="barrel_water"]
+visible = false
+position = Vector2( 8, -8 )
+shape = SubResource( 73 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="barrel_water"]
-polygon = PoolVector2Array( -12, 3.99992, -12, -3.00008, -11, -3.00007, -11, -6.00007, -9.99996, -6.00006, -9.99995, -9.00006, -8.99995, -9.00006, -8.99993, -11.0001, -7.99993, -11, -7.99993, -12, 4.00007, -12, 4.00007, -11, 5.00007, -11, 5.00005, -8.99997, 6.00005, -8.99996, 8.00003, -4.99995, 7.99997, 4.00005, 6.99995, 7.00004, 5.99995, 7.00004, 5.99994, 9.00004, 4.99994, 9.00003, 4.99993, 11, 3.99993, 11, 3.99992, 12, -8.00008, 11.9999, -8.00007, 10.9999, -9.00007, 10.9999, -9.00006, 8.99994, -10.0001, 8.99994, -10, 6.99994, -11, 6.99993, -11, 3.99993 )
+visible = false
+polygon = PoolVector2Array( -12, -1, -10, -1, -9, -2, -7, -2, -6, -3, -4, -3, -3, -4, 4, -4, 5, -3, 7, -3, 8, -2, 9, -2, 10, -1, 12, -1, 12, 4, -12, 4 )
+
+[node name="barrel_boat" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+position = Vector2( 80, 104 )
+texture = ExtResource( 21 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="barrel_boat"]
+visible = false
+polygon = PoolVector2Array( -11, 2, -10, 1, -8, 1, -7, 0, 6, 0, 6, -4, 13, -4, 13, 0, 10, 4, 10, 8, -16, 8, -16, 3, -14, 3, -13, 2 )
 
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 108, 32 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
-shape = SubResource( 73 )
+shape = SubResource( 74 )
 
 [node name="torchfire_animated" parent="." instance=ExtResource( 19 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
@@ -2942,57 +2956,150 @@ hframes = 4
 fps = 12
 
 [node name="water_death" parent="." instance=ExtResource( 13 )]
-position = Vector2( 48, 125 )
-colliding_object = "water"
+position = Vector2( 48, 124 )
 
 [node name="shape_of_death" parent="water_death" index="0"]
-shape = SubResource( 74 )
+shape = SubResource( 75 )
 
 [node name="water_animated" parent="." instance=ExtResource( 19 )]
 position = Vector2( 80, 115 )
 texture = ExtResource( 18 )
 hframes = 4
-fps = 6
+fps = 5
 
 [node name="water_animated1" parent="." instance=ExtResource( 19 )]
 position = Vector2( 48, 115 )
 texture = ExtResource( 18 )
 hframes = 4
-fps = 6
+fps = 5
 
 [node name="water_animated2" parent="." instance=ExtResource( 19 )]
 position = Vector2( 16, 115 )
 texture = ExtResource( 18 )
 hframes = 4
-fps = 6
+fps = 5
 
-[node name="objects" parent="." instance=ExtResource( 22 )]
-
-[node name="coin" parent="objects" instance=ExtResource( 16 )]
+[node name="coin" parent="." instance=ExtResource( 16 )]
 position = Vector2( 176, 64 )
 
 [node name="popups" type="CanvasLayer" parent="."]
 
-[node name="object_message_1_en" type="Popup" parent="popups"]
+[node name="message_1_en" type="Popup" parent="popups"]
 popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="background" parent="popups/object_message_1_en" instance=ExtResource( 24 )]
-margin_right = 160.0
-margin_bottom = 72.0
+[node name="background" parent="popups/message_1_en" instance=ExtResource( 24 )]
+margin_top = 64.0
+margin_right = 232.0
+margin_bottom = 128.0
 
-[node name="label" type="Label" parent="popups/object_message_1_en"]
+[node name="label" type="Label" parent="popups/message_1_en"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
-margin_top = 16.0
-margin_right = 144.0
-margin_bottom = 56.0
-custom_fonts/font = SubResource( 75 )
+margin_top = 80.0
+margin_right = 216.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-text = "\"blindtext
-blindtext
-blindtext?"
+text = "you kick the barrel and
+it rolls into the water"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_1_de" type="Popup" parent="popups"]
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/message_1_de" instance=ExtResource( 24 )]
+margin_top = 56.0
+margin_right = 176.0
+margin_bottom = 128.0
+
+[node name="label" type="Label" parent="popups/message_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 72.0
+margin_right = 160.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 76 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "du trittst gegen
+das fass und es
+rollt ins wasser"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_2_en" type="Popup" parent="popups"]
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/message_2_en" instance=ExtResource( 24 )]
+margin_top = 56.0
+margin_right = 232.0
+margin_bottom = 128.0
+
+[node name="label" type="Label" parent="popups/message_2_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 72.0
+margin_right = 216.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 76 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "with a few simple steps
+you mount the motor
+to the barrel"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_2_de" type="Popup" parent="popups"]
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="popups/message_2_de" instance=ExtResource( 24 )]
+margin_top = 56.0
+margin_right = 232.0
+margin_bottom = 128.0
+
+[node name="label" type="Label" parent="popups/message_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 72.0
+margin_right = 216.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 76 )
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+text = "mit wenigen handgriffen
+montierst du den motor
+an das fass"
 align = 1
 valign = 1
 __meta__ = {
@@ -3002,3 +3109,4 @@ __meta__ = {
 
 [editable path="torchfire_death"]
 [editable path="water_death"]
+[editable path="coin"]

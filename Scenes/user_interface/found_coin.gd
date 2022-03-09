@@ -1,6 +1,6 @@
 extends Popup
 
-var countable_instance: Sprite
+var type: String
 
 
 func _ready():
@@ -9,17 +9,16 @@ func _ready():
 		print("Error occured when trying to establish a connection")
 
 
-func _on_countable_collected(new_countable_instance):
-	match new_countable_instance.type:
+func _on_countable_collected(type_):
+	match type_:
 		"coin":
-
 			$label2_ger.text = "du findest eine münze"
 		"shard":
 			$label2_ger.text = "du findest einen stern"
 			
 	get_parent().locked = true
 	signals.emit_signal("pause_mode_changed_to", true)
-	countable_instance = new_countable_instance
+	type = type_
 	paths.player.hide()
 	get_tree().paused = true
 	self.popup()
@@ -34,8 +33,6 @@ func _unhandled_input(event):
 		paths.player.show()
 		hide()
 		signals.emit_signal("pause_mode_changed_to", false)
-		var type = countable_instance.type
-		countable_instance.queue_free()
 		yield(get_tree().create_timer(0.1), "timeout")
 		get_parent().locked = false
 		

@@ -1,11 +1,11 @@
-[gd_scene load_steps=98 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=2]
-[ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/tiles/items/dusty_headphone.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=4]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/items/mystical_artifact.gd" type="Script" id=6]
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://map/rooms/scripts/room_15.gd" type="Script" id=9]
@@ -23,6 +23,8 @@
 [ext_resource path="res://Assets/tiles/build/9.png" type="Texture" id=21]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=22]
 [ext_resource path="res://Assets/tiles/items/mystical_artefact.png" type="Texture" id=23]
+[ext_resource path="res://Assets/tiles/items/bitten_apple.png" type="Texture" id=24]
+[ext_resource path="res://Assets/tiles/items/bag.png" type="Texture" id=25]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2840,10 +2842,10 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 155/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=72]
-extents = Vector2( 6, 7 )
+extents = Vector2( 8, 5 )
 
 [sub_resource type="RectangleShape2D" id=73]
-extents = Vector2( 6, 7 )
+extents = Vector2( 8, 5 )
 
 [sub_resource type="DynamicFont" id=74]
 size = 7
@@ -2852,9 +2854,6 @@ font_data = ExtResource( 8 )
 [node name="room_15" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 9 )
-
-[node name="respawn_point" parent="." instance=ExtResource( 3 )]
-position = Vector2( 116, 116 )
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -2869,18 +2868,16 @@ __meta__ = {
 tile_set = SubResource( 71 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 24, 1, 0, 40, 0, 0, 64, 0, 0, 88, 1, 0, 104, 0, 0, 128, 1, 0, 144, 0, 0, 168, 1, 0, 224, 3, 0, 2097152, 14, 0, 2097160, 5, 0, 2097176, 2, 0, 2097200, 0, 0, 2097224, 5, 0, 2097240, 4, 0, 2097264, 2, 0, 2097288, 0, 0, 2097312, 1, 0, 2097328, 3, 0, 2097344, 14, 0, 2097352, 5, 0, 2097368, 2, 0, 2621488, 4, 0, 2621576, 5, 0, 2621592, 4, 0, 3145728, 14, 0, 3145736, 3, 0, 3145800, 0, 0, 3145824, 1, 0, 3145920, 0, 0, 4194304, 14, 0, 4718600, 3, 0, 7340168, 536870933, 0, 7340184, 21, 0, 7864320, 7, 0, 7864328, 7, 0, 7864336, 7, 0, 7864344, 7, 0, 8388608, 0, 0, 8388632, 1, 0, 8388648, 1, 0, 8388664, 0, 0, 8388688, 1, 0, 8388704, 0, 0, 8388728, 0, 0, 8388752, 1, 0, 8388768, 1, 0, 8388784, 0, 0, 8388808, 1, 0, 8388824, 0, 0 )
+tile_data = PoolIntArray( 0, 0, 0, 24, 1, 0, 40, 0, 0, 64, 0, 0, 88, 1, 0, 104, 0, 0, 128, 1, 0, 144, 0, 0, 168, 1, 0, 224, 3, 0, 2097152, 4, 0, 2097176, 2, 0, 2097200, 0, 0, 2097224, 5, 0, 2097240, 4, 0, 2097264, 2, 0, 2097288, 0, 0, 2097312, 1, 0, 2097328, 3, 0, 2097344, 14, 0, 2097352, 5, 0, 2097368, 2, 0, 2621488, 4, 0, 2621576, 5, 0, 2621592, 4, 0, 3145728, 14, 0, 3145736, 3, 0, 3145800, 0, 0, 3145824, 1, 0, 3145920, 0, 0, 4194304, 14, 0, 4718600, 3, 0, 7340168, 536870933, 0, 7340184, 21, 0, 7864320, 7, 0, 7864328, 7, 0, 7864336, 7, 0, 7864344, 7, 0, 8388608, 0, 0, 8388632, 1, 0, 8388648, 1, 0, 8388664, 0, 0, 8388688, 1, 0, 8388704, 0, 0, 8388728, 0, 0, 8388752, 1, 0, 8388768, 1, 0, 8388784, 0, 0, 8388808, 1, 0, 8388824, 0, 0 )
 
 [node name="torchfire_death" parent="." instance=ExtResource( 4 )]
 position = Vector2( 40, 64 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 72 )
 
 [node name="torchfire_death1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 200, 64 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death1" index="0"]
 shape = SubResource( 73 )
@@ -2899,29 +2896,61 @@ texture = ExtResource( 22 )
 hframes = 4
 fps = 12
 
-[node name="objects" parent="." instance=ExtResource( 6 )]
-
-[node name="item_mystical_artifact" parent="objects" instance=ExtResource( 7 )]
-modulate = Color( 0.435294, 0.239216, 0.52549, 1 )
-position = Vector2( 45, 120 )
-item_name = "a mystical artifact"
-color = Color( 0.435294, 0.239216, 0.52549, 1 )
-height = 7.0
-texture = ExtResource( 23 )
-
-[node name="sprite" parent="objects/item_mystical_artifact" index="0"]
-texture = ExtResource( 23 )
-
-[node name="item_old_message" parent="objects" instance=ExtResource( 7 )]
-modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
-position = Vector2( 160, 104 )
+[node name="item_old_message" parent="." instance=ExtResource( 7 )]
+position = Vector2( 152, 112 )
 item_name = "rockwart's message"
-color = Color( 0.721569, 0.780392, 0.435294, 1 )
-height = 7.0
+item_priority = 99
+
+[node name="Sprite" type="Sprite" parent="item_old_message"]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+show_behind_parent = true
+position = Vector2( 8, -8 )
 texture = ExtResource( 19 )
 
-[node name="sprite" parent="objects/item_old_message" index="0"]
-texture = ExtResource( 19 )
+[node name="item_bitten_apple" parent="." instance=ExtResource( 7 )]
+position = Vector2( 136, 112 )
+item_name = "a bitten appel"
+item_priority = 98
+
+[node name="Sprite" type="Sprite" parent="item_bitten_apple"]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+show_behind_parent = true
+position = Vector2( 8, -8 )
+texture = ExtResource( 24 )
+
+[node name="item_mystical_artifact" parent="." instance=ExtResource( 7 )]
+position = Vector2( 8, 120 )
+script = ExtResource( 6 )
+item_name = "Mystical Artifact"
+
+[node name="Sprite" type="Sprite" parent="item_mystical_artifact"]
+modulate = Color( 0.435294, 0.239216, 0.52549, 1 )
+show_behind_parent = true
+position = Vector2( 8, -8 )
+texture = ExtResource( 23 )
+
+[node name="item_headphones" parent="." instance=ExtResource( 7 )]
+position = Vector2( 192, 128 )
+item_name = "Dusty Headphones"
+item_priority = 91
+
+[node name="Sprite" type="Sprite" parent="item_headphones"]
+show_behind_parent = true
+position = Vector2( 9, -9 )
+texture = ExtResource( 3 )
+
+[node name="item_bag" parent="." instance=ExtResource( 7 )]
+position = Vector2( 72, 128 )
+item_name = ""
+
+[node name="CollisionShape2D" parent="item_bag" index="0"]
+position = Vector2( -24, -8 )
+
+[node name="Sprite" type="Sprite" parent="item_bag"]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+show_behind_parent = true
+position = Vector2( -24, -9 )
+texture = ExtResource( 25 )
 
 [node name="popups" type="CanvasLayer" parent="."]
 
@@ -3099,8 +3128,11 @@ __meta__ = {
 
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]
-[editable path="objects/item_mystical_artifact"]
-[editable path="objects/item_old_message"]
+[editable path="item_old_message"]
+[editable path="item_bitten_apple"]
+[editable path="item_mystical_artifact"]
+[editable path="item_headphones"]
+[editable path="item_bag"]
 [editable path="popups/message_3_en/background"]
 [editable path="popups/message_1_de/nachricht1"]
 [editable path="popups/message_2_de/nachricht2"]

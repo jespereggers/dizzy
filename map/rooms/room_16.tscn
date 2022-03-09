@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/objects.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/tiles/items/rusty_key.png" type="Texture" id=3]
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/tiles/build/5.png" type="Texture" id=5]
 [ext_resource path="res://Assets/tiles/build/1.png" type="Texture" id=6]
@@ -12,7 +12,6 @@
 [ext_resource path="res://Assets/tiles/build/7.png" type="Texture" id=10]
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=12]
-[ext_resource path="res://templates/respawn_point.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/tiles/items/crowbar.png" type="Texture" id=14]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=16]
@@ -1575,9 +1574,12 @@ points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
 78/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=52]
-extents = Vector2( 6, 7 )
+extents = Vector2( 8, 5 )
 
-[sub_resource type="DynamicFont" id=53]
+[sub_resource type="RectangleShape2D" id=53]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="DynamicFont" id=54]
 size = 7
 font_data = ExtResource( 15 )
 
@@ -1585,9 +1587,6 @@ font_data = ExtResource( 15 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="respawn_point" parent="." instance=ExtResource( 13 )]
-position = Vector2( 12, 116 )
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -1608,7 +1607,7 @@ tile_data = PoolIntArray( 8388752, 0, 0 )
 tile_set = SubResource( 51 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( -65312, 44, 0, 0, 5, 0, 16, 14, 0, 24, 2, 0, 48, 30, 0, 64, 31, 0, 192, 41, 0, 208, 45, 0, 131248, 78, 0, 524336, 14, 0, 524344, 4, 0, 524479, 48, 0, 1048576, 0, 0, 1048778, 50, 0, 1179822, 40, 0, 1572928, 3, 0, 2097152, 2, 0, 2097176, 5, 0, 2097341, 39, 0, 2097367, 40, 0, 2162847, 45, 0, 2621480, 32, 0, 2621559, 50, 0, 2621612, 49, 0, 3145752, 0, 0, 3145776, 3, 0, 3145792, 1, 0, 3145879, 536870951, 0, 3670080, 4, 0, 3670104, 5, 0, 3670120, 4, 0, 3670144, 4, 0, 3670192, 4, 0, 3670216, 4, 0, 3670240, 5, 0, 4718744, 0, 0, 5243036, 77, 0, 6815896, 77, 0, 8388608, 1, 0, 8388624, 0, 0, 8388648, 1, 0, 8388664, 0, 0, 8388688, 1, 0, 8388704, 0, 0, 8388728, 0, 0, 8388784, 0, 0, 8388808, 1, 0, 8388824, 0, 0 )
+tile_data = PoolIntArray( -65312, 44, 0, 0, 5, 0, 16, 14, 0, 24, 2, 0, 48, 30, 0, 64, 31, 0, 192, 41, 0, 208, 45, 0, 65711, 78, 0, 524336, 14, 0, 524344, 4, 0, 524479, 48, 0, 1048576, 0, 0, 1048778, 50, 0, 1179822, 40, 0, 1572928, 3, 0, 2097152, 2, 0, 2097176, 5, 0, 2097341, 39, 0, 2097367, 40, 0, 2162847, 45, 0, 2621480, 32, 0, 2621559, 50, 0, 2621612, 49, 0, 3145752, 0, 0, 3145776, 3, 0, 3145792, 1, 0, 3145879, 536870951, 0, 3670080, 4, 0, 3670104, 5, 0, 3670120, 4, 0, 3670144, 4, 0, 3670192, 4, 0, 3670216, 4, 0, 3670240, 5, 0, 4718744, 0, 0, 5243036, 77, 0, 6815896, 77, 0, 8388608, 1, 0, 8388624, 0, 0, 8388648, 1, 0, 8388664, 0, 0, 8388688, 1, 0, 8388704, 0, 0, 8388728, 0, 0, 8388784, 0, 0, 8388808, 1, 0, 8388824, 0, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -1625,17 +1624,8 @@ __meta__ = {
 
 [node name="torchfire_death" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16, 64 )
-colliding_object = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
-shape = SubResource( 52 )
-
-[node name="torchfire_death2" parent="." instance=ExtResource( 2 )]
-visible = false
-position = Vector2( 76, 97 )
-colliding_object = "torchfire"
-
-[node name="shape_of_death" parent="torchfire_death2" index="0"]
 shape = SubResource( 52 )
 
 [node name="torchfire_animated" parent="." instance=ExtResource( 4 )]
@@ -1645,23 +1635,30 @@ texture = ExtResource( 8 )
 hframes = 4
 fps = 12
 
+[node name="item_crowbar" parent="." instance=ExtResource( 12 )]
+position = Vector2( 176, 128 )
+item_name = "a strong crowbar"
+item_priority = 95
+
+[node name="Sprite" type="Sprite" parent="item_crowbar"]
+show_behind_parent = true
+position = Vector2( 8, -8 )
+texture = ExtResource( 14 )
+
 [node name="item_rusty_key" parent="." instance=ExtResource( 12 )]
 visible = false
-modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
-position = Vector2( 104, 32 )
+position = Vector2( 128, 40 )
 item_name = "a rusty key"
-color = Color( 0.407843, 0.215686, 0.168627, 1 )
+item_priority = 97
 
-[node name="objects" parent="." instance=ExtResource( 3 )]
+[node name="CollisionShape2D" parent="item_rusty_key" index="0"]
+shape = SubResource( 53 )
 
-[node name="item_crowbar" parent="objects" instance=ExtResource( 12 )]
-position = Vector2( 181, 120 )
-item_name = "a strong crowbar"
-height = 7.0
-texture = ExtResource( 14 )
-
-[node name="sprite" parent="objects/item_crowbar" index="0"]
-texture = ExtResource( 14 )
+[node name="Sprite" type="Sprite" parent="item_rusty_key"]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+show_behind_parent = true
+position = Vector2( 8, -8 )
+texture = ExtResource( 3 )
 
 [node name="popups" type="CanvasLayer" parent="."]
 
@@ -1682,7 +1679,7 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 152.0
 margin_bottom = 56.0
-custom_fonts/font = SubResource( 53 )
+custom_fonts/font = SubResource( 54 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
 text = "du wirfst das
@@ -1714,7 +1711,7 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 224.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 53 )
+custom_fonts/font = SubResource( 54 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
 text = "es entläd seine enorme kraft und durch die erschütterung fällt die aufgetürmte stützkonstruktion in sich zusammen"
@@ -1727,6 +1724,4 @@ __meta__ = {
 }
 
 [editable path="torchfire_death"]
-[editable path="torchfire_death2"]
 [editable path="item_rusty_key"]
-[editable path="objects/item_crowbar"]

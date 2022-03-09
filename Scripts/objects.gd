@@ -30,7 +30,7 @@ func _ready():
 	for properties in data.game_save.enviroment[stats.current_map][stats.current_room].objects:
 		match properties.type:
 			"item":
-				var item: KinematicBody2D = load("res://templates/item.tscn").instance()
+				var item: Area2 = load("res://templates/item.tscn").instance()
 				item.set_properties(properties)
 				item.load_template()
 				if properties.id in unused_object_ids:
