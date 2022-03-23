@@ -2944,6 +2944,7 @@ polygon = PoolVector2Array( -11, 2, -10, 1, -8, 1, -7, 0, 6, 0, 6, -4, 13, -4, 1
 
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 108, 32 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 74 )
@@ -2957,6 +2958,7 @@ fps = 12
 
 [node name="water_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 48, 124 )
+cause_of_death = "water"
 
 [node name="shape_of_death" parent="water_death" index="0"]
 shape = SubResource( 75 )
@@ -3002,9 +3004,9 @@ margin_left = 16.0
 margin_top = 80.0
 margin_right = 216.0
 margin_bottom = 112.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "you kick the barrel and
 it rolls into the water"
 align = 1
@@ -3032,9 +3034,9 @@ margin_left = 16.0
 margin_top = 72.0
 margin_right = 160.0
 margin_bottom = 112.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "du trittst gegen
 das fass und es
 rollt ins wasser"
@@ -3063,9 +3065,9 @@ margin_left = 16.0
 margin_top = 72.0
 margin_right = 216.0
 margin_bottom = 112.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "with a few simple steps
 you mount the motor
 to the barrel"
@@ -3094,9 +3096,9 @@ margin_left = 16.0
 margin_top = 72.0
 margin_right = 216.0
 margin_bottom = 112.0
-custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 76 )
 text = "mit wenigen handgriffen
 montierst du den motor
 an das fass"

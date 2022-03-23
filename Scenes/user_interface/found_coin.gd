@@ -4,19 +4,22 @@ var type: String
 
 
 func _ready():
+	return
 	set_process_unhandled_input(false)
-	if signals.connect("countable_collected", self, "_on_countable_collected") != OK:
-		print("Error occured when trying to establish a connection")
+	#if signals.connect("countable_collected", self, "_on_countable_collected") != OK:
+	#	print("Error occured when trying to establish a connection")
 
 
 func _on_countable_collected(type_):
-	match type_:
-		"coin":
-			$label2_ger.text = "du findest eine münze"
-		"shard":
-			$label2_ger.text = "du findest einen stern"
-			
-	get_parent().locked = true
+	return
+	if $label2 != null:
+		match type_:
+			"coin":
+				$label2.text = "du findest eine münze"
+			"shard":
+				$label2.text = "du findest einen stern"
+				
+	get_parent().get_parent().locked = true
 	signals.emit_signal("pause_mode_changed_to", true)
 	type = type_
 	paths.player.hide()
@@ -27,6 +30,7 @@ func _on_countable_collected(type_):
 
 
 func _unhandled_input(event):
+	return
 	if Input.is_action_just_pressed("enter") or event is InputEventScreenTouch:
 		set_process_unhandled_input(false)
 		get_tree().paused = false
@@ -34,7 +38,7 @@ func _unhandled_input(event):
 		hide()
 		signals.emit_signal("pause_mode_changed_to", false)
 		yield(get_tree().create_timer(0.1), "timeout")
-		get_parent().locked = false
+		get_parent().get_parent().locked = false
 		
 		match type:
 			"coin":

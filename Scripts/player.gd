@@ -377,16 +377,17 @@ func respawn():
 	yield(animations, "animation_finished")
 	script_locked = false
 
-func _die(by:String):
+func _die(by: String):
 	is_dead = true
 	script_locked = true
 	# Play Death-animation
 	audio.play("dead")
 	self.animations.play("death")
 	animations.advance(0)
-	signals.emit_signal("player_died", by)
+	#signals.emit_signal("player_died", by)
 	yield(animations, "animation_finished")
-	paths.ui.death.start(by)
+	signals.emit_signal("player_died", by)
+	#paths.ui.dialogue.play("dead_dialog_" + by)
 
 func _on_map_loaded():
 	visible = true

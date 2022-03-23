@@ -1,11 +1,16 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/user_interface.gd" type="Script" id=1]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/inventory.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Scripts/dialogue_system.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/user_interface/death.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/user_interface/found_coin.gd" type="Script" id=7]
+
+[sub_resource type="DynamicFont" id=3]
+size = 7
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 7
@@ -13,10 +18,6 @@ extra_spacing_bottom = 2
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 7
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=3]
 size = 7
 font_data = ExtResource( 4 )
 
@@ -30,164 +31,237 @@ visible = true
 [node name="full_inventory_dialogue" parent="inventory" index="3"]
 visible = false
 
-[node name="death" type="Popup" parent="."]
-margin_left = 40.0
+[node name="dialogue_system" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="found_coin_en" type="Popup" parent="dialogue_system"]
+margin_left = 64.0
 margin_top = 64.0
-margin_right = 216.0
-margin_bottom = 144.0
+margin_right = 192.0
+margin_bottom = 136.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 popup_exclusive = true
-script = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="death" instance=ExtResource( 2 )]
-modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
-margin_right = 176.0
-margin_bottom = 80.0
+[node name="background" parent="dialogue_system/found_coin_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 128.0
+margin_bottom = 72.0
 
-[node name="label" type="Label" parent="death"]
-margin_left = 16.0
-margin_top = 25.0
-margin_right = 160.0
-margin_bottom = 46.0
-grow_horizontal = 0
-grow_vertical = 0
-custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "you're skewered by
-the sharp daggers"
-align = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="label2" type="Label" parent="death"]
-anchor_top = 0.0125
-anchor_bottom = 0.0125
-margin_left = 16.0
-margin_top = 48.0
-margin_right = 160.0
-margin_bottom = 57.0
-grow_horizontal = 0
-grow_vertical = 0
-custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "you lose a life!"
-align = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": true
-}
-
-[node name="death_dialog_spikes_en" type="Popup" parent="."]
-margin_left = 40.0
-margin_top = 64.0
-margin_right = 216.0
-margin_bottom = 145.0
-popup_exclusive = true
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="background" parent="death_dialog_spikes_en" instance=ExtResource( 2 )]
-modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
-margin_right = 176.0
-margin_bottom = 80.0
-
-[node name="label" type="Label" parent="death_dialog_spikes_en"]
-margin_left = 16.0
-margin_top = 24.0
-margin_right = 160.0
-margin_bottom = 45.0
-grow_horizontal = 0
-grow_vertical = 0
-custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "you're skewered by
-the sharp daggers"
-align = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="label2" type="Label" parent="death_dialog_spikes_en"]
-anchor_top = 4.7095e-08
-anchor_bottom = 4.7095e-08
-margin_left = 16.0
-margin_top = 48.0
-margin_right = 160.0
-margin_bottom = 57.0
-grow_horizontal = 0
-grow_vertical = 0
-custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "you lose a life!"
-align = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": true
-}
-
-[node name="death_dialog_spikes_de" type="Popup" parent="."]
-margin_left = 40.0
-margin_top = 64.0
-margin_right = 216.0
-margin_bottom = 144.0
-popup_exclusive = true
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="background" parent="death_dialog_spikes_de" instance=ExtResource( 2 )]
-modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
-margin_right = 176.0
-margin_bottom = 80.0
-
-[node name="label" type="Label" parent="death_dialog_spikes_de"]
+[node name="label" type="Label" parent="dialogue_system/found_coin_en"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
-margin_bottom = -32.0
-custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_bottom = -40.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 2 )
-text = "du wurdest von
-scharfen klingen
-durchbohrt"
+custom_fonts/font = SubResource( 3 )
+text = "well done!"
 align = 1
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
-[node name="label2" type="Label" parent="death_dialog_spikes_de"]
+[node name="label2" type="Label" parent="dialogue_system/found_coin_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 16.0
-margin_top = 48.0
-margin_right = 160.0
-margin_bottom = 57.0
-grow_horizontal = 0
-grow_vertical = 0
-custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "du bist tot!"
+margin_top = 32.0
+margin_right = -16.0
+margin_bottom = -24.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "you found
+a coin"
 align = 1
+autowrap = true
 __meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false,
+"_editor_description_": ""
 }
 
-[node name="death_dialog_water_en" type="Popup" parent="."]
+[node name="found_coin_de" type="Popup" parent="dialogue_system"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 192.0
+margin_bottom = 136.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/found_coin_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 128.0
+margin_bottom = 72.0
+
+[node name="label" type="Label" parent="dialogue_system/found_coin_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = -16.0
+margin_bottom = -40.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "sehr gut!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/found_coin_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 32.0
+margin_right = -16.0
+margin_bottom = -24.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "du findest
+eine münze"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="found_shard_en" type="Popup" parent="dialogue_system"]
+margin_left = 56.0
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 136.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+popup_exclusive = true
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/found_shard_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 144.0
+margin_bottom = 72.0
+
+[node name="label" type="Label" parent="dialogue_system/found_shard_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = -16.0
+margin_bottom = -40.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "very good!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/found_shard_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 32.0
+margin_right = -16.0
+margin_bottom = -24.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "you found a
+mirror piece"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="found_shard_de" type="Popup" parent="dialogue_system"]
+margin_left = 56.0
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 136.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+popup_exclusive = true
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/found_shard_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 144.0
+margin_bottom = 72.0
+
+[node name="label" type="Label" parent="dialogue_system/found_shard_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = -16.0
+margin_bottom = -40.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "fabelhaft!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/found_shard_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 32.0
+margin_right = -16.0
+margin_bottom = -24.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "du findest
+eine scherbe"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="death_dialog_water_en" type="Popup" parent="dialogue_system"]
 margin_left = 40.0
 margin_top = 64.0
 margin_right = 216.0
@@ -199,12 +273,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="death_dialog_water_en" instance=ExtResource( 2 )]
+[node name="background" parent="dialogue_system/death_dialog_water_en" instance=ExtResource( 2 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 margin_right = 176.0
 margin_bottom = 80.0
 
-[node name="label" type="Label" parent="death_dialog_water_en"]
+[node name="label" type="Label" parent="dialogue_system/death_dialog_water_en"]
 margin_left = 16.0
 margin_top = 24.0
 margin_right = 160.0
@@ -221,7 +295,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="label2" type="Label" parent="death_dialog_water_en"]
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_water_en"]
 margin_left = 16.0
 margin_top = 48.0
 margin_right = 160.0
@@ -237,7 +311,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="death_dialog_water_de" type="Popup" parent="."]
+[node name="death_dialog_water_de" type="Popup" parent="dialogue_system"]
 margin_left = 40.0
 margin_top = 64.0
 margin_right = 216.0
@@ -249,12 +323,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="death_dialog_water_de" instance=ExtResource( 2 )]
+[node name="background" parent="dialogue_system/death_dialog_water_de" instance=ExtResource( 2 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 margin_right = 176.0
 margin_bottom = 80.0
 
-[node name="label" type="Label" parent="death_dialog_water_de"]
+[node name="label" type="Label" parent="dialogue_system/death_dialog_water_de"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
@@ -274,7 +348,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="label2" type="Label" parent="death_dialog_water_de"]
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_water_de"]
 margin_left = 16.0
 margin_top = 48.0
 margin_right = 160.0
@@ -290,7 +364,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="death_dialog_torch_en" type="Popup" parent="."]
+[node name="death_dialog_torch_en" type="Popup" parent="dialogue_system"]
 margin_left = 40.0
 margin_top = 64.0
 margin_right = 216.0
@@ -302,12 +376,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="death_dialog_torch_en" instance=ExtResource( 2 )]
+[node name="background" parent="dialogue_system/death_dialog_torch_en" instance=ExtResource( 2 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 margin_right = 176.0
 margin_bottom = 80.0
 
-[node name="label" type="Label" parent="death_dialog_torch_en"]
+[node name="label" type="Label" parent="dialogue_system/death_dialog_torch_en"]
 margin_left = 16.0
 margin_top = 24.0
 margin_right = 160.0
@@ -324,7 +398,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="label2" type="Label" parent="death_dialog_torch_en"]
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_torch_en"]
 margin_left = 16.0
 margin_top = 48.0
 margin_right = 160.0
@@ -340,7 +414,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="death_dialog_torch_de" type="Popup" parent="."]
+[node name="death_dialog_torch_de" type="Popup" parent="dialogue_system"]
 margin_left = 40.0
 margin_top = 64.0
 margin_right = 216.0
@@ -352,12 +426,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="death_dialog_torch_de" instance=ExtResource( 2 )]
+[node name="background" parent="dialogue_system/death_dialog_torch_de" instance=ExtResource( 2 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 margin_right = 176.0
 margin_bottom = 80.0
 
-[node name="label" type="Label" parent="death_dialog_torch_de"]
+[node name="label" type="Label" parent="dialogue_system/death_dialog_torch_de"]
 margin_left = 16.0
 margin_top = 24.0
 margin_right = 160.0
@@ -374,7 +448,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="label2" type="Label" parent="death_dialog_torch_de"]
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_torch_de"]
 margin_left = 16.0
 margin_top = 48.0
 margin_right = 160.0
@@ -390,7 +464,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="death_dialog_rat_en" type="Popup" parent="."]
+[node name="death_dialog_rat_en" type="Popup" parent="dialogue_system"]
 margin_left = 40.0
 margin_top = 64.0
 margin_right = 216.0
@@ -402,12 +476,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="death_dialog_rat_en" instance=ExtResource( 2 )]
+[node name="background" parent="dialogue_system/death_dialog_rat_en" instance=ExtResource( 2 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 margin_right = 176.0
 margin_bottom = 80.0
 
-[node name="label" type="Label" parent="death_dialog_rat_en"]
+[node name="label" type="Label" parent="dialogue_system/death_dialog_rat_en"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
@@ -427,7 +501,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="label2" type="Label" parent="death_dialog_rat_en"]
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_rat_en"]
 margin_left = 16.0
 margin_top = 48.0
 margin_right = 160.0
@@ -443,7 +517,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="death_dialog_rat_de" type="Popup" parent="."]
+[node name="death_dialog_rat_de" type="Popup" parent="dialogue_system"]
 margin_left = 40.0
 margin_top = 64.0
 margin_right = 216.0
@@ -455,12 +529,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="death_dialog_rat_de" instance=ExtResource( 2 )]
+[node name="background" parent="dialogue_system/death_dialog_rat_de" instance=ExtResource( 2 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 margin_right = 176.0
 margin_bottom = 80.0
 
-[node name="label" type="Label" parent="death_dialog_rat_de"]
+[node name="label" type="Label" parent="dialogue_system/death_dialog_rat_de"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
@@ -480,7 +554,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="label2" type="Label" parent="death_dialog_rat_de"]
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_rat_de"]
 margin_left = 16.0
 margin_top = 48.0
 margin_right = 160.0
@@ -496,7 +570,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="death_dialog_bat_en" type="Popup" parent="."]
+[node name="death_dialog_bat_en" type="Popup" parent="dialogue_system"]
 margin_left = 40.0
 margin_top = 64.0
 margin_right = 216.0
@@ -508,12 +582,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="death_dialog_bat_en" instance=ExtResource( 2 )]
+[node name="background" parent="dialogue_system/death_dialog_bat_en" instance=ExtResource( 2 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 margin_right = 176.0
 margin_bottom = 80.0
 
-[node name="label" type="Label" parent="death_dialog_bat_en"]
+[node name="label" type="Label" parent="dialogue_system/death_dialog_bat_en"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
@@ -533,7 +607,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="label2" type="Label" parent="death_dialog_bat_en"]
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_bat_en"]
 margin_left = 16.0
 margin_top = 48.0
 margin_right = 160.0
@@ -549,7 +623,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="death_dialog_bat_de" type="Popup" parent="."]
+[node name="death_dialog_bat_de" type="Popup" parent="dialogue_system"]
 margin_left = 40.0
 margin_top = 64.0
 margin_right = 216.0
@@ -561,12 +635,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="death_dialog_bat_de" instance=ExtResource( 2 )]
+[node name="background" parent="dialogue_system/death_dialog_bat_de" instance=ExtResource( 2 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 margin_right = 176.0
 margin_bottom = 80.0
 
-[node name="label" type="Label" parent="death_dialog_bat_de"]
+[node name="label" type="Label" parent="dialogue_system/death_dialog_bat_de"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -587,7 +661,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="label2" type="Label" parent="death_dialog_bat_de"]
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_bat_de"]
 margin_left = 16.0
 margin_top = 48.0
 margin_right = 160.0
@@ -603,319 +677,109 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="found_countable" type="Popup" parent="."]
-margin_left = 64.0
+[node name="death_dialog_spikes_en" type="Popup" parent="dialogue_system"]
+margin_left = 40.0
 margin_top = 64.0
-margin_right = 192.0
-margin_bottom = 136.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 0
+margin_right = 216.0
+margin_bottom = 145.0
 popup_exclusive = true
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="found_countable" instance=ExtResource( 2 )]
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-margin_right = 128.0
-margin_bottom = 72.0
+[node name="background" parent="dialogue_system/death_dialog_spikes_en" instance=ExtResource( 2 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+margin_right = 176.0
+margin_bottom = 80.0
 
-[node name="label_eng" type="Label" parent="found_countable"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="label" type="Label" parent="dialogue_system/death_dialog_spikes_en"]
 margin_left = 16.0
 margin_top = 24.0
-margin_right = -16.0
-margin_bottom = -40.0
-custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
-custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 3 )
-text = "well done!"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="label2_eng" type="Label" parent="found_countable"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 32.0
-margin_right = -16.0
-margin_bottom = -24.0
-custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
-custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 3 )
-text = "you found
-a coin"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="label_ger" type="Label" parent="found_countable"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 32.0
-margin_right = -16.0
-margin_bottom = -24.0
-custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
-custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 3 )
-text = "you found
-a coin"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="label2_ger" type="Label" parent="found_countable"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 32.0
-margin_right = -16.0
-margin_bottom = -24.0
-custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
-custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 3 )
-text = "you found
-a coin"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="found_coin_en" type="Popup" parent="."]
-margin_left = 64.0
-margin_top = 64.0
-margin_right = 192.0
-margin_bottom = 136.0
+margin_right = 160.0
+margin_bottom = 45.0
 grow_horizontal = 0
 grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-popup_exclusive = true
-script = ExtResource( 7 )
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "you're skewered by
+the sharp daggers"
+align = 1
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="found_coin_en" instance=ExtResource( 2 )]
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-margin_right = 128.0
-margin_bottom = 72.0
-
-[node name="label" type="Label" parent="found_coin_en"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_spikes_en"]
+anchor_top = 4.7095e-08
+anchor_bottom = 4.7095e-08
 margin_left = 16.0
-margin_top = 24.0
-margin_right = -16.0
-margin_bottom = -40.0
-custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
-custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 3 )
-text = "well done!"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="label2" type="Label" parent="found_coin_en"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 32.0
-margin_right = -16.0
-margin_bottom = -24.0
-custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
-custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 3 )
-text = "you found
-a coin"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="found_coin_de" type="Popup" parent="."]
-margin_left = 64.0
-margin_top = 64.0
-margin_right = 192.0
-margin_bottom = 136.0
+margin_top = 48.0
+margin_right = 160.0
+margin_bottom = 57.0
 grow_horizontal = 0
 grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-popup_exclusive = true
-script = ExtResource( 7 )
+custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "you lose a life!"
+align = 1
 __meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="death_dialog_spikes_de" type="Popup" parent="dialogue_system"]
+margin_left = 40.0
+margin_top = 64.0
+margin_right = 216.0
+margin_bottom = 144.0
+popup_exclusive = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="found_coin_de" instance=ExtResource( 2 )]
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-margin_right = 128.0
-margin_bottom = 72.0
+[node name="background" parent="dialogue_system/death_dialog_spikes_de" instance=ExtResource( 2 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+margin_right = 176.0
+margin_bottom = 80.0
 
-[node name="label" type="Label" parent="found_coin_de"]
+[node name="label" type="Label" parent="dialogue_system/death_dialog_spikes_de"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
-margin_bottom = -40.0
-custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+margin_bottom = -32.0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 3 )
-text = "sehr gut!"
+custom_fonts/font = SubResource( 2 )
+text = "du wurdest von
+scharfen klingen
+durchbohrt"
 align = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
-[node name="label2" type="Label" parent="found_coin_de"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_spikes_de"]
 margin_left = 16.0
-margin_top = 32.0
-margin_right = -16.0
-margin_bottom = -24.0
-custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
-custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 3 )
-text = "du findest
-eine münze"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="found_shard_en" type="Popup" parent="."]
-margin_left = 56.0
-margin_top = 64.0
-margin_right = 200.0
-margin_bottom = 136.0
+margin_top = 48.0
+margin_right = 160.0
+margin_bottom = 57.0
 grow_horizontal = 0
 grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-popup_exclusive = true
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="background" parent="found_shard_en" instance=ExtResource( 2 )]
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-margin_right = 144.0
-margin_bottom = 72.0
-
-[node name="label" type="Label" parent="found_shard_en"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 24.0
-margin_right = -16.0
-margin_bottom = -40.0
-custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
-custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 3 )
-text = "very good!"
+custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "du bist tot!"
 align = 1
 __meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="label2" type="Label" parent="found_shard_en"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 32.0
-margin_right = -16.0
-margin_bottom = -24.0
-custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
-custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 3 )
-text = "you found a
-mirror piece"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="found_shard_de" type="Popup" parent="."]
-margin_left = 56.0
-margin_top = 64.0
-margin_right = 200.0
-margin_bottom = 136.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-popup_exclusive = true
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="background" parent="found_shard_de" instance=ExtResource( 2 )]
-modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
-margin_right = 144.0
-margin_bottom = 72.0
-
-[node name="label" type="Label" parent="found_shard_de"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 24.0
-margin_right = -16.0
-margin_bottom = -40.0
-custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
-custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 3 )
-text = "fabelhaft!"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="label2" type="Label" parent="found_shard_de"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 32.0
-margin_right = -16.0
-margin_bottom = -24.0
-custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
-custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 3 )
-text = "du findest
-eine scherbe"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_lock_": true,
+"_edit_use_anchors_": true
 }
 
 [editable path="inventory"]
