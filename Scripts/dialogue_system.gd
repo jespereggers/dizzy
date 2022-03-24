@@ -6,10 +6,10 @@ var dialogues: Dictionary = {
 	"coin": ["box:found_coin", "wait", "end"],
 	"shard": ["box:found_shard", "wait", "end"],
 	"water_death": ["box:death_dialog_water", "timer:9", "respawn"],
-	"torchfire_death": ["box:death_dialog_torch", "timer:3", "end"],
-	"rat_death": ["box:death_dialog_rat", "timer:3", "end"],
-	"bat_death": ["box:death_dialog_bat", "timer:3", "end"],
-	"spikes_death": ["box:death_dialog_spikes", "timer:3", "end"]
+	"torchfire_death": ["box:death_dialog_torch", "timer:9", "respawn"],
+	"rat_death": ["box:death_dialog_rat", "timer:9", "respawn"],
+	"bat_death": ["box:death_dialog_bat", "timer:9", "respawn"],
+	"spikes_death": ["box:death_dialog_spikes", "timer:9", "respawn"]
 }
 
 signal dialogue_accepted()
