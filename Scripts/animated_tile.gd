@@ -23,14 +23,17 @@ func _ready():
 	animation.track_set_path(anim_key, ":frame")
 
 	if animation.bezier_track_insert_key(anim_key, 0.0, 0) != OK:
-		print("Error occured when trying to establish animation")
+		#print("Error occured when trying to establish animation")
+		pass
 	if animation.bezier_track_insert_key(anim_key, (1.0 / fps) * (max_frame - 1), max_frame - 1) != OK:
-		print("Error occured when trying to establish animation")
+		pass
+		#print("Error occured when trying to establish animation")
 	
 	# Acutally add the animation
 	anim_player = AnimationPlayer.new()
 	if anim_player.add_animation("idle", animation) != OK:
-		print("Error occured when trying to establish animation")
+		pass
+		#print("Error occured when trying to establish animation")
 	
 	self.add_child(anim_player)
 	
