@@ -26,7 +26,7 @@ func _on_countable_collected(item: String = ""):
 
 
 func _on_player_died(by: String = ""):
-	if by in ["water", "torchfire", "rat", "spikes"]:
+	if by in ["water", "torchfire", "rat", "bat", "spikes"]:
 		play(by + "_death")
 
 
