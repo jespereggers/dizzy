@@ -2997,6 +2997,7 @@ __meta__ = {
 
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 192, 16 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 78 )

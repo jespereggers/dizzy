@@ -5,11 +5,11 @@ var running: bool = false
 var dialogues: Dictionary = {
 	"coin": ["box:found_coin", "wait", "end"],
 	"shard": ["box:found_shard", "wait", "end"],
-	"water_death": ["box:death_dialog_water", "timer:9", "respawn"],
-	"torchfire_death": ["box:death_dialog_torch", "timer:9", "respawn"],
-	"rat_death": ["box:death_dialog_rat", "timer:9", "respawn"],
-	"bat_death": ["box:death_dialog_bat", "timer:9", "respawn"],
-	"spikes_death": ["box:death_dialog_spikes", "timer:9", "respawn"]
+	"water_death": ["box:death_dialog_water", "timer:10", "respawn"],
+	"torchfire_death": ["box:death_dialog_torch", "timer:10", "respawn"],
+	"rat_death": ["box:death_dialog_rat", "timer:10", "respawn"],
+	"bat_death": ["box:death_dialog_bat", "timer:10", "respawn"],
+	"spikes_death": ["box:death_dialog_spikes", "timer:10", "respawn"]
 }
 
 signal dialogue_accepted()
@@ -26,7 +26,7 @@ func _on_countable_collected(item: String = ""):
 
 
 func _on_player_died(by: String = ""):
-	if by in ["water", "torchfire", "rat", "spikes"]:
+	if by in ["water", "torchfire", "rat", "bat", "spikes"]:
 		play(by + "_death")
 
 

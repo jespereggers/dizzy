@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=2]
+[gd_scene load_steps=93 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -2877,6 +2877,9 @@ extents = Vector2( 15, 3 )
 [sub_resource type="RectangleShape2D" id=74]
 extents = Vector2( 27, 3 )
 
+[sub_resource type="RectangleShape2D" id=75]
+extents = Vector2( 28, 24 )
+
 [node name="room_13" type="Node2D"]
 __meta__ = {
 "_edit_lock_": true
@@ -2930,6 +2933,14 @@ position = Vector2( 212, 124 )
 [node name="shape_of_death" parent="water_death2" index="0"]
 shape = SubResource( 74 )
 
+[node name="no_spawn_area" parent="." instance=ExtResource( 14 )]
+position = Vector2( 184, 64 )
+cause_of_death = "no_spawn"
+
+[node name="shape_of_death" parent="no_spawn_area" index="0"]
+position = Vector2( 28, 24 )
+shape = SubResource( 75 )
+
 [node name="water_animated" parent="." instance=ExtResource( 13 )]
 position = Vector2( 56, 115 )
 texture = ExtResource( 15 )
@@ -2957,3 +2968,4 @@ fps = 6
 [editable path="water_death"]
 [editable path="water_death1"]
 [editable path="water_death2"]
+[editable path="no_spawn_area"]

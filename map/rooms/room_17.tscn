@@ -2879,7 +2879,7 @@ format = 1
 tile_data = PoolIntArray( -65536, 43, 0, 7, 38, 0, 32, 4, 0, 56, 0, 0, 80, 5, 0, 96, 0, 0, 120, 5, 0, 136, 0, 0, 160, 4, 0, 184, 14, 0, 192, 4, 0, 983041, 47, 0, 1048592, 40, 0, 1048616, 1, 0, 1048760, 3, 0, 1048784, 0, 0, 1572904, 3, 0, 1573064, 4, 0, 1966080, 45, 0, 2621448, 50, 0, 2621624, 2, 0, 3145768, 1, 0, 3145936, 3, 0, 3670016, 33, 0, 3670024, 4, 0, 3670048, 4, 0, 3670072, 4, 0, 4194488, 5, 0, 4718632, 5, 0, 4718800, 5, 0, 5243064, 0, 0, 5767208, 1, 0, 5767352, 14, 0, 5767360, 2, 0, 5767384, 4, 0, 6815904, 2, 0, 6815928, 14, 0, 7340120, 34, 0, 7340232, 5, 0, 7340256, 14, 0, 7864408, 35, 0, 7864464, 1073741860, 0, 7864504, 66, 0, 8388608, 0, 0, 8388632, 1, 0, 8388648, 1, 0, 8388664, 0, 0, 8388688, 1, 0, 8388704, 0, 0, 8388728, 1, 0, 8388744, 0, 0, 8388768, 0, 0, 8388816, 1, 0 )
 
 [node name="cell_door" type="Sprite" parent="."]
-modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 position = Vector2( 48, 112 )
 texture = ExtResource( 22 )
 
@@ -2889,12 +2889,14 @@ shape = SubResource( 71 )
 
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 20, 80 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 72 )
 
 [node name="torchfire_death1" parent="." instance=ExtResource( 13 )]
 position = Vector2( 160, 40 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death1" index="0"]
 shape = SubResource( 73 )

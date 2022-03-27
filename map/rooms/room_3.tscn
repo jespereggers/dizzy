@@ -2964,13 +2964,13 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 } ]
 160/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=82]
+[sub_resource type="RectangleShape2D" id=78]
 extents = Vector2( 8, 16 )
 
-[sub_resource type="RectangleShape2D" id=78]
+[sub_resource type="RectangleShape2D" id=79]
 extents = Vector2( 8, 5 )
 
-[sub_resource type="RectangleShape2D" id=79]
+[sub_resource type="RectangleShape2D" id=80]
 extents = Vector2( 8, 5 )
 
 [sub_resource type="DynamicFont" id=81]
@@ -3008,19 +3008,21 @@ centered = false
 
 [node name="interaktionsbereich" type="CollisionShape2D" parent="stuck_door"]
 position = Vector2( 8, 16 )
-shape = SubResource( 82 )
+shape = SubResource( 78 )
 
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 48, 16 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
-shape = SubResource( 78 )
+shape = SubResource( 79 )
 
 [node name="torchfire_death1" parent="." instance=ExtResource( 13 )]
 position = Vector2( 184, 64 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death1" index="0"]
-shape = SubResource( 79 )
+shape = SubResource( 80 )
 
 [node name="torchfire_animated" parent="." instance=ExtResource( 15 )]
 modulate = Color( 0.721569, 0.780392, 0.435294, 1 )

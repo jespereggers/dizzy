@@ -2908,12 +2908,14 @@ __meta__ = {
 
 [node name="torchfire_death" parent="." instance=ExtResource( 12 )]
 position = Vector2( 20, 72 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 72 )
 
 [node name="water_death" parent="." instance=ExtResource( 12 )]
 position = Vector2( 0, 2 )
+cause_of_death = "water"
 
 [node name="shape_of_death" parent="water_death" index="0"]
 position = Vector2( 136, 130 )

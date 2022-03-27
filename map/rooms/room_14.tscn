@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=102 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -21,8 +21,10 @@
 [ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=20]
 [ext_resource path="res://Assets/tiles/objects/barrel_boat.png" type="Texture" id=21]
+[ext_resource path="res://Assets/tiles/items/outboard_motor.png" type="Texture" id=22]
 [ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=23]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=24]
+[ext_resource path="res://templates/item.tscn" type="PackedScene" id=25]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2912,35 +2914,56 @@ modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 position = Vector2( 112, 80 )
 texture = ExtResource( 15 )
 centered = false
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="interaktionsbereich" type="CollisionShape2D" parent="barrel"]
 position = Vector2( 12, 12 )
 shape = SubResource( 72 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="barrel_water" type="Sprite" parent="."]
 visible = false
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 position = Vector2( 76, 108 )
 texture = ExtResource( 17 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="interaktionsbereich" type="CollisionShape2D" parent="barrel_water"]
 visible = false
 position = Vector2( 8, -8 )
 shape = SubResource( 73 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="barrel_water"]
 visible = false
 polygon = PoolVector2Array( -12, -1, -10, -1, -9, -2, -7, -2, -6, -3, -4, -3, -3, -4, 4, -4, 5, -3, 7, -3, 8, -2, 9, -2, 10, -1, 12, -1, 12, 4, -12, 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="barrel_boat" type="Sprite" parent="."]
 visible = false
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 position = Vector2( 80, 104 )
 texture = ExtResource( 21 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="barrel_boat"]
 visible = false
 polygon = PoolVector2Array( -11, 2, -10, 1, -8, 1, -7, 0, 6, 0, 6, -4, 13, -4, 13, 0, 10, 4, 10, 8, -16, 8, -16, 3, -14, 3, -13, 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 108, 32 )
@@ -2984,29 +3007,40 @@ fps = 5
 [node name="coin" parent="." instance=ExtResource( 16 )]
 position = Vector2( 176, 64 )
 
+[node name="item_outboard_motor" parent="." instance=ExtResource( 25 )]
+position = Vector2( 200, 112 )
+item_name = "an outboard motor"
+item_priority = 10
+
+[node name="Sprite" type="Sprite" parent="item_outboard_motor"]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+show_behind_parent = true
+position = Vector2( 8, -8 )
+texture = ExtResource( 22 )
+
 [node name="popups" type="CanvasLayer" parent="."]
 
-[node name="message_1_en" type="Popup" parent="popups"]
+[node name="message_barrel_en" type="Popup" parent="popups"]
 popup_exclusive = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="popups/message_1_en" instance=ExtResource( 24 )]
+[node name="background" parent="popups/message_barrel_en" instance=ExtResource( 24 )]
 margin_top = 64.0
 margin_right = 232.0
 margin_bottom = 128.0
 
-[node name="label" type="Label" parent="popups/message_1_en"]
+[node name="label" type="Label" parent="popups/message_barrel_en"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
 margin_top = 80.0
 margin_right = 216.0
 margin_bottom = 112.0
+custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 76 )
 text = "you kick the barrel and
 it rolls into the water"
 align = 1
@@ -3016,27 +3050,27 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="message_1_de" type="Popup" parent="popups"]
+[node name="message_barrel_de" type="Popup" parent="popups"]
 popup_exclusive = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="popups/message_1_de" instance=ExtResource( 24 )]
+[node name="background" parent="popups/message_barrel_de" instance=ExtResource( 24 )]
 margin_top = 56.0
 margin_right = 176.0
 margin_bottom = 128.0
 
-[node name="label" type="Label" parent="popups/message_1_de"]
+[node name="label" type="Label" parent="popups/message_barrel_de"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
 margin_top = 72.0
 margin_right = 160.0
 margin_bottom = 112.0
+custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 76 )
 text = "du trittst gegen
 das fass und es
 rollt ins wasser"
@@ -3047,27 +3081,27 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="message_2_en" type="Popup" parent="popups"]
+[node name="message_barrel_water_en" type="Popup" parent="popups"]
 popup_exclusive = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="popups/message_2_en" instance=ExtResource( 24 )]
+[node name="background" parent="popups/message_barrel_water_en" instance=ExtResource( 24 )]
 margin_top = 56.0
 margin_right = 232.0
 margin_bottom = 128.0
 
-[node name="label" type="Label" parent="popups/message_2_en"]
+[node name="label" type="Label" parent="popups/message_barrel_water_en"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
 margin_top = 72.0
 margin_right = 216.0
 margin_bottom = 112.0
+custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 76 )
 text = "with a few simple steps
 you mount the motor
 to the barrel"
@@ -3078,27 +3112,27 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="message_2_de" type="Popup" parent="popups"]
+[node name="message_barrel_water_de" type="Popup" parent="popups"]
 popup_exclusive = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" parent="popups/message_2_de" instance=ExtResource( 24 )]
+[node name="background" parent="popups/message_barrel_water_de" instance=ExtResource( 24 )]
 margin_top = 56.0
 margin_right = 232.0
 margin_bottom = 128.0
 
-[node name="label" type="Label" parent="popups/message_2_de"]
+[node name="label" type="Label" parent="popups/message_barrel_water_de"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
 margin_top = 72.0
 margin_right = 216.0
 margin_bottom = 112.0
+custom_fonts/font = SubResource( 76 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 76 )
 text = "mit wenigen handgriffen
 montierst du den motor
 an das fass"

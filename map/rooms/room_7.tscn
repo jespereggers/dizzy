@@ -5831,6 +5831,7 @@ tile_data = PoolIntArray( 4194312, 0, 0, 4194320, 0, 0, 4194328, 0, 0, 4194336, 
 
 [node name="spikes_death" parent="." instance=ExtResource( 12 )]
 position = Vector2( 13.773, 70.984 )
+cause_of_death = "spikes"
 
 [node name="shape_of_death" parent="spikes_death" index="0"]
 position = Vector2( 14.227, -1.984 )

@@ -2910,12 +2910,14 @@ anims/walk = SubResource( 72 )
 
 [node name="torchfire_death" parent="." instance=ExtResource( 14 )]
 position = Vector2( 100, 16 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 73 )
 
 [node name="torchfire_death1" parent="." instance=ExtResource( 14 )]
 position = Vector2( 204, 16 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death1" index="0"]
 shape = SubResource( 74 )

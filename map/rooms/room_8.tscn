@@ -2917,6 +2917,7 @@ tile_data = PoolIntArray( 72, 3, 0, 524376, 4, 0, 1572952, 5, 0, 1572968, 2, 0, 
 
 [node name="torchfire_death" parent="." instance=ExtResource( 12 )]
 position = Vector2( 220, 72 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 74 )

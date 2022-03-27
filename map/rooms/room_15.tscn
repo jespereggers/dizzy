@@ -2872,12 +2872,14 @@ tile_data = PoolIntArray( 0, 0, 0, 24, 1, 0, 40, 0, 0, 64, 0, 0, 88, 1, 0, 104, 
 
 [node name="torchfire_death" parent="." instance=ExtResource( 4 )]
 position = Vector2( 40, 64 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 72 )
 
 [node name="torchfire_death1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 200, 64 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death1" index="0"]
 shape = SubResource( 73 )
@@ -2969,9 +2971,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "\"ooh, there
 is a message
 on the table?"
@@ -3001,9 +3003,9 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 184.0
 margin_bottom = 88.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "i'll be right back!
 -signed rockwart-"
 align = 1
@@ -3030,9 +3032,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 120.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "you should
 pick up
 the message"
@@ -3058,9 +3060,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "\"oh, da liegt
 eine nachricht
 auf dem tisch§"
@@ -3087,9 +3089,9 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 184.0
 margin_bottom = 88.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "Bin gleich zurück!
 signiert 'rockwart'"
 align = 1
@@ -3113,9 +3115,9 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 120.0
 margin_bottom = 56.0
+custom_fonts/font = SubResource( 74 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 74 )
 text = "den zettel
 solltest du
 mitnehmen"

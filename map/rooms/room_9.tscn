@@ -2854,13 +2854,13 @@ extents = Vector2( 8, 5 )
 [sub_resource type="RectangleShape2D" id=76]
 extents = Vector2( 8, 12 )
 
-[sub_resource type="RectangleShape2D" id=79]
+[sub_resource type="RectangleShape2D" id=77]
 extents = Vector2( 6, 6 )
 
-[sub_resource type="RectangleShape2D" id=77]
+[sub_resource type="RectangleShape2D" id=78]
 extents = Vector2( 8, 8 )
 
-[sub_resource type="DynamicFont" id=78]
+[sub_resource type="DynamicFont" id=79]
 size = 7
 font_data = ExtResource( 24 )
 
@@ -2886,24 +2886,28 @@ tile_data = PoolIntArray( 3670016, 0, 0, 3670040, 1, 0, 3670056, 0, 0, 3670192, 
 
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 12, 72 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
 shape = SubResource( 72 )
 
 [node name="torchfire_death1" parent="." instance=ExtResource( 13 )]
 position = Vector2( 80, 16 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death1" index="0"]
 shape = SubResource( 73 )
 
 [node name="torchfire_death2" parent="." instance=ExtResource( 13 )]
 position = Vector2( 160, 16 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death2" index="0"]
 shape = SubResource( 74 )
 
 [node name="torchfire_death3" parent="." instance=ExtResource( 13 )]
 position = Vector2( 228, 72 )
+cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death3" index="0"]
 shape = SubResource( 75 )
@@ -2963,7 +2967,7 @@ flip_v = true
 
 [node name="interaktionsbereich" type="CollisionShape2D" parent="painting"]
 position = Vector2( 0, 28 )
-shape = SubResource( 79 )
+shape = SubResource( 77 )
 
 [node name="coin1" parent="." instance=ExtResource( 26 )]
 position = Vector2( 40, 48 )
@@ -2978,7 +2982,7 @@ item_name = "A Piece of Railing"
 item_priority = 98
 
 [node name="CollisionShape2D" parent="item_railing" index="0"]
-shape = SubResource( 77 )
+shape = SubResource( 78 )
 
 [node name="Sprite" type="Sprite" parent="item_railing"]
 show_behind_parent = true
@@ -3005,7 +3009,7 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 56.0
-custom_fonts/font = SubResource( 78 )
+custom_fonts/font = SubResource( 79 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
 text = "\"ooh, there
@@ -3037,7 +3041,7 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 184.0
 margin_bottom = 88.0
-custom_fonts/font = SubResource( 78 )
+custom_fonts/font = SubResource( 79 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
 text = "i'll be right back!
@@ -3068,7 +3072,7 @@ margin_left = 72.0
 margin_top = 48.0
 margin_right = 168.0
 margin_bottom = 88.0
-custom_fonts/font = SubResource( 78 )
+custom_fonts/font = SubResource( 79 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
 text = "you should
@@ -3100,7 +3104,7 @@ margin_left = 40.0
 margin_top = 64.0
 margin_right = 200.0
 margin_bottom = 112.0
-custom_fonts/font = SubResource( 78 )
+custom_fonts/font = SubResource( 79 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
 text = "You turn
@@ -3129,7 +3133,7 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 144.0
 margin_bottom = 56.0
-custom_fonts/font = SubResource( 78 )
+custom_fonts/font = SubResource( 79 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
 text = "\"oh, da liegt
@@ -3158,7 +3162,7 @@ margin_left = 16.0
 margin_top = 56.0
 margin_right = 184.0
 margin_bottom = 88.0
-custom_fonts/font = SubResource( 78 )
+custom_fonts/font = SubResource( 79 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
 text = "Bin gleich zurück!
@@ -3187,7 +3191,7 @@ margin_left = 64.0
 margin_top = 64.0
 margin_right = 176.0
 margin_bottom = 104.0
-custom_fonts/font = SubResource( 78 )
+custom_fonts/font = SubResource( 79 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
 text = "\"nanu, etwas
@@ -3219,7 +3223,7 @@ margin_left = 40.0
 margin_top = 64.0
 margin_right = 200.0
 margin_bottom = 112.0
-custom_fonts/font = SubResource( 78 )
+custom_fonts/font = SubResource( 79 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
 text = "Du drehst das Bild
