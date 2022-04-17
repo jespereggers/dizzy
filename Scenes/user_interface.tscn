@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/user_interface.gd" type="Script" id=1]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=2]
@@ -21,6 +21,10 @@ font_data = ExtResource( 4 )
 size = 7
 font_data = ExtResource( 4 )
 
+[sub_resource type="DynamicFont" id=4]
+size = 7
+font_data = ExtResource( 4 )
+
 [node name="user_interface" type="CanvasLayer"]
 pause_mode = 2
 script = ExtResource( 1 )
@@ -35,9 +39,6 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="found_coin_en" type="Popup" parent="dialogue_system"]
 margin_left = 64.0
@@ -66,9 +67,9 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -40.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 1 )
 text = "well done!"
 align = 1
 __meta__ = {
@@ -83,9 +84,9 @@ margin_left = 16.0
 margin_top = 32.0
 margin_right = -16.0
 margin_bottom = -24.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 1 )
 text = "you found
 a coin"
 align = 1
@@ -122,9 +123,9 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -40.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 1 )
 text = "sehr gut!"
 align = 1
 __meta__ = {
@@ -139,9 +140,9 @@ margin_left = 16.0
 margin_top = 32.0
 margin_right = -16.0
 margin_bottom = -24.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 1 )
 text = "du findest
 eine münze"
 align = 1
@@ -178,9 +179,9 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -40.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 1 )
 text = "very good!"
 align = 1
 __meta__ = {
@@ -195,9 +196,9 @@ margin_left = 16.0
 margin_top = 32.0
 margin_right = -16.0
 margin_bottom = -24.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 1 )
 text = "you found a
 mirror piece"
 align = 1
@@ -233,9 +234,9 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -40.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 1 )
 text = "fabelhaft!"
 align = 1
 __meta__ = {
@@ -250,9 +251,9 @@ margin_left = 16.0
 margin_top = 32.0
 margin_right = -16.0
 margin_bottom = -24.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 1 )
 text = "du findest
 eine scherbe"
 align = 1
@@ -285,8 +286,8 @@ margin_right = 160.0
 margin_bottom = 45.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "you fell in the
 water and drowned"
 align = 1
@@ -302,8 +303,8 @@ margin_right = 160.0
 margin_bottom = 57.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "you lose a life!"
 align = 1
 __meta__ = {
@@ -335,9 +336,9 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -32.0
-custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
 text = "du bist ins
 wasser gefallen
 und ertrunken"
@@ -355,8 +356,8 @@ margin_right = 160.0
 margin_bottom = 57.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "du bist tot!"
 align = 1
 __meta__ = {
@@ -388,8 +389,8 @@ margin_right = 160.0
 margin_bottom = 45.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "you were burnt
 by the flames"
 align = 1
@@ -405,8 +406,8 @@ margin_right = 160.0
 margin_bottom = 57.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "you lose a life!"
 align = 1
 __meta__ = {
@@ -438,8 +439,8 @@ margin_right = 160.0
 margin_bottom = 45.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "du wurdest von den
 flammen verbrannt"
 align = 1
@@ -455,8 +456,8 @@ margin_right = 160.0
 margin_bottom = 57.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "du bist tot!"
 align = 1
 __meta__ = {
@@ -488,9 +489,9 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -32.0
-custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
 text = "the rat goes
 straight for
 your neck"
@@ -508,8 +509,8 @@ margin_right = 160.0
 margin_bottom = 57.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "you lose a life!"
 align = 1
 __meta__ = {
@@ -541,9 +542,9 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -32.0
-custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
 text = "die ratte sprang
 dir blitzschnell
 in den nacken"
@@ -561,8 +562,8 @@ margin_right = 160.0
 margin_bottom = 57.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "du bist tot!"
 align = 1
 __meta__ = {
@@ -594,9 +595,9 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -32.0
-custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
 text = "the bat bites
 you neck and
 slurps you dry"
@@ -614,8 +615,8 @@ margin_right = 160.0
 margin_bottom = 57.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "you lose a life!"
 align = 1
 __meta__ = {
@@ -648,9 +649,9 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -32.0
-custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
 text = "die fledermaus
 biss dir sofort
 in den hals"
@@ -668,8 +669,8 @@ margin_right = 160.0
 margin_bottom = 57.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "du bist tot!"
 align = 1
 __meta__ = {
@@ -701,8 +702,8 @@ margin_right = 160.0
 margin_bottom = 45.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "you're skewered by
 the sharp daggers"
 align = 1
@@ -720,8 +721,8 @@ margin_right = 160.0
 margin_bottom = 57.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "you lose a life!"
 align = 1
 __meta__ = {
@@ -753,9 +754,9 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = -16.0
 margin_bottom = -32.0
-custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
 custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
 text = "du wurdest von
 scharfen klingen
 durchbohrt"
@@ -773,13 +774,76 @@ margin_right = 160.0
 margin_bottom = 57.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "du bist tot!"
 align = 1
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": true
+}
+
+[node name="message_barrel_en" type="Popup" parent="dialogue_system"]
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/message_barrel_en" instance=ExtResource( 2 )]
+margin_top = 64.0
+margin_right = 232.0
+margin_bottom = 128.0
+
+[node name="label" type="Label" parent="dialogue_system/message_barrel_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 80.0
+margin_right = 216.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "you kick the barrel and
+it rolls into the water"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_barrel_de" type="Popup" parent="dialogue_system"]
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/message_barrel_de" instance=ExtResource( 2 )]
+margin_top = 56.0
+margin_right = 176.0
+margin_bottom = 128.0
+
+[node name="label" type="Label" parent="dialogue_system/message_barrel_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 72.0
+margin_right = 160.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "du trittst gegen
+das fass und es
+rollt ins wasser"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
 }
 
 [editable path="inventory"]

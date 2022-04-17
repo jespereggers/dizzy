@@ -8,6 +8,7 @@ signal physics_frame_processed
 onready var animations: AnimationPlayer = $animations
 onready var texture: Sprite = $texture
 onready var item_detector: Area2D = $item_detector
+onready var interaction_detector: Area2D = $interaction_detector
 
 onready var ceiling_sensor: Sensor = $CeilingSensor
 onready var floor_sensor: Sensor = $FloorSensor
@@ -377,6 +378,7 @@ func respawn():
 	yield(animations, "animation_finished")
 	script_locked = false
 
+
 func _die(by: String):
 	is_dead = true
 	script_locked = true
@@ -389,7 +391,8 @@ func _die(by: String):
 	signals.emit_signal("player_died", by)
 	#paths.ui.dialogue.play("dead_dialog_" + by)
 
-func _on_map_loaded():
+
+func _on_map_loaded(): 
 	visible = true
 	if is_dead:
 		respawn()

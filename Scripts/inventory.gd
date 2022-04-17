@@ -31,7 +31,7 @@ func _unhandled_input(event):
 				close()
 		elif ItemCollision.get_colliding_items(paths.player.get_node("item_detector/shape")).empty() and paths.player.is_on_floor() and paths.player.state_machine._state == "idle":
 			if not get_parent().locked:
-				if not get_parent().get_node("dialogue_system").running:
+				if paths.player.interaction_detector.findings.empty() and not get_parent().get_node("dialogue_system").running:
 					open()
 			
 		# Secure

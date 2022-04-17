@@ -9,7 +9,8 @@ var dialogues: Dictionary = {
 	"torchfire_death": ["box:death_dialog_torch", "timer:10", "respawn"],
 	"rat_death": ["box:death_dialog_rat", "timer:10", "respawn"],
 	"bat_death": ["box:death_dialog_bat", "timer:10", "respawn"],
-	"spikes_death": ["box:death_dialog_spikes", "timer:10", "respawn"]
+	"spikes_death": ["box:death_dialog_spikes", "timer:10", "respawn"],
+	"barrel_triggered": ["box:message_barrel", "wait", "end"]
 }
 
 signal dialogue_accepted()
@@ -31,34 +32,54 @@ func _on_player_died(by: String = ""):
 
 
 func play(event: String = ""):
-	print(event)
+	print("Play ", event)
 	if not event in dialogues:
 		return
 	
 	start()
 	
 	for phase in dialogues[event]:
-		print(phase)
-		match phase.rsplit(":")[0]:
-			"box":
-				print(phase.rsplit(":")[1] + "_" + TranslationServer.get_locale())
-				if self.has_node(phase.rsplit(":")[1] + "_" + TranslationServer.get_locale()):
-					# Success
-					var dialogue_box: Popup = get_node(phase.rsplit(":")[1] + "_" + TranslationServer.get_locale())
-					dialogue_box.popup()
-				else:
-					# Warning
-					print("Unable to Access " + phase.rsplit(":")[1] + "_" + TranslationServer.get_locale())
-			"timer":
-				yield(get_tree().create_timer(float(int(phase.rsplit(":")[1]))), "timeout")
-			"wait":
-				input_block = false
-				yield(self, "dialogue_accepted")
-				input_block = true
-			"respawn":
-				respawn()
-				
+		yield(perform_action(phase), "completed")
+		
 	end(event)
+
+
+func play_custom(procedure: PoolStringArray):
+	start()
+	
+	for step in procedure:
+		yield(perform_action(step), "completed")
+		
+	end()
+
+
+func perform_action(action: String):
+	yield(get_tree(), "idle_frame")
+	
+	match action.rsplit(":")[0]:
+		"box":
+			print(action.rsplit(":")[1] + "_" + TranslationServer.get_locale())
+			if self.has_node(action.rsplit(":")[1] + "_" + TranslationServer.get_locale()):
+				# Success
+				var dialogue_box: Popup = get_node(action.rsplit(":")[1] + "_" + TranslationServer.get_locale())
+				dialogue_box.popup()
+			else:
+				# Warning
+				print("Unable to Access " + action.rsplit(":")[1] + "_" + TranslationServer.get_locale())
+		"timer":
+			yield(get_tree().create_timer(float(int(action.rsplit(":")[1]))), "timeout")
+		"wait":
+			input_block = false
+			yield(self, "dialogue_accepted")
+			input_block = true
+		"show":
+			if paths.map.room_node.has_node(action.rsplit(":")[1]):
+				paths.map.room_node.get_node(action.rsplit(":")[1]).show()
+		"hide":
+			if paths.map.room_node.has_node(action.rsplit(":")[1]):
+				paths.map.room_node.get_node(action.rsplit(":")[1]).hide()
+		"respawn":
+			respawn()
 
 
 func start():
@@ -79,6 +100,7 @@ func end(event: String = ""):
 			box.hide()
 			
 	get_tree().paused = false
+	get_parent().locked = false
 	paths.player.show()
 	running = false
 	
