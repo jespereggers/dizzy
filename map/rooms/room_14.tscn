@@ -2871,7 +2871,7 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 159/shapes = [  ]
 159/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=73]
+[sub_resource type="RectangleShape2D" id=77]
 extents = Vector2( 20, 12 )
 
 [sub_resource type="RectangleShape2D" id=74]
@@ -2909,10 +2909,6 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="interaction_area" parent="." instance=ExtResource( 27 )]
-trigger_dialogue = true
-dialogue = PoolStringArray( "box:message_barrel", "wait", "hide:barrel", "show:barrel_water", "end" )
-
 [node name="barrel" type="Sprite" parent="."]
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 position = Vector2( 112, 80 )
@@ -2921,6 +2917,12 @@ centered = false
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="interaction_area" parent="barrel" instance=ExtResource( 27 )]
+position = Vector2( 0, 0 )
+trigger_dialogue = true
+conditions = PoolStringArray( "visible:barrel" )
+dialogue = PoolStringArray( "box:message_barrel", "wait", "hide:barrel", "show:barrel_water", "end" )
 
 [node name="barrel_water" type="Sprite" parent="."]
 visible = false
@@ -2931,15 +2933,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="interaktionsbereich" type="CollisionShape2D" parent="barrel_water"]
-visible = false
-position = Vector2( 8, -8 )
-shape = SubResource( 73 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="interaction_area" parent="barrel_water" instance=ExtResource( 27 )]
+position = Vector2( 0, 0 )
+trigger_dialogue = true
+conditions = PoolStringArray( "item:an outboard motor", "visible:barrel_water" )
+dialogue = PoolStringArray( "box:message_barrel_water", "wait", "hide:barrel_water", "show:barrel_boat", "move_player:104,128", "end" )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="barrel_water"]
+[node name="shape" parent="barrel_water/interaction_area" index="0"]
+position = Vector2( 8, -8 )
+shape = SubResource( 77 )
+
+[node name="collisions" type="CollisionPolygon2D" parent="barrel_water/interaction_area"]
 polygon = PoolVector2Array( -12, -1, -10, -1, -9, -2, -7, -2, -6, -3, -4, -3, -3, -4, 4, -4, 5, -3, 7, -3, 8, -2, 9, -2, 10, -1, 12, -1, 12, 4, -12, 4 )
 __meta__ = {
 "_edit_lock_": true
@@ -3076,69 +3080,8 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="message_barrel_water_en" type="Popup" parent="popups"]
-popup_exclusive = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="background" parent="popups/message_barrel_water_en" instance=ExtResource( 24 )]
-margin_top = 56.0
-margin_right = 232.0
-margin_bottom = 128.0
-
-[node name="label" type="Label" parent="popups/message_barrel_water_en"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 72.0
-margin_right = 216.0
-margin_bottom = 112.0
-custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
-custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 76 )
-text = "with a few simple steps
-you mount the motor
-to the barrel"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="message_barrel_water_de" type="Popup" parent="popups"]
-popup_exclusive = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="background" parent="popups/message_barrel_water_de" instance=ExtResource( 24 )]
-margin_top = 56.0
-margin_right = 232.0
-margin_bottom = 128.0
-
-[node name="label" type="Label" parent="popups/message_barrel_water_de"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 72.0
-margin_right = 216.0
-margin_bottom = 112.0
-custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
-custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 76 )
-text = "mit wenigen handgriffen
-montierst du den motor
-an das fass"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[editable path="interaction_area"]
+[editable path="barrel/interaction_area"]
+[editable path="barrel_water/interaction_area"]
 [editable path="torchfire_death"]
 [editable path="water_death"]
 [editable path="coin"]

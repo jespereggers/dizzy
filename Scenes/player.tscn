@@ -117,6 +117,7 @@ func _process(delta):
 "
 
 [node name="player" type="Area2D"]
+visible = false
 z_index = 1
 script = ExtResource( 4 )
 __meta__ = {
@@ -336,7 +337,6 @@ cast_to = Vector2( 0, -4 )
 
 [node name="raycast" type="RayCast2D" parent="."]
 
-[connection signal="timeout" from="unlocked_cooldown" to="." method="_on_unlocked_cooldown_timeout"]
 [connection signal="area_shape_entered" from="interaction_detector" to="interaction_detector" method="_on_interaction_detector_area_shape_entered"]
 [connection signal="area_shape_exited" from="interaction_detector" to="interaction_detector" method="_on_interaction_detector_area_shape_exited"]
 [connection signal="timeout" from="ticks" to="." method="_on_ticks_timeout"]

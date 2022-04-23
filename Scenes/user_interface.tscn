@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/user_interface.gd" type="Script" id=1]
 [ext_resource path="res://templates/background.tscn" type="PackedScene" id=2]
@@ -22,6 +22,10 @@ size = 7
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=4]
+size = 7
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
 size = 7
 font_data = ExtResource( 4 )
 
@@ -839,6 +843,70 @@ custom_fonts/font = SubResource( 4 )
 text = "du trittst gegen
 das fass und es
 rollt ins wasser"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_barrel_water_en" type="Popup" parent="dialogue_system"]
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/message_barrel_water_en" instance=ExtResource( 2 )]
+margin_top = 56.0
+margin_right = 232.0
+margin_bottom = 128.0
+
+[node name="label" type="Label" parent="dialogue_system/message_barrel_water_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 72.0
+margin_right = 216.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 5 )
+text = "with a few simple steps
+you mount the motor
+to the barrel"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_barrel_water_de" type="Popup" parent="dialogue_system"]
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/message_barrel_water_de" instance=ExtResource( 2 )]
+margin_top = 56.0
+margin_right = 232.0
+margin_bottom = 128.0
+
+[node name="label" type="Label" parent="dialogue_system/message_barrel_water_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 72.0
+margin_right = 216.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 5 )
+text = "mit wenigen handgriffen
+montierst du den motor
+an das fass"
 align = 1
 valign = 1
 __meta__ = {

@@ -78,6 +78,11 @@ func perform_action(action: String):
 		"hide":
 			if paths.map.room_node.has_node(action.rsplit(":")[1]):
 				paths.map.room_node.get_node(action.rsplit(":")[1]).hide()
+		"move_player":
+			var pos: Vector2
+			pos.x = float(action.rsplit(":")[1].rsplit(",")[0])
+			pos.y = float(action.rsplit(":")[1].rsplit(",")[1])
+			paths.player.position = pos
 		"respawn":
 			respawn()
 
