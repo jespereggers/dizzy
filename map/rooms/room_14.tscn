@@ -22,11 +22,132 @@
 [ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=20]
 [ext_resource path="res://Assets/tiles/objects/barrel_boat.png" type="Texture" id=21]
 [ext_resource path="res://Assets/tiles/items/outboard_motor.png" type="Texture" id=22]
-[ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=23]
-[ext_resource path="res://templates/background.tscn" type="PackedScene" id=24]
 [ext_resource path="res://templates/item.tscn" type="PackedScene" id=25]
 [ext_resource path="res://map/rooms/room_14.gd" type="Script" id=26]
 [ext_resource path="res://templates/interaction_area.tscn" type="PackedScene" id=27]
+
+[sub_resource type="Animation" id=78]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("barrel_boat:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 80, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("barrel_boat:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 104, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=79]
+resource_name = "barrel_boat_move_left"
+length = 8.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("barrel_boat:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 76, -0.25, 0, 0.25, 0, -15, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 8 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("barrel_boat:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("barrel_boat/collision/shape_move_left:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("barrel_boat/collision/shape_move_right:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=80]
+resource_name = "barrel_boat_move_right"
+length = 8.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("barrel_boat:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -15, -0.25, 0, 0.25, 0, 76, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 8 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("barrel_boat:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("barrel_boat/collision/shape_move_left:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("barrel_boat/collision/shape_move_right:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2880,15 +3001,16 @@ extents = Vector2( 8, 5 )
 [sub_resource type="RectangleShape2D" id=75]
 extents = Vector2( 47, 3 )
 
-[sub_resource type="DynamicFont" id=76]
-size = 7
-font_data = ExtResource( 23 )
-
 [node name="room_14" type="Node2D"]
 script = ExtResource( 26 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="animations" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 78 )
+anims/barrel_boat_move_left = SubResource( 79 )
+anims/barrel_boat_move_right = SubResource( 80 )
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
@@ -2943,7 +3065,9 @@ dialogue = PoolStringArray( "box:message_barrel_water", "wait", "hide:barrel_wat
 position = Vector2( 8, -8 )
 shape = SubResource( 77 )
 
-[node name="collisions" type="CollisionPolygon2D" parent="barrel_water/interaction_area"]
+[node name="collision" type="KinematicBody2D" parent="barrel_water"]
+
+[node name="shape" type="CollisionPolygon2D" parent="barrel_water/collision"]
 polygon = PoolVector2Array( -12, -1, -10, -1, -9, -2, -7, -2, -6, -3, -4, -3, -3, -4, 4, -4, 5, -3, 7, -3, 8, -2, 9, -2, 10, -1, 12, -1, 12, 4, -12, 4 )
 __meta__ = {
 "_edit_lock_": true
@@ -2958,8 +3082,19 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="barrel_boat"]
+[node name="collision" type="KinematicBody2D" parent="barrel_boat"]
+
+[node name="shape_move_left" type="CollisionPolygon2D" parent="barrel_boat/collision"]
+visible = false
 polygon = PoolVector2Array( -11, 2, -10, 1, -8, 1, -7, 0, 6, 0, 6, -4, 13, -4, 13, 0, 10, 4, 10, 8, -16, 8, -16, 3, -14, 3, -13, 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="shape_move_right" type="CollisionPolygon2D" parent="barrel_boat/collision"]
+visible = false
+polygon = PoolVector2Array( -11, 2, -10, 1, -8, 1, -7, 0, 6, 0, 6, -4, 13, -4, 13, 0, 10, 4, 10, 8, -16, 8, -16, 3, -14, 3, -13, 2 )
+disabled = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -3016,69 +3151,6 @@ modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 show_behind_parent = true
 position = Vector2( 8, -8 )
 texture = ExtResource( 22 )
-
-[node name="popups" type="CanvasLayer" parent="."]
-
-[node name="message_barrel_en" type="Popup" parent="popups"]
-popup_exclusive = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="background" parent="popups/message_barrel_en" instance=ExtResource( 24 )]
-margin_top = 64.0
-margin_right = 232.0
-margin_bottom = 128.0
-
-[node name="label" type="Label" parent="popups/message_barrel_en"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 80.0
-margin_right = 216.0
-margin_bottom = 112.0
-custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
-custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 76 )
-text = "you kick the barrel and
-it rolls into the water"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="message_barrel_de" type="Popup" parent="popups"]
-popup_exclusive = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="background" parent="popups/message_barrel_de" instance=ExtResource( 24 )]
-margin_top = 56.0
-margin_right = 176.0
-margin_bottom = 128.0
-
-[node name="label" type="Label" parent="popups/message_barrel_de"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 72.0
-margin_right = 160.0
-margin_bottom = 112.0
-custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
-custom_constants/line_spacing = 1
-custom_fonts/font = SubResource( 76 )
-text = "du trittst gegen
-das fass und es
-rollt ins wasser"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
 
 [editable path="barrel/interaction_area"]
 [editable path="barrel_water/interaction_area"]

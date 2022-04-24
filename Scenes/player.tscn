@@ -142,7 +142,6 @@ hframes = 8
 vframes = 5
 
 [node name="dizzy_death" type="Sprite" parent="."]
-visible = false
 position = Vector2( -256, -68 )
 texture = ExtResource( 1 )
 centered = false
@@ -178,6 +177,7 @@ wait_time = 0.2
 autostart = true
 
 [node name="StateLabel" type="Label" parent="."]
+visible = false
 margin_left = -11.0
 margin_top = -23.0
 margin_right = 29.0
@@ -188,6 +188,7 @@ __meta__ = {
 }
 
 [node name="StunLabel" type="Label" parent="."]
+visible = false
 margin_left = 11.0
 margin_top = -8.0
 margin_right = 51.0
