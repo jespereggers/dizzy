@@ -82,7 +82,7 @@ func perform_action(action: String):
 			var pos: Vector2
 			pos.x = float(action.rsplit(":")[1].rsplit(",")[0])
 			pos.y = float(action.rsplit(":")[1].rsplit(",")[1])
-			paths.player.position = pos
+			#paths.player.position = pos # WIP
 		"respawn":
 			respawn()
 

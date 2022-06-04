@@ -1,11 +1,12 @@
 extends Node
 
+onready var clock: Timer = $clock
+
 var available_items: Array = ["parchment"]
 var max_eggs: int = 2
 var game_save: Dictionary
 var settings: Dictionary
 var titlescreen: Dictionary
-
 var colors: Dictionary = {
 	"black": Color("#000000"),
 	"white": Color("#FFFFFF"),
@@ -103,14 +104,14 @@ var maps: Dictionary = {
 var dialogues: Dictionary
 var items: Dictionary
 
-
 func _ready():
 	load_ressources("res://vanilla_content_pack")
 
 
 func load_ressources(mod_path: String):
 	for ressource in get_children():
-		ressource.import(mod_path)
+		if ressource.name != "clock":
+			ressource.import(mod_path)
 
 
 func _notification(what):
