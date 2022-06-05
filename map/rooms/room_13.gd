@@ -2,12 +2,18 @@ extends Node2D
 
 
 func _ready():
-	if paths.player.stick_to_boat:
-		paths.player.position = $barrel_boat.global_position
-		paths.player.position.y += 16
+	#print(paths.player.stick_to_boat)
+	#if paths.player.stick_to_boat:
+	#	print("STICK")
+	#	print(paths.player.global_position)
+	##	paths.player.global_position = $barrel_boat.global_position
+	#	paths.player.position.y += 16
 	#data.clock.connect("barrel_state_changed", self, "on_barrel_boat_state_changed")
 	if data.clock.barrel_boat_state.empty():
 		$barrel_boat.hide()
+		
+	#yield(get_tree().create_timer(0.5), "timeout")
+#	print(paths.player.global_position)
 
 
 #func on_barrel_boat_state_changed(new_state: String):

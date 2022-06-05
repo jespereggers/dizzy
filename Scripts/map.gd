@@ -16,6 +16,9 @@ func _ready():
 	_load_map()
 	
 func change_room(new_room_coords:Vector2):
+	if paths.player.stick_to_boat:
+		paths.player.keep_sticked_to_boat = true
+		manage_player_keep_sticked_to_boat()
 	if not data.maps[stats.current_map].keys().has(new_room_coords):
 		push_error("Error: Can't load nonexisting room")
 	_clean_maps()
@@ -23,6 +26,12 @@ func change_room(new_room_coords:Vector2):
 	yield(get_tree().create_timer(BLACKSCREEN_DURATION), "timeout") #blackscreen
 	_load_map()
 	paths.display.update_display()
+
+
+func manage_player_keep_sticked_to_boat():
+	yield(get_tree().create_timer(3.0), "timeout")
+	paths.player.keep_sticked_to_boat = false
+
 
 func _clean_maps():
 	for room in get_children():

@@ -25,4 +25,3 @@ func _ready():
 
 func _on_barrel_boat_placed():
 	data.clock.move_barrel_boat()
-	print("START")

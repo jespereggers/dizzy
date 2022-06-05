@@ -2,6 +2,7 @@ extends Node
 
 onready var clock: Timer = $clock
 
+var barrel_boat_placed: bool = false
 var available_items: Array = ["parchment"]
 var max_eggs: int = 2
 var game_save: Dictionary

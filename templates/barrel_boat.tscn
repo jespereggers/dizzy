@@ -5,16 +5,6 @@
 
 [sub_resource type="Animation" id=1]
 length = 0.001
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("barrel_boat:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 202, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
 
 [sub_resource type="Animation" id=80]
 resource_name = "swim_left_13"
@@ -26,7 +16,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 260, -0.25, 0, 0.25, 0, 202, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 258, -0.25, 0, 0.25, 0, 202, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 8 )
 }
 tracks/1/type = "value"
@@ -223,7 +213,6 @@ extents = Vector2( 14.5, 7 )
 modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 position = Vector2( 80, 0 )
 texture = ExtResource( 1 )
-flip_h = true
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
@@ -241,13 +230,13 @@ anims/swim_right_14 = SubResource( 79 )
 
 [node name="shape_move_left" type="CollisionPolygon2D" parent="collision"]
 polygon = PoolVector2Array( -11, 2, -10, 1, -8, 1, -7, 0, 6, 0, 6, -5, 13, -5, 13, 0, 10, 4, 10, 8, -16, 8, -16, 3, -14, 3, -13, 2 )
-disabled = true
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="shape_move_right" type="CollisionPolygon2D" parent="collision"]
 polygon = PoolVector2Array( -11, 2, -10, 1, -8, 1, -7, 0, 6, 0, 6, -5, 13, -5, 13, 0, 10, 4, 10, 8, -16, 8, -16, 3, -14, 3, -13, 2 )
+disabled = true
 __meta__ = {
 "_edit_lock_": true
 }

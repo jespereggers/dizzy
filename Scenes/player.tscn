@@ -1,0 +1,344 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/tiles/dizzy/dizzy_death.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/item_detector.gd" type="Script" id=2]
+[ext_resource path="res://Assets/tiles/dizzy/dizzy_idle.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/player.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Sensor.gd" type="Script" id=5]
+[ext_resource path="res://Assets/tiles/dizzy/dizzy_respawn.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/interaction_detector.gd" type="Script" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 10 )
+
+[sub_resource type="Animation" id=2]
+length = 3.1
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("dizzy_death:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 3.1 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("dizzy_death:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("texture:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "respawn"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("texture:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("dizzy_respawn:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 14 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("dizzy_respawn:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 6, 10 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 6, 10 )
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Label
+
+func _process(_delta):
+	var p = get_parent()
+	if p:
+		text = p.state_machine._state
+"
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends Label
+
+func _ready():
+	text = \"stunned\"
+
+func _process(delta):
+	var p = get_parent()
+	if p:
+		visible = p.is_stunned()
+		text = \"stun: \" + str(p.stun_level)
+"
+
+[node name="player" type="Area2D"]
+visible = false
+z_index = 1
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_vertical_guides_": [ -9.0, -11.0, -50.0 ],
+"_editor_description_": ""
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 2 )
+shape = SubResource( 1 )
+
+[node name="animations" type="AnimationPlayer" parent="."]
+playback_speed = 3.0
+anims/death = SubResource( 2 )
+anims/respawn = SubResource( 3 )
+
+[node name="texture" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+hframes = 8
+vframes = 5
+
+[node name="dizzy_death" type="Sprite" parent="."]
+visible = false
+position = Vector2( -256, -68 )
+texture = ExtResource( 1 )
+centered = false
+hframes = 31
+
+[node name="dizzy_respawn" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 6 )
+centered = false
+offset = Vector2( -115, -29 )
+hframes = 15
+
+[node name="unlocked_cooldown" type="Timer" parent="."]
+
+[node name="interaction_detector" type="Area2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="shape" type="CollisionShape2D" parent="interaction_detector"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 1, 2 )
+shape = SubResource( 7 )
+
+[node name="item_detector" type="Area2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="shape" type="CollisionShape2D" parent="item_detector"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 1, 2 )
+shape = SubResource( 4 )
+
+[node name="ticks" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="StateLabel" type="Label" parent="."]
+visible = false
+margin_left = -11.0
+margin_top = -23.0
+margin_right = 29.0
+margin_bottom = -9.0
+script = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StunLabel" type="Label" parent="."]
+visible = false
+margin_left = 11.0
+margin_top = -8.0
+margin_right = 51.0
+margin_bottom = 6.0
+script = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CeilingSensor" type="Node2D" parent="."]
+position = Vector2( 0, -8 )
+script = ExtResource( 5 )
+
+[node name="RayCast2DLeft" type="RayCast2D" parent="CeilingSensor"]
+position = Vector2( -7, 0 )
+cast_to = Vector2( 0, -8 )
+
+[node name="RayCast2DMiddle" type="RayCast2D" parent="CeilingSensor"]
+cast_to = Vector2( 0, -8 )
+
+[node name="RayCast2DRight" type="RayCast2D" parent="CeilingSensor"]
+position = Vector2( 7, 0 )
+cast_to = Vector2( 0, -8 )
+
+[node name="FloorSensor" type="Node2D" parent="."]
+position = Vector2( 0, 12 )
+script = ExtResource( 5 )
+
+[node name="RayCast2DLeft" type="RayCast2D" parent="FloorSensor"]
+position = Vector2( -5, 0 )
+cast_to = Vector2( 0, 8 )
+
+[node name="RayCast2DMiddle" type="RayCast2D" parent="FloorSensor"]
+cast_to = Vector2( 0, 8 )
+
+[node name="RayCast2DRight" type="RayCast2D" parent="FloorSensor"]
+position = Vector2( 5, 0 )
+cast_to = Vector2( 0, 8 )
+
+[node name="WallSensorLeft" type="Node2D" parent="."]
+position = Vector2( -3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="WallSensorLeft"]
+position = Vector2( -8, 3 )
+cast_to = Vector2( -4, 0 )
+
+[node name="InnerWallSensorLeft" type="Node2D" parent="."]
+position = Vector2( -3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="InnerWallSensorLeft"]
+position = Vector2( -3, 3 )
+cast_to = Vector2( -4, 0 )
+
+[node name="LowerWallSensorLeft" type="Node2D" parent="."]
+position = Vector2( -3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="LowerWallSensorLeft"]
+position = Vector2( -5, 11 )
+cast_to = Vector2( -3, 0 )
+
+[node name="WallSensorRight" type="Node2D" parent="."]
+position = Vector2( 3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="WallSensorRight"]
+position = Vector2( 8, 3 )
+cast_to = Vector2( 4, 0 )
+
+[node name="InnerWallSensorRight" type="Node2D" parent="."]
+position = Vector2( 3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="InnerWallSensorRight"]
+position = Vector2( 3, 3 )
+cast_to = Vector2( 4, 0 )
+
+[node name="LowerWallSensorRight" type="Node2D" parent="."]
+position = Vector2( 3, 0 )
+script = ExtResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="LowerWallSensorRight"]
+position = Vector2( 5, 11 )
+cast_to = Vector2( 3, 0 )
+
+[node name="LowerTerrainSensor" type="Node2D" parent="."]
+position = Vector2( 0, 10 )
+script = ExtResource( 5 )
+
+[node name="RayCast2DTopLeft" type="RayCast2D" parent="LowerTerrainSensor"]
+position = Vector2( -5, -5 )
+cast_to = Vector2( 10, 0 )
+
+[node name="RayCast2DTopRight2" type="RayCast2D" parent="LowerTerrainSensor"]
+position = Vector2( 5, -5 )
+cast_to = Vector2( 0, 6 )
+
+[node name="RayCast2DBottomRight" type="RayCast2D" parent="LowerTerrainSensor"]
+position = Vector2( 5, 1 )
+cast_to = Vector2( -10, 0 )
+
+[node name="RayCast2DBottomLeft" type="RayCast2D" parent="LowerTerrainSensor"]
+position = Vector2( -5, 1 )
+cast_to = Vector2( 0, -6 )
+
+[node name="UpperTerrainSensor" type="Node2D" parent="."]
+position = Vector2( 0, -2 )
+script = ExtResource( 5 )
+
+[node name="RayCast2DTopLeft" type="RayCast2D" parent="UpperTerrainSensor"]
+position = Vector2( -7, -5 )
+cast_to = Vector2( 14, 0 )
+
+[node name="RayCast2DTopRight2" type="RayCast2D" parent="UpperTerrainSensor"]
+position = Vector2( 7, -5 )
+cast_to = Vector2( 0, 9 )
+
+[node name="RayCast2DBottomRight" type="RayCast2D" parent="UpperTerrainSensor"]
+position = Vector2( 7, 5 )
+cast_to = Vector2( -14, 0 )
+
+[node name="RayCast2DBottomLeft" type="RayCast2D" parent="UpperTerrainSensor"]
+position = Vector2( -7, 5 )
+cast_to = Vector2( 0, -9 )
+
+[node name="CenterTerrainSensor" type="Node2D" parent="."]
+position = Vector2( 0, -2 )
+script = ExtResource( 5 )
+
+[node name="RayCast2DTopLeft" type="RayCast2D" parent="CenterTerrainSensor"]
+position = Vector2( -7, 1 )
+cast_to = Vector2( 14, 0 )
+
+[node name="RayCast2DTopRight2" type="RayCast2D" parent="CenterTerrainSensor"]
+position = Vector2( 7, 1 )
+cast_to = Vector2( 0, 4 )
+
+[node name="RayCast2DBottomRight" type="RayCast2D" parent="CenterTerrainSensor"]
+position = Vector2( 7, 5 )
+cast_to = Vector2( -14, 0 )
+
+[node name="RayCast2DBottomLeft" type="RayCast2D" parent="CenterTerrainSensor"]
+position = Vector2( -7, 5 )
+cast_to = Vector2( 0, -4 )
+
+[node name="raycast" type="RayCast2D" parent="."]
+
+[connection signal="area_shape_entered" from="interaction_detector" to="interaction_detector" method="_on_interaction_detector_area_shape_entered"]
+[connection signal="area_shape_exited" from="interaction_detector" to="interaction_detector" method="_on_interaction_detector_area_shape_exited"]
+[connection signal="timeout" from="ticks" to="." method="_on_ticks_timeout"]

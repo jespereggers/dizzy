@@ -5,9 +5,6 @@ export var conditions: PoolStringArray = []
 export var dialogue: PoolStringArray = []
 export var save_state: bool = false
 
-signal triggered()
-
-
 func _input(event):
 	if Input.is_action_just_pressed("enter") and not paths.settings.visible and self in paths.player.interaction_detector.findings:
 		paths.player.interaction_detector.findings.clear()
@@ -30,8 +27,6 @@ func _input(event):
 		# Save State
 		if save_state:
 			pass
-		
-		emit_signal("triggered")
 
 
 func item_in_inventory(item: String) -> bool:
@@ -39,11 +34,3 @@ func item_in_inventory(item: String) -> bool:
 		if slot.item_name == item:
 			return true
 	return false
-
-
-func _on_interaction_area_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	pass # Replace with function body.
-
-
-func _on_interaction_area_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
-	pass # Replace with function body.

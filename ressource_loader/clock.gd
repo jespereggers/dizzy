@@ -1,6 +1,7 @@
 extends Timer
 
 var barrel_boat_state: String
+var barrel_boat_target: int
 var barrel_boat_moving: bool = false
 var barrel_boat_events: Array = [
 	{"name": "room_14_swim_left", "direction": "left", "room": 14, "duration": 8},
@@ -18,7 +19,7 @@ func move_barrel_boat():
 	
 	for state in barrel_boat_events:
 		barrel_boat_state = state.name
-		print(state.name)
+		barrel_boat_target = state.room
 		emit_signal("barrel_state_changed", state.direction, state.room)
 		yield(get_tree().create_timer(float(state.duration)), "timeout")
 
