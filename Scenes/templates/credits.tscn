@@ -17,8 +17,8 @@ margin_right = 111.5
 margin_bottom = 77.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 4
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+custom_fonts/font = SubResource( 1 )
 text = "-- DIZZY --
 
 Managed by Max Mustermann
@@ -29,6 +29,3 @@ Made with Godot Engine
 align = 1
 valign = 1
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}

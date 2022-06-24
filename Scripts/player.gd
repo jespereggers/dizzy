@@ -78,8 +78,18 @@ const MAP_CHANGE_ENTRY_RIGHT = 236
 
 func _physics_process(delta):
 	if stick_to_boat:
-		self.position.x -= 14*delta
-	
+		match stats.current_room:
+			Vector2(-1,0): # Room 14
+				if "left" in data.clock.barrel_boat_state:
+					self.position.x -= 12.25*delta
+				if "right" in data.clock.barrel_boat_state:
+					self.position.x += 12.25*delta
+			Vector2(-2,0): # Room 13
+				if "left" in data.clock.barrel_boat_state:
+					self.position.x -= 7*delta
+				if "right" in data.clock.barrel_boat_state:
+					self.position.x += 7*delta
+				
 	var old_position = position
 	if script_unlock_next_frame and script_locked:
 		script_unlock_next_frame = false
@@ -107,6 +117,7 @@ func _physics_process(delta):
 				pause_locked = true
 
 		# Change room
+		return # WIP
 		var new_room_dir := Vector2()
 		var new_player_pos := position
 		if position.x > MAP_CHANGE_EXIT_RIGHT:
@@ -392,6 +403,7 @@ class PlayerStateMachine:
 					return _enter_state(_get_state_from_input())
 
 func respawn(): # When Player Dies
+	print("respawn()")
 	script_locked = true
 	is_dead = false
 	position = respawn_position
@@ -428,16 +440,23 @@ func _on_map_loaded():
 			respawn_room = stats.current_room
 		script_unlock_next_frame = true #wait until dizzy is drawn at the edge of screen before unlocking him
 
+
 func _on_maps_cleaned():
 	script_locked = true
 	visible = false
+
 
 func _on_ticks_timeout():
 	if is_on_floor() and not stats.current_room in data.game_save.visited_rooms:
 		data.game_save.visited_rooms.append(stats.current_room)
 		signals.emit_signal("new_room_touched")
 
+
 func get_height() -> float:
 	if $raycast.is_colliding():
 		return self.position.distance_to($raycast.get_collision_point())
 	return 99.99
+
+
+func _on_player_visibility_changed():
+	paths.world.border._on_player_visibility_changed()

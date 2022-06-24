@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/display.tscn" type="PackedScene" id=2]
@@ -12,12 +12,19 @@
 [ext_resource path="res://Scripts/overlay.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/camera.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/camera.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/borders.gd" type="Script" id=13]
 
 [sub_resource type="InputEventAction" id=1]
 action = "ui_cancel"
 
 [sub_resource type="ShortCut" id=2]
 shortcut = SubResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 64, 20 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 135.5, 15 )
 
 [node name="world" type="Node2D"]
 script = ExtResource( 3 )
@@ -39,13 +46,12 @@ shake_duration = 4.0
 shake_strenght = 75
 
 [node name="display" parent="." instance=ExtResource( 2 )]
-layer = -1
 
 [node name="room_label" parent="display" index="3"]
 text = "toller raumname"
 
 [node name="overlay" type="CanvasLayer" parent="."]
-layer = 0
+layer = 2
 script = ExtResource( 10 )
 
 [node name="open_settings" type="TextureButton" parent="overlay"]
@@ -82,8 +88,54 @@ margin_top = 45.0
 margin_right = -8.0
 margin_bottom = -13.0
 
+[node name="border" type="Node2D" parent="."]
+script = ExtResource( 13 )
+
+[node name="left" type="Area2D" parent="border"]
+position = Vector2( -74, -51 )
+
+[node name="shape" type="CollisionShape2D" parent="border/left"]
+position = Vector2( 68, 170 )
+rotation = 1.5708
+shape = SubResource( 3 )
+one_way_collision = true
+
+[node name="right" type="Area2D" parent="border"]
+position = Vector2( 247, 0 )
+
+[node name="shape" type="CollisionShape2D" parent="border/right"]
+position = Vector2( 15, 119 )
+rotation = -1.5708
+shape = SubResource( 3 )
+one_way_collision = true
+
+[node name="top" type="Area2D" parent="border"]
+position = Vector2( 251, 3 )
+
+[node name="shape" type="CollisionShape2D" parent="border/top"]
+position = Vector2( -123.5, 36 )
+rotation = 3.14159
+shape = SubResource( 4 )
+one_way_collision = true
+
+[node name="bottom" type="Area2D" parent="border"]
+position = Vector2( 251, -1 )
+
+[node name="shape" type="CollisionShape2D" parent="border/bottom"]
+position = Vector2( -123.5, 200.5 )
+shape = SubResource( 4 )
+one_way_collision = true
+
 [connection signal="timeout" from="camera/timer" to="camera" method="_on_timer_timeout"]
 [connection signal="pressed" from="overlay/open_settings" to="overlay" method="_on_open_settings_pressed"]
+[connection signal="area_entered" from="border/left" to="border" method="_on_border_entered" binds= [ "left" ]]
+[connection signal="area_exited" from="border/left" to="border" method="_on_border_left"]
+[connection signal="area_entered" from="border/right" to="border" method="_on_border_entered" binds= [ "right" ]]
+[connection signal="area_exited" from="border/right" to="border" method="_on_border_left"]
+[connection signal="area_entered" from="border/top" to="border" method="_on_border_entered" binds= [ "top" ]]
+[connection signal="area_exited" from="border/top" to="border" method="_on_border_left"]
+[connection signal="area_entered" from="border/bottom" to="border" method="_on_border_entered" binds= [ "bottom" ]]
+[connection signal="area_exited" from="border/bottom" to="border" method="_on_border_left"]
 
 [editable path="map/user_interface"]
 [editable path="map/user_interface/inventory"]

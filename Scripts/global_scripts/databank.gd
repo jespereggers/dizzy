@@ -139,6 +139,7 @@ func load_game():
 		store_default_game_save()
 	game_save = tools.load_file("user://game_save.dizzy")
 
+
 func save_game():
 	# Player
 	game_save.player.eggs = stats.eggs

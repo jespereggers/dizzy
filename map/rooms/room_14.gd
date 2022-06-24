@@ -1,7 +1,23 @@
 extends Node2D
 
+export var switch_room: bool setget _on_switch_room
+
 
 func _ready():
+	print(data.clock.barrel_boat_state)
+	if paths.player.keep_sticked_to_boat:
+		paths.player.position = $barrel_boat.global_position
+		paths.player.position.x = -18
+		paths.player.position.x += 10
+		paths.player.position.y -= 20
+		paths.player.stick_to_boat = true
+	
+	if data.clock.barrel_boat_state.empty():
+		$barrel_boat.hide()
+	
+	return
+	
+	
 	if paths.player.stick_to_boat:
 		paths.player.position = $barrel_boat.position
 		paths.player.position.y += 16
@@ -25,3 +41,8 @@ func _ready():
 
 func _on_barrel_boat_placed():
 	data.clock.move_barrel_boat()
+
+
+func _on_switch_room(new_value: bool) -> void:
+	paths.world.border.paused = new_value
+	switch_room = new_value

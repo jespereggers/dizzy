@@ -2918,7 +2918,7 @@ texture = ExtResource( 16 )
 flip_v = true
 
 [node name="barrel_boat" parent="." instance=ExtResource( 18 )]
-position = Vector2( 230.216, 104 )
+position = Vector2( 258, 104 )
 room = 13
 
 [node name="bat_animation" type="AnimationPlayer" parent="."]
