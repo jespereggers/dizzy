@@ -22,6 +22,10 @@ onready var lower_terrain_sensor: Sensor = $LowerTerrainSensor
 onready var center_terrain_sensor: Sensor = $CenterTerrainSensor
 onready var upper_terrain_sensor: Sensor = $UpperTerrainSensor
 
+var automove: bool = false
+var automove_dir: int = 0
+var automove_speed: float = 10.0
+
 var room_cooldown: bool = false
 var state_machine: PlayerStateMachine
 var stick_to_boat: bool = false
@@ -77,18 +81,23 @@ const MAP_CHANGE_ENTRY_LEFT = 20
 const MAP_CHANGE_ENTRY_RIGHT = 236
 
 func _physics_process(delta):
-	if stick_to_boat:
-		match stats.current_room:
-			Vector2(-1,0): # Room 14
-				if "left" in data.clock.barrel_boat_state:
-					self.position.x -= 12.25*delta
-				if "right" in data.clock.barrel_boat_state:
-					self.position.x += 12.25*delta
-			Vector2(-2,0): # Room 13
-				if "left" in data.clock.barrel_boat_state:
-					self.position.x -= 7*delta
-				if "right" in data.clock.barrel_boat_state:
-					self.position.x += 7*delta
+	if automove:
+		if automove_dir == 1:
+			self.position.x += automove_speed * delta
+		if automove_dir == -1:
+			self.position.x -= automove_speed * delta
+			
+		#match stats.current_room:
+			#Vector2(-1,0): # Room 14
+		#		if "left" in data.clock.barrel_boat_state:
+		#			self.position.x -= 12.25*delta
+	#			if "right" in data.clock.barrel_boat_state:
+		#			self.position.x += 12.25*delta
+	#		Vector2(-2,0): # Room 13
+	#			if "left" in data.clock.barrel_boat_state:
+		#			self.position.x -= 7*delta
+		#		if "right" in data.clock.barrel_boat_state:
+				#	self.position.x += 7*delta
 				
 	var old_position = position
 	if script_unlock_next_frame and script_locked:
@@ -142,8 +151,8 @@ func _physics_process(delta):
 			emit_signal("left_room",new_room_dir)
 			start_cooldown()
 			
-	if (position != old_position) and paused:
-		print(position)
+	#if (position != old_position) and paused:
+		#print(position)
 
 
 func start_cooldown():
@@ -403,7 +412,7 @@ class PlayerStateMachine:
 					return _enter_state(_get_state_from_input())
 
 func respawn(): # When Player Dies
-	print("respawn()")
+#	print("respawn()")
 	script_locked = true
 	is_dead = false
 	position = respawn_position

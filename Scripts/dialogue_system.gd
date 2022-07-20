@@ -73,11 +73,24 @@ func perform_action(action: String):
 			yield(self, "dialogue_accepted")
 			input_block = true
 		"show":
-			if paths.map.room_node.has_node(action.rsplit(":")[1]):
-				paths.map.room_node.get_node(action.rsplit(":")[1]).show()
+			var node_name: String = action.rsplit(":")[1]
+			if paths.map.room_node.has_node(node_name):
+				paths.map.room_node.get_node(node_name).show()
+				# Store Shown Object
+				if not node_name in data.game_save.enviroment[stats.current_map][stats.current_room].shown_objects:
+					data.game_save.enviroment[stats.current_map][stats.current_room].shown_objects.append(node_name)
+					data.game_save.enviroment[stats.current_map][stats.current_room].hidden_objects.erase(node_name)
+					signals.emit_signal("object_got_shown", node_name, stats.current_room)
 		"hide":
-			if paths.map.room_node.has_node(action.rsplit(":")[1]):
-				paths.map.room_node.get_node(action.rsplit(":")[1]).hide()
+			var node_name: String = action.rsplit(":")[1]
+			if paths.map.room_node.has_node(node_name):
+				paths.map.room_node.get_node(node_name).hide()
+				# Store Hidden Object
+				if not node_name in data.game_save.enviroment[stats.current_map][stats.current_room].hidden_objects:
+					data.game_save.enviroment[stats.current_map][stats.current_room].hidden_objects.append(node_name)
+					data.game_save.enviroment[stats.current_map][stats.current_room].shown_objects.erase(node_name)
+					signals.emit_signal("object_got_hidden", node_name, stats.current_room)
+	
 		"move_player":
 			var pos: Vector2
 			pos.x = float(action.rsplit(":")[1].rsplit(",")[0])

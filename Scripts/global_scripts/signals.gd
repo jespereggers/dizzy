@@ -4,6 +4,12 @@ extends Node
 signal backend_is_ready()
 
 # warning-ignore:unused_signal
+signal object_got_hidden(object_name, room)
+
+# warning-ignore:unused_signal
+signal object_got_shown(object_name, room)
+
+# warning-ignore:unused_signal
 signal countable_collected(coin_instance)
 # warning-ignore:unused_signal
 signal item_collected(item_instance)

@@ -28,7 +28,7 @@ func _ready():
 	signals.emit_signal("backend_is_ready")
 
 func _on_player_left_room(dir:Vector2):
-	print(stats.current_room, " - ", stats.current_room + dir)
+	#print(stats.current_room, " - ", stats.current_room + dir)
 	var new_room_coords = stats.current_room + dir
 	if data.maps[stats.current_map].keys().has(new_room_coords):
 		paths.map.change_room(new_room_coords)

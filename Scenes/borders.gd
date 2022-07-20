@@ -18,7 +18,12 @@ func _on_border_entered(collider, border):
 
 	if paused:
 		return
-
+	
+	#if paths.player.stick_to_boat:
+	#	print("Sticked")
+	#	return
+	
+	print("Entered Border")
 	var dir := Vector2()
 	var pos := paths.player.position
 	
@@ -35,7 +40,8 @@ func _on_border_entered(collider, border):
 		"bottom":
 			dir.y -= 1
 			pos.y = MAP_CHANGE_ENTRY_TOP
-	if not paths.player.stick_to_boat:
+	if not paths.player.keep_sticked_to_boat:
+		print("Not Sticked - ", paths.player.keep_sticked_to_boat)
 		paths.player.position = pos
 	paths.world._on_player_left_room(dir)
 

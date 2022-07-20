@@ -43,6 +43,9 @@ func _clean_maps():
 
 
 func _load_map():
+	if not stats.current_room in data.game_save.enviroment[stats.current_map]:
+		data.game_save.enviroment[stats.current_map][stats.current_room] = {"removed_items": [], "remembered_items": [], "shown_objects": [], "hidden_objects": []}
+	
 	room_node = load(data.maps[stats.current_map][stats.current_room].path).instance()
 	add_child(room_node)
 	_load_items(room_node)
@@ -52,8 +55,9 @@ func _unique_item_string(item:Node2D):
 	return item.name + str(item.position)
 
 func _load_items(room:Node):
-	if not stats.current_room in data.game_save.enviroment[stats.current_map]:
-		data.game_save.enviroment[stats.current_map][stats.current_room] = {"removed_items": [], "remembered_items": []}
+	#if not stats.current_room in data.game_save.enviroment[stats.current_map]:
+		#data.game_save.enviroment[stats.current_map][stats.current_room] = {"removed_items": [], "remembered_items": [], "hidden_items": []}
+	
 	#remove and remember items
 	for child in room.get_children():
 		if (child is Item) or (child is Coin):

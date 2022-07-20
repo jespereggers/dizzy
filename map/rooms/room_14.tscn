@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=2]
+[gd_scene load_steps=105 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -2883,6 +2883,138 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 [sub_resource type="RectangleShape2D" id=77]
 extents = Vector2( 20, 12 )
 
+[sub_resource type="Animation" id=82]
+length = 0.001
+step = 1.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("barrel_boat:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 80, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("barrel_boat:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 104, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("barrel_boat:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("barrel_boat/collision/left:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("barrel_boat/collision/right:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=81]
+resource_name = "move_14"
+length = 32.0
+loop = true
+step = 1.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("barrel_boat:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 80, -0.25, 0, 0.25, 0, -80, -0.25, 0, 0.25, 0, 80, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 16, 32 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("barrel_boat:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 16, 32 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("barrel_boat/collision/left:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 16, 32 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("barrel_boat/collision/right:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 16, 32 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 16, 32 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ -1 ],
+"method": "switch_automove_dir"
+}, {
+"args": [ 1 ],
+"method": "switch_automove_dir"
+}, {
+"args": [ -1 ],
+"method": "switch_automove_dir"
+} ]
+}
+
 [sub_resource type="RectangleShape2D" id=74]
 extents = Vector2( 8, 5 )
 
@@ -2964,7 +3096,18 @@ __meta__ = {
 [node name="barrel_boat" parent="." instance=ExtResource( 21 )]
 visible = false
 position = Vector2( 80, 104 )
+flip_h = false
 room = 14
+
+[node name="animator" parent="barrel_boat" index="0"]
+anims/RESET = SubResource( 82 )
+anims/move_14 = SubResource( 81 )
+
+[node name="left" parent="barrel_boat/collision" index="0"]
+disabled = false
+
+[node name="right" parent="barrel_boat/collision" index="1"]
+disabled = true
 
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 108, 32 )
@@ -3018,8 +3161,6 @@ modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
 show_behind_parent = true
 position = Vector2( 8, -8 )
 texture = ExtResource( 22 )
-
-[connection signal="visibility_changed" from="barrel_boat" to="barrel_boat" method="_on_barrel_boat_visibility_changed"]
 
 [editable path="barrel/interaction_area"]
 [editable path="barrel_water/interaction_area"]

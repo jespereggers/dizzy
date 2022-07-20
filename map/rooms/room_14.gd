@@ -1,48 +1,32 @@
 extends Node2D
 
-export var switch_room: bool setget _on_switch_room
-
 
 func _ready():
-	print(data.clock.barrel_boat_state)
-	if paths.player.keep_sticked_to_boat:
-		paths.player.position = $barrel_boat.global_position
-		paths.player.position.x = -18
-		paths.player.position.x += 10
-		paths.player.position.y -= 20
-		paths.player.stick_to_boat = true
+	if signals.connect("object_got_shown", self, "_on_object_visibility_got_changed", [true]) != OK:
+		print("Error")
+	if signals.connect("object_got_hidden", self, "_on_object_visibility_got_changed", [false]) != OK:
+		print("Error")
 	
-	if data.clock.barrel_boat_state.empty():
-		$barrel_boat.hide()
+	# Show Shown Objects
+	for object in data.game_save.enviroment[stats.current_map][stats.current_room].shown_objects:
+		if self.has_node(object):
+			self.get_node(object).show()
+	# Hide Hidden Objects
+	for object in data.game_save.enviroment[stats.current_map][stats.current_room].hidden_objects:
+		if self.has_node(object):
+			self.get_node(object).hide()
 	
-	return
-	
-	
-	if paths.player.stick_to_boat:
-		paths.player.position = $barrel_boat.position
-		paths.player.position.y += 16
-#	data.clock.connect("barrel_state_changed", self, "on_barrel_boat_state_changed")
-	if data.clock.barrel_boat_state.empty():
-		$barrel_boat.hide()
+	if "barrel_boat" in data.game_save.enviroment[stats.current_map][Vector2(-1,0)].shown_objects:
+		$barrel_boat/animator.play("move_14")
+		$barrel_boat/animator.advance(25.0)
+		$barrel_boat.show()
 
 
-#func on_barrel_boat_state_changed(new_state: String):
-	#$barrel_boat.show()
-#	match new_state:
-	#	"room_13_swim_left":
-	#		$barrel_boat.hide()
-		#"room_13_swim_right":
-		#	$barrel_boat.hide()
-	#	"room_14_swim_left":
-		#	$barrel_boat/animator.play("barrel_boat_swim_left")
-	#	"room_14_swim_right":
-		#	$barrel_boat/animator.play("barrel_boat_swim_right")
+func switch_automove_dir(new_dir: int):
+	paths.player.automove_dir = new_dir
 
 
-func _on_barrel_boat_placed():
-	data.clock.move_barrel_boat()
-
-
-func _on_switch_room(new_value: bool) -> void:
-	paths.world.border.paused = new_value
-	switch_room = new_value
+func _on_object_visibility_got_changed(object_name: String, _room: Vector2, visible: bool):
+	# Special Actions
+	if visible and object_name == "barrel_boat":
+		$barrel_boat/animator.play("move_14")

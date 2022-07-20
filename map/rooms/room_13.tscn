@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=2]
+[gd_scene load_steps=96 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -2873,6 +2873,78 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 } ]
 159/z_index = 0
 
+[sub_resource type="Animation" id=76]
+resource_name = "move_13"
+length = 32.0
+loop = true
+step = 1.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("barrel_boat:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 200, -0.25, 0, 0.25, 0, 360, -0.25, 0, 0.25, 0, 200, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 16, 32 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("barrel_boat:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 16, 32 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("barrel_boat/collision/left:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 16, 32 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("barrel_boat/collision/right:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 16, 32 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 16, 32 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "switch_automove_dir"
+}, {
+"args": [ -1 ],
+"method": "switch_automove_dir"
+}, {
+"args": [ 1 ],
+"method": "switch_automove_dir"
+} ]
+}
+
 [sub_resource type="RectangleShape2D" id=73]
 extents = Vector2( 15, 3 )
 
@@ -2918,8 +2990,12 @@ texture = ExtResource( 16 )
 flip_v = true
 
 [node name="barrel_boat" parent="." instance=ExtResource( 18 )]
-position = Vector2( 258, 104 )
+visible = false
+position = Vector2( 200, 104 )
 room = 13
+
+[node name="animator" parent="barrel_boat" index="0"]
+anims/move_13 = SubResource( 76 )
 
 [node name="bat_animation" type="AnimationPlayer" parent="."]
 

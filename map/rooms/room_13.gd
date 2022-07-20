@@ -2,11 +2,11 @@ extends Node2D
 
 
 func _ready():
-	if paths.player.keep_sticked_to_boat:
-		paths.player.position = $barrel_boat.global_position
-		paths.player.position.x += 10
-		paths.player.position.y -= 20
-		paths.player.stick_to_boat = true
-	
-	if data.clock.barrel_boat_state.empty():
-		$barrel_boat.hide()
+	if "barrel_boat" in data.game_save.enviroment[stats.current_map][Vector2(-1,0)].shown_objects:
+		$barrel_boat/animator.play("move_13")
+		$barrel_boat/animator.advance(28.5)
+		$barrel_boat.show()
+
+
+func switch_automove_dir(new_dir: int):
+	paths.player.automove_dir = new_dir
