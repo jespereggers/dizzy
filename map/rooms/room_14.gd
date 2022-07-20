@@ -24,6 +24,11 @@ func _ready():
 
 func switch_automove_dir(new_dir: int):
 	paths.player.automove_dir = new_dir
+	
+	if new_dir == 1:
+		paths.player.position.x += 5
+	if new_dir == -1:
+		paths.player.position.x -= 5
 
 
 func _on_object_visibility_got_changed(object_name: String, _room: Vector2, visible: bool):

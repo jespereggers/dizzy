@@ -9,4 +9,9 @@ func _ready():
 
 
 func switch_automove_dir(new_dir: int):
+	if new_dir == 1:
+		paths.player.position.x += 5
+	if new_dir == -1:
+		paths.player.position.x -= 5
+	
 	paths.player.automove_dir = new_dir
