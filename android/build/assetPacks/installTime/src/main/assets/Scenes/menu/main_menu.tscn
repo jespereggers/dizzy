@@ -1,0 +1,492 @@
+[gd_scene load_steps=41 format=2]
+
+[ext_resource path="res://Assets/tiles/menu/menue/sound on.png" type="Texture" id=1]
+[ext_resource path="res://resources/default_settings.tres" type="Resource" id=2]
+[ext_resource path="res://Assets/tiles/menu/menue/yes.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/menu/Sound.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/titlescreen.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/BackButton.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/menu/Option.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/InfoRect.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/menu/Credit.gd" type="Script" id=9]
+[ext_resource path="res://Assets/tiles/menu/menue/exit.png" type="Texture" id=10]
+[ext_resource path="res://Assets/tiles/menu/menue/german.png" type="Texture" id=11]
+[ext_resource path="res://Assets/tiles/menu/menue/resume.png" type="Texture" id=12]
+[ext_resource path="res://Assets/tiles/menu/menue/copyright_1.png" type="Texture" id=13]
+[ext_resource path="res://Assets/tiles/menu/menue/copyright.png" type="Texture" id=14]
+[ext_resource path="res://Assets/tiles/menu/menue/about_us.png" type="Texture" id=15]
+[ext_resource path="res://Assets/tiles/menu/menue/englisch.png" type="Texture" id=16]
+[ext_resource path="res://Assets/tiles/menu/menue/sound off.png" type="Texture" id=17]
+[ext_resource path="res://Assets/tiles/menu/menue/credits.png" type="Texture" id=18]
+[ext_resource path="res://Assets/tiles/menu/menue/disabled_buttons/english.png" type="Texture" id=19]
+[ext_resource path="res://Assets/tiles/menu/menue/black_label.png" type="Texture" id=20]
+[ext_resource path="res://Assets/tiles/menu/menue/language.png" type="Texture" id=21]
+[ext_resource path="res://Assets/tiles/menu/menue/new game.png" type="Texture" id=22]
+[ext_resource path="res://Assets/tiles/menu/menue/about_us_1.png" type="Texture" id=23]
+[ext_resource path="res://Assets/tiles/menu/menue/disabled_buttons/sound on.png" type="Texture" id=24]
+[ext_resource path="res://Assets/tiles/menu/menue/donate.png" type="Texture" id=25]
+[ext_resource path="res://Assets/tiles/menu/menue/disabled_buttons/resume.png" type="Texture" id=26]
+[ext_resource path="res://Assets/tiles/menu/menue/options.png" type="Texture" id=27]
+[ext_resource path="res://Assets/tiles/menu/menue/back.png" type="Texture" id=28]
+[ext_resource path="res://Assets/tiles/menu/menue/disabled_buttons/sound off.png" type="Texture" id=29]
+[ext_resource path="res://Assets/tiles/menu/menue/disabled_buttons/deutsch.png" type="Texture" id=30]
+[ext_resource path="res://Assets/tiles/menu/menue/sound.png" type="Texture" id=31]
+[ext_resource path="res://Assets/tiles/menu/menue/menue_border.png" type="Texture" id=32]
+[ext_resource path="res://Assets/tiles/menu/menue/donate_1.png" type="Texture" id=33]
+[ext_resource path="res://Assets/tiles/menu/menue/play.png" type="Texture" id=34]
+[ext_resource path="res://Scenes/menu/Language.gd" type="Script" id=35]
+[ext_resource path="res://Scenes/menu/Play.gd" type="Script" id=36]
+[ext_resource path="res://Scenes/menu/Exit.gd" type="Script" id=37]
+[ext_resource path="res://Assets/tiles/menu/menue/quit_game.png" type="Texture" id=38]
+[ext_resource path="res://Assets/tiles/menu/menue/no.png" type="Texture" id=39]
+[ext_resource path="res://Assets/theme/theme_dizzy.tres" type="Theme" id=40]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource( 5 )
+settings = ExtResource( 2 )
+
+[node name="background" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 32 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main" type="Control" parent="background"]
+margin_left = -64.0
+margin_top = -32.0
+margin_right = -24.0
+margin_bottom = 8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" type="TextureButton" parent="background/Main"]
+margin_left = 80.0
+margin_top = 48.0
+margin_right = 176.0
+margin_bottom = 66.0
+texture_normal = ExtResource( 34 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResumeButton" type="TextureButton" parent="background/Main"]
+margin_left = 80.0
+margin_top = 48.0
+margin_right = 176.0
+margin_bottom = 66.0
+texture_normal = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionButton" type="TextureButton" parent="background/Main"]
+margin_left = 80.0
+margin_top = 74.0
+margin_right = 176.0
+margin_bottom = 92.0
+texture_normal = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditButton" type="TextureButton" parent="background/Main"]
+margin_left = 80.0
+margin_top = 100.0
+margin_right = 176.0
+margin_bottom = 118.0
+texture_normal = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="TextureButton" parent="background/Main"]
+margin_left = 80.0
+margin_top = 126.0
+margin_right = 176.0
+margin_bottom = 144.0
+texture_normal = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="Control" parent="background"]
+visible = false
+margin_left = -64.0
+margin_top = -32.0
+margin_right = -24.0
+margin_bottom = 8.0
+script = ExtResource( 36 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewGameButton" type="TextureButton" parent="background/Play"]
+margin_left = 80.0
+margin_top = 48.0
+margin_right = 176.0
+margin_bottom = 66.0
+texture_normal = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResumeButton" type="TextureButton" parent="background/Play"]
+margin_left = 80.0
+margin_top = 74.0
+margin_right = 176.0
+margin_bottom = 92.0
+texture_normal = ExtResource( 12 )
+texture_disabled = ExtResource( 26 )
+
+[node name="NoButton" type="TextureRect" parent="background/Play"]
+margin_left = 80.0
+margin_top = 100.0
+margin_right = 176.0
+margin_bottom = 118.0
+mouse_filter = 0
+texture = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="TextureButton" parent="background/Play"]
+margin_left = 80.0
+margin_top = 126.0
+margin_right = 176.0
+margin_bottom = 144.0
+texture_normal = ExtResource( 28 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option" type="Control" parent="background"]
+visible = false
+margin_left = -64.0
+margin_top = -32.0
+margin_right = -24.0
+margin_bottom = 8.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LanguageButton" type="TextureButton" parent="background/Option"]
+margin_left = 80.0
+margin_top = 48.0
+margin_right = 176.0
+margin_bottom = 66.0
+texture_normal = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundButton" type="TextureButton" parent="background/Option"]
+margin_left = 80.0
+margin_top = 74.0
+margin_right = 176.0
+margin_bottom = 92.0
+texture_normal = ExtResource( 31 )
+
+[node name="NoButton" type="TextureRect" parent="background/Option"]
+margin_left = 80.0
+margin_top = 100.0
+margin_right = 176.0
+margin_bottom = 118.0
+mouse_filter = 0
+texture = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="TextureButton" parent="background/Option"]
+margin_left = 80.0
+margin_top = 126.0
+margin_right = 176.0
+margin_bottom = 144.0
+texture_normal = ExtResource( 28 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Language" type="Control" parent="background/Option"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 35 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+settings = ExtResource( 2 )
+
+[node name="EnglishButton" type="TextureButton" parent="background/Option/Language"]
+margin_left = 80.0
+margin_top = 48.0
+margin_right = 176.0
+margin_bottom = 66.0
+texture_normal = ExtResource( 16 )
+texture_disabled = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GermanButton" type="TextureButton" parent="background/Option/Language"]
+margin_left = 80.0
+margin_top = 74.0
+margin_right = 176.0
+margin_bottom = 92.0
+texture_normal = ExtResource( 11 )
+texture_disabled = ExtResource( 30 )
+
+[node name="NoButton" type="TextureRect" parent="background/Option/Language"]
+margin_left = 80.0
+margin_top = 100.0
+margin_right = 176.0
+margin_bottom = 118.0
+mouse_filter = 0
+texture = ExtResource( 20 )
+
+[node name="BackButton" type="TextureButton" parent="background/Option/Language"]
+margin_left = 80.0
+margin_top = 126.0
+margin_right = 176.0
+margin_bottom = 144.0
+texture_normal = ExtResource( 28 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sound" type="Control" parent="background/Option"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+settings = ExtResource( 2 )
+
+[node name="OnButton" type="TextureButton" parent="background/Option/Sound"]
+margin_left = 80.0
+margin_top = 48.0
+margin_right = 176.0
+margin_bottom = 66.0
+texture_normal = ExtResource( 1 )
+texture_disabled = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OffButton" type="TextureButton" parent="background/Option/Sound"]
+margin_left = 80.0
+margin_top = 74.0
+margin_right = 176.0
+margin_bottom = 92.0
+texture_normal = ExtResource( 17 )
+texture_disabled = ExtResource( 29 )
+
+[node name="NoButton" type="TextureRect" parent="background/Option/Sound"]
+margin_left = 80.0
+margin_top = 100.0
+margin_right = 176.0
+margin_bottom = 118.0
+mouse_filter = 0
+texture = ExtResource( 20 )
+
+[node name="BackButton" type="TextureButton" parent="background/Option/Sound"]
+margin_left = 80.0
+margin_top = 126.0
+margin_right = 176.0
+margin_bottom = 144.0
+texture_normal = ExtResource( 28 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credit" type="Control" parent="background"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboutUsButton" type="TextureButton" parent="background/Credit"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 112.0
+margin_bottom = 34.0
+texture_normal = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CopyRightButton" type="TextureButton" parent="background/Credit"]
+margin_left = 16.0
+margin_top = 42.0
+margin_right = 112.0
+margin_bottom = 60.0
+texture_normal = ExtResource( 14 )
+
+[node name="DonateButton" type="TextureButton" parent="background/Credit"]
+margin_left = 16.0
+margin_top = 68.0
+margin_right = 112.0
+margin_bottom = 86.0
+texture_normal = ExtResource( 25 )
+
+[node name="BackButton" type="TextureButton" parent="background/Credit"]
+margin_left = 16.0
+margin_top = 94.0
+margin_right = 112.0
+margin_bottom = 112.0
+texture_normal = ExtResource( 28 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboutUsRect" type="TextureRect" parent="background/Credit"]
+visible = false
+margin_left = -56.0
+margin_right = 184.0
+margin_bottom = 128.0
+mouse_filter = 0
+texture = ExtResource( 23 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CopyRightRect" type="TextureRect" parent="background/Credit"]
+visible = false
+margin_left = -56.0
+margin_right = 184.0
+margin_bottom = 128.0
+mouse_filter = 0
+texture = ExtResource( 13 )
+script = ExtResource( 8 )
+
+[node name="DonateRect" type="TextureRect" parent="background/Credit"]
+visible = false
+margin_left = -56.0
+margin_right = 184.0
+margin_bottom = 128.0
+mouse_filter = 0
+texture = ExtResource( 33 )
+script = ExtResource( 8 )
+
+[node name="TapToClosePanel" type="Panel" parent="background/Credit"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = -16.0
+margin_top = -24.0
+margin_right = 144.0
+margin_bottom = -17.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="background/Credit/TapToClosePanel"]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = -4.5
+margin_right = 48.0
+margin_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 40 )
+text = "tap to close"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Control" parent="background"]
+visible = false
+margin_left = -64.0
+margin_top = -32.0
+margin_right = -24.0
+margin_bottom = 8.0
+script = ExtResource( 37 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitGameRect" type="TextureRect" parent="background/Exit"]
+margin_left = 80.0
+margin_top = 48.0
+margin_right = 176.0
+margin_bottom = 66.0
+texture = ExtResource( 38 )
+
+[node name="NoButton" type="TextureRect" parent="background/Exit"]
+margin_left = 80.0
+margin_top = 74.0
+margin_right = 176.0
+margin_bottom = 92.0
+mouse_filter = 0
+texture = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="YesButton" type="TextureButton" parent="background/Exit"]
+margin_left = 80.0
+margin_top = 100.0
+margin_right = 176.0
+margin_bottom = 118.0
+texture_normal = ExtResource( 3 )
+
+[node name="NayButton" type="TextureButton" parent="background/Exit"]
+margin_left = 80.0
+margin_top = 126.0
+margin_right = 176.0
+margin_bottom = 144.0
+texture_normal = ExtResource( 39 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="visibility_changed" from="." to="." method="_on_MainMenu_visibility_changed"]
+[connection signal="pressed" from="background/Main/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="background/Main/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="background/Main/OptionButton" to="." method="_on_OptionButton_pressed"]
+[connection signal="pressed" from="background/Main/CreditButton" to="." method="_on_CreditButton_pressed"]
+[connection signal="pressed" from="background/Main/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="background/Play/NewGameButton" to="background/Play" method="_on_NewGameButton_pressed"]
+[connection signal="pressed" from="background/Play/ResumeButton" to="background/Play" method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="background/Option/LanguageButton" to="background/Option" method="_on_LanguageButton_pressed"]
+[connection signal="pressed" from="background/Option/SoundButton" to="background/Option" method="_on_SoundButton_pressed"]
+[connection signal="pressed" from="background/Option/Language/EnglishButton" to="background/Option/Language" method="_on_EnglishButton_pressed"]
+[connection signal="pressed" from="background/Option/Language/GermanButton" to="background/Option/Language" method="_on_GermanButton_pressed"]
+[connection signal="pressed" from="background/Option/Sound/OnButton" to="background/Option/Sound" method="_on_OnButton_pressed"]
+[connection signal="pressed" from="background/Option/Sound/OffButton" to="background/Option/Sound" method="_on_OffButton_pressed"]
+[connection signal="pressed" from="background/Credit/AboutUsButton" to="background/Credit" method="_on_AboutUsButton_pressed"]
+[connection signal="pressed" from="background/Credit/CopyRightButton" to="background/Credit" method="_on_CopyRightButton_pressed"]
+[connection signal="pressed" from="background/Credit/DonateButton" to="background/Credit" method="_on_DonateButton_pressed"]
+[connection signal="pressed" from="background/Exit/YesButton" to="background/Exit" method="_on_YesButton_pressed"]
+[connection signal="pressed" from="background/Exit/NayButton" to="background/Exit" method="_on_NayButton_pressed"]

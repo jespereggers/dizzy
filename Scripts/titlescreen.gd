@@ -1,134 +1,47 @@
 extends Control
 
-var current_menue: String
-
+export var settings : Resource
 
 func _ready():
-	if $credits/background/back.connect("pressed", self, "load_menu", ["main"]) != OK:
-		print("Error occured when trying to establish a connection")
-	if get_tree().current_scene.name == "titlescreen":
-		data.load_databanks()
-		load_settings()
-		load_menu("main")
+		assert(settings.connect("language_changed",self,"_on_language_changed") == OK)
+
+func _on_language_changed():
+		for child in get_all_children(self):
+				if child is TextureButton:
+						child.texture_normal = load(child.texture_normal.resource_path)
+						if child.texture_disabled != null:
+								child.texture_disabled = load(child.texture_disabled.resource_path)
+				if child is TextureRect:
+						child.texture = load(child.texture.resource_path)
+		if paths.ui:
+				paths.ui.reload_inventory_node()
+						
+func _on_PlayButton_pressed():
+		$background/Play.show()
 
 
-func load_settings():
-	# Sound
-	var master_sound = AudioServer.get_bus_index("Master")
-	if data.settings.sound == true:
-		AudioServer.set_bus_mute(master_sound, false)
-	else:
-		AudioServer.set_bus_mute(master_sound, true)
-	
-	# Language
-	match data.settings.language:
-		"german":
-			TranslationServer.set_locale("de")
-		"english":
-			TranslationServer.set_locale("en")
+func _on_OptionButton_pressed():
+		$background/Option.show()
 
 
-func load_menu(menu_name: String):
-	current_menue = menu_name
-	
-	if menu_name == "on_credits":
-		$settings.hide()
-		$credits/background/back.load_template("back")
-		$credits.show()
-	else:
-		$settings.show()
-		$credits.hide()
-		
-	for button in $settings/background/main.get_children():
-		button.queue_free()
-		yield(button, "tree_exited")
-		
-	for button in data.titlescreen[menu_name]:
-		if button[0] == "back":
-			var missing_buttons: int = 3 - $settings/background/main.get_child_count()
-			for i in missing_buttons:
-				var button_instance: Button = load("res://Scenes/templates/settings_button.tscn").instance() 
-				button_instance.modulate.a = 0
-				$settings/background/main.add_child(button_instance)
+func _on_CreditButton_pressed():
+		$background/Credit.show()
+
+func get_all_children(node:Node) -> Array:
+		var all_nodes:Array = []
+		for child in node.get_children():
+				all_nodes.append(child)
+				for sub_child in get_all_children(child):
+						all_nodes.append(sub_child)
+		return all_nodes
 				
-		if button[0] == "play" and get_tree().current_scene.name == "world":
-			button = ["resume"]
-			
-		var button_template = get_button_instance(button[0])
-		if button.size() > 1:
-			button_template.connect("pressed", self, "load_menu", [button[1]])
-		else:
-			button_template.connect("pressed", self, "_on_setting_pressed", [button[0]])
-
-			match button[0]:
-				"resume":
-					if not File.new().file_exists(OS.get_user_data_dir() + "/game_save.dizzy"):
-						button_template.disable()
-				"english":
-					if data.settings.language == "english":
-						button_template.disable()
-				"german":
-					if data.settings.language == "german":
-						button_template.disable()
-				"sound on":
-					if data.settings.sound == true:
-						button_template.disable()
-				"sound off":
-					if data.settings.sound == false:
-						button_template.disable()
-	
-		$settings/background/main.add_child(button_template)
+func _on_ResumeButton_pressed():
+		hide()
 
 
-func get_button_instance(button_name: String) -> Button:
-	var button: Button = load("res://Scenes/templates/settings_button.tscn").instance() #!
-	button.load_template(button_name)
-	return button
+func _on_MainMenu_visibility_changed():
+		$background/Main/ResumeButton.visible = (paths.player != null)
 
 
-func _on_setting_pressed(button_name: String):
-	match button_name:
-		"new game":
-			get_tree().paused = false
-			data.store_default_game_save()
-			if get_tree().change_scene("res://Scenes/world.tscn") != OK:
-				print("Error occured when trying to switch the scene")
-		"resume":
-			if get_tree().current_scene.name == "world":
-				get_tree().paused = false
-				get_parent().hide()
-				return
-			get_tree().paused = false
-			if get_tree().change_scene("res://Scenes/world.tscn") != OK:
-				print("Error occured when trying to switch the scene")
-		"german":
-			data.settings.language = "german"
-			load_menu("on_language")
-		"english":
-			data.settings.language = "english"
-			load_menu("on_language")
-		"sound on":
-			data.settings.sound = true
-			load_menu("on_sound")
-		"sound off":
-			data.settings.sound = false
-			load_menu("on_sound")
-		"exit":
-			data.save_setttings()
-			if get_tree().current_scene.name == "world":
-				data.save_game()
-			yield(get_tree().create_timer(0.2), "timeout")
-			get_tree().quit()
-		
-	load_settings()
-
-
-func _on_titlescreen_visibility_changed():
-	if is_visible_in_tree():
-		load_menu("main")
-
-
-func _on_close_pressed():
-	if get_tree().current_scene.name == "world":
-		get_tree().paused = false
-		get_parent().hide()
+func _on_ExitButton_pressed():
+		$background/Exit.show()

@@ -1,103 +1,84 @@
 extends Node2D
 
-onready var root: Node2D = get_parent()
-signal maps_cleaned
-signal map_loaded
-
-export var default_respawn: Vector2 = Vector2(220,134)
-#export var custom_respawn_correction: Vector2 = Vector2(8, 48)
-
 var room_node:Node2D = null
-
+var previous_room := Vector2()
 const BLACKSCREEN_DURATION = 0.4 #map change
 
 func _ready():
-	yield(signals, "backend_is_ready")
-	_load_map()
-	
+		pass
+		
 func change_room(new_room_coords:Vector2):
-	if paths.player.stick_to_boat:
-		paths.player.keep_sticked_to_boat = true
-		manage_player_keep_sticked_to_boat()
-	if not data.maps[stats.current_map].keys().has(new_room_coords):
-		push_error("Error: Can't load nonexisting room")
-	_clean_maps()
-	stats.current_room = new_room_coords
-	yield(get_tree().create_timer(BLACKSCREEN_DURATION), "timeout") #blackscreen
-	_load_map()
-	paths.display.update_display()
+		_leave_room()
+		#special case for well
+		if stats.game_state.current_room == Vector2(-4,-2): #room 20 leads to room 25
+				new_room_coords = Vector2(-4,-4)
+		_enter_room(new_room_coords)
 
+func serialize_persistents():
+		for room in get_children():
+				if room.name != "user_interface":
+						_unload_items(room)
+						_load_items(room_node)
 
-func manage_player_keep_sticked_to_boat():
-	yield(get_tree().create_timer(3.0), "timeout")
-	paths.player.keep_sticked_to_boat = false
+func _leave_room():
+		for room in get_children():
+				if room.name != "user_interface":
+						_unload_items(room)
+						room.queue_free()
+		previous_room = stats.game_state.current_room
+		signals.emit_signal("map_cleaned")
 
-
-func _clean_maps():
-	for room in get_children():
-		#if str(room.filename) != data.maps[stats.current_map][stats.current_room].path and room.name != "user_interface":
-		if room.name != "user_interface":
-			_unload_items(room)
-			room.queue_free()
-	emit_signal("maps_cleaned")
-
+func _enter_room(new_room_coords:Vector2):
+		if not data.maps[stats.game_state.current_map].keys().has(new_room_coords):
+				push_error("Error: Can't load nonexisting room")
+		stats.game_state.current_room = new_room_coords
+		paths.display.update_display()
+		yield(tools.create_physics_timer(BLACKSCREEN_DURATION),"timeout") #blackscreen
+		_load_map()
 
 func _load_map():
-	if not stats.current_room in data.game_save.enviroment[stats.current_map]:
-		data.game_save.enviroment[stats.current_map][stats.current_room] = {"removed_items": [], "remembered_items": [], "shown_objects": [], "hidden_objects": []}
-	
-	room_node = load(data.maps[stats.current_map][stats.current_room].path).instance()
-	add_child(room_node)
-	_load_items(room_node)
-	emit_signal("map_loaded")
+		room_node = load(data.maps[stats.game_state.current_map][stats.game_state.current_room].path).instance()
+		add_child(room_node)
+		_load_items(room_node)
+		room_node.material = ShaderMaterial.new()
+		room_node.material.shader = preload("res://shaders/hide_behind_border.shader")
+		signals.emit_signal("map_loaded")
 
 func _unique_item_string(item:Node2D):
-	return item.name + str(item.position)
+		return item.name + str(item.position)
 
 func _load_items(room:Node):
-	#if not stats.current_room in data.game_save.enviroment[stats.current_map]:
-		#data.game_save.enviroment[stats.current_map][stats.current_room] = {"removed_items": [], "remembered_items": [], "hidden_items": []}
-	
-	#remove and remember items
-	for child in room.get_children():
-		if (child is Item) or (child is Coin):
-			var unique_item_string = _unique_item_string(child)
-			if not data.game_save.enviroment[stats.current_map][stats.current_room].removed_items.has(unique_item_string):
-				data.game_save.enviroment[stats.current_map][stats.current_room].removed_items.append(unique_item_string)
-				data.game_save.enviroment[stats.current_map][stats.current_room].remembered_items.append(child)
-			room.remove_child(child)
-		#place remembered items
-	for item in data.game_save.enviroment[stats.current_map][stats.current_room].remembered_items:
-		room.add_child(item)
-	data.game_save.enviroment[stats.current_map][stats.current_room].remembered_items = []
-		
+		if not stats.game_state.current_map in stats.game_state.persistents: #first time on this map
+				stats.game_state.persistents[stats.game_state.current_map] = {} 
+		if not stats.game_state.current_room in stats.game_state.persistents[stats.game_state.current_map]: #first time in this room
+				stats.game_state.persistents[stats.game_state.current_map][stats.game_state.current_room] = {"removed_items": [], "remembered_items": []}
+		#remove and remember items
+		for child in room.get_children():
+				if (child is Persistent):
+						var unique_item_string = _unique_item_string(child)
+						if not stats.game_state.persistents[stats.game_state.current_map][stats.game_state.current_room].removed_items.has(unique_item_string):
+								stats.game_state.persistents[stats.game_state.current_map][stats.game_state.current_room].removed_items.append(unique_item_string)
+								stats.game_state.persistents[stats.game_state.current_map][stats.game_state.current_room].remembered_items.append(child.serialize())
+						room.remove_child(child)
+						child.queue_free()
+				#place remembered items
+		for dict in stats.game_state.persistents[stats.game_state.current_map][stats.game_state.current_room]["remembered_items"]:
+				var _discard = Persistent.deserialize(dict,room) #create Persistent and make it a child of room, do not use return val
+				
 func _unload_items(room:Node):
-	#remember items
-	for child in room.get_children():
-		if (child is Item) or (child is Coin):
-			data.game_save.enviroment[stats.current_map][stats.current_room].remembered_items.append(child)
-			room.remove_child(child)
-
-func add(properties: Dictionary):
-	var object
-	
-	match properties.type:
-		"item":
-			object = load("res://templates/item.tscn").instance()
-			object.set_properties(properties)
-			object.load_template()
-			object.update_pos()
-	tools.add_object(object)
-	
-	for node in get_children():
-		if "room" in node.name:
-			node.get_node("objects").add_child(object)
-			break
+		#forget items
+		if stats.game_state.persistents.has(stats.game_state.current_map):
+				stats.game_state.persistents[stats.game_state.current_map][stats.game_state.current_room].remembered_items = []
+		#remember items 
+		for child in room.get_children():
+				if (child is Persistent):
+						stats.game_state.persistents[stats.game_state.current_map][stats.game_state.current_room].remembered_items.append(child.serialize())
+						room.remove_child(child)
+						child.queue_free()
 
 
 func remove(object):
-	for node in get_children():
-		if "room" in node.name:
-			node.get_node("objects").remove_child(object)
-			break
-
+		for node in get_children():
+				if "room" in node.name:
+						node.get_node("objects").remove_child(object)
+						break

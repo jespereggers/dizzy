@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/tiles/animations/water_full4.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/animated_tile.gd" type="Script" id=2]
+[ext_resource path="res://templates/persistent.gd" type="Script" id=3]
+[ext_resource path="res://templates/interaction_area.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 4 )
+
+[node name="OilPuddle" type="Node2D"]
+position = Vector2( 96, 124 )
+script = ExtResource( 3 )
+
+[node name="oil_animated" type="Sprite" parent="."]
+pause_mode = 2
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+position = Vector2( 0, -1 )
+texture = ExtResource( 1 )
+hframes = 4
+script = ExtResource( 2 )
+frame_interval = 2
+
+[node name="InteractionArea" type="Area2D" parent="."]
+script = ExtResource( 4 )
+needed_item = "a rusty key"
+dialogue = PoolStringArray( "box:room_12/message_oil_puddle", "wait", "get_item:Scenes/items/item_stainless_key.tscn" )
+
+[node name="interaktionsbereich1" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource( 1 )

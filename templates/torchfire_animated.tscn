@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/animated_tile.gd" type="Script" id=1]
+[ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=2]
+
+[node name="AnimatedTile" type="Sprite"]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+texture = ExtResource( 2 )
+hframes = 4
+script = ExtResource( 1 )

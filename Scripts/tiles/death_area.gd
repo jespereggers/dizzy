@@ -5,12 +5,11 @@ onready var shape_of_death = $shape_of_death
 
 export var cause_of_death: String = ""
 
-func _ready():
-	DeathAreas.new_death_area(self)
-	pass
+func _enter_tree():
+  DeathAreas.new_death_area(self)
 
 func _exit_tree():
-	DeathAreas.delete_death_area(self)
+  DeathAreas.delete_death_area(self)
 
 # replaced with above workaround, see Scripts/global_scripts/death_areas.gd
 

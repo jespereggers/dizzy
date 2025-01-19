@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/dizzy_ingame.ogg-f3eaf296b40db856104af7eabb59b8f1.oggstr"
+
+[deps]
+
+source_file="res://Assets/audio/dizzy_ingame.ogg"
+dest_files=[ "res://.import/dizzy_ingame.ogg-f3eaf296b40db856104af7eabb59b8f1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,7615 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://Scripts/user_interface.gd" type="Script" id=1]
+[ext_resource path="res://templates/background.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/inventory.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Scripts/dialogue_system.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/menu/main_menu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/tiles/menu/Room_16_screen.png" type="Texture" id=7]
+[ext_resource path="res://Assets/theme/theme_dizzy.tres" type="Theme" id=8]
+[ext_resource path="res://Assets/tiles/menu/Room_12_screen.png" type="Texture" id=9]
+[ext_resource path="res://Assets/tiles/menu/Room_14_screen.png" type="Texture" id=10]
+[ext_resource path="res://Assets/tiles/menu/Room_15_screen.png" type="Texture" id=11]
+[ext_resource path="res://Assets/tiles/menu/Room_3_screen.png" type="Texture" id=12]
+[ext_resource path="res://Assets/tiles/menu/Room_6_screen.png" type="Texture" id=13]
+[ext_resource path="res://Assets/tiles/menu/Room_9_screen.png" type="Texture" id=14]
+[ext_resource path="res://Assets/tiles/menu/Room_8_screen.png" type="Texture" id=15]
+[ext_resource path="res://Assets/gear/option_on.png" type="Texture" id=16]
+[ext_resource path="res://Scenes/user_interface/ArtifactButton.gd" type="Script" id=17]
+[ext_resource path="res://Assets/gear/artifact_on.png" type="Texture" id=18]
+[ext_resource path="res://Assets/tiles/menu/Room_17_screen.png" type="Texture" id=19]
+[ext_resource path="res://Assets/tiles/menu/Room_11_screen.png" type="Texture" id=20]
+[ext_resource path="res://Assets/tiles/menu/Room_26_screen.png" type="Texture" id=21]
+[ext_resource path="res://Assets/tiles/menu/Room_24_screen.png" type="Texture" id=22]
+
+[sub_resource type="DynamicFont" id=2]
+size = 7
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 7
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 7
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 7
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 7
+font_data = ExtResource( 4 )
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Label
+
+func _process(_delta):
+  var parent = get_parent()
+  if parent.timer:
+    text = str(parent.timer.time_left)
+    
+  
+
+
+"
+
+[node name="user_interface" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="inventory" parent="." instance=ExtResource( 3 )]
+
+[node name="item_list_2_item" parent="inventory" index="0"]
+visible = false
+
+[node name="choose_item_dialogue" parent="inventory" index="2"]
+visible = false
+
+[node name="dialogue_system" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 8 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="artifact_dialog_off_en" type="Popup" parent="dialogue_system"]
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/artifact_dialog_off_en" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 240.0
+margin_bottom = 120.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/artifact_dialog_off_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 72.0
+margin_right = 224.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "the mystical power
+of the artifact is not
+yet fully charged"
+align = 1
+autowrap = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="artifact_dialog_off_de" type="Popup" parent="dialogue_system"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/artifact_dialog_off_de" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_right = 240.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/artifact_dialog_off_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "die mystische kraft des
+artefakts ist noch nicht
+vollständig aufgeladen"
+align = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="found_coin_en" type="Popup" parent="dialogue_system"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 192.0
+margin_bottom = 136.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/found_coin_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 128.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/found_coin_en"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 112.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "well done!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/found_coin_en"]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 112.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+text = "you found
+a coin"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="found_coin_de" type="Popup" parent="dialogue_system"]
+margin_left = 48.0
+margin_top = 64.0
+margin_right = 208.0
+margin_bottom = 136.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/found_coin_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 160.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/found_coin_de"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 144.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "ausgezeichnet!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/found_coin_de"]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 144.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+text = "du hast eine
+münze gefunden"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="found_shard_en" type="Popup" parent="dialogue_system"]
+margin_left = 56.0
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 136.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/found_shard_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 144.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/found_shard_en"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 128.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "very good!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/found_shard_en"]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 128.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+text = "you found a
+mirror piece"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="found_shard_de" type="Popup" parent="dialogue_system"]
+margin_left = 56.0
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 144.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/found_shard_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 144.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/found_shard_de"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 128.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "fabelhaft!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/found_shard_de"]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 128.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 1 )
+text = "du hast ein
+spiegelstück
+gefunden"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="death_dialog_bugged_de" type="Popup" parent="dialogue_system"]
+visible = true
+margin_left = 48.0
+margin_top = 64.0
+margin_right = 208.0
+margin_bottom = 152.0
+popup_exclusive = true
+
+[node name="background" parent="dialogue_system/death_dialog_bugged_de" instance=ExtResource( 2 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+margin_right = 160.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/death_dialog_bugged_de"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 144.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "du wirst von
+spitzen pikern
+durchbohrt"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_bugged_de"]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 144.0
+margin_bottom = 72.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+text = "du verlierst
+ein leben!"
+align = 1
+
+[node name="death_dialog_water_en" type="Popup" parent="dialogue_system"]
+margin_left = 40.0
+margin_top = 64.0
+margin_right = 216.0
+margin_bottom = 144.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/death_dialog_water_en" instance=ExtResource( 2 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+margin_right = 176.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/death_dialog_water_en"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 160.0
+margin_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "you fell in the"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label1" type="Label" parent="dialogue_system/death_dialog_water_en"]
+margin_left = 16.0
+margin_top = 36.0
+margin_right = 160.0
+margin_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "water and drowned"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_water_en"]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 160.0
+margin_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+text = "you lose a life!"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="death_dialog_water_de" type="Popup" parent="dialogue_system"]
+margin_left = 48.0
+margin_top = 64.0
+margin_right = 208.0
+margin_bottom = 152.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/death_dialog_water_de" instance=ExtResource( 2 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+margin_right = 160.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/death_dialog_water_de"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 144.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "du bist ins
+wasser gefallen
+und ertrunken"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_water_de"]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 144.0
+margin_bottom = 72.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+text = "du verlierst
+ein leben!"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="death_dialog_torchfire_en" type="Popup" parent="dialogue_system"]
+margin_left = 40.0
+margin_top = 64.0
+margin_right = 216.0
+margin_bottom = 144.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/death_dialog_torchfire_en" instance=ExtResource( 2 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+margin_right = 176.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/death_dialog_torchfire_en"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 160.0
+margin_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "you were burnt"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label1" type="Label" parent="dialogue_system/death_dialog_torchfire_en"]
+margin_left = 16.0
+margin_top = 36.0
+margin_right = 160.0
+margin_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "by the flames"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_torchfire_en"]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 160.0
+margin_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+text = "you lose a life!"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="death_dialog_torchfire_de" type="Popup" parent="dialogue_system"]
+margin_left = 48.0
+margin_top = 64.0
+margin_right = 208.0
+margin_bottom = 152.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/death_dialog_torchfire_de" instance=ExtResource( 2 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+margin_right = 160.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/death_dialog_torchfire_de"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 144.0
+margin_bottom = 72.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "du wurdest von
+den flammen
+verbrannt"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_torchfire_de"]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 144.0
+margin_bottom = 72.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+text = "du verlierst
+ein leben!"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="death_dialog_rat_en" type="Popup" parent="dialogue_system"]
+margin_left = 40.0
+margin_top = 64.0
+margin_right = 216.0
+margin_bottom = 144.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/death_dialog_rat_en" instance=ExtResource( 2 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+margin_right = 176.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/death_dialog_rat_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = -16.0
+margin_bottom = -16.0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "the rat goes
+straight for
+your neck"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_rat_en"]
+anchor_bottom = 0.1
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 160.0
+margin_bottom = 56.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+text = "you lose a life!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="death_dialog_rat_de" type="Popup" parent="dialogue_system"]
+margin_left = 48.0
+margin_top = 64.0
+margin_right = 208.0
+margin_bottom = 152.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/death_dialog_rat_de" instance=ExtResource( 2 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+margin_right = 160.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/death_dialog_rat_de"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 144.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "die ratte geht
+dir direkt
+an die gurgel"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_rat_de"]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 144.0
+margin_bottom = 72.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+text = "du verlierst
+ein leben!"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="death_dialog_bat_en" type="Popup" parent="dialogue_system"]
+margin_left = 40.0
+margin_top = 64.0
+margin_right = 216.0
+margin_bottom = 144.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/death_dialog_bat_en" instance=ExtResource( 2 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+margin_right = 176.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/death_dialog_bat_en"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 160.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "the bat bites you
+in the neck and
+slurps you dry"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_bat_en"]
+anchor_bottom = 0.1
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 160.0
+margin_bottom = 56.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+text = "you lose a life!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="death_dialog_bat_de" type="Popup" parent="dialogue_system"]
+margin_left = 48.0
+margin_top = 64.0
+margin_right = 208.0
+margin_bottom = 152.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/death_dialog_bat_de" instance=ExtResource( 2 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+margin_right = 160.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/death_dialog_bat_de"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 144.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "die fledermaus
+beisst dich
+in den nacken"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_bat_de"]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 144.0
+margin_bottom = 72.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+text = "du verlierst
+ein leben!"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="death_dialog_spikes_en" type="Popup" parent="dialogue_system"]
+margin_left = 40.0
+margin_top = 64.0
+margin_right = 216.0
+margin_bottom = 144.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/death_dialog_spikes_en" instance=ExtResource( 2 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+margin_right = 176.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/death_dialog_spikes_en"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 160.0
+margin_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "you're skewered by"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label1" type="Label" parent="dialogue_system/death_dialog_spikes_en"]
+margin_left = 16.0
+margin_top = 36.0
+margin_right = 160.0
+margin_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "the sharp daggers"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_spikes_en"]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 160.0
+margin_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+text = "you lose a life!"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="death_dialog_spikes_de" type="Popup" parent="dialogue_system"]
+margin_left = 48.0
+margin_top = 64.0
+margin_right = 208.0
+margin_bottom = 152.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/death_dialog_spikes_de" instance=ExtResource( 2 )]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+margin_right = 160.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/death_dialog_spikes_de"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 144.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "du wirst von
+spitzen pikern
+durchbohrt"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/death_dialog_spikes_de"]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 144.0
+margin_bottom = 72.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
+text = "du verlierst
+ein leben!"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="room_3" type="Control" parent="dialogue_system"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="room_screen_3" type="Sprite" parent="dialogue_system/room_3"]
+visible = false
+position = Vector2( 128, 116 )
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="message_stuck_door_en" type="Popup" parent="dialogue_system/room_3"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_3/message_stuck_door_en" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_top = 40.0
+margin_right = 208.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_3/message_stuck_door_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 64.0
+margin_right = 192.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "the old wooden door
+is warped and jammed"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_open_door_en" type="Popup" parent="dialogue_system/room_3"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_3/message_open_door_en" instance=ExtResource( 2 )]
+margin_right = 208.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_3/message_open_door_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 192.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "you prise open the
+old wooden door with
+the sturdy crowbar"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_fill_bucket_en" type="Popup" parent="dialogue_system/room_3"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_3/message_fill_bucket_en" instance=ExtResource( 2 )]
+margin_right = 200.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_3/message_fill_bucket_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 184.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "you fill the empty
+bucket to the brim
+with drops of water"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_stuck_door_de" type="Popup" parent="dialogue_system/room_3"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_3/message_stuck_door_de" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_top = 40.0
+margin_right = 208.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_3/message_stuck_door_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 64.0
+margin_right = 192.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "die alte holztür ist
+verzogen und klemmt"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_open_door_de" type="Popup" parent="dialogue_system/room_3"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_3/message_open_door_de" instance=ExtResource( 2 )]
+margin_right = 208.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_3/message_open_door_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 192.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "du hebelst die alte
+holztür mit dem
+robusten kuhfuss auf"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_fill_bucket_de" type="Popup" parent="dialogue_system/room_3"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_3/message_fill_bucket_de" instance=ExtResource( 2 )]
+margin_right = 200.0
+margin_bottom = 72.0
+
+[node name="label" type="Label" parent="dialogue_system/room_3/message_fill_bucket_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 184.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "du füllst den leeren
+eimer randvoll mit
+wassertropfen"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="room_6" type="Control" parent="dialogue_system"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="room_screen_6" type="Sprite" parent="dialogue_system/room_6"]
+visible = false
+position = Vector2( 128, 116 )
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="message_rat_feeding_en" type="Popup" parent="dialogue_system/room_6"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_6/message_rat_feeding_en" instance=ExtResource( 2 )]
+margin_right = 168.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_6/message_rat_feeding_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 152.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "the hungry rat
+grabs the apple
+and escapes"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_rat_feeding_de" type="Popup" parent="dialogue_system/room_6"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_6/message_rat_feeding_de" instance=ExtResource( 2 )]
+margin_right = 192.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_6/message_rat_feeding_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 176.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "die hungrige ratte
+schnappt sich den
+apfel und flüchtet"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="room_8" type="Control" parent="dialogue_system"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="room_screen_8" type="Sprite" parent="dialogue_system/room_8"]
+visible = false
+position = Vector2( 128, 116 )
+texture = ExtResource( 15 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="message_lever_on_en" type="Popup" parent="dialogue_system/room_8"]
+visible = true
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_8/message_lever_on_en" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_bottom = 56.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_8/message_lever_on_en"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 72.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "click"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_lever_off_en" type="Popup" parent="dialogue_system/room_8"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_8/message_lever_off_en" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_bottom = 56.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_8/message_lever_off_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 72.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "clack"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_lever_break_en" type="Popup" parent="dialogue_system/room_8"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_8/message_lever_break_en" instance=ExtResource( 2 )]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 224.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_8/message_lever_break_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 56.0
+margin_right = 208.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "you can press it as
+often as you like,
+nothing will happen!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_lever_on_off_en" type="Popup" parent="dialogue_system/room_8"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_8/message_lever_on_off_en" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_8/message_lever_on_off_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 72.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "click
+clack
+click"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_lever_crack_en" type="Popup" parent="dialogue_system/room_8"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_8/message_lever_crack_en" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_bottom = 56.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_8/message_lever_crack_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 72.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "crack"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_lever_broken_en" type="Popup" parent="dialogue_system/room_8"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_8/message_lever_broken_en" instance=ExtResource( 2 )]
+margin_left = 8.0
+margin_top = 32.0
+margin_right = 232.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_8/message_lever_broken_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 56.0
+margin_right = 216.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "way to go! the lever
+for the portcullis has
+finally broken off"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_lever_on_de" type="Popup" parent="dialogue_system/room_8"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_8/message_lever_on_de" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_bottom = 56.0
+
+[node name="label" type="Label" parent="dialogue_system/room_8/message_lever_on_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 72.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "klick"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_lever_off_de" type="Popup" parent="dialogue_system/room_8"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_8/message_lever_off_de" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_bottom = 56.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_8/message_lever_off_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 72.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "klack"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_lever_break_de" type="Popup" parent="dialogue_system/room_8"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_8/message_lever_break_de" instance=ExtResource( 2 )]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 208.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_8/message_lever_break_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 56.0
+margin_right = 192.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "egal wie oft du
+drückst, es wird
+nichts passieren"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_lever_on_off_de" type="Popup" parent="dialogue_system/room_8"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_8/message_lever_on_off_de" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_bottom = 72.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_8/message_lever_on_off_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 72.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "klick
+klack
+klick"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_lever_crack_de" type="Popup" parent="dialogue_system/room_8"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_8/message_lever_crack_de" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_bottom = 56.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_8/message_lever_crack_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 72.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "knack"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_lever_broken_de" type="Popup" parent="dialogue_system/room_8"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_8/message_lever_broken_de" instance=ExtResource( 2 )]
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 216.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_8/message_lever_broken_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 56.0
+margin_right = 200.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 3 )
+text = "spitze! der hebel
+für das fallgitter
+ist abgebrochen"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="room_9" type="Control" parent="dialogue_system"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="room_screen_9" type="Sprite" parent="dialogue_system/room_9"]
+visible = false
+position = Vector2( 128, 116 )
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="message_denzil_before_1_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_before_1_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_top = 32.0
+margin_right = 200.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_before_1_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 184.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"hey DENZIL, why so
+sad today? are you
+missing something?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_before_2_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_before_2_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 8.0
+margin_right = 232.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_before_2_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 216.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"oh, DIZ. i lost my
+beloved headphones
+somewhere around here§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_before_3_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_before_3_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 224.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_before_3_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 80.0
+margin_right = 208.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"but the only thing
+that i have found so
+far is this strange
+object right here§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_before_4_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 56.0
+margin_right = 8.0
+margin_bottom = 56.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_before_4_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 48.0
+margin_top = 8.0
+margin_right = 240.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_before_4_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = 32.0
+margin_right = 224.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"a strange object?
+sounds interesting!
+can i have it?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_before_5_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_before_5_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 48.0
+margin_right = 184.0
+margin_bottom = 120.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_before_5_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 72.0
+margin_right = 168.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"sure thing! find
+my headphones and
+it's all yours§"
+align = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="message_denzil_no_found_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_no_found_en" instance=ExtResource( 2 )]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 208.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_no_found_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 56.0
+margin_right = 192.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "DENZIL is not
+currently in the
+mood for talks"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_found_1_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_found_1_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_right = 176.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_found_1_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 160.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"take a look,
+DENZIL, see what
+i have found!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_found_2_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_found_2_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 32.0
+margin_top = 56.0
+margin_right = 240.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_found_2_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 80.0
+margin_right = 224.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"brilliant DIZ! you
+actually found them!
+how can i ever thank
+you for that, mate?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_found_3_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_found_3_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 64.0
+margin_top = 24.0
+margin_right = 232.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_found_3_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 80.0
+margin_top = 48.0
+margin_right = 216.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"so I can think
+of something
+straight away!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_found_4_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_found_4_en" instance=ExtResource( 2 )]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 224.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_found_4_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 56.0
+margin_right = 208.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "DENZIL happily turns
+on his tape recorder
+and bobs his head"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_after_1_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_after_1_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 200.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_after_1_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 184.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"what's the matter?
+you can clearly see
+that i'm listening
+to music right now§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_after_2_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_after_2_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 56.0
+margin_top = 40.0
+margin_right = 216.0
+margin_bottom = 112.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_after_2_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 72.0
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"er, um ... i
+thought we had
+an agreement?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_after_3_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_after_3_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 8.0
+margin_top = 64.0
+margin_right = 232.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_after_3_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 88.0
+margin_right = 216.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"are you talking about
+my strange discovery?
+well then, catch!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_after_4_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_after_4_en" instance=ExtResource( 2 )]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_after_4_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 48.0
+margin_right = 208.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "you catch the object
+- but it slips out
+of your hands and
+falls to the ground"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_1_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_1_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 176.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_1_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 160.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"zounds, DIZ!
+your clumsiness
+almost turned us
+into egg salad§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_2_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_2_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 72.0
+margin_top = 48.0
+margin_right = 240.0
+margin_bottom = 128.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_2_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 88.0
+margin_top = 72.0
+margin_right = 224.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"i didn't catch
+badly, DENZIL!
+magical forces
+were at work!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_3_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_3_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_3_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 48.0
+margin_right = 208.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"do you think the
+object is actually a
+mystical artifact?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_4_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_4_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_top = 64.0
+margin_right = 240.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_4_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 88.0
+margin_right = 224.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"yes, indeed! and maybe i
+can use it to finally put
+a stop to wizard ZAKS§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_5_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_5_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 56.0
+margin_right = 240.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_5_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 72.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"if only I knew
+where he was at
+this very moment§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_6_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_6_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 40.0
+margin_right = 240.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_6_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 64.0
+margin_right = 224.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"most recently, he
+transformed glowing lava
+into huge, ominous ice
+avalanches, which then
+buried everything and
+everyone beneath them§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_7_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_7_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_right = 192.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_7_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 176.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"one more reason to
+end ZAKS' reign of
+terror for good§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_8_en" type="Popup" parent="dialogue_system/room_9"]
+margin_top = 48.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_8_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 232.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_8_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 48.0
+margin_right = 216.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"good luck with your
+daring operation and
+if you need help,
+please don't ask me!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_ignore_you_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_ignore_you_en" instance=ExtResource( 2 )]
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 216.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_ignore_you_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 56.0
+margin_right = 200.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "DENZIL listens to
+his tape recording
+and ignores you"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_painting_1_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_painting_1_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_right = 192.0
+margin_bottom = 64.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_painting_1_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 176.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "\"oops, something's
+not right here?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_painting_2_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_painting_2_en" instance=ExtResource( 2 )]
+margin_top = 32.0
+margin_right = 240.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_painting_2_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 224.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "you hang the picture up
+the right way round,
+then something falls off"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_painting_read_en" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_painting_read_en" instance=ExtResource( 2 )]
+margin_top = 48.0
+margin_right = 216.0
+margin_bottom = 128.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_painting_read_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 72.0
+margin_right = 200.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "you look up at the
+picture- it's you in
+your last adventure"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/room_9/message_painting_read_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 96.0
+margin_right = 200.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "treasure island dizzy"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_before_1_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_before_1_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_top = 24.0
+margin_right = 192.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_before_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 176.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"hey denzil, warum
+so betrübt heute? 
+fehlt dir etwas?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_before_2_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_before_2_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 56.0
+margin_right = 240.0
+margin_bottom = 128.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_before_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 80.0
+margin_right = 224.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"ach diz. ich habe hier
+irgendwo meine geliebten
+kopfhörer liegen lassen§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_before_3_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_before_3_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 32.0
+margin_right = 240.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_before_3_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"aber das einzige,
+was ich bisher finden
+konnte, ist dieses
+seltsame ding hier§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_before_4_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 56.0
+margin_right = 8.0
+margin_bottom = 56.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_before_4_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_top = -8.0
+margin_right = 208.0
+margin_bottom = 64.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_before_4_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 192.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"ein seltsames ding?
+klingt interessant!
+kann ich es haben?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_before_5_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_before_5_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 216.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_before_5_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 56.0
+margin_right = 200.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"na klar! finde
+meine kopfhörer
+und es gehört dir§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_no_found_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_no_found_de" instance=ExtResource( 2 )]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 208.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_no_found_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 56.0
+margin_right = 192.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "denzil ist nicht
+in plauderlaune"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_found_1_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_found_1_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_right = 168.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_found_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 152.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"sieh mal her,
+DENZIL, was ich
+gefunden habe!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_found_2_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_found_2_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 56.0
+margin_right = 240.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_found_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 80.0
+margin_right = 224.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"genial diz! du hast sie
+tatsächlich gefunden!
+wie kann ich dir jemals
+dafür danken, kumpel?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_found_3_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_found_3_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 40.0
+margin_top = 24.0
+margin_right = 216.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_found_3_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 56.0
+margin_top = 48.0
+margin_right = 200.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"also mir würde
+da spontan etwas
+einfallen!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_found_4_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_found_4_de" instance=ExtResource( 2 )]
+margin_top = 32.0
+margin_right = 240.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_found_4_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 224.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "denzil schaltet fröhlich
+seinen 'WALKMAN' ein
+und wippt mit dem kopf"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_after_1_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_after_1_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 24.0
+margin_right = 200.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_after_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 184.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"was ist los diz?
+du siehst doch, ich
+höre gerade musik§"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_after_2_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_after_2_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 64.0
+margin_top = 56.0
+margin_right = 240.0
+margin_bottom = 128.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_after_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 80.0
+margin_top = 80.0
+margin_right = 224.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"äh, ähm ... ich
+dachte wir haben
+eine abmachung?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_after_3_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_after_3_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 8.0
+margin_right = 232.0
+margin_bottom = 72.0
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_after_3_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 216.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"redest du etwa von
+meinem seltsamen fund?
+na dann - fang auf!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_denzil_after_4_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_after_4_de" instance=ExtResource( 2 )]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 216.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_after_4_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 48.0
+margin_right = 200.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "du fängst das ding,
+jedoch rutscht es
+dir aus den händen
+und fällt zu boden"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_1_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_1_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 224.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 208.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"sapperlot, diz! deine
+tollpatschigkeit hätte
+uns um ein haar zu
+eiersalat verarbeitet§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_2_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_2_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 48.0
+margin_top = 48.0
+margin_right = 240.0
+margin_bottom = 128.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = 72.0
+margin_right = 224.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"das war nicht aus
+versehen, denzil!
+da waren magische
+kräfte am werk!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_3_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_3_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_3_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 40.0
+margin_right = 224.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"du glaubst, das teil
+ist in wirklichkeit ein
+mystisches artefakt?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_4_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_4_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_top = 56.0
+margin_right = 240.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_4_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 80.0
+margin_right = 224.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"ja, was denn sonst?!
+und vielleicht kann ich
+damit endlich zauberer
+ZAKS das handwerk legen§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_5_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_5_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_right = 208.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_5_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 192.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"wenn ich doch nur
+wüsste, wo er gerade
+sein unwesen treibt§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_6_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_6_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 32.0
+margin_right = 240.0
+margin_bottom = 120.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_6_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 224.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"zuletzt verwandelte er
+vulkanlava in gewaltige,
+unheilvolle eislawinen,
+die dann alles und jeden
+unter sich begruben§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_7_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_7_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 24.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_7_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 224.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"ein grund mehr, zaks'
+schreckensherrschaft
+für immer zu beenden§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_strange_thing_8_de" type="Popup" parent="dialogue_system/room_9"]
+margin_top = 48.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_strange_thing_8_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 8.0
+margin_top = 24.0
+margin_right = 248.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_strange_thing_8_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 48.0
+margin_right = 232.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"viel glück bei deinem
+tollkühnen vorhaben und
+falls du hilfe brauchst,
+frag bitte nicht mich!§"
+align = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="message_denzil_ignore_you_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_9/message_denzil_ignore_you_de" instance=ExtResource( 2 )]
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 216.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_denzil_ignore_you_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 56.0
+margin_right = 200.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "denzil ist in sein
+gedudel vertieft
+und ignoriert dich"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_painting_1_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_painting_1_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_right = 184.0
+margin_bottom = 64.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_painting_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 168.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "\"nanu, hier stimmt
+doch was nicht?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_painting_2_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_painting_2_de" instance=ExtResource( 2 )]
+margin_top = 32.0
+margin_right = 240.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_painting_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 224.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "du hängst das bild
+richtig herum auf, dabei
+fällt etwas herunter"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_painting_read_de" type="Popup" parent="dialogue_system/room_9"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_9/message_painting_read_de" instance=ExtResource( 2 )]
+margin_top = 48.0
+margin_right = 232.0
+margin_bottom = 128.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_9/message_painting_read_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 72.0
+margin_right = 216.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "du schaust auf das
+bild- das bist du in
+einem anderen abenteuer"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/room_9/message_painting_read_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 96.0
+margin_right = 216.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "schatzinsel dizzy"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="room_11" type="Control" parent="dialogue_system"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="room_screen_11" type="Sprite" parent="dialogue_system/room_11"]
+visible = false
+position = Vector2( 128, 116 )
+texture = ExtResource( 20 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="message_granddizzy_before_1_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_1_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 40.0
+margin_right = 184.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_1_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 64.0
+margin_right = 168.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"oh son, i am so
+glad to see you!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_2_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_2_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 80.0
+margin_top = 72.0
+margin_right = 240.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_2_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 96.0
+margin_top = 96.0
+margin_right = 224.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"what's wrong,
+grand dizzy?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_3_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_3_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 16.0
+margin_right = 240.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_3_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"terrible earthquakes
+have buried access to
+our beautiful village§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_4_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_4_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_top = 40.0
+margin_right = 192.0
+margin_bottom = 120.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_4_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 64.0
+margin_right = 176.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"when it comes to
+the, um, quakes, i
+have a very simple
+explanation ...§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_5_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_5_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 48.0
+margin_top = 24.0
+margin_right = 240.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_5_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = 48.0
+margin_right = 224.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"later, lad! let's
+clear the way to
+the well first!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_6_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_6_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 32.0
+margin_top = 72.0
+margin_right = 208.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_6_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 96.0
+margin_right = 192.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"leave it to me,
+grand dizzy!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_7_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 56.0
+margin_right = 8.0
+margin_bottom = 56.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_7_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 32.0
+margin_right = 184.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_7_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 168.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"wait a minute,
+there's a catch!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_8_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_8_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 240.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_8_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"we need exactly a dozen
+gold coins to get to the
+other side of the well!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_9_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_9_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 88.0
+margin_top = 48.0
+margin_right = 240.0
+margin_bottom = 120.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_9_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 104.0
+margin_top = 72.0
+margin_right = 224.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"who told you
+this cock and
+bull story??§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_10_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_10_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 40.0
+margin_right = 240.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_10_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 64.0
+margin_right = 224.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"my great-grandfather
+already heard it from his
+great-great-grandmother
+and she in turn heard it
+from her great-great-
+great-grandparents ...§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_11_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_11_en" instance=ExtResource( 2 )]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 208.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_11_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 56.0
+margin_right = 192.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "you roll your
+eyes and quickly
+clear the way"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_warning_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_warning_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 240.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_warning_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"not so fast, lad! first
+you have to drop a dozen
+coins into the well!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_after_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_after_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 168.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_after_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 152.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"we meet in my
+hut for dinner.
+there is tasty
+rutabaga stew!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_coin_missing_1_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_coin_missing_1_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_right = 152.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_coin_missing_1_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 136.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"I just can't
+find any more
+gold coins?!§"
+align = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="message_coin_missing_2_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_coin_missing_2_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 56.0
+margin_top = 32.0
+margin_right = 240.0
+margin_bottom = 112.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_coin_missing_2_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 72.0
+margin_top = 56.0
+margin_right = 224.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"have you already
+looked in every
+corner and under
+every stone?!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_coin_missing_3_en" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_coin_missing_3_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 16.0
+margin_top = 64.0
+margin_right = 216.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_coin_missing_3_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 88.0
+margin_right = 200.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"insane. while ZAKS
+ravages the land, i
+search for coins§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_coin_complete_en" type="Popup" parent="dialogue_system/room_11"]
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_coin_complete_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 192.0
+margin_bottom = 120.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_coin_complete_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 72.0
+margin_right = 176.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"i see you have
+all the gold coins
+together now§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_coin_well_en" type="Popup" parent="dialogue_system/room_11"]
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_coin_well_en" instance=ExtResource( 2 )]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 176.0
+margin_bottom = 120.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_coin_well_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 72.0
+margin_right = 160.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "you drop the
+coins down the
+well one by one"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_use_pickaxe_en" type="Popup" parent="dialogue_system/room_11"]
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_use_pickaxe_en" instance=ExtResource( 2 )]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 168.0
+margin_bottom = 120.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_use_pickaxe_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 72.0
+margin_right = 152.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "you chop up
+the boulders
+with a pickaxe"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_1_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_1_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 32.0
+margin_right = 176.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 160.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"oh mein sohn,
+ich bin so froh,
+dich zu sehen!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_2_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_2_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 88.0
+margin_top = 72.0
+margin_right = 240.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 104.0
+margin_top = 96.0
+margin_right = 224.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"was ist los,
+grossvater?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_3_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_3_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 240.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_3_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"fürchterliche erdbeben
+verschütteten den zugang
+zu unserem schönen dorf§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_4_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_4_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_top = 32.0
+margin_right = 176.0
+margin_bottom = 112.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_4_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 160.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"für die, ähm,
+beben habe ich
+eine ganz simple
+erklärung ...§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_5_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_5_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 16.0
+margin_top = 64.0
+margin_right = 224.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_5_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 88.0
+margin_right = 208.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"später, mein junge!
+lass uns vorher den
+brunnen freiräumen!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_6_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_6_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 56.0
+margin_top = 24.0
+margin_right = 240.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_6_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 72.0
+margin_top = 48.0
+margin_right = 224.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"überlass mir das
+mal, grossvater!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_7_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_7_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 152.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_7_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 136.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"warte kurz!
+die sache hat
+einen haken!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_8_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_8_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 56.0
+margin_right = 240.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_8_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 80.0
+margin_right = 224.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"wir benötigen exakt ein
+dutzend goldmünzen, um
+auf die andere seite des
+brunnens zu gelangen!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_9_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_9_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 64.0
+margin_top = 24.0
+margin_right = 240.0
+margin_bottom = 96.0
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_9_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 80.0
+margin_top = 48.0
+margin_right = 224.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"wer hat dir denn
+dieses märchen
+aufgetischt???§"
+align = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_10_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_10_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 48.0
+margin_right = 240.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_10_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 72.0
+margin_right = 224.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"mein urgrossvater hörte
+es bereits von seiner
+ururgrossmutter und die
+wiederum von ihren
+urururgrosseltern ...§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_before_11_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_before_11_de" instance=ExtResource( 2 )]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 208.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_before_11_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 56.0
+margin_right = 192.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "du verdrehst die
+augen und räumst
+fix den weg frei"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_warning_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_warning_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 240.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_warning_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"nicht so hastig, junge!
+zuallererst sollst du
+ein dutzend goldmünzen
+in den brunnen werfen!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_granddizzy_after_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_granddizzy_after_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 176.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_granddizzy_after_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 160.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"wir treffen uns
+in meiner hütte
+zum abendessen.
+es gibt leckeren
+wrukeneintopf!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_coin_missing_1_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_coin_missing_1_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_right = 184.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_coin_missing_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 168.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"ich kann einfach
+keine weiteren
+münzen finden?!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_coin_missing_2_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_coin_missing_2_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 56.0
+margin_top = 32.0
+margin_right = 240.0
+margin_bottom = 112.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_coin_missing_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 72.0
+margin_top = 56.0
+margin_right = 224.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"hast du schon in
+allen ecken und
+unter jedem stein
+nachgeschaut?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_coin_missing_3_de" type="Popup" parent="dialogue_system/room_11"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_coin_missing_3_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 8.0
+margin_top = 64.0
+margin_right = 240.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_coin_missing_3_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 88.0
+margin_right = 224.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"verrückt. während zaks
+das land verwüstet, muss
+ich nach münzen suchen§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_coin_complete_de" type="Popup" parent="dialogue_system/room_11"]
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_coin_complete_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 168.0
+margin_bottom = 120.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_coin_complete_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 72.0
+margin_right = 152.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"wie ich sehe,
+hast du jetzt
+alle münzen§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_coin_well_de" type="Popup" parent="dialogue_system/room_11"]
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_11/message_coin_well_de" instance=ExtResource( 2 )]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 192.0
+margin_bottom = 128.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_coin_well_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 72.0
+margin_right = 176.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "du wirfst die
+goldmünzen, eine
+nach der anderen,
+in den brunnen"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_use_pickaxe_de" type="Popup" parent="dialogue_system/room_11"]
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_11/message_use_pickaxe_de" instance=ExtResource( 2 )]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 192.0
+margin_bottom = 120.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_11/message_use_pickaxe_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 72.0
+margin_right = 176.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 4 )
+text = "du zerkleinerst
+mit der spitzhacke
+die felsbrocken"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="room_12" type="Control" parent="dialogue_system"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="room_screen_12" type="Sprite" parent="dialogue_system/room_12"]
+visible = false
+position = Vector2( 128, 116 )
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="message_freight_lift_down_en" type="Popup" parent="dialogue_system/room_12"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_12/message_freight_lift_down_en" instance=ExtResource( 2 )]
+margin_right = 176.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_12/message_freight_lift_down_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 160.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "you place the
+heavy cannonball
+on the chainlift"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_oil_puddle_en" type="Popup" parent="dialogue_system/room_12"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_12/message_oil_puddle_en" instance=ExtResource( 2 )]
+margin_right = 192.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_12/message_oil_puddle_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 176.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "you put the key in
+the puddle of oil
+to remove the rust"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_freight_lift_down_de" type="Popup" parent="dialogue_system/room_12"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_12/message_freight_lift_down_de" instance=ExtResource( 2 )]
+margin_right = 208.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_12/message_freight_lift_down_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 192.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "du legst die schwere
+kanonenkugel auf
+dem lastenaufzug ab"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_oil_puddle_de" type="Popup" parent="dialogue_system/room_12"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_12/message_oil_puddle_de" instance=ExtResource( 2 )]
+margin_right = 176.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_12/message_oil_puddle_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 160.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "du tauchst den
+schlüssel in die
+ölpfütze und der
+rost löst sich"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="room_14" type="Control" parent="dialogue_system"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="room_screen_14" type="Sprite" parent="dialogue_system/room_14"]
+visible = false
+position = Vector2( 128, 116 )
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="message_barrel_en" type="Popup" parent="dialogue_system/room_14"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_14/message_barrel_en" instance=ExtResource( 2 )]
+margin_right = 232.0
+margin_bottom = 64.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_14/message_barrel_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 216.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "you kick the barrel and
+it rolls into the water"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_barrel_water_en" type="Popup" parent="dialogue_system/room_14"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_14/message_barrel_water_en" instance=ExtResource( 2 )]
+margin_right = 240.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_14/message_barrel_water_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "you attach the outboard
+motor to the barrel and
+appoint yourself captain"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_barrel_de" type="Popup" parent="dialogue_system/room_14"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_14/message_barrel_de" instance=ExtResource( 2 )]
+margin_right = 176.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_14/message_barrel_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 160.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "du trittst gegen
+das fass und es
+rollt ins wasser"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_barrel_water_de" type="Popup" parent="dialogue_system/room_14"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_14/message_barrel_water_de" instance=ExtResource( 2 )]
+margin_right = 208.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_14/message_barrel_water_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 192.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "du befestigst den
+aussenborder am fass
+und ernennst dich
+selbst zum kapitän"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="room_15" type="Control" parent="dialogue_system"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="room_screen_15" type="Sprite" parent="dialogue_system/room_15"]
+visible = false
+position = Vector2( 128, 116 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="greeting_1_en" type="Popup" parent="dialogue_system/room_15"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_15/greeting_1_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_right = 136.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_15/greeting_1_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 120.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "\"oh! there's
+a note on
+the table§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="greeting_2_en" type="Popup" parent="dialogue_system/room_15"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_15/greeting_2_en" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_left = 48.0
+margin_top = 56.0
+margin_right = 184.0
+margin_bottom = 128.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_15/greeting_2_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = 80.0
+margin_right = 168.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+text = "i'll be
+right back!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="label1" type="Label" parent="dialogue_system/room_15/greeting_2_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = 96.0
+margin_right = 168.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.345098, 0.552941, 0.262745, 1 )
+text = "- ROCKWART -"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="greeting_3_en" type="Popup" parent="dialogue_system/room_15"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_15/greeting_3_en" instance=ExtResource( 2 )]
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 216.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_15/greeting_3_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 56.0
+margin_right = 200.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "you may need the
+troll's note later"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="greeting_1_de" type="Popup" parent="dialogue_system/room_15"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_15/greeting_1_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_right = 160.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_15/greeting_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 144.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "\"oha! da liegt
+eine nachricht
+auf dem tisch§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="greeting_2_de" type="Popup" parent="dialogue_system/room_15"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_15/greeting_2_de" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_left = 80.0
+margin_top = 56.0
+margin_right = 240.0
+margin_bottom = 128.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_15/greeting_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 96.0
+margin_top = 80.0
+margin_right = 224.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+text = "ich bin gleich
+wieder zurück!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="label1" type="Label" parent="dialogue_system/room_15/greeting_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 96.0
+margin_top = 96.0
+margin_right = 224.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.345098, 0.552941, 0.262745, 1 )
+text = "- ROCKWART -"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="greeting_3_de" type="Popup" parent="dialogue_system/room_15"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_15/greeting_3_de" instance=ExtResource( 2 )]
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 216.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_15/greeting_3_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 56.0
+margin_right = 200.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "die nachricht vom
+troll könnte dir
+noch nützlich sein"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="room_16" type="Control" parent="dialogue_system"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="room_screen_16" type="Sprite" parent="dialogue_system/room_16"]
+visible = false
+position = Vector2( 128, 116 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="message_artifact_no_shake_en" type="Popup" parent="dialogue_system/room_16"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_16/message_artifact_no_shake_en" instance=ExtResource( 2 )]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 224.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_16/message_artifact_no_shake_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 56.0
+margin_right = 208.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "you have to take a
+few steps back first
+for safety reasons"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_artifact_no_shake_de" type="Popup" parent="dialogue_system/room_16"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_16/message_artifact_no_shake_de" instance=ExtResource( 2 )]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 224.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_16/message_artifact_no_shake_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 56.0
+margin_right = 208.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "du musst vorher ein
+paar schritte zurück
+in sicherheit gehen"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="room_17" type="Control" parent="dialogue_system"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="room_screen_17" type="Sprite" parent="dialogue_system/room_17"]
+visible = false
+position = Vector2( 128, 116 )
+texture = ExtResource( 19 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="message_wrong_cell_key_en" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_wrong_cell_key_en" instance=ExtResource( 2 )]
+margin_right = 152.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_wrong_cell_key_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 136.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "the rusty key
+does not fit
+into the lock"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_open_cell_door_en" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_17/message_open_cell_door_en" instance=ExtResource( 2 )]
+margin_right = 200.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_open_cell_door_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 184.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "the stainless key
+slides effortlessly
+into the lock and
+opens the cell door"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_wake_en" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_wake_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 64.0
+margin_right = 240.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_wake_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 80.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 6 )
+text = "\"psst! DOZY, get
+up, sleepyhead!
+freedom calls!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_wake_up_en" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_wake_up_en" instance=ExtResource( 2 )]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 208.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_wake_up_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 56.0
+margin_right = 192.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "DOZY snores and
+can't be bothered"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_1_en" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_1_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 184.0
+margin_bottom = 64.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_1_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 168.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"EY! what are you
+doing, DIZZY?!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_2_en" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_2_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 48.0
+margin_top = 32.0
+margin_right = 240.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_2_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = 56.0
+margin_right = 224.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"er, I thought you
+were on fire ...§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_3_en" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_3_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 64.0
+margin_right = 240.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_3_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 88.0
+margin_right = 224.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"huh? what are you
+saying? I probably still
+have water in my ears§"
+align = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_4_en" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_4_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_right = 184.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_4_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 168.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"i just wanted to
+inquire ... about
+the hideout of
+that fiend ZAKS§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_5_en" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_5_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 32.0
+margin_top = 56.0
+margin_right = 240.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_5_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 80.0
+margin_right = 224.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"yes, I think so! in
+my dreams, I saw him
+in a castle high
+above the clouds§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_6_en" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_6_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 64.0
+margin_right = 240.0
+margin_bottom = 88.0
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_6_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 80.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"your dreams are
+too hazy for me!
+i will never
+track down ZAKS
+like this§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_7_en" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_7_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 48.0
+margin_right = 152.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_7_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 72.0
+margin_right = 136.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"what a pity!
+but take this
+coin as a
+token of our
+friendship!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_8_en" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_8_en" instance=ExtResource( 2 )]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 224.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_8_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 56.0
+margin_right = 208.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "before you can thank
+him, DOZY falls back
+into a deep sleep"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_wake_up_end_en" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_wake_up_end_en" instance=ExtResource( 2 )]
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 216.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_wake_up_end_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 56.0
+margin_right = 200.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "DOZY is now fast
+asleep and can no
+longer be woken up"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_wrong_cell_key_de" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_17/message_wrong_cell_key_de" instance=ExtResource( 2 )]
+margin_right = 176.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_wrong_cell_key_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 160.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "der verrostete
+schlüssel passt
+nicht ins schloss"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_open_cell_door_de" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="dialogue_system/room_17/message_open_cell_door_de" instance=ExtResource( 2 )]
+margin_right = 208.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_open_cell_door_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 192.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "mühelos gleitet der
+rostfreie schlüssel
+in das schloss und
+öffnet die zellentür"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_wake_de" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_wake_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 32.0
+margin_right = 240.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_wake_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 6 )
+text = "\"psst! dozy, steh
+auf du, schlafmütze!
+die freiheit ruft!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_wake_up_de" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_wake_up_de" instance=ExtResource( 2 )]
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 216.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_wake_up_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 56.0
+margin_right = 200.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "dozy schnarcht vor
+sich hin und lässt
+sich nicht stören"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_1_de" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_1_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 152.0
+margin_bottom = 64.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 136.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"ey! was soll
+das, DIZZY?!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_2_de" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_2_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 64.0
+margin_top = 24.0
+margin_right = 240.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 80.0
+margin_top = 48.0
+margin_right = 224.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"ÄHM, ich dachte,
+du brennst ...§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_3_de" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_3_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 224.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_3_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 80.0
+margin_right = 208.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"häh? Ich verstehe
+kein wort! ich habe
+wohl noch etwas
+wasser in den ohren§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_4_de" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_4_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_right = 200.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_4_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 184.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"ich habe gefragt,
+ob du das versteck
+von diesem scheusal
+ZAKS kennst ...§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_5_de" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_5_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 56.0
+margin_right = 240.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_5_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 80.0
+margin_right = 224.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"ja, ich denke schon!
+in meinen träumen sah
+ich ihn in einem schloss
+hoch über den wolken§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_6_de" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_6_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 48.0
+margin_right = 240.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_6_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"deine träume sind
+mir viel zu vage!
+so werde ich zaks
+niemals aufspüren§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_7_de" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_7_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_top = 48.0
+margin_right = 168.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_7_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 72.0
+margin_right = 152.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "\"ach, schade!
+aber nimm diese
+goldmünze als
+zeichen unserer
+freundschaft!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_awake_8_de" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_awake_8_de" instance=ExtResource( 2 )]
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 216.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_awake_8_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 56.0
+margin_right = 200.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "noch bevor du dich
+bedankst, versinkt
+DOZY in tiefschlaf"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_dozy_wake_up_end_de" type="Popup" parent="dialogue_system/room_17"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_17/message_dozy_wake_up_end_de" instance=ExtResource( 2 )]
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 216.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_17/message_dozy_wake_up_end_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 56.0
+margin_right = 200.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+custom_constants/line_spacing = 1
+custom_fonts/font = SubResource( 2 )
+text = "dozy schläft tief
+und fest und ist
+nicht aufzuwecken"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="room_24" type="Control" parent="dialogue_system"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="room_screen_24" type="Sprite" parent="dialogue_system/room_24"]
+visible = false
+position = Vector2( 128, 116 )
+texture = ExtResource( 22 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="message_rockwart_caught_1_en" type="Popup" parent="dialogue_system/room_24"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_24/message_rockwart_caught_1_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 144.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_24/message_rockwart_caught_1_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 128.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+text = "\"gosh! who's
+sneaking up
+on me here?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_rockwart_caught_2_en" type="Popup" parent="dialogue_system/room_24"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_24/message_rockwart_caught_2_en" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_top = 40.0
+margin_right = 240.0
+margin_bottom = 128.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_24/message_rockwart_caught_2_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 64.0
+margin_right = 224.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "\"why so jumpy, ROCKWART?
+i bet your rotten troll
+conscience is bothering
+you because you
+imprisoned my pal DOZY!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_rockwart_caught_3_en" type="Popup" parent="dialogue_system/room_24"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_24/message_rockwart_caught_3_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 32.0
+margin_top = 24.0
+margin_right = 208.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_24/message_rockwart_caught_3_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 48.0
+margin_right = 192.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+text = "\"what? me? no! i
+have nothing to
+do with that!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_rockwart_1_en" type="Popup" parent="dialogue_system/room_24"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_24/message_rockwart_1_en" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 240.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_24/message_rockwart_1_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+text = "\"i have nothing more to
+say to you! now get lost
+and leave me alone!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_signpost_en" type="Popup" parent="dialogue_system/room_24"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_24/message_signpost_en" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 112.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_24/message_signpost_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 48.0
+margin_right = 208.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "road work warning!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="label1" type="Label" parent="dialogue_system/room_24/message_signpost_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 56.0
+margin_right = 208.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "for more content
+rate us in the
+google play store!"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/room_24/message_signpost_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 80.0
+margin_right = 208.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.345098, 0.552941, 0.262745, 1 )
+text = "thanks a lot, folks!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_rockwart_caught_1_de" type="Popup" parent="dialogue_system/room_24"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_24/message_rockwart_caught_1_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 192.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_24/message_rockwart_caught_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 176.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+text = "\"oh! wer schleicht
+sich hier heimlich
+an mich heran?§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_rockwart_caught_2_de" type="Popup" parent="dialogue_system/room_24"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_24/message_rockwart_caught_2_de" instance=ExtResource( 2 )]
+modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 16.0
+margin_top = 40.0
+margin_right = 240.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_24/message_rockwart_caught_2_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 64.0
+margin_right = 224.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "\"warum so schreckhaft,
+rockwart? ich wette,
+dich plagt dein fieses
+troll-gewissen, weil
+du meinen kumpel dozy
+eingekerkert hast!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_rockwart_caught_3_de" type="Popup" parent="dialogue_system/room_24"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_24/message_rockwart_caught_3_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_left = 56.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_24/message_rockwart_caught_3_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 72.0
+margin_top = 48.0
+margin_right = 208.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+text = "\"was? ich? nein!
+damit habe ich
+nichts zu tun!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="message_rockwart_1_de" type="Popup" parent="dialogue_system/room_24"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_24/message_rockwart_1_de" instance=ExtResource( 2 )]
+modulate = Color( 0.439216, 0.643137, 0.698039, 1 )
+margin_right = 224.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_24/message_rockwart_1_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 208.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
+text = "\"ich habe dir nichts
+mehr zu sagen! Jetzt
+verschwinde und lass
+mich endlich in ruhe!§"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_signpost_de" type="Popup" parent="dialogue_system/room_24"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_24/message_signpost_de" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 112.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_24/message_signpost_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 48.0
+margin_right = 208.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "achtung baustelle!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="label1" type="Label" parent="dialogue_system/room_24/message_signpost_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 56.0
+margin_right = 208.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "für weitere inhalte
+bewertet uns im
+google play store"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/room_24/message_signpost_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 80.0
+margin_right = 208.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.345098, 0.552941, 0.262745, 1 )
+text = "vielen dank, leute!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="room_26" type="Control" parent="dialogue_system"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="room_screen_26" type="Sprite" parent="dialogue_system/room_26"]
+visible = false
+position = Vector2( 128, 116 )
+texture = ExtResource( 21 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="message_use_ladder_piece_en" type="Popup" parent="dialogue_system/room_26"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_26/message_use_ladder_piece_en" instance=ExtResource( 2 )]
+margin_right = 160.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_26/message_use_ladder_piece_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 144.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "you extend the
+ladder by the
+missing piece"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_signpost_en" type="Popup" parent="dialogue_system/room_26"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_26/message_signpost_en" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 112.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_26/message_signpost_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 48.0
+margin_right = 208.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "road work warning!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="label1" type="Label" parent="dialogue_system/room_26/message_signpost_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 56.0
+margin_right = 208.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "for more content
+rate us in the
+google play store!"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/room_26/message_signpost_en"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 80.0
+margin_right = 208.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.345098, 0.552941, 0.262745, 1 )
+text = "thanks a lot, folks!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_use_ladder_piece_de" type="Popup" parent="dialogue_system/room_26"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_26/message_use_ladder_piece_de" instance=ExtResource( 2 )]
+margin_right = 184.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_26/message_use_ladder_piece_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 168.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "du verlängerst
+die leiter um das
+fehlende stück"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="message_signpost_de" type="Popup" parent="dialogue_system/room_26"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 8.0
+margin_bottom = 48.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" parent="dialogue_system/room_26/message_signpost_de" instance=ExtResource( 2 )]
+modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 112.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="dialogue_system/room_26/message_signpost_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 48.0
+margin_right = 208.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
+text = "achtung baustelle!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="label1" type="Label" parent="dialogue_system/room_26/message_signpost_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 56.0
+margin_right = 208.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "für weiteren inhalt
+bewerte uns im
+google play store"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="label2" type="Label" parent="dialogue_system/room_26/message_signpost_de"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 80.0
+margin_right = 208.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.345098, 0.552941, 0.262745, 1 )
+text = "vielen dank, leute!"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="MainMenu" parent="." instance=ExtResource( 6 )]
+visible = false
+margin_left = 64.0
+margin_top = 48.0
+margin_right = -64.0
+margin_bottom = -16.0
+
+[node name="MainMenuButton" type="TextureButton" parent="."]
+margin_left = 228.0
+margin_top = 10.0
+margin_right = 248.0
+margin_bottom = 30.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 16 )
+
+[node name="ArtifactButton" type="TextureButton" parent="."]
+margin_left = 7.0
+margin_top = 9.0
+margin_right = 28.0
+margin_bottom = 30.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 18 )
+script = ExtResource( 17 )
+cooldown = 120.0
+
+[node name="Label" type="Label" parent="ArtifactButton"]
+visible = false
+margin_right = 40.0
+margin_bottom = 14.0
+script = SubResource( 5 )
+
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
+[connection signal="pressed" from="ArtifactButton" to="ArtifactButton" method="_on_ArtifactButton_pressed"]
+
+[editable path="inventory"]
+[editable path="inventory/choose_item_dialogue"]
+[editable path="inventory/full_inventory_dialogue"]
+[editable path="dialogue_system/room_15/greeting_1_en/background"]
+[editable path="dialogue_system/room_15/greeting_2_en/background"]
+[editable path="dialogue_system/room_15/greeting_3_en/background"]
+[editable path="dialogue_system/room_15/greeting_1_de/background"]
+[editable path="dialogue_system/room_15/greeting_2_de/background"]
+[editable path="dialogue_system/room_15/greeting_3_de/background"]
+[editable path="dialogue_system/room_16/message_artifact_no_shake_en/background"]
+[editable path="dialogue_system/room_16/message_artifact_no_shake_de/background"]

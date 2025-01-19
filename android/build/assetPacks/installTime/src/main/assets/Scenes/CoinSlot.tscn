@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/creatures/CoinSlot.gd" type="Script" id=1]
+[ext_resource path="res://templates/interaction_area.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=160]
+extents = Vector2( 24, 12 )
+
+[node name="CoinSlot" type="Node2D"]
+script = ExtResource( 1 )
+properties_to_save = PoolStringArray( "coins_needed" )
+
+[node name="InteractionArea" type="Area2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionArea2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2( 136, 100 )
+shape = SubResource( 160 )
+
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_InteractionArea_area_entered"]

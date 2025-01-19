@@ -1,8 +1,0 @@
-{
-    "greeting": [
-        ["message_1"],
-        ["message_2"],
-        ["clear", "message_3"],
-        ["clear"]
-    ]
-}

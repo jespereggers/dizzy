@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/creatures/bat.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/creatures/BatBody.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 48, 23, -52.0244, 0.00458828, 52.0244, -0.00458828, 100, 94, 0, 0, 0, 0, 152, 47 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0.00783818, 0, -0.00783818, 0, 47.817, 23, 0, 0, 0, 0, 48.1159, 23.5523, 0, 0, 0, 0, 48, 24, 0, 0, 0, 0, 48, 24, 0, 0, 0, 0, 48, 24, -72.3018, -0.236662, 72.3018, 0.236662, 119.957, 83, 0, 0.0294961, 0, -0.0294961, 192.096, 47 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 152, 47, -20.196, -0.0345381, 20.196, 0.0345381, 172.173, 76, 0, 0, 0, 0, 192.345, 47 )
+}
+
+[node name="Bat" type="Node2D"]
+position = Vector2( 1, 0 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+properties_to_save = PoolStringArray( "position", "current_route", "next_route", "Path1/Follow/BatBody/death_area/shape_of_death:disabled", "Path2/Follow/BatBody/death_area/shape_of_death:disabled", "Path3/Follow/BatBody/death_area/shape_of_death:disabled", "Path1/Follow/BatBody:visible", "Path2/Follow/BatBody:visible", "Path3/Follow/BatBody:visible", "Path1/Follow/BatBody/AnimatedSprite:animation", "Path2/Follow/BatBody/AnimatedSprite:animation", "Path3/Follow/BatBody/AnimatedSprite:animation", "reverse_dir", "timer", "Path1/Follow:unit_offset", "Path2/Follow:unit_offset", "Path3/Follow:unit_offset", "speed", "Path1/Follow/BatBody/AnimatedSprite:playing", "Path2/Follow/BatBody/AnimatedSprite:playing", "Path3/Follow/BatBody/AnimatedSprite:playing" )
+speed = 62.0
+initial_unit_offset = 0.4
+
+[node name="Path1" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="Follow" type="PathFollow2D" parent="Path1"]
+position = Vector2( 48, 23 )
+rotation = 1.55509
+rotate = false
+loop = false
+
+[node name="BatBody" parent="Path1/Follow" instance=ExtResource( 2 )]
+
+[node name="Path2" type="Path2D" parent="."]
+curve = SubResource( 2 )
+
+[node name="Follow" type="PathFollow2D" parent="Path2"]
+position = Vector2( 47.817, 23 )
+rotation = 1.55509
+rotate = false
+loop = false
+
+[node name="BatBody" parent="Path2/Follow" instance=ExtResource( 2 )]
+visible = false
+rotation = -1.57077
+
+[node name="Path3" type="Path2D" parent="."]
+curve = SubResource( 3 )
+
+[node name="Follow" type="PathFollow2D" parent="Path3"]
+position = Vector2( 152, 47 )
+rotation = 1.55509
+rotate = false
+loop = false
+
+[node name="BatBody" parent="Path3/Follow" instance=ExtResource( 2 )]
+visible = false
+rotation = -1.57067

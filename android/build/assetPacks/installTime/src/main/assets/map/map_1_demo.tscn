@@ -1,0 +1,111 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://map/rooms/room_8.tscn" type="PackedScene" id=1]
+[ext_resource path="res://map/rooms/room_10.tscn" type="PackedScene" id=2]
+[ext_resource path="res://map/rooms/room_4.tscn" type="PackedScene" id=3]
+[ext_resource path="res://map/rooms/room_1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://map/rooms/room_9.tscn" type="PackedScene" id=5]
+[ext_resource path="res://map/rooms/room_2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://map/rooms/room_6.tscn" type="PackedScene" id=7]
+[ext_resource path="res://map/rooms/room_11.tscn" type="PackedScene" id=8]
+[ext_resource path="res://map/rooms/room_3.tscn" type="PackedScene" id=9]
+[ext_resource path="res://map/rooms/room_5.tscn" type="PackedScene" id=10]
+[ext_resource path="res://map/rooms/room_7.tscn" type="PackedScene" id=11]
+[ext_resource path="res://map/rooms/room_12.tscn" type="PackedScene" id=12]
+[ext_resource path="res://map/rooms/room_16.tscn" type="PackedScene" id=13]
+[ext_resource path="res://map/rooms/room_17.tscn" type="PackedScene" id=14]
+[ext_resource path="res://map/rooms/room_13.tscn" type="PackedScene" id=15]
+[ext_resource path="res://map/rooms/room_15.tscn" type="PackedScene" id=16]
+[ext_resource path="res://map/rooms/room_14.tscn" type="PackedScene" id=17]
+[ext_resource path="res://map/rooms/room_18.tscn" type="PackedScene" id=18]
+[ext_resource path="res://map/rooms/room_25.tscn" type="PackedScene" id=19]
+[ext_resource path="res://map/rooms/room_19.tscn" type="PackedScene" id=20]
+[ext_resource path="res://map/rooms/room_20.tscn" type="PackedScene" id=21]
+[ext_resource path="res://map/rooms/room_23.tscn" type="PackedScene" id=22]
+[ext_resource path="res://map/rooms/room_24.tscn" type="PackedScene" id=23]
+[ext_resource path="res://map/rooms/room_21.tscn" type="PackedScene" id=24]
+[ext_resource path="res://map/rooms/room_26.tscn" type="PackedScene" id=25]
+[ext_resource path="res://map/rooms/room_22.tscn" type="PackedScene" id=26]
+
+[node name="map_1_demo" type="Node2D"]
+__meta__ = {
+"_edit_horizontal_guides_": [ 271.0, 407.0, 542.0 ],
+"_edit_vertical_guides_": [ -1200.0, -960.0, -720.0 ]
+}
+
+[node name="room_1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, -544 )
+
+[node name="room_2" parent="." instance=ExtResource( 6 )]
+position = Vector2( -240, -408 )
+
+[node name="room_3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 0, -408 )
+
+[node name="room_4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 240, -408 )
+
+[node name="room_5" parent="." instance=ExtResource( 10 )]
+position = Vector2( -240, -272 )
+
+[node name="room_6" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0, -272 )
+
+[node name="room_7" parent="." instance=ExtResource( 11 )]
+position = Vector2( 240, -272 )
+
+[node name="room_8" parent="." instance=ExtResource( 1 )]
+position = Vector2( -240, -136 )
+
+[node name="room_9" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, -136 )
+
+[node name="room_10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 240, -136 )
+
+[node name="room_11" parent="." instance=ExtResource( 8 )]
+position = Vector2( -960, 0 )
+
+[node name="room_12" parent="." instance=ExtResource( 12 )]
+position = Vector2( -720, 0 )
+
+[node name="room_13" parent="." instance=ExtResource( 15 )]
+position = Vector2( -480, 0 )
+
+[node name="room_14" parent="." instance=ExtResource( 17 )]
+position = Vector2( -240, 0 )
+
+[node name="room_15" parent="." instance=ExtResource( 16 )]
+
+[node name="room_16" parent="." instance=ExtResource( 13 )]
+position = Vector2( 240, 0 )
+
+[node name="room_17" parent="." instance=ExtResource( 14 )]
+position = Vector2( 480, 0 )
+
+[node name="room_18" parent="." instance=ExtResource( 18 )]
+position = Vector2( -1200, 0 )
+
+[node name="room_19" parent="." instance=ExtResource( 20 )]
+position = Vector2( -960, 136 )
+
+[node name="room_20" parent="." instance=ExtResource( 21 )]
+position = Vector2( -960, 271 )
+
+[node name="room_21" parent="." instance=ExtResource( 24 )]
+position = Vector2( -1200, 406 )
+
+[node name="room_22" parent="." instance=ExtResource( 26 )]
+position = Vector2( -960, 407 )
+
+[node name="room_23" parent="." instance=ExtResource( 22 )]
+position = Vector2( -720, 407 )
+
+[node name="room_24" parent="." instance=ExtResource( 23 )]
+position = Vector2( -1200, 542 )
+
+[node name="room_25" parent="." instance=ExtResource( 19 )]
+position = Vector2( -960, 542 )
+
+[node name="room_26" parent="." instance=ExtResource( 25 )]
+position = Vector2( -720, 542 )

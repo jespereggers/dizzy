@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/creatures/stone_block.gd" type="Script" id=2]
+[ext_resource path="res://Assets/tiles/build/1.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "drop1"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1, 1.1, 1.8, 1.9, 2.3, 2.4, 3.3, 3.4, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 1 ), Vector2( 0, 2 ), Vector2( 0, 2 ), Vector2( 0, 3 ), Vector2( 0, 3 ), Vector2( 0, 4 ), Vector2( 0, 4 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "drop2"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.6, 1.2, 1.3, 1.8, 1.9, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 4 ), Vector2( 0, 4 ), Vector2( 0, 5 ), Vector2( 0, 5 ), Vector2( 0, 6 ), Vector2( 0, 6 ), Vector2( 0, 7 ), Vector2( 0, 7 ), Vector2( 0, 17 ), Vector2( 0, 27 ), Vector2( 0, 37 ), Vector2( 0, 47 ), Vector2( 0, 58 ), Vector2( 0, 72 ) ]
+}
+
+[sub_resource type="ConvexPolygonShape2D" id=271]
+points = PoolVector2Array( 0, 0, 12, 0, 12, 3, 16, 3, 16, 16, 0, 16 )
+
+[sub_resource type="TileSet" id=272]
+0/name = "1.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
+0/region = Rect2( 48, 112, 16, 16 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 271 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 271 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[node name="stone_block" type="Node2D"]
+position = Vector2( 0, 4 )
+script = ExtResource( 2 )
+properties_to_save = PoolStringArray( "shakes", "position" )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/drop1 = SubResource( 1 )
+anims/drop2 = SubResource( 2 )
+
+[node name="stone" type="Node2D" parent="."]
+
+[node name="stone" type="TileMap" parent="stone"]
+tile_set = SubResource( 272 )
+cell_size = Vector2( 1, 1 )
+format = 1
+tile_data = PoolIntArray( 2621464, 0, 0 )

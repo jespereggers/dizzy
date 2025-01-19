@@ -3,16 +3,16 @@
 [ext_resource path="res://Scripts/everplant_touch_assistent.gd" type="Script" id=1]
 
 [node name="everplant_touch_assistent" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="input_start" type="Position2D" parent="."]
+visible = false
 
 [node name="input_end" type="CPUParticles2D" parent="."]
+visible = false
 emitting = false
 speed_scale = 2.72
 initial_velocity = 37.63

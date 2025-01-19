@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/theme/theme_dizzy.tres" type="Theme" id=1]
+[ext_resource path="res://Assets/tiles/menu/dialog.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/inventory/item_list.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/templates/item_template.tscn" type="PackedScene" id=4]
+
+[node name="item_list_2_item" type="NinePatchRect"]
+self_modulate = Color( 0.345098, 0.552941, 0.262745, 1 )
+margin_left = 24.0
+margin_top = 56.0
+margin_right = 232.0
+margin_bottom = 136.0
+theme = ExtResource( 1 )
+texture = ExtResource( 2 )
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 83.0, 88.0 ],
+"_edit_lock_": true,
+"_edit_vertical_guides_": [ 104.0, 64.0, 48.0 ]
+}
+
+[node name="item_list" type="VBoxContainer" parent="."]
+margin_left = 18.0
+margin_top = 29.0
+margin_right = 192.0
+margin_bottom = 49.0
+grow_horizontal = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="item_template" parent="item_list" instance=ExtResource( 4 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 174.0
+margin_bottom = 11.0
+
+[node name="item_template2" parent="item_list" instance=ExtResource( 4 )]
+margin_left = 0.0
+margin_top = 8.0
+margin_right = 174.0
+margin_bottom = 19.0
+
+[node name="label_eng" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 192.0
+margin_bottom = 27.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
+text = "you are carrying"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="empty_inv_hint" type="Label" parent="."]
+visible = false
+margin_left = 80.0
+margin_top = 40.0
+margin_right = 136.0
+margin_bottom = 48.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "nothing"
+uppercase = true
+__meta__ = {
+"_edit_lock_": true
+}

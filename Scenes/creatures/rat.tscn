@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/creatures/rat.gd" type="Script" id=1]
+[ext_resource path="res://Assets/tiles/creatures/30.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=3]
+[ext_resource path="res://shaders/hide_behind_border.shader" type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 4 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 15, 7 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 92, 10 )
+
+[node name="Rat" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 28.0, 212.0, 152.0, 184.0 ]
+}
+properties_to_save = PoolStringArray( "dir", "rat:position", "speed", "turning_points", "rat:flip_h", "fleeing", "flee_dir", "heading_for_food" )
+
+[node name="rat" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 168, 124 )
+texture = ExtResource( 2 )
+flip_h = true
+
+[node name="rat_death" parent="rat" instance=ExtResource( 3 )]
+position = Vector2( -7.62939e-06, 0 )
+cause_of_death = "rat"
+
+[node name="FoodDetector" type="Area2D" parent="rat"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rat/FoodDetector"]
+position = Vector2( 0, -3 )
+shape = SubResource( 2 )
+
+[node name="RayCast2D" type="RayCast2D" parent="rat"]
+cast_to = Vector2( 15, 0 )
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 48, 124 )
+
+[node name="Position2D2" type="Position2D" parent="."]
+position = Vector2( 92, 124 )
+
+[node name="Position2D3" type="Position2D" parent="."]
+position = Vector2( 132, 124 )
+
+[node name="Position2D4" type="Position2D" parent="."]
+position = Vector2( 192, 124 )
+
+[node name="SmellFoodArea" type="Area2D" parent="."]
+position = Vector2( 120, 124 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SmellFoodArea"]
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="rat/FoodDetector" to="." method="_on_FoodDetector_area_entered"]
+[connection signal="area_entered" from="SmellFoodArea" to="." method="_on_smell_food_area_area_entered"]
+[connection signal="area_exited" from="SmellFoodArea" to="." method="_on_smell_food_area_area_exited"]
+
+[editable path="rat/rat_death"]

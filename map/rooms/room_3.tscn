@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -13,11 +13,10 @@
 [ext_resource path="res://Assets/tiles/build/2.png" type="Texture" id=11]
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=12]
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Assets/tiles/objects/stuck_door.png" type="Texture" id=14]
-[ext_resource path="res://templates/animated_tile.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Assets/tiles/animations/torchfire.png" type="Texture" id=16]
-[ext_resource path="res://templates/background.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Assets/fonts/dizzy_font.ttf" type="DynamicFontData" id=19]
+[ext_resource path="res://Scenes/creatures/stuck_door.tscn" type="PackedScene" id=14]
+[ext_resource path="res://templates/torchfire_animated.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/items/item_empty_bucket.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/creatures/WaterDropRoom3.tscn" type="PackedScene" id=18]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 8, 0, 8 )
@@ -2965,22 +2964,26 @@ points = PoolVector2Array( 0, 0, 56, 0, 56, 7, 0, 7 )
 160/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=78]
-extents = Vector2( 8, 16 )
+extents = Vector2( 7, 5 )
 
 [sub_resource type="RectangleShape2D" id=79]
-extents = Vector2( 8, 5 )
+extents = Vector2( 7, 5 )
 
-[sub_resource type="RectangleShape2D" id=80]
-extents = Vector2( 8, 5 )
+[sub_resource type="Gradient" id=80]
+colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 1 )
 
-[sub_resource type="DynamicFont" id=81]
-size = 7
-font_data = ExtResource( 19 )
+[sub_resource type="GradientTexture" id=81]
+gradient = SubResource( 80 )
+width = 50
 
 [node name="room_3" type="Node2D"]
 __meta__ = {
-"_edit_lock_": true
+"_edit_horizontal_guides_": [ 128.0, 87.0 ],
+"_edit_lock_": true,
+"_edit_vertical_guides_": [ 44.0, 52.0, 180.0, 188.0 ]
 }
+
+[node name="WaterDropRoom3" parent="." instance=ExtResource( 18 )]
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
@@ -3000,164 +3003,56 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="stuck_door" type="Sprite" parent="."]
-modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
-position = Vector2( 0, 96 )
-texture = ExtResource( 14 )
-centered = false
-
-[node name="interaktionsbereich" type="CollisionShape2D" parent="stuck_door"]
-position = Vector2( 8, 16 )
-shape = SubResource( 78 )
+[node name="StuckDoor" parent="." instance=ExtResource( 14 )]
 
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 48, 16 )
 cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death" index="0"]
-shape = SubResource( 79 )
+shape = SubResource( 78 )
 
 [node name="torchfire_death1" parent="." instance=ExtResource( 13 )]
 position = Vector2( 184, 64 )
 cause_of_death = "torchfire"
 
 [node name="shape_of_death" parent="torchfire_death1" index="0"]
-shape = SubResource( 80 )
+shape = SubResource( 79 )
 
 [node name="torchfire_animated" parent="." instance=ExtResource( 15 )]
-modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
 position = Vector2( 48, 16 )
-texture = ExtResource( 16 )
-hframes = 4
-fps = 12
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="torchfire_animated1" parent="." instance=ExtResource( 15 )]
-modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+[node name="torchfire_animated2" parent="." instance=ExtResource( 15 )]
 position = Vector2( 184, 64 )
-texture = ExtResource( 16 )
-hframes = 4
-fps = 12
-
-[node name="popups" type="CanvasLayer" parent="."]
-
-[node name="object_message_1_en" type="Popup" parent="popups"]
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
-[node name="background" parent="popups/object_message_1_en" instance=ExtResource( 18 )]
-modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
-margin_top = 40.0
-margin_right = 200.0
-margin_bottom = 104.0
-
-[node name="label" type="Label" parent="popups/object_message_1_en"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 56.0
-margin_right = 184.0
-margin_bottom = 88.0
-custom_fonts/font = SubResource( 81 )
-custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
-custom_constants/line_spacing = 1
-text = "the wooden door has
-warped and jammed"
-align = 1
-valign = 1
+[node name="hide_the_drop_top" type="Sprite" parent="."]
+position = Vector2( 216, 93 )
+scale = Vector2( 0.2, 13 )
+z_index = -1
+texture = SubResource( 81 )
 __meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_lock_": true
 }
 
-[node name="object_message_1_de" type="Popup" parent="popups"]
+[node name="hide_the_drop_bottom" type="Sprite" parent="."]
+position = Vector2( 216, 136.059 )
+scale = Vector2( 0.2, 8 )
+z_index = -1
+texture = SubResource( 81 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
-[node name="background" parent="popups/object_message_1_de" instance=ExtResource( 18 )]
-modulate = Color( 0.407843, 0.215686, 0.168627, 1 )
-margin_top = 32.0
-margin_right = 200.0
-margin_bottom = 104.0
+[node name="item_empty_bucket" parent="." instance=ExtResource( 16 )]
+position = Vector2( 152, 128 )
 
-[node name="label" type="Label" parent="popups/object_message_1_de"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 48.0
-margin_right = 184.0
-margin_bottom = 88.0
-custom_fonts/font = SubResource( 81 )
-custom_colors/font_color = Color( 0.721569, 0.780392, 0.435294, 1 )
-custom_constants/line_spacing = 1
-text = "die tür hat sich
-mit der zeit
-verzogen und klemmt"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="object_message_2_en" type="Popup" parent="popups"]
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="background" parent="popups/object_message_2_en" instance=ExtResource( 18 )]
-margin_right = 169.0
-margin_bottom = 72.0
-
-[node name="label" type="Label" parent="popups/object_message_2_en"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 153.0
-margin_bottom = 56.0
-custom_fonts/font = SubResource( 81 )
-custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
-custom_constants/line_spacing = 1
-text = "you apply the
-crowbar and pry
-open the door"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="object_message_2_de" type="Popup" parent="popups"]
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="background" parent="popups/object_message_2_de" instance=ExtResource( 18 )]
-margin_right = 200.0
-margin_bottom = 72.0
-
-[node name="label" type="Label" parent="popups/object_message_2_de"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 184.0
-margin_bottom = 56.0
-custom_fonts/font = SubResource( 81 )
-custom_colors/font_color = Color( 0.435294, 0.239216, 0.52549, 1 )
-custom_constants/line_spacing = 1
-text = "mit der brechstange
-hebelst du die tür
-aus den angeln"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
+[editable path="StuckDoor"]
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]
+[editable path="item_empty_bucket"]

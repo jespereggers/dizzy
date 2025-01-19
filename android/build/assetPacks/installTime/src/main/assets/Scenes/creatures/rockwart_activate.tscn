@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/creatures/rockwart_activate_room24.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=93]
+extents = Vector2( 2, 24 )
+
+[node name="RockwartActivate" type="Area2D"]
+position = Vector2( 76, 104 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 93 )

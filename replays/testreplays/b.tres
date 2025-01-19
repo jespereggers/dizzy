@@ -1,0 +1,605 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://resources/savegame_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+eggs = 2
+coins = 0
+shards = 0
+has_artifact = true
+current_map = "map_1"
+current_room = Vector2( 1, 0 )
+respawn_position = Vector2( 28, 164 )
+respawn_room = Vector2( 1, 0 )
+inventory_capacity = 2
+shared_scene_data = {
+}
+inventory = [  ]
+persistents = {
+"map_1": {
+Vector2( 0, 0 ): {
+"remembered_items": [ {
+"filename": "res://Scenes/items/item_old_message.tscn",
+"item_name": "rockwart's message",
+"item_priority": 1,
+"name": "item_rockwart_message",
+"position": Vector2( 152, 112 ),
+"visible": true
+}, {
+"filename": "res://Scenes/items/item_bitten_apple.tscn",
+"item_name": "a bitten apple",
+"item_priority": 1,
+"name": "item_bitten_apple",
+"position": Vector2( 136, 112 ),
+"visible": true
+}, {
+"filename": "res://Scenes/creatures/Greeting.tscn"
+} ],
+"removed_items": [ "item_rockwart_message(152, 112)", "item_bitten_apple(136, 112)", "Greeting(0, 0)" ]
+},
+Vector2( 1, 0 ): {
+"remembered_items": [ {
+"filename": "res://Scenes/creatures/RubbleRoom_16.tscn",
+"shake_after:collision_layer": 0,
+"shake_after:visible": false,
+"shake_before:collision_layer": 1,
+"shake_before:visible": true
+}, {
+"filename": "res://Scenes/items/item_crowbar.tscn",
+"item_name": "a sturdy crowbar",
+"item_priority": 1,
+"name": "item_crowbar",
+"position": Vector2( 176, 128 ),
+"visible": true
+}, {
+"filename": "res://Scenes/items/item_rusty_key.tscn",
+"item_name": "a rusty key",
+"item_priority": 1,
+"name": "item_rusty_key",
+"position": Vector2( 80, 56 ),
+"visible": true
+}, {
+"filename": "res://Scenes/items/item_stainless_key.tscn",
+"item_name": "a stainless key",
+"item_priority": 1,
+"name": "item_stainless_key",
+"position": Vector2( 80, 128 ),
+"visible": true
+}, {
+"filename": "res://Scenes/items/item_water_bucket.tscn",
+"item_name": "a bucket of water",
+"item_priority": 1,
+"name": "item_water_bucket",
+"position": Vector2( 55, 128 ),
+"visible": true
+} ],
+"removed_items": [ "RubbleRoom_16(0, 0)", "item_crowbar(176, 128)", "item_rusty_key(80, 56)", "item_stainless_key(80, 128)", "item_water_bucket(55, 128)" ]
+}
+}
+}
+events = {
+3: [ {
+"pressed": true,
+"scancode": 16777233,
+"type": "key"
+} ],
+7: [ {
+"pressed": true,
+"scancode": 32,
+"type": "key"
+} ],
+10: [ {
+"pressed": false,
+"scancode": 32,
+"type": "key"
+} ],
+27: [ {
+"pressed": false,
+"scancode": 16777233,
+"type": "key"
+} ],
+37: [ {
+"button_index": 1,
+"position": Vector2( 154.246, 78.3618 ),
+"pressed": true,
+"type": "mouse_button"
+} ],
+38: [ {
+"button_index": 1,
+"position": Vector2( 155.323, 73.784 ),
+"pressed": false,
+"type": "mouse_button"
+} ],
+52: [ {
+"pressed": true,
+"scancode": 16777221,
+"type": "key"
+}, {
+"pressed": false,
+"scancode": 16777221,
+"type": "key"
+} ],
+70: [ {
+"button_index": 1,
+"position": Vector2( 149.939, 85.9018 ),
+"pressed": true,
+"type": "mouse_button"
+} ],
+71: [ {
+"button_index": 1,
+"position": Vector2( 150.208, 85.9018 ),
+"pressed": false,
+"type": "mouse_button"
+} ],
+75: [ {
+"button_index": 1,
+"position": Vector2( 152.093, 90.4797 ),
+"pressed": true,
+"type": "mouse_button"
+} ],
+76: [ {
+"button_index": 1,
+"position": Vector2( 152.631, 90.4797 ),
+"pressed": false,
+"type": "mouse_button"
+} ]
+}
+player_states = {
+1: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "28",
+"y": "164"
+},
+2: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "28",
+"y": "164"
+},
+3: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "28",
+"y": "164"
+},
+4: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "28",
+"y": "164"
+},
+5: {
+"sprite_flip_h": "False",
+"sprite_frame": "23",
+"x": "32",
+"y": "164"
+},
+6: {
+"sprite_flip_h": "False",
+"sprite_frame": "16",
+"x": "36",
+"y": "164"
+},
+7: {
+"sprite_flip_h": "False",
+"sprite_frame": "17",
+"x": "40",
+"y": "164"
+},
+8: {
+"sprite_flip_h": "False",
+"sprite_frame": "18",
+"x": "44",
+"y": "164"
+},
+9: {
+"sprite_flip_h": "False",
+"sprite_frame": "25",
+"x": "48",
+"y": "158"
+},
+10: {
+"sprite_flip_h": "False",
+"sprite_frame": "26",
+"x": "52",
+"y": "154"
+},
+11: {
+"sprite_flip_h": "False",
+"sprite_frame": "27",
+"x": "56",
+"y": "150"
+},
+12: {
+"sprite_flip_h": "False",
+"sprite_frame": "28",
+"x": "60",
+"y": "146"
+},
+13: {
+"sprite_flip_h": "False",
+"sprite_frame": "29",
+"x": "64",
+"y": "142"
+},
+14: {
+"sprite_flip_h": "False",
+"sprite_frame": "30",
+"x": "68",
+"y": "138"
+},
+15: {
+"sprite_flip_h": "False",
+"sprite_frame": "31",
+"x": "72",
+"y": "136"
+},
+16: {
+"sprite_flip_h": "False",
+"sprite_frame": "24",
+"x": "76",
+"y": "134"
+},
+17: {
+"sprite_flip_h": "False",
+"sprite_frame": "25",
+"x": "80",
+"y": "136"
+},
+18: {
+"sprite_flip_h": "False",
+"sprite_frame": "26",
+"x": "84",
+"y": "138"
+},
+19: {
+"sprite_flip_h": "False",
+"sprite_frame": "27",
+"x": "88",
+"y": "142"
+},
+20: {
+"sprite_flip_h": "False",
+"sprite_frame": "28",
+"x": "92",
+"y": "146"
+},
+21: {
+"sprite_flip_h": "False",
+"sprite_frame": "29",
+"x": "96",
+"y": "150"
+},
+22: {
+"sprite_flip_h": "False",
+"sprite_frame": "30",
+"x": "100",
+"y": "154"
+},
+23: {
+"sprite_flip_h": "False",
+"sprite_frame": "31",
+"x": "104",
+"y": "158"
+},
+24: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "108",
+"y": "164"
+},
+25: {
+"sprite_flip_h": "False",
+"sprite_frame": "19",
+"x": "112",
+"y": "164"
+},
+26: {
+"sprite_flip_h": "False",
+"sprite_frame": "20",
+"x": "116",
+"y": "164"
+},
+27: {
+"sprite_flip_h": "False",
+"sprite_frame": "21",
+"x": "120",
+"y": "164"
+},
+28: {
+"sprite_flip_h": "False",
+"sprite_frame": "22",
+"x": "124",
+"y": "164"
+},
+29: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+30: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+31: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+32: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+33: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+34: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+35: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+36: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+37: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+38: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+39: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+40: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+41: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+42: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+43: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+44: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+45: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+46: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+47: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+48: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+49: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+50: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+51: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+52: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+53: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+54: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+55: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+56: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+57: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+58: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+59: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+60: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+61: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+62: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+63: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+64: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+65: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+66: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+67: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+68: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+69: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+70: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+71: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+72: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+73: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+74: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+},
+75: {
+"sprite_flip_h": "False",
+"sprite_frame": "1",
+"x": "124",
+"y": "164"
+},
+76: {
+"sprite_flip_h": "False",
+"sprite_frame": "0",
+"x": "124",
+"y": "164"
+}
+}

@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/creatures/CoinRoom10.gd" type="Script" id=1]
+[ext_resource path="res://Assets/tiles/objects/taler.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 208, 96 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "drop"
+length = 3.6
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.11, 1.2, 1.4, 1.6, 1.8, 2, 2.1, 2.2, 2.3, 2.4, 2.6, 2.9, 3.3, 3.5, 3.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 208, 96 ), Vector2( 204, 96 ), Vector2( 208, 96 ), Vector2( 212, 96 ), Vector2( 208, 96 ), Vector2( 212, 96 ), Vector2( 216, 96 ), Vector2( 212, 96 ), Vector2( 208, 96 ), Vector2( 204, 94 ), Vector2( 200, 94 ), Vector2( 196, 96 ), Vector2( 195, 97 ), Vector2( 193, 97 ), Vector2( 192, 99 ), Vector2( 190, 94 ), Vector2( 188, 78 ), Vector2( 186, 74 ), Vector2( 184, 90 ), Vector2( 182, 112 ), Vector2( 180, 168 ) ]
+}
+
+[node name="CoinRoom10" type="Node2D"]
+position = Vector2( 208, 96 )
+script = ExtResource( 1 )
+properties_to_save = PoolStringArray( "position" )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/drop = SubResource( 1 )

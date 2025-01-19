@@ -1,70 +1,47 @@
-extends Panel
+extends NinePatchRect
 
-onready var root: Popup = get_parent()
-onready var list_instance: VBoxContainer = $content/item_list
-onready var hint_instance: Label = get_parent().get_node("hint")
+onready var list_instance: VBoxContainer = $item_list
+onready var empty_inv_hint: Label = $empty_inv_hint
 
-signal finished_showing_full_inventory
-
-const DURATION_SHOWING_FULL_INVENTORY = 2.7
-
-func select_item(item_instance: Button):
-	if root.selected_item_instance != null and item_instance != null and item_instance.get_class() == "Button" and item_instance != root.selected_item_instance:
-		root.selected_item_instance.pressed = false
-		item_instance.pressed = true
-		root.selected_item_instance = item_instance
-
+var items_by_buttons:Dictionary
+var close_button:Button
 
 func load_items():
-	# Clear-Up
-	for item in list_instance.get_children():
-		list_instance.remove_child(item)
-			
-	# Instance new items to the inventory
-	for item in stats.inventory:
-		if list_instance.get_child_count() < 2:
-			var button_instance: Button = load("res://Scenes/templates/item_template.tscn").instance()
-			button_instance.load_template(item .item_name)
-			list_instance.add_child(button_instance)
-			if button_instance.connect("pressed", get_parent(), "_on_item_pressed", [item ]) != OK:
-				print("Error occured when trying to establish a connection")
-	
-	get_parent().get_node("choose_item_dialogue").hide()
-	get_parent().get_node("full_inventory_dialogue").hide()
-	
-	if list_instance.get_child_count() < 1:
-		# Empty inventory
-		self.set_process_input(false)
-		hint_instance.show()
-	else:
-		# Inventory includes items
-		hint_instance.hide()
+		# Clear-Up
+		items_by_buttons.clear()
+		for item in list_instance.get_children():
+				list_instance.remove_child(item)
 		
-		var item_instance: Button = load("res://Scenes/templates/item_template.tscn").instance()
-		item_instance.load_template("exit and don't drop")
-		list_instance.add_child(item_instance)
-		if list_instance.get_child(list_instance.get_child_count() - 1).connect("pressed", get_parent(), "close") != OK:
-			print("Error occured when trying to establish a connection")
-
-		if stats.inventory.size() > 1 and get_parent().trying_to_hold_too_much:
-			get_parent().get_node("full_inventory_dialogue").show()
-			yield(get_tree().create_timer(DURATION_SHOWING_FULL_INVENTORY),"timeout")
-			emit_signal("finished_showing_full_inventory")
+		# Create buttons from inventory items
+		for item in stats.inventory:
+				var button_instance: Button = load("res://Scenes/templates/item_template.tscn").instance()
+				button_instance.load_template(item.item_name)
+				list_instance.add_child(button_instance)
+				items_by_buttons[button_instance] = item
+				
+		var close_button_instance: Button = load("res://Scenes/templates/item_template.tscn").instance()
+		close_button_instance.load_template("exit and don't drop")
+		list_instance.add_child(close_button_instance)
+		close_button = close_button_instance
+		
+		var buttons := list_instance.get_children()
+		for i in buttons.size():
+				var button:Button = buttons[i]
+				button.focus_neighbour_top = buttons[posmod(i-1,buttons.size())].get_path()
+				button.focus_neighbour_bottom = buttons[posmod(i+1,buttons.size())].get_path()
+		
+		if list_instance.get_child_count() == 1: # there a no items except the close button
+				empty_inv_hint.show()
+				list_instance.hide()
 		else:
-			get_parent().get_node("choose_item_dialogue").show()
-			item_instance.grab_focus()
-			# Connect focuses
-			for button in list_instance.get_children():
-				if button.get_index() - 1 >= 0:
-					button.focus_neighbour_left = list_instance.get_child(button.get_index() - 1).get_path()
-					button.focus_neighbour_top = list_instance.get_child(button.get_index() - 1).get_path()
-				else:
-					button.focus_neighbour_left = list_instance.get_child(list_instance.get_child_count() - 1).get_path()
-					button.focus_neighbour_top = list_instance.get_child(list_instance.get_child_count() - 1).get_path()
+				empty_inv_hint.hide()
+				list_instance.show()
 
-				if button.get_index() + 1 <= list_instance.get_child_count() - 1:
-					button.focus_neighbour_right = list_instance.get_child(button.get_index() + 1).get_path()
-					button.focus_neighbour_bottom = list_instance.get_child(button.get_index() + 1).get_path()
-				else:
-					button.focus_neighbour_right = list_instance.get_child(0).get_path()
-					button.focus_neighbour_bottom = list_instance.get_child(0).get_path()
+func get_selected_item() -> Item:
+		var button = get_focus_owner()
+		if button == close_button or button == null:
+				return null
+		else:
+				assert(items_by_buttons.has(button))
+				return items_by_buttons[button]
+				

@@ -1,43 +1,20 @@
 ,en,de
-parchment,parchment,pergamentrolle
-coin,coin,münze
-you lost a life!,you lost a life!,du hast ein leben verloren!
-well done!,well done!,gut gemacht!
-you are carrying,you are carrying,du trägst
-nothing,nothing,leer
+you are carrying,you are carrying,derzeit trägst du
+nothing,nothing,nichts
 "choose item to
 use or drop","choose item to
 use or drop","wähle benutzen
 oder ablegen"
-too much to hold,too much to hold,zu viel zum halten
-"you found
-a coin","you found
-a coin","du hast eine
-münze gefunden"
-"you're skewered by
-the sharp daggers","you're skewered by
-the sharp daggers","du wurdest von einem scharfen dolch
-aufgespitzt"
-back,back,zurück
-exit,exit,beenden
-credits,credits,mitwirkende
-german,german,deutsch
-english,english,englisch
-resume,resume,fortsetzen
-new game,new game,neues spiel
-language,language,sprache
-options,options,optionen
-play,play,spielen
-sound on,sound on,sound an
-sound off,sound off,sound aus
-sound,sound,sound
-rockward's message,rockward's message,rockward's nachricht
 exit and don't drop,exit and don't drop,beenden ohne aktion
 "you are carrying
 too much to hold","you are carrying
 too much to hold","dein inventar
 ist schon voll"
-mystical artifact,mystical artifact,mystisches artefakt
+,,
+tap or swipe to skip,tap or swipe to skip,tippe oder wische
+tap to close,tap to close,tippe zum schliessen
+make a wise choice,make a wise choice,treffe eine auswahl
+,,
 the attic,the attic,der dachboden
 the west tower,the west tower,der westturm
 the castle staircase,the castle staircase,die burgtreppe
@@ -45,23 +22,41 @@ the east tower,the east tower,der ostturm
 the west wing,the west wing,der westflügel
 the banqueting hall,the banqueting hall,der bankettsaal
 the east wing,the east wing,der ostflügel
-moat and portcullis,moat and portcullis,graben und fallgatter
+moat and portcullis,moat and portcullis,graben und gatter
 the entrance hall,the entrance hall,die empfangshalle
 the castle moat,the castle moat,der burggraben
+the amazing illusion,the amazing illusion,die enorme illusion
 the wishing well,the wishing well,der wunschbrunnen
 the bat cave,the bat cave,die fledermaushöhle
-the endurance test,the endurance test,die belastungsprobe
+the cargo warehouse,the cargo warehouse,das frachtlager
 smuggler's hideout,smuggler's hideout,schmugglerversteck
 the castle's dungeon,the castle's dungeon,das burgverlies
 rockwart's quarter,rockwart's quarter,rockwart's quartier
 the torture chamber,the torture chamber,die folterkammer
-a bitten appel,a bitten appel,angebissener apfel
+down the well,down the well,den brunnen hinunter
+very deep down!,very deep down!,sehr tief hinunter!
+a cotton-wool cloud,a cotton-wool cloud,die schäfchenwolke
+cheerfully to cloudy,cheerfully to cloudy,heiter bis wolkig
+the abandoned hut,the abandoned hut,die verlassene hütte
+upper mine entrance,upper mine entrance,oberer mineneingang
+the wooden bridge,the wooden bridge,die hölzerne brücke
+a mobile roadworks,a mobile roadworks,die wanderbaustelle
+,,
+a mystical artifact,a mystical artifact,mystisches artefakt
+rockwart's message,rockwart's message,rockwart's nachricht
+a bitten apple,a bitten apple,angebissener apfel
 a rusty key,a rusty key,rostiger schlüssel
-a gleaming key,a gleaming key,glänzender schlüssel
-a sturdy crowbar,a sturdy crowbar,stabile brechstange
+a stainless key,a stainless key,rostfreier schlüssel
+a sturdy crowbar,a sturdy crowbar,robuster kuhfuss
 a moldy bread,a moldy bread,verschimmeltes brot
 a piece of railing,a piece of railing,ein stück geländer
 a heavy cannonball,a heavy cannonball,schwere kanonenkugel
 dusty headphones,dusty headphones,verstaubte kopfhörer
 a withered plant,a withered plant,verwelkte pflanze
-an outboard motor,an outboard motor,aussenbordmotor
+an outboard motor,an outboard motor,ein aussenbordmotor
+an empty bucket,an empty bucket,ein leerer eimer
+a bucket of water,a bucket of water,ein eimer wasser
+a used pickaxe,a used pickaxe,eine spitzhacke
+a piece of ladder,a piece of ladder,ein stück leiter
+a miner’s lamp,a miner’s lamp,eine grubenlampe
+a clump of grass,a clump of grass,ein grasbüschel

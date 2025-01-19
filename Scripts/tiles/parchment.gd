@@ -1,6 +1,6 @@
 extends Sprite
 
 var properties: Dictionary = {
-	"name": "parchment",
-	"type": "tile"
+  "name": "parchment",
+  "type": "tile"
 }

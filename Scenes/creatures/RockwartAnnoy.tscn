@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/creatures/rockwart_annoy_room24.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=89]
+extents = Vector2( 11, 8 )
+
+[sub_resource type="RectangleShape2D" id=90]
+extents = Vector2( 3, 20 )
+
+[node name="RockwartAnnoy" type="Area2D"]
+script = ExtResource( 1 )
+properties_to_save = PoolStringArray( "position" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 89 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -16, -12 )
+shape = SubResource( 90 )
