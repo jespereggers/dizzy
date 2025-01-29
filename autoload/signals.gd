@@ -62,4 +62,7 @@ signal has_artifact_changed()
 signal picked_up_item(name)
 
 # warning-ignore:unused_signal
-signal touch_enter()
+signal open_inventory_on_touch()
+
+# warning-ignore:unused_signal
+signal touch_while_paused()

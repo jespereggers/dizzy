@@ -27,7 +27,6 @@ __meta__ = {
 visible = false
 
 [node name="choose_item_dialogue" parent="." instance=ExtResource( 3 )]
-visible = false
 
 [node name="full_inventory_dialogue" parent="." instance=ExtResource( 2 )]
 visible = false

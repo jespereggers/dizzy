@@ -106,6 +106,5 @@ func respawn():
 
 func _unhandled_input(event:InputEvent):
 		if event.is_action_pressed("enter") or event is InputEventScreenTouch and event.pressed:
-			print("unhandled enter")
-			emit_signal("dialogue_accepted")
-			get_tree().set_input_as_handled()
+				emit_signal("dialogue_accepted")
+				get_tree().set_input_as_handled()

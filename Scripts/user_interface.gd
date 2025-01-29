@@ -11,8 +11,8 @@ var locked: bool = false
 onready var artifact_button = $ArtifactButton
 
 func _ready():
-		assert(signals.connect("touch_enter",self,"_on_touch_enter") == OK)
 		assert(signals.connect("player_is_dead",self,"_on_player_is_dead") == OK)
+		assert(signals.connect("open_inventory_on_touch",self,"_on_open_inventory_on_touch") == OK)
 		assert(signals.connect("player_is_dying",self,"_on_player_is_dying") == OK)
 		assert(signals.connect("dialogue_triggered",self,"_on_dialogue_triggered") == OK)
 		assert(signals.connect("has_artifact_changed", self, "_on_has_artifact_changed") == OK)
@@ -26,31 +26,20 @@ func _ready():
 		inventory.set_process_unhandled_input(false)
 		inventory.hide()
 
-func _unhandled_input(event):
-		if touch_in_viewport(event):
-			if event.is_action_pressed("escape"):
-					_on_MainMenuButton_pressed()
-			if event.is_action_pressed("enter"):
-					open_menu()
 
-func touch_in_viewport(event: InputEventScreenTouch) -> bool:
-	if event is InputEventScreenTouch:
-		var viewport = get_viewport()
-		var visible_rect = viewport.get_visible_rect()
-		var canvas_pos = viewport.get_canvas_transform().affine_inverse() * event.position
-		
-		if event.position.x < 0:
-			return false
-		if event.position.x > visible_rect.size.x:
-			return false
-		return true
-	return false
+func _on_open_inventory_on_touch():
+	_on_enter_pressed()
+	
+	
+func _unhandled_input(event:InputEvent):
+		if event.is_action_pressed("escape"):
+				_on_MainMenuButton_pressed()
+		if event.is_action_pressed("enter"):
+				print("enter detected at ui")
+				_on_enter_pressed()
 
-func _on_touch_enter():
-	print("touch clicked")
-	open_menu()
 
-func open_menu():
+func _on_enter_pressed():
 	if not inventory.is_visible_in_tree() and not main_menu.visible and paths.player.can_interact(): 
 		var detected_items: Array = paths.player.get_detected_items()
 		var detected_interactables: Array = paths.player.get_detected_interactables()
@@ -62,6 +51,7 @@ func open_menu():
 		else:
 			_open_inventory() #drop or use items; item usage is handled in inventory.close()
 	get_tree().set_input_as_handled()
+
 
 func _halt_game():
 		main_menu_button.disabled = true
@@ -98,6 +88,7 @@ func _try_to_resume_game():
 						paths.player.script_locked = false
 				set_process_unhandled_input(true)
 				emit_signal("game_resumed")
+
 
 func _on_player_is_dead():
 		assert(audio.current_stream_player.name == "dead")

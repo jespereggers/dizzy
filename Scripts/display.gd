@@ -44,8 +44,8 @@ func update_eggs():
 
 func set_room_name_to(new_room_name: String):
 		room_label.text = new_room_name
-
-
+		
+		
 func set_coins_label_to(amount: int):
 		coins_label.text = str(amount)
 		if amount < 10:

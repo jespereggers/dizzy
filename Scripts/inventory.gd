@@ -15,45 +15,24 @@ var trying_to_hold_too_much: bool = false
 var can_drop_items := true
 var item_to_remove_from_world_upon_close:Item
 
-var currently_selected_item: Item
 
 func _unhandled_input(event:InputEvent):
-	var selected_item: Item = get_selected_item()
-	
-	match get_selected_item():
-		null:
+		if event.is_action_pressed("enter"):
+			print("close")
 			close()
-		currently_selected_item:
-			close()
-		_:
-			currently_selected_item = get_selected_item()
-	
-	if event.is_action_pressed("enter") or event is InputEventScreenTouch and event.pressed:
-		print("close inventory")
-		close()
-		get_tree().set_input_as_handled()
+			get_tree().set_input_as_handled()
 
-func get_selected_item():
-		var item_list:NinePatchRect
-		match stats.game_state.inventory_capacity:
-				2:
-						item_list = item_list_2_item
-						item_list.show()
-						item_list_4_item.hide()
-				4: 
-						item_list = item_list_4_item
-						item_list.show()
-						item_list_2_item.hide()
-				_:assert(0)
-		var selected_item:Item = item_list.get_selected_item()
-		return selected_item
-		
+
 func _ready():
-	
-#  item_list_panel.self_modulate = Color(data.colors.green)
-#  choose_item_dialogue.self_modulate = Color(data.colors.white)
-#  full_inventory_dialogue.self_modulate = Color(data.colors.white)
-		pass
+	assert(signals.connect("touch_while_paused",self,"_on_touch_while_paused") == OK)
+
+
+func _on_touch_while_paused():
+	if self.visible:
+		if stats.inventory.empty():
+			return
+		close()
+
 
 func open_just_to_show_increased_capacity():
 #		print("inventory opened to show capacity")
