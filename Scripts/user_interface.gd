@@ -29,6 +29,7 @@ func _ready():
 
 func _on_open_inventory_on_touch():
 	_on_enter_pressed()
+
 	
 	
 func _unhandled_input(event:InputEvent):
@@ -61,9 +62,12 @@ func _halt_game():
 		get_tree().paused = true
 
 func _open_inventory():
-		paths.player.visible = false
-		_halt_game()
-		inventory.open()
+	if $dialogue_system.visible_boxes != []:
+		return
+
+	paths.player.visible = false
+	_halt_game()
+	inventory.open()
 		
 func open_inventory_just_to_show_increased_bag_capacity():
 		paths.player.visible = false
@@ -74,6 +78,7 @@ func _start_dialogue(dialogue):
 		paths.player.visible = false
 		_halt_game()
 		dialogue_system.open(dialogue)
+
 
 func _on_dialogue_triggered(dialogue:PoolStringArray):
 		_start_dialogue(dialogue)
@@ -112,6 +117,7 @@ func _on_MainMenuButton_pressed():
 						paths.player.visible = false
 		else:
 				main_menu.visible = false
+
 
 func reload_inventory_node(): #after changing language
 		inventory.queue_free()

@@ -7,6 +7,8 @@ var disabled_texture := preload("res://Assets/tiles/menu/artifact/artifact_off.p
 var loading_textures := []
 var enabled_texture := preload("res://Assets/tiles/menu/artifact/artifact_on.png")
 
+var block_actions := false
+
 func _ready() -> void:
 		loading_textures.resize(11)
 		for i in range(0,10):
@@ -28,8 +30,10 @@ func _input(event):
 		_on_ArtifactButton_pressed()
 
 func _on_ArtifactButton_pressed():
+		print("artifact pressed")
 		if not paths.player.can_interact():
 				return
+		trigger_block()
 		if texture_normal != enabled_texture:
 				signals.emit_signal("dialogue_triggered",["box:artifact_dialog_off","wait"])
 		else:
@@ -39,5 +43,13 @@ func _on_ArtifactButton_pressed():
 						yield(signals,"shake_finished")
 						disable_and_start_cooldown()
 				else:
+						print("block actions for 0.5sec")
 						signals.emit_signal("dialogue_triggered",["box:room_16/message_artifact_no_shake","wait"])
-				
+
+
+func trigger_block(): 
+	print("start artifact block")
+	block_actions = true
+	yield(get_tree().create_timer(0.1), "timeout")
+	print("end artifact block")
+	block_actions = false

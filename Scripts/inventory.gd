@@ -15,6 +15,8 @@ var trying_to_hold_too_much: bool = false
 var can_drop_items := true
 var item_to_remove_from_world_upon_close:Item
 
+var block_actions: bool = false
+
 
 func _unhandled_input(event:InputEvent):
 		if event.is_action_pressed("enter"):
@@ -28,6 +30,8 @@ func _ready():
 
 
 func _on_touch_while_paused():
+	if get_parent().get_node("ArtifactButton").block_actions:
+		return
 	if self.visible:
 		if stats.inventory.empty():
 			return
@@ -54,7 +58,9 @@ func open_just_to_show_increased_capacity():
 
 
 func open():
-#		print("inventory opened")
+		if block_actions:
+			return
+
 		var item_list:NinePatchRect
 		match stats.game_state.inventory_capacity:
 				2:
@@ -113,6 +119,7 @@ func drop_item_beneath_player(item:Item):
 		item.snap_to_position()
 
 func close():
+		trigger_block()
 		var item_list:NinePatchRect
 		match stats.game_state.inventory_capacity:
 				2:
@@ -147,13 +154,20 @@ func close():
 		if item_to_remove_from_world_upon_close:
 				assert(item_to_remove_from_world_upon_close.get_parent())
 				item_to_remove_from_world_upon_close.get_parent().remove_child(item_to_remove_from_world_upon_close)
-#		print("inventory closed")
+		
 		emit_signal("closed")
+
+
+func trigger_block(): 
+	print("start inventory block")
+	block_actions = true
+	yield(get_tree().create_timer(0.2), "timeout")
+	print("end inventory block")
+	block_actions = false
+
 
 func _on_close_pressed():
 		close()
 
 func _on_inventory_popup_hide():
 		selected_item_instance = null
-
-

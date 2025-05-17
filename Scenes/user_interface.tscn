@@ -47,13 +47,10 @@ font_data = ExtResource( 4 )
 script/source = "extends Label
 
 func _process(_delta):
-  var parent = get_parent()
-  if parent.timer:
-    text = str(parent.timer.time_left)
-    
-  
-
-
+	var parent = get_parent()
+	if parent.timer:
+		text = str(parent.timer.time_left)
+	
 "
 
 [node name="user_interface" type="CanvasLayer"]
@@ -74,9 +71,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 8 )
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="artifact_dialog_off_en" type="Popup" parent="dialogue_system"]
 popup_exclusive = true

@@ -78,6 +78,9 @@ func clear_boxes():
 		visible_boxes.clear()
 
 func end():
+		if get_parent().get_node("ArtifactButton").block_actions:
+			return
+		print("END")
 		clear_boxes()
 		hide()
 		set_process_unhandled_input(false)
@@ -98,13 +101,15 @@ func respawn():
 				paths.map.change_room(stats.game_state.respawn_room)
 		yield(tools.create_physics_timer(paths.map.BLACKSCREEN_DURATION),"timeout")
 		paths.player._respawn()
-		
-#  get_tree().paused = false
-#  get_parent().locked = false
-#  signals.emit_signal("pause_mode_changed_to", false)
+
 		paths.player.show()
+
 
 func _unhandled_input(event:InputEvent):
 		if event.is_action_pressed("enter") or event is InputEventScreenTouch and event.pressed:
+				print("emit dialogue acceptance")
 				emit_signal("dialogue_accepted")
+				end() #temp
 				get_tree().set_input_as_handled()
+
+
