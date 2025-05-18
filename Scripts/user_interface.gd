@@ -110,6 +110,9 @@ func _on_player_is_dying():
 
 
 func _on_MainMenuButton_pressed():
+		if live.blocked:
+			return
+			
 		if !main_menu.visible:
 				if paths.player.can_interact():
 						_halt_game()

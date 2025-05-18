@@ -66,6 +66,7 @@ func play_custom(procedure: PoolStringArray):
 								push_error("unknown action: " + err)
 		end()
 
+
 func open(dialogue:Array):
 		set_process_unhandled_input(true)
 		show()
@@ -78,9 +79,9 @@ func clear_boxes():
 		visible_boxes.clear()
 
 func end():
-		if get_parent().get_node("ArtifactButton").block_actions:
+		if live.blocked:
 			return
-		print("END")
+
 		clear_boxes()
 		hide()
 		set_process_unhandled_input(false)

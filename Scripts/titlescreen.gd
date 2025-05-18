@@ -2,8 +2,10 @@ extends Control
 
 export var settings : Resource
 
+
 func _ready():
 		assert(settings.connect("language_changed",self,"_on_language_changed") == OK)
+
 
 func _on_language_changed():
 		for child in get_all_children(self):
@@ -15,7 +17,8 @@ func _on_language_changed():
 						child.texture = load(child.texture.resource_path)
 		if paths.ui:
 				paths.ui.reload_inventory_node()
-						
+
+
 func _on_PlayButton_pressed():
 		$background/Play.show()
 
@@ -34,12 +37,15 @@ func get_all_children(node:Node) -> Array:
 				for sub_child in get_all_children(child):
 						all_nodes.append(sub_child)
 		return all_nodes
-				
+
+
 func _on_ResumeButton_pressed():
 		hide()
 
 
 func _on_MainMenu_visibility_changed():
+		if !self.visible:
+			live.block()
 		$background/Main/ResumeButton.visible = (paths.player != null)
 
 
