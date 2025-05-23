@@ -108,9 +108,16 @@ func respawn():
 
 func _unhandled_input(event:InputEvent):
 		if event.is_action_pressed("enter") or event is InputEventScreenTouch and event.pressed:
+				if visible_boxes.size() > 0:
+					if "death" in visible_boxes[0].name:
+						print("prevented skip")
+						return
+					
 				print("emit dialogue acceptance")
 				emit_signal("dialogue_accepted")
-				end() #temp
 				get_tree().set_input_as_handled()
-
-
+				
+				if visible_boxes.size() > 0:
+					if "artifact_dialog_off" in visible_boxes[0].name:
+						end()
+						live.block()

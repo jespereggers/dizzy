@@ -46,6 +46,7 @@ func _on_ResumeButton_pressed():
 func _on_MainMenu_visibility_changed():
 		if !self.visible:
 			live.block()
+			print("block 2")
 		$background/Main/ResumeButton.visible = (paths.player != null)
 
 

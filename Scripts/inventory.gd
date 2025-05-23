@@ -118,6 +118,7 @@ func drop_item_beneath_player(item:Item):
 
 func close():
 		live.block()
+		print("block 3")
 		var item_list:NinePatchRect
 		match stats.game_state.inventory_capacity:
 				2:

@@ -32,6 +32,7 @@ func _on_ArtifactButton_pressed():
 		print("artifact pressed")
 		if not paths.player.can_interact():
 				return
+		print("block 1")
 		live.block()
 		if texture_normal != enabled_texture:
 				signals.emit_signal("dialogue_triggered",["box:artifact_dialog_off","wait"])
