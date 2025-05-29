@@ -40,7 +40,7 @@ position = Vector2( 208, 28 )
 shape = SubResource( 173 )
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 8, -12 )
+position = Vector2( 8, -1.90735e-06 )
 scale = Vector2( 0.0078125, 24 )
 texture = SubResource( 181 )
 
