@@ -6,6 +6,7 @@ signal dialogue_ended()
 var visible_boxes := []
 
 func play_custom(procedure: PoolStringArray):
+		print("play custom")
 		for action in procedure:
 				match action.rsplit(":")[0]:
 						"clear":
@@ -110,14 +111,15 @@ func _unhandled_input(event:InputEvent):
 		if event.is_action_pressed("enter") or event is InputEventScreenTouch and event.pressed:
 				if visible_boxes.size() > 0:
 					if "death" in visible_boxes[0].name:
-						print("prevented skip")
 						return
 					
-				print("emit dialogue acceptance")
 				emit_signal("dialogue_accepted")
+				
 				get_tree().set_input_as_handled()
 				
 				if visible_boxes.size() > 0:
-					if "artifact_dialog_off" in visible_boxes[0].name:
+					if "artifact" in visible_boxes[0].name:
 						end()
 						live.block()
+					else:
+						print("no closure with ", visible_boxes[0].name)

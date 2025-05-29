@@ -43,5 +43,4 @@ func _on_ArtifactButton_pressed():
 						yield(signals,"shake_finished")
 						disable_and_start_cooldown()
 				else:
-						print("block actions for 0.5sec")
 						signals.emit_signal("dialogue_triggered",["box:room_16/message_artifact_no_shake","wait"])
