@@ -45,6 +45,7 @@ func open_just_to_show_increased_capacity():
 		if stats.inventory.empty():
 				full_inventory_dialogue.hide()
 				choose_item_dialogue.hide()
+				live.block(DURATION_SHOWING_FULL_INVENTORY)
 				yield(tools.create_physics_timer(DURATION_SHOWING_FULL_INVENTORY),"timeout")
 				close()
 		else:
@@ -92,11 +93,13 @@ func open():
 		if stats.inventory.empty():
 				full_inventory_dialogue.hide()
 				choose_item_dialogue.hide()
+				live.block(DURATION_SHOWING_FULL_INVENTORY)
 				yield(tools.create_physics_timer(DURATION_SHOWING_FULL_INVENTORY),"timeout")
 				close()
 		elif !items_to_swap.empty():
 				full_inventory_dialogue.show()
 				choose_item_dialogue.hide()
+				live.block(DURATION_SHOWING_FULL_INVENTORY)
 				yield(tools.create_physics_timer(DURATION_SHOWING_FULL_INVENTORY),"timeout")
 				var to_keep:Item = items_to_swap["to_keep"]
 				to_keep.get_parent().remove_child(to_keep)
@@ -141,6 +144,7 @@ func close():
 										stats.remove_item_from_inventory(selected_item)
 								
 				if not item_used and can_drop_items:
+						print("drop item 1")
 						selected_item.get_dropped()
 						drop_item_beneath_player(selected_item)
 						if selected_item == item_to_remove_from_world_upon_close:
