@@ -36,6 +36,7 @@ func _physics_process(delta):
 "
 
 [node name="world" type="Node2D"]
+position = Vector2( -1, 0 )
 script = ExtResource( 3 )
 user_interface_pck_scene = ExtResource( 4 )
 player_pck_scene = ExtResource( 1 )
