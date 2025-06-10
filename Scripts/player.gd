@@ -25,6 +25,7 @@ onready var ladder_sensor = $LadderSensor
 
 var state_machine: PlayerStateMachine
 
+
 var animation_data := {
 		"respawn_idle": [0,0],
 		"idle": [0,1],
@@ -223,6 +224,7 @@ func is_above_ladder():
 								
 
 class PlayerStateMachine:
+		var chill_after_dialog = false
 
 		var _player: Player
 		
@@ -307,6 +309,12 @@ class PlayerStateMachine:
 				return ""
 		
 		func _enter_state(new_state:String):
+				if chill_after_dialog:
+					# prevent jump-loop
+					# experimental!
+					chill_after_dialog = false
+					_state = "idle"
+					
 				_state = new_state
 				match(_state):
 						"respawn_idle":

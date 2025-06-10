@@ -87,6 +87,8 @@ func end():
 		hide()
 		set_process_unhandled_input(false)
 		emit_signal("dialogue_ended")
+		paths.player.state_machine.chill_after_dialog = true
+		print("prevent next state change idle")
 
 func decrease_eggs():
 		if not stats.infinite_eggs:
