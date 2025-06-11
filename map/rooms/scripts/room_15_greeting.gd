@@ -7,6 +7,6 @@ func _ready():
 
 func _on_area_entered(area):
   if area.name == "player":
-    signals.emit_signal("dialogue_triggered",dialogue)
-    disconnect("area_entered",self,"_on_area_entered")
-    queue_free()
+   signals.emit_signal("dialogue_triggered",dialogue)
+   disconnect("area_entered",self,"_on_area_entered")
+   queue_free()

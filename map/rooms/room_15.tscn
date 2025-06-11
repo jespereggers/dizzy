@@ -2883,6 +2883,9 @@ position = Vector2( 200, 64 )
 
 [node name="Greeting" parent="." instance=ExtResource( 7 )]
 
+[node name="CollisionShape2D" parent="Greeting" index="0"]
+position = Vector2( 180, 127.5 )
+
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]
 [editable path="item_bitten_apple"]
