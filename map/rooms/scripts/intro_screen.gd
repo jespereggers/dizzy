@@ -12,4 +12,5 @@ func _ready():
 
 func _input(event):
 		if event.is_action_released("left_mouse_button") or event is InputEventScreenTouch:
+				print("change 1: ", data.main_menu_coord)
 				paths.map.change_room(data.main_menu_coord)

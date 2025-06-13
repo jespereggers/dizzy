@@ -10,7 +10,6 @@ func _ready():
 		paths.display = $display
 		assert(signals.connect("game_to_load_selected",self,"_on_game_to_load_selected") == OK)
 		assert(signals.connect("game_over",self,"_on_game_over") == OK)
-		
 		paths.map.change_room(data.intro_screen_coord)
 
 

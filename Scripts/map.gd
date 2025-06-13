@@ -37,10 +37,6 @@ func _enter_room(new_room_coords:Vector2):
 		_load_map()
 
 func _load_map():
-		# OPTIONAL BLOCK FOR CHANGING DEFAULT ROOM
-		#if stats.game_state.current_room == Vector2(0,0):
-			#stats.game_state.current_room = Vector2(-4,-4)
-		
 		room_node = load(data.maps[stats.game_state.current_map][stats.game_state.current_room].path).instance()
 		add_child(room_node)
 		_load_items(room_node)
