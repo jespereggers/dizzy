@@ -4,6 +4,9 @@ export var input_left: String = "walk_left"
 export var input_right: String = "walk_right"
 export var input_up: String = "jump"
 
+export var climb_up: String = "climb_up"
+export var climb_down: String = "climb_down"
+
 onready var input_start: Position2D = $input_start
 onready var input_end: CPUParticles2D = $input_end
 
@@ -27,6 +30,8 @@ func _input(event):
 						Input.action_release(input_left)
 						Input.action_release(input_right)
 						Input.action_release(input_up)
+						Input.action_release(climb_up)
+						Input.action_release(climb_down)
 						
 						if event.position.distance_to(input_start.position) < 20:
 								signals.emit_signal("open_inventory_on_touch")
@@ -60,8 +65,15 @@ func _process(_delta):
 
 				if distance.y < 0 and 2*abs(distance.y) > abs(distance.x):
 						Input.action_press(input_up)
+						Input.action_press(climb_up)
 				else:
 						Input.action_release(input_up)
+						Input.action_release(climb_up)
+				
+				if distance.y > 0 and 2*abs(distance.y) > abs(distance.x):
+						Input.action_press(climb_down)
+				else:
+						Input.action_release(climb_down)
 
 
 func _on_pause_mode_changed(new_pause_mode: bool):

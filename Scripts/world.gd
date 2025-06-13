@@ -13,6 +13,7 @@ func _ready():
 		
 		paths.map.change_room(data.intro_screen_coord)
 
+
 func _on_player_left_room(dir:Vector2):
 		var new_room_coords = stats.game_state.current_room + dir
 		if data.maps[stats.game_state.current_map].keys().has(new_room_coords):

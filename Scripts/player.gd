@@ -309,12 +309,6 @@ class PlayerStateMachine:
 				return ""
 		
 		func _enter_state(new_state:String):
-				if chill_after_dialog:
-					# prevent jump-loop
-					# experimental!
-					chill_after_dialog = false
-					_state = "idle"
-					
 				_state = new_state
 				match(_state):
 						"respawn_idle":
@@ -506,3 +500,6 @@ func force_look_dir(dir,update_texture_flip = true):
 		if update_texture_flip:
 				texture.flip_h = (dir == -1)
 		
+
+func kill(msg: String):
+	print(msg)
