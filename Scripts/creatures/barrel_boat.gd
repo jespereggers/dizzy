@@ -15,8 +15,8 @@ onready var raycast:RayCast2D = get_node("boat_node/RayCast2D")
 
 var flipped:bool = false setget set_flipped, get_flipped
 
+
 func check_entry_direction():
-		pass
 		var apply := false
 		if not paths.player:
 				return
@@ -44,18 +44,24 @@ func _ready(): #first init
 		else:
 				set_disabled(true)
 
+
 func _enter_tree(): #subsequent inits
+		return
 		if boat != null:
 				if stats.game_state.shared_scene_data.has("barrel_boat_disabled"):
 						set_disabled(stats.game_state.shared_scene_data["barrel_boat_disabled"])
 				else:
 						set_disabled(true)
 
+
 func _on_loaded():
-				check_entry_direction()
+	check_entry_direction()
+	self.visible = !stats.game_state.shared_scene_data["barrel_boat_disabled"]
+
 
 func _exit_tree():
-		stats.game_state.shared_scene_data["barrel_boat_disabled"] = disabled
+	stats.game_state.shared_scene_data["barrel_boat_disabled"] = disabled
+
 
 func set_flipped(val:bool) -> void:
 		if sprite.flip_h == val:
@@ -68,7 +74,7 @@ func set_flipped(val:bool) -> void:
 		emit_signal("flipped")
 
 func get_flipped() -> bool:
-		return sprite.flip_h
+	return sprite.flip_h
 		
 func _physics_process(_delta):
 		#don't move into dizzy
