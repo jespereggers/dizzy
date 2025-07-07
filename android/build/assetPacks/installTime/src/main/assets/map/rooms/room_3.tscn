@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Scenes/templates/death_area.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/creatures/stuck_door.tscn" type="PackedScene" id=14]
 [ext_resource path="res://templates/torchfire_animated.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/items/item_empty_bucket.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/creatures/WaterDropRoom3.tscn" type="PackedScene" id=18]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -3031,17 +3032,27 @@ __meta__ = {
 }
 
 [node name="hide_the_drop_top" type="Sprite" parent="."]
-position = Vector2( 216, 90 )
-scale = Vector2( 0.32, 10 )
+position = Vector2( 216, 93 )
+scale = Vector2( 0.2, 13 )
 z_index = -1
 texture = SubResource( 81 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="hide_the_drop_bottom" type="Sprite" parent="."]
-position = Vector2( 216, 133 )
-scale = Vector2( 0.32, 10 )
+position = Vector2( 216, 136.059 )
+scale = Vector2( 0.2, 8 )
 z_index = -1
 texture = SubResource( 81 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="item_empty_bucket" parent="." instance=ExtResource( 16 )]
+position = Vector2( 152, 128 )
 
 [editable path="StuckDoor"]
 [editable path="torchfire_death"]
 [editable path="torchfire_death1"]
+[editable path="item_empty_bucket"]

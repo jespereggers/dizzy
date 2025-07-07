@@ -6658,6 +6658,9 @@ position = Vector2( 200, 40 )
 
 [node name="pile_of_rocks" parent="." instance=ExtResource( 21 )]
 
+[node name="Background" parent="pile_of_rocks" index="2"]
+position = Vector2( 8, -1.90735e-06 )
+
 [node name="ThinFloor" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ThinFloor"]

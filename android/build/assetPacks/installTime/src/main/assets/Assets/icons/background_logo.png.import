@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon3.png-f7ca7ad485891571e9633f4618649700.stex"
+path="res://.import/background_logo.png-2e098709214b2f41c1ac99e56398fdb6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/icon3.png"
-dest_files=[ "res://.import/icon3.png-f7ca7ad485891571e9633f4618649700.stex" ]
+source_file="res://Assets/icons/background_logo.png"
+dest_files=[ "res://.import/background_logo.png-2e098709214b2f41c1ac99e56398fdb6.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

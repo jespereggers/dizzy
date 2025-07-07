@@ -1727,6 +1727,9 @@ __meta__ = {
 
 [node name="NoShakeZone" parent="." instance=ExtResource( 13 )]
 
+[node name="CollisionShape2D" parent="NoShakeZone" index="0"]
+position = Vector2( 120, 112 )
+
 [node name="torchfire_death" parent="." instance=ExtResource( 2 )]
 position = Vector2( 12, 64 )
 cause_of_death = "torchfire"

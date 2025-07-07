@@ -10,12 +10,14 @@ shards = 0
 has_artifact = true
 current_map = "map_1"
 current_room = Vector2( 0, 0 )
-respawn_position = Vector2( 188, 149 )
-respawn_room = Vector2( -1, 2 )
+respawn_position = Vector2( 188, 250 )
+respawn_room = Vector2( -1, 0 )
 inventory_capacity = 2
 shared_scene_data = {
 }
-inventory = [  ]
+inventory = [ {
+"filename": "res://Scenes/items/item_outboard_motor.tscn"
+} ]
 persistents = {
 }
 events = {

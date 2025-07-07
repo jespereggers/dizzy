@@ -22,11 +22,13 @@ func check_entry_direction():
 				return
 		match player_entry_direction:
 				PLAYER_ENTRY_DIR.LEFT:
-						if paths.player.position.x == paths.player.MAP_CHANGE_ENTRY_LEFT:
-										apply = true
+					if paths.player.position.x == paths.player.MAP_CHANGE_ENTRY_LEFT:
+						apply = true
+						print("LEFT")
 				PLAYER_ENTRY_DIR.RIGHT:
-						if paths.player.position.x == paths.player.MAP_CHANGE_ENTRY_RIGHT:
-								apply = true
+					if paths.player.position.x == paths.player.MAP_CHANGE_ENTRY_RIGHT:
+						apply = true
+						print("RIGHT")
 		if not apply:
 				return
 		if entry_offset < max_offset:
@@ -56,6 +58,10 @@ func _enter_tree(): #subsequent inits
 
 func _on_loaded():
 	check_entry_direction()
+	
+	if live.current_room == Vector2(-2,0):
+		pass
+	
 	self.visible = !stats.game_state.shared_scene_data["barrel_boat_disabled"]
 
 

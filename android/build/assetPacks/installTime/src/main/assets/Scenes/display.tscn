@@ -124,6 +124,5 @@ __meta__ = {
 }
 
 [node name="everplant_touch_integration" parent="." instance=ExtResource( 5 )]
-visible = false
 
 [editable path="everplant_touch_integration"]

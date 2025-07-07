@@ -445,6 +445,11 @@ func _respawn():
 		respawn_texture.visible = true
 		texture.visible = false
 		position = stats.game_state.respawn_position
+		
+		print("new room:")
+		print(live.current_room)
+		
+		
 #Move Dizzy so that he does not respawn behind the boundary, in room 10
 		if stats.game_state.current_room == Vector2(1,0) and position.y == MAP_CHANGE_EXIT_TOP:
 				position.y += 6

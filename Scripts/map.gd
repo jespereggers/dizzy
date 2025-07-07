@@ -8,6 +8,7 @@ func _ready():
 		pass
 		
 func change_room(new_room_coords:Vector2):
+		live.current_room = new_room_coords
 		_leave_room()
 		#special case for well
 		if stats.game_state.current_room == Vector2(-4,-2): #room 20 leads to room 25

@@ -5,7 +5,7 @@
 [ext_resource path="res://templates/interaction_area.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=80]
-extents = Vector2( 4, 8 )
+extents = Vector2( 2, 8 )
 
 [sub_resource type="Animation" id=81]
 resource_name = "falling_drop"
@@ -18,10 +18,10 @@ tracks/0/loop_wrap = false
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.6, 0.75, 0.9, 1.05, 1.2, 1.35, 1.5, 1.7, 1.8, 1.9, 2, 2.1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.3, 0.45, 0.6, 0.75, 0.9, 1.05, 1.2, 1.35, 1.5, 1.7, 1.8, 1.9, 2, 2.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 215, 91 ), Vector2( 215, 92 ), Vector2( 215, 93 ), Vector2( 215, 94 ), Vector2( 215, 95 ), Vector2( 215, 96 ), Vector2( 215, 97 ), Vector2( 215, 98 ), Vector2( 215, 108 ), Vector2( 215, 118 ), Vector2( 215, 128 ), Vector2( 215, 132 ) ]
+"values": [ Vector2( 215, 89 ), Vector2( 215, 90 ), Vector2( 215, 91 ), Vector2( 215, 92 ), Vector2( 215, 93 ), Vector2( 215, 94 ), Vector2( 215, 95 ), Vector2( 215, 96 ), Vector2( 215, 97 ), Vector2( 215, 98 ), Vector2( 215, 108 ), Vector2( 215, 118 ), Vector2( 215, 128 ), Vector2( 215, 132 ) ]
 }
 
 [node name="WaterDropRoom3" type="Node2D"]
@@ -31,7 +31,7 @@ __meta__ = {
 }
 
 [node name="Sprite2D" type="Sprite" parent="."]
-position = Vector2( 215, 91 )
+position = Vector2( 215, 89 )
 z_index = -2
 texture = ExtResource( 1 )
 

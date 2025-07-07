@@ -31,9 +31,6 @@ flip_h = true
 position = Vector2( -7.62939e-06, 0 )
 cause_of_death = "rat"
 
-[node name="shape_of_death" parent="rat/rat_death" index="0"]
-position = Vector2( 0, -3 )
-
 [node name="FoodDetector" type="Area2D" parent="rat"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rat/FoodDetector"]
