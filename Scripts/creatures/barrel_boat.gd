@@ -88,6 +88,7 @@ func _physics_process(_delta):
 		if raycast.is_colliding():
 				var collider = raycast.get_collider()
 				if collider is Player:
+						paths.player.position.y -= 2
 						return
 						
 		if is_visible_in_tree():

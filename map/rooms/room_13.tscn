@@ -2968,8 +2968,8 @@ __meta__ = {
 "_edit_vertical_guides_": [ -148.0 ]
 }
 player_entry_direction = 1
-entry_offset = 115
-max_offset = 155
+entry_offset = 123
+max_offset = 163
 disabled = false
 
 [node name="Bat" parent="." instance=ExtResource( 16 )]
