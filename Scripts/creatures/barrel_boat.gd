@@ -91,9 +91,10 @@ func _physics_process(_delta):
 						return
 						
 		if is_visible_in_tree():
-				if boat.position.x == 0 and sprite.flip_h:
+				if boat.position.x > 0 and sprite.flip_h:
 						set_flipped(false)
-				if boat.position.x == -140 and not sprite.flip_h:
+				if boat.position.x < -max_offset and not sprite.flip_h:
+						print("FLIP")
 						set_flipped(true)
 						
 				if not sprite.flip_h:

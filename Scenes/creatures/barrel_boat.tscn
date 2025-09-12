@@ -49,7 +49,6 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="pos_label" type="Label" parent="boat_node"]
-visible = false
 margin_left = -20.0
 margin_top = 10.0
 margin_right = 20.0

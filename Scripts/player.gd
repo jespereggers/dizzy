@@ -56,6 +56,8 @@ var pause_locked: bool = false
 var paused: bool = false
 var cause_of_death:String
 
+var on_boat: bool = false
+
 func _ready():
 		pause_mode = Node.PAUSE_MODE_PROCESS #resapwn and dying animations play when the world is paused
 		assert(signals.connect("map_cleaned", self, "_on_map_cleaned") == OK)

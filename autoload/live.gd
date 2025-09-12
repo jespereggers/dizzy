@@ -4,7 +4,7 @@ var current_room: Vector2
 
 var blocked: bool = false
 var player_on_leader: bool = false
-
+var player_on_boat: bool = false
 
 func block(s=0.2): 
 	print("start global block")
