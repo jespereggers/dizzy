@@ -111,9 +111,8 @@ func _physics_process(_delta):
 						new_room_dir.x += 1
 						new_player_pos.x = MAP_CHANGE_ENTRY_LEFT
 						if live.current_room + new_room_dir == Vector2(-1,0):
-							new_player_pos.y -= 1
+							new_player_pos.y -= 6
 				elif position.x < MAP_CHANGE_EXIT_LEFT:
-						print("RRR")
 						new_room_dir.x -= 1
 						new_player_pos.x = MAP_CHANGE_ENTRY_RIGHT
 						if live.current_room + new_room_dir == Vector2(-2,0):
