@@ -2969,7 +2969,6 @@ __meta__ = {
 }
 player_entry_direction = 1
 entry_offset = 120
-max_offset = 160
 disabled = false
 
 [node name="Bat" parent="." instance=ExtResource( 16 )]

@@ -2982,7 +2982,6 @@ __meta__ = {
 "_edit_vertical_guides_": [ -148.0 ]
 }
 entry_offset = 216
-max_offset = 152
 
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 108, 32 )
