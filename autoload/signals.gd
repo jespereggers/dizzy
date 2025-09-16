@@ -66,3 +66,6 @@ signal open_inventory_on_touch()
 
 # warning-ignore:unused_signal
 signal touch_while_paused()
+
+# warning-ignore:unused_signal
+signal barrel_boat_disabled_changed()

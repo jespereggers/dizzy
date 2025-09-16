@@ -104,13 +104,11 @@ func _physics_process(_delta):
 						boat.position.x += speed
 
 func set_disabled(value):
-		disabled = value
-		visible = not value
-		if shape:
-				shape.disabled = value
+	stats.game_state.shared_scene_data["barrel_boat_disabled"] = value
+	signals.emit_signal("barrel_boat_disabled_changed")
 
 func disable():
-		set_disabled(true)
+	set_disabled(true)
 
 func enable():
-		set_disabled(false)
+	set_disabled(false)

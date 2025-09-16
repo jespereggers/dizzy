@@ -4,9 +4,9 @@ extends Area2D
 var shape_of_no_spawn:CollisionShape2D
 
 func _ready():
-  for child in get_children():
-    if child is CollisionShape2D:
-      shape_of_no_spawn = child
+	for child in get_children():
+		if child is CollisionShape2D:
+			shape_of_no_spawn = child
 
 func _enter_tree():
   NoSpawnAreas.new_no_spawn_area(self)

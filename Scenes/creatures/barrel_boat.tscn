@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/tiles/objects/barrel_boat.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/creatures/barrel_boat.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/creatures/barrel_boat.gd" type="Script" id=2]
 [ext_resource path="res://shaders/hide_behind_border.shader" type="Shader" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -17,20 +17,31 @@ func _process(_delta):
 "
 
 [node name="barrel_boat" type="Node2D"]
+visible = false
+position = Vector2( 76, 104 )
 z_index = 1
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_vertical_guides_": [ -148.0 ]
 }
-properties_to_save = PoolStringArray( "disabled", "position", "boat_node:position", "flipped", "entry_offset", "player_entry_direction", "boat_node/boat_body/shape:polygon" )
+properties_to_save = PoolStringArray( "disabled" )
 
 [node name="boat_node" type="Node2D" parent="."]
 
 [node name="boat_body" type="StaticBody2D" parent="boat_node"]
 
-[node name="shape" type="CollisionPolygon2D" parent="boat_node/boat_body"]
+[node name="left_shape" type="CollisionPolygon2D" parent="boat_node/boat_body"]
+visible = false
 position = Vector2( 0, 8.5 )
 polygon = PoolVector2Array( -16, -8.5, 0, -8.5, 8, -8.5, 8, -13.5, 15, -13.5, 15, 15.5, -16, 15.5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="right_shape" type="CollisionPolygon2D" parent="boat_node/boat_body"]
+visible = false
+position = Vector2( 0, 8.5 )
+polygon = PoolVector2Array( -16, -8.5, -16, -13.5, -9, -13.5, -9, -8.5, 15, -8.5, 15, 15.5, -16, 15.5 )
 disabled = true
 __meta__ = {
 "_edit_lock_": true
@@ -49,11 +60,9 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="pos_label" type="Label" parent="boat_node"]
+visible = false
 margin_left = -20.0
 margin_top = 10.0
 margin_right = 20.0
 margin_bottom = 24.0
 script = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
