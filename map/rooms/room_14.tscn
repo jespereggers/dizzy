@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://Assets/tiles/landscape/50.png" type="Texture" id=1]
 [ext_resource path="res://Assets/tiles/landscape/52.png" type="Texture" id=2]
@@ -17,178 +17,68 @@
 [ext_resource path="res://Scenes/creatures/barrel_water.tscn" type="PackedScene" id=15]
 [ext_resource path="res://templates/coin.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/creatures/barrel.tscn" type="PackedScene" id=17]
-[ext_resource path="res://map/rooms/room_14.gd" type="Script" id=18]
 [ext_resource path="res://templates/torchfire_animated.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scenes/creatures/barrel_boat.tscn" type="PackedScene" id=21]
 [ext_resource path="res://templates/water_animated.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scenes/templates/no_spawn_area.tscn" type="PackedScene" id=28]
 
-[sub_resource type="Animation" id=79]
+[sub_resource type="Animation" id=1]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("barrel_boat:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 76, 104 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("barrel_boat/boat_node/sprite:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("barrel_boat/boat_node/boat_body/left_shape:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("barrel_boat/boat_node/boat_body/right_shape:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("barrel_boat:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
-[sub_resource type="Animation" id=80]
-resource_name = "disable_boat"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("barrel_boat/boat_node/boat_body/left_shape:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("barrel_boat/boat_node/boat_body/right_shape:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("barrel_boat:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=78]
-resource_name = "move_boat"
+[sub_resource type="Animation" id=2]
+resource_name = "barrel_boat_move_left"
 length = 8.0
-loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("barrel_boat:position")
+tracks/0/path = NodePath("barrel_boat/Path2D/PathFollow2D/boat_body/collision/shape_move_left:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4, 8 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 76, 104 ), Vector2( -64, 104 ), Vector2( 76, 104 ) ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("barrel_boat/boat_node/sprite:flip_h")
+tracks/1/path = NodePath("barrel_boat/Path2D/PathFollow2D/boat_body/collision/shape_move_right:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 4, 8 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("barrel_boat/boat_node/boat_body/left_shape:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 4, 8 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("barrel_boat/boat_node/boat_body/right_shape:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 4, 8 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("barrel_boat:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "barrel_boat_move_right"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("barrel_boat/Path2D/PathFollow2D/boat_body/collision/shape_move_left:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("barrel_boat/Path2D/PathFollow2D/boat_body/collision/shape_move_right:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
@@ -3044,7 +2934,6 @@ extents = Vector2( 47, 3 )
 extents = Vector2( 47, 24 )
 
 [node name="room_14" type="Node2D"]
-script = ExtResource( 18 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 88.0, 64.0 ],
 "_edit_lock_": true,
@@ -3052,9 +2941,9 @@ __meta__ = {
 }
 
 [node name="animations" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 79 )
-anims/disable_boat = SubResource( 80 )
-anims/move_boat = SubResource( 78 )
+anims/RESET = SubResource( 1 )
+anims/barrel_boat_move_left = SubResource( 2 )
+anims/barrel_boat_move_right = SubResource( 3 )
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
@@ -3081,15 +2970,18 @@ __meta__ = {
 }
 
 [node name="barrel_water" parent="." instance=ExtResource( 15 )]
+visible = true
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="shape" parent="barrel_water/interactable" index="0"]
-disabled = false
-
 [node name="barrel_boat" parent="." instance=ExtResource( 21 )]
-properties_to_save = PoolStringArray(  )
+position = Vector2( 76, 104 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_vertical_guides_": [ -148.0 ]
+}
+entry_offset = 216
 
 [node name="torchfire_death" parent="." instance=ExtResource( 13 )]
 position = Vector2( 108, 32 )

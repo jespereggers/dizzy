@@ -14,7 +14,7 @@ export var respawn_room := Vector2(0,0)
 
 export var inventory_capacity := 2
 
-export var shared_scene_data := {"barrel_boat_disabled": true} setget _set_shared_scene_data
+export var shared_scene_data:Dictionary = {}
 export var inventory:Array = []
 export var persistents:Dictionary = {} #[map][room]{remembered_items,removed_items}
 
@@ -46,11 +46,7 @@ func get_deep_copy() -> SaveGame: #Resource.duplicate doesn't do the job https:/
 	new_savegame.player_states = player_states.duplicate(true)
 	new_savegame.rng_state = rng_state
 	return new_savegame
-
-func _set_shared_scene_data(value: Dictionary):
-	shared_scene_data = value
-
-
+	
 func _set_eggs(value: int):
 		eggs = value
 # warning-ignore:narrowing_conversion

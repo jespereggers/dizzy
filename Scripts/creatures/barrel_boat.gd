@@ -88,14 +88,12 @@ func _physics_process(_delta):
 		if raycast.is_colliding():
 				var collider = raycast.get_collider()
 				if collider is Player:
-						paths.player.position.y -= 2
 						return
 						
 		if is_visible_in_tree():
-				if boat.position.x > 0 and sprite.flip_h:
+				if boat.position.x == 0 and sprite.flip_h:
 						set_flipped(false)
-				if boat.position.x < -max_offset and not sprite.flip_h:
-						print("FLIP")
+				if boat.position.x == -140 and not sprite.flip_h:
 						set_flipped(true)
 						
 				if not sprite.flip_h:
@@ -104,11 +102,13 @@ func _physics_process(_delta):
 						boat.position.x += speed
 
 func set_disabled(value):
-	stats.game_state.shared_scene_data["barrel_boat_disabled"] = value
-	signals.emit_signal("barrel_boat_disabled_changed")
+		disabled = value
+		visible = not value
+		if shape:
+				shape.disabled = value
 
 func disable():
-	set_disabled(true)
+		set_disabled(true)
 
 func enable():
-	set_disabled(false)
+		set_disabled(false)

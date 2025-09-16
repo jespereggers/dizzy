@@ -24,10 +24,8 @@ func load_file(path: String):
 	
 	match path.split(".")[-1]:
 		"txt":
-			print("TXT")
 			content = file.get_var(true)
 		"json":
-			print("JSON")
 			content = JSON.parse(file.get_as_text()).result
 		"dizzy":
 			content = file.get_var(true)

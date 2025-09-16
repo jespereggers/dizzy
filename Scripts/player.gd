@@ -56,8 +56,6 @@ var pause_locked: bool = false
 var paused: bool = false
 var cause_of_death:String
 
-var on_boat: bool = false
-
 func _ready():
 		pause_mode = Node.PAUSE_MODE_PROCESS #resapwn and dying animations play when the world is paused
 		assert(signals.connect("map_cleaned", self, "_on_map_cleaned") == OK)
@@ -108,12 +106,17 @@ func _physics_process(_delta):
 				# Change room
 				var new_room_dir := Vector2()
 				var new_player_pos := position
+				
 				if position.x > MAP_CHANGE_EXIT_RIGHT:
 						new_room_dir.x += 1
 						new_player_pos.x = MAP_CHANGE_ENTRY_LEFT
+						if live.current_room + new_room_dir == Vector2(-1,0):
+							new_player_pos.y -= 6
 				elif position.x < MAP_CHANGE_EXIT_LEFT:
 						new_room_dir.x -= 1
 						new_player_pos.x = MAP_CHANGE_ENTRY_RIGHT
+						if live.current_room + new_room_dir == Vector2(-2,0):
+							new_player_pos.y -= 6
 				
 				if position.y < MAP_CHANGE_EXIT_TOP:
 						new_room_dir.y += 1
@@ -123,8 +126,8 @@ func _physics_process(_delta):
 						new_player_pos.y = MAP_CHANGE_ENTRY_TOP
 				
 				if new_room_dir:
-						position = new_player_pos
-						emit_signal("left_room",new_room_dir)
+					position = new_player_pos
+					emit_signal("left_room",new_room_dir)
 				
 		if (position != old_position) and paused:
 				print(position)
