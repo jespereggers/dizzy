@@ -41,19 +41,10 @@ func check_entry_direction():
 						set_flipped(true)
 		
 func _ready(): #first init
-		if stats.game_state.shared_scene_data.has("barrel_boat_disabled"):
-				set_disabled(stats.game_state.shared_scene_data["barrel_boat_disabled"])
-		else:
-				set_disabled(true)
-
-
-func _enter_tree(): #subsequent inits
-		return
-		if boat != null:
-				if stats.game_state.shared_scene_data.has("barrel_boat_disabled"):
-						set_disabled(stats.game_state.shared_scene_data["barrel_boat_disabled"])
-				else:
-						set_disabled(true)
+	if stats.game_state.shared_scene_data.has("barrel_boat_disabled"):
+			set_disabled(stats.game_state.shared_scene_data["barrel_boat_disabled"])
+	else:
+			set_disabled(true)
 
 
 func _on_loaded():
@@ -63,6 +54,11 @@ func _on_loaded():
 		pass
 	
 	self.visible = !stats.game_state.shared_scene_data["barrel_boat_disabled"]
+	
+	print("S3")
+	if self.visible:
+		print("S3-DISABLED")
+		shape.disabled = false
 
 
 func _exit_tree():
@@ -112,3 +108,4 @@ func disable():
 
 func enable():
 		set_disabled(false)
+

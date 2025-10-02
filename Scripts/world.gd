@@ -25,6 +25,7 @@ func dicts_to_persistents(dicts:Array) -> Array:
 		for dict in dicts:
 				result.append(Persistent.deserialize(dict,null))
 		return(result)
+		
 
 func _on_game_to_load_selected(save_game:SaveGame,respawn = true):
 		_end_game()
