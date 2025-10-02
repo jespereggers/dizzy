@@ -357,48 +357,6 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="death_dialog_bugged_de" type="Popup" parent="dialogue_system"]
-margin_left = 48.0
-margin_top = 64.0
-margin_right = 208.0
-margin_bottom = 152.0
-popup_exclusive = true
-
-[node name="background" parent="dialogue_system/death_dialog_bugged_de" instance=ExtResource( 2 )]
-modulate = Color( 0.721569, 0.780392, 0.435294, 1 )
-margin_right = 160.0
-margin_bottom = 88.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="label" type="Label" parent="dialogue_system/death_dialog_bugged_de"]
-margin_left = 16.0
-margin_top = 24.0
-margin_right = 144.0
-margin_bottom = 72.0
-custom_colors/font_color = Color( 0.439216, 0.643137, 0.698039, 1 )
-text = "du wirst von
-spitzen pikern
-durchbohrt"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="label2" type="Label" parent="dialogue_system/death_dialog_bugged_de"]
-margin_left = 16.0
-margin_top = 48.0
-margin_right = 144.0
-margin_bottom = 72.0
-grow_horizontal = 0
-grow_vertical = 0
-custom_colors/font_color = Color( 0.407843, 0.215686, 0.168627, 1 )
-text = "du verlierst
-ein leben!"
-align = 1
-
 [node name="death_dialog_water_en" type="Popup" parent="dialogue_system"]
 margin_left = 40.0
 margin_top = 64.0
