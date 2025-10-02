@@ -65,9 +65,9 @@ func _open_inventory():
 	if $dialogue_system.visible_boxes != []:
 		return
 
-	paths.player.visible = false
-	_halt_game()
-	inventory.open()
+	if inventory.open():
+		_halt_game()
+		paths.player.visible = false
 		
 func open_inventory_just_to_show_increased_bag_capacity():
 		paths.player.visible = false

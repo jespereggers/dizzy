@@ -28,12 +28,17 @@ func _ready():
 
 
 func _on_touch_while_paused():
-	if live.blocked:
-		return
+	print("visible when touched while paused")
+	#print(self.visible)
+	#if live.blocked:
+	#	return
 	if self.visible:
 		if stats.inventory.empty():
 			return
 		close()
+	else:
+		if not live.blocked:
+			open()
 
 
 func open_just_to_show_increased_capacity():
@@ -58,7 +63,7 @@ func open_just_to_show_increased_capacity():
 
 func open():
 		if live.blocked:
-			return
+			return false
 
 		var item_list:NinePatchRect
 		match stats.game_state.inventory_capacity:
@@ -111,6 +116,8 @@ func open():
 				set_process_unhandled_input(true)
 				item_list.set_process_input(true)
 				item_list.close_button.grab_focus()
+		
+		return true
 
 func drop_item_beneath_player(item:Item):
 		if item.get_parent():
