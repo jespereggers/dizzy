@@ -39,7 +39,6 @@ func play_custom(procedure: PoolStringArray):
 								node.call(method)
 								
 								if action == "call:barrel_boat:enable":
-									print("enable-------")
 									stats.game_state.shared_scene_data["barrel_boat_disabled"] = false
 									
 						"move_player":
