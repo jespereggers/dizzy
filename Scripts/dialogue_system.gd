@@ -85,9 +85,6 @@ func clear_boxes():
 		visible_boxes.clear()
 
 func end():
-		#if live.blocked:
-		#	return
-
 		clear_boxes()
 		hide()
 		set_process_unhandled_input(false)
