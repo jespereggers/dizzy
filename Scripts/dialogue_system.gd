@@ -33,9 +33,15 @@ func play_custom(procedure: PoolStringArray):
 						"call":
 								var node:Node2D = paths.map.room_node.get_node(action.rsplit(":")[1])
 								assert(node)
+								print(action)
 								var method:String = action.rsplit(":")[2]
 								assert(node.has_method(method))
 								node.call(method)
+								
+								if action == "call:barrel_boat:enable":
+									print("enable-------")
+									stats.game_state.shared_scene_data["barrel_boat_disabled"] = false
+									
 						"move_player":
 								var pos := Vector2(0,0)
 								pos.x = float(action.rsplit(":")[1].rsplit(",")[0])

@@ -49,20 +49,19 @@ func _ready(): #first init
 
 func _on_loaded():
 	check_entry_direction()
-	
-	if live.current_room == Vector2(-2,0):
-		pass
+		
+	if not stats.game_state.shared_scene_data.has("barrel_boat_disabled"):
+		stats.game_state.shared_scene_data["barrel_boat_disabled"] = true
 	
 	self.visible = !stats.game_state.shared_scene_data["barrel_boat_disabled"]
 	
-	print("S3")
 	if self.visible:
-		print("S3-DISABLED")
 		shape.disabled = false
 
 
 func _exit_tree():
-	stats.game_state.shared_scene_data["barrel_boat_disabled"] = disabled
+	return
+	#stats.game_state.shared_scene_data["barrel_boat_disabled"] = disabled
 
 
 func set_flipped(val:bool) -> void:
