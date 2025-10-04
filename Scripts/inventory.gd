@@ -29,9 +29,7 @@ func _ready():
 
 func _on_touch_while_paused():
 	print("visible when touched while paused")
-	#print(self.visible)
-	#if live.blocked:
-	#	return
+
 	if self.visible:
 		if stats.inventory.empty():
 			return
